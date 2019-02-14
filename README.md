@@ -1,13 +1,13 @@
 # [Proost](https://reactjs.org/) &middot; [![GitHub license](https://img.shields.io/badge/License-GPLv3-blue.svg)](./LICENSE) [![npm version](https://img.shields.io/npm/v/react.svg?style=flat)](https://www.npmjs.com/package/react) [![Coverage Status](https://img.shields.io/coveralls/facebook/react/master.svg?style=flat)](https://coveralls.io/github/facebook/react?branch=master) [![Build Status](https://travis-ci.org/keystonejs/keystone.svg?branch=master)](https://travis-ci.org/keystonejs/keystone) [![CircleCI Status](https://circleci.com/gh/facebook/react.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/facebook/react) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://reactjs.org/docs/how-to-contribute.html#your-first-pull-request)
 
 
- - [About Proost](#about)
- - [Getting Started](#getting-started)
- - [Community](#community)
- - [Contributing](#contributing)
- - [License](#license)
+- [About Proost](#about)
+- [Getting Started](#getting-started)
+- [Community](#community)
+- [Contributing](#contributing)
+- [License](#license)
 
-## About Keystone
+## About Proost
 
 [KeystoneJS](http://keystonejs.com) is a powerful Node.js content management system and web app framework built on the [Express](https://expressjs.com/) web framework and [Mongoose ODM](http://mongoosejs.com). Keystone makes it easy to create sophisticated web sites and apps, and comes with a beautiful auto-generated Admin UI.
 
