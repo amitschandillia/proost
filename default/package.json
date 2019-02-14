@@ -1,0 +1,28 @@
+{
+  "name": "proost",
+  "version": "1.0.0",
+  "description": "Project Proost prototype",
+  "main": "./server.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "Amit Schandillia",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "express-graphql": "^0.7.1",
+    "express-subdomain": "^1.0.5",
+    "graphql": "^14.1.1",
+    "helmet": "^3.15.0",
+    "next": "^7.0.2",
+    "path": "^0.12.7",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
+  }
+}
