@@ -1,8 +1,13 @@
 # Definitions: Input objects
+input PostAuthorInput {
+  _id: String!
+  firstName: String!,
+  lastName: String!,
+}
 input PostInput {
   title: String!,
   content: String!,
-  author: String!,
+  author: PostAuthorInput!,
 }
 
 # Definitions: Mutations
