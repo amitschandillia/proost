@@ -1,0 +1,11 @@
+# Definitions: Input objects
+input PostInput {
+  title: String!,
+  content: String!,
+  author: String!,
+}
+
+# Definitions: Mutations
+type Mutation {
+  createPost(postInput: PostInput!): Post
+}
