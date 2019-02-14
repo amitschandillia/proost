@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
+    "test": "jest",
     "dev": "babel-watch ./server.js"
   },
   "license": "MIT",
@@ -21,6 +22,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "babel-cli": "^6.26.0",
-    "babel-watch": "^7.0.0"
+    "babel-watch": "^7.0.0",
+    "jest": "^24.1.0"
   }
 }
