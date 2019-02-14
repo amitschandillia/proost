@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/keystonejs/keystone.svg?branch=master)](https://travis-ci.org/keystonejs/keystone)
 
- - [About Keystone](#about)
+ - [About Proost](#about)
  - [Getting Started](#getting-started)
  - [Community](#community)
  - [Contributing](#contributing)
@@ -113,7 +113,7 @@ Keystone's development has been led by key contributors including [Jed Watson](h
 
 (The MIT License)
 
-Copyright (c) 2016-2018 Jed Watson
+Copyright &copy; Proost, Inc. and its affiliates.
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
