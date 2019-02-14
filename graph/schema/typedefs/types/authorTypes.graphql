@@ -1,0 +1,6 @@
+# Definitions: Types
+type Author {
+  _id: ID!,
+  firstName: String!,
+  lastName: String!,
+}

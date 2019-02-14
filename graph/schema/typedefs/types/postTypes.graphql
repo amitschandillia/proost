@@ -1,3 +1,4 @@
+# Definitions: Types
 type Post {
   _id: ID!,
   title: String!,
