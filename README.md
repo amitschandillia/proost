@@ -110,6 +110,4 @@ Keystone's development has been led by key contributors including [Jed Watson](h
 
 ## License
 
-Copyright &copy; Proost, Inc. and its affiliates.
-
-This project is licensed under [GNU GPL v3.0](./LICENSE).
+This project is [GNU GPL v3.0](./LICENSE) licensed.
