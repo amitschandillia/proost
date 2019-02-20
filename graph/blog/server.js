@@ -15,7 +15,7 @@ import mongoose from 'mongoose';
 
 // DB: Connect to MongoDB
 mongoose.connect(
-  process.env.MONGO_PATH_ATLAS_36,
+  process.env.GRAPH_BLOG_MONGO_PATH_ATLAS_36,
   { useNewUrlParser: true }
 ).then(() => {
   console.log('> Connected to db...');
@@ -42,8 +42,8 @@ server.applyMiddleware({
   path: '/'
 });
 // Express: Listener
-app.listen(process.env.PORT, () => {
-  console.log(`Server started on port: ${process.env.PORT}`);
+app.listen(process.env.GRAPH_BLOG_PORT, () => {
+  console.log(`Server started on port: ${process.env.GRAPH_BLOG_PORT}`);
 });
 
 // Exports
