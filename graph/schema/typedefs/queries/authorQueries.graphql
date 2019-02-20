@@ -1,4 +1,0 @@
-# Definitions: Queries
-type Query {
-  authors: [Author!]!
-}
