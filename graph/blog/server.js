@@ -1,5 +1,7 @@
 'use strict';
 
+// Imports: Babel polyfill
+import 'babel-polyfill';
 // Imports: Dotenv
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
