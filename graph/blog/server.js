@@ -25,6 +25,7 @@ mongoose.connect(
 throw err;
 });
 mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 // GraphQL: Schema
 const server = new ApolloServer({

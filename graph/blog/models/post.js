@@ -2,29 +2,46 @@
 
 import mongoose from 'mongoose';
 
+const postAuthor = mongoose.Schema({
+  _id: {
+    type: String,
+    required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+},{ _id : false });
+
 const postSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
+    unique : true,
   },
   content: {
     type: String,
     required: true,
   },
-  author: {
-    _id: {
-      type: String,
-      required: true,
-    },
-    firstName: {
-      type: String,
-      required: true,
-    },
-    lastName: {
-      type: String,
-      required: true,
-    },
-  },
+  author: postAuthor,
+  // author: {
+  //   _id: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   firstName: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   lastName: {
+  //     type: String,
+  //     required: true,
+  //   },
+  // },
 });
 
 module.exports = mongoose.model('Post', postSchema);
