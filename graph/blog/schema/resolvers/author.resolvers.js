@@ -10,6 +10,7 @@ import graphqlFields from 'graphql-fields';
 
 // Resolve queries
 module.exports = {
+  // Resolve queries
   Query: {
     // Retrieve all authors
     authors: () => {
@@ -36,7 +37,7 @@ module.exports = {
     },
   },
 
-  // Resolve others
+  // Resolve posts for given author
   Author: {
     posts: (parent, args, context, ast) => {
       // Retrieve fields being queried

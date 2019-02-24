@@ -37,7 +37,8 @@ module.exports = {
         });
     },
   },
-  // Resolve others
+
+  // Resolve author of given post
   Post: {
     author: (parent, args, context, ast) => {
       // Retrieve fields being queried
@@ -47,8 +48,11 @@ module.exports = {
       // Check if queried fields already exist in parent
       const available = queriedFields.every((field) => fieldsInParent.includes(field));
       if(parent.author && available) {
+        // If parent data is available and includes queried fields, no need to query db
         return parent.author;
-      } else {
+      }
+      else {
+        // Otherwise, query db and retrieve data
         return Author.findOne({'posts._id': parent._id}, (err, docs) => {
           if (docs){ return docs; }
           if (err){ throw err; }
@@ -56,6 +60,7 @@ module.exports = {
       }
     },
   },
+
   // Resolve mutations
   Mutation: {
     // Create a new post
