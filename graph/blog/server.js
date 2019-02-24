@@ -1,28 +1,30 @@
-'use strict';
-
 // Imports: Babel polyfill
 import 'babel-polyfill';
 // Imports: Dotenv
 import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
-dotenvExpand(dotenv.config({ path: '../../../proost/.env' }));
 // Imports: Express
 import express from 'express';
 // Imports: GraphQL
 import { ApolloServer } from 'apollo-server-express';
-// Imports: GraphQL typedefs & resolvers
-import { typeDefs, resolvers } from './schema';
 // Imports: Mongoose
 import mongoose from 'mongoose';
+// Imports: GraphQL typedefs & resolvers
+import { typeDefs, resolvers } from './schema';
+// Imports: Playground settings
+import playgroundSettings from './playground.json';
+
+// Initialize global constants
+dotenvExpand(dotenv.config({ path: '../../../proost/.env' }));
 
 // DB: Connect to MongoDB
 mongoose.connect(
   process.env.GRAPH_BLOG_MONGO_PATH_ATLAS_36,
-  { useNewUrlParser: true }
+  { useNewUrlParser: true },
 ).then(() => {
-  console.log('> Connected to db...');
-}).catch(err => {
-throw err;
+  console.log('Connected to db...');
+}).catch((err) => {
+  throw err;
 });
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
@@ -32,9 +34,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   playground: {
-    endpoint: `/blog`, /* populates the playground endpoint box below the tab-strip. */
-    settings: require('./playground.json')
-  }
+    endpoint: '/blog', /* populates the playground endpoint box below the tab-strip. */
+    settings: playgroundSettings,
+  },
 });
 
 // Express: Initialize
@@ -42,7 +44,7 @@ const app = express();
 // Middleware: GraphQL route
 server.applyMiddleware({
   app,
-  path: '/'
+  path: '/',
 });
 // Express: Listener
 app.listen(process.env.GRAPH_BLOG_PORT, () => {

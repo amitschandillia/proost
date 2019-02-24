@@ -1,0 +1,9 @@
+/**/node_modules/*
+/**/.build/*
+.git/*
+.help_docs/*
+offline/*
+static/*
+/**/.env
+/**/package.json
+/**/yarn.lock
