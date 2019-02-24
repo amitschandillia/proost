@@ -10,6 +10,7 @@ import Author from '../../models/author';
 module.exports = {
   // Resolve queries
   Query: {
+    // Retrieve all posts
     posts: () => {
       return Post
       .find()
@@ -22,9 +23,21 @@ module.exports = {
         throw err;
       });
     },
+    // Retrieve post by ID
+    post: (root, args, context) => {
+      return Post
+        .findById(args._id)
+        .then(post => {
+          return post._doc;
+        })
+        .catch(err => {
+          throw err;
+        });
+    },
   },
   // Resolve mutations
   Mutation: {
+    // Create a new post
     createPost: async (root, args, context) => {
       const session = await mongoose.startSession();
       session.startTransaction();

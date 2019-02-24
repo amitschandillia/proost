@@ -28,20 +28,6 @@ const postSchema = mongoose.Schema({
     required: true,
   },
   author: postAuthor,
-  // author: {
-  //   _id: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   firstName: {
-  //     type: String,
-  //     required: true,
-  //   },
-  //   lastName: {
-  //     type: String,
-  //     required: true,
-  //   },
-  // },
 });
 
 module.exports = mongoose.model('Post', postSchema);

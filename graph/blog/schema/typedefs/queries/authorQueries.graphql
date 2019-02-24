@@ -1,4 +1,5 @@
 # Definitions: Queries
 type Query {
-  authors: [Author!]!
+  authors: [Author!]!,
+  author(_id: ID!): Author,
 }
