@@ -74,20 +74,17 @@ module.exports = {
         const isPublished = args.postInput.isPublished;
         let milestones = {};
         const currTime = new Date();
-        const createdAt = currTime;
-        const updatedAt = currTime;
-        const publishedAt = currTime;
         if(isPublished){
           milestones = {
-            createdAt,
-            updatedAt,
-            publishedAt
+            createdAt: currTime,
+            updatedAt: currTime,
+            publishedAt: currTime
           };
         }
         else {
           milestones = {
-            createdAt,
-            updatedAt
+            createdAt: currTime,
+            updatedAt: currTime,
           };
         }
         const createdPost = await Post({
@@ -95,7 +92,7 @@ module.exports = {
           title: args.postInput.title,
           content: args.postInput.content,
           author: args.postInput.author,
-          ...milestones,
+          milestones,
         }).save(opts);
         // Throw error and abort transaction if operation fails, i.e. createdPost = null
         if(!createdPost) throw new Error('Couldn\'t create post');
