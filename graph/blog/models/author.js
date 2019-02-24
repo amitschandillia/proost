@@ -1,5 +1,3 @@
-'use strict';
-
 import mongoose from 'mongoose';
 
 const authoredPost = mongoose.Schema({
@@ -15,7 +13,7 @@ const authoredPost = mongoose.Schema({
     type: Boolean,
     required: true,
   },
-},{ _id : false });
+}, { _id: false });
 
 const authorSchema = mongoose.Schema({
   firstName: {
@@ -26,7 +24,7 @@ const authorSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  posts: [authoredPost]
+  posts: [authoredPost],
 });
 
 module.exports = mongoose.model('Author', authorSchema);

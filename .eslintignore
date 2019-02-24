@@ -2,9 +2,7 @@
 /**/.build/*
 .git/*
 .help_docs/*
-offline/*
-static/*
-/**/.env
+/**/.env*
 /**/package.json
 /**/package-lock.json
 /**/yarn.lock

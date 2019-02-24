@@ -24,7 +24,6 @@ module.exports = {
       .catch((err) => {
         throw err;
       }),
-    // },
   },
 
   // Resolve author of given post

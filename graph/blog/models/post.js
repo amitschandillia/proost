@@ -1,5 +1,3 @@
-'use strict';
-
 import mongoose from 'mongoose';
 
 const postAuthor = mongoose.Schema({
@@ -15,13 +13,13 @@ const postAuthor = mongoose.Schema({
     type: String,
     required: true,
   },
-},{ _id : false });
+}, { _id: false });
 
 const postSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
-    unique : true,
+    unique: true,
   },
   content: {
     type: String,
@@ -40,11 +38,6 @@ const postSchema = mongoose.Schema({
 });
 
 module.exports = mongoose.model('Post', postSchema);
-
-
-
-
-
 
 // import mongoose from 'mongoose';
 
