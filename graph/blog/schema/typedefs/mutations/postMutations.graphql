@@ -5,6 +5,7 @@ input PostAuthorInput {
   lastName: String!,
 }
 input PostInput {
+  isPublished: Boolean!,
   title: String!,
   content: String!,
   author: PostAuthorInput!,

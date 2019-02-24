@@ -5,6 +5,8 @@ import mongoose from 'mongoose';
 // Imports: Models
 import Post from '../../models/post';
 import Author from '../../models/author';
+// Imports: graphql-fields
+import graphqlFields from 'graphql-fields';
 
 // GraphQL: Resolvers
 module.exports = {
@@ -35,6 +37,25 @@ module.exports = {
         });
     },
   },
+  // Resolve others
+  Post: {
+    author: (parent, args, context, ast) => {
+      // Retrieve fields being queried
+      const queriedFields = Object.keys(graphqlFields(ast));
+      // Retrieve fields returned by parent, if any
+      const fieldsInParent = Object.keys(parent.author._doc);
+      // Check if queried fields already exist in parent
+      const available = queriedFields.every((field) => fieldsInParent.includes(field));
+      if(parent.author && available) {
+        return parent.author;
+      } else {
+        return Author.findOne({'posts._id': parent._id}, (err, docs) => {
+          if (docs){ return docs; }
+          if (err){ throw err; }
+        });
+      }
+    },
+  },
   // Resolve mutations
   Mutation: {
     // Create a new post
@@ -46,6 +67,7 @@ module.exports = {
         const opts = { session, new: true };
         // Operation 1: Insert into posts collection
         const createdPost = await Post({
+          isPublished: args.postInput.isPublished,
           title: args.postInput.title,
           content: args.postInput.content,
           author: args.postInput.author,
@@ -56,6 +78,7 @@ module.exports = {
         const work = {
           posts: {
             _id: createdPost._id,
+            isPublished: args.postInput.isPublished,
             title: args.postInput.title,
           }
         };

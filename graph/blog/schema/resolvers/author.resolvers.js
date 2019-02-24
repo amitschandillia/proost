@@ -6,9 +6,9 @@ import mongoose from 'mongoose';
 import Author from '../../models/author';
 import Post from '../../models/post';
 // Imports: graphql-fields
-const graphqlFields = require('graphql-fields');
+import graphqlFields from 'graphql-fields';
 
-// GraphQL: Query resolvers
+// Resolve queries
 module.exports = {
   Query: {
     // Retrieve all authors
@@ -36,7 +36,7 @@ module.exports = {
     },
   },
 
-  // GraphQL: Other resolvers
+  // Resolve others
   Author: {
     posts: (parent, args, context, ast) => {
       // Retrieve fields being queried
@@ -45,14 +45,15 @@ module.exports = {
       const fieldsInParent = Object.keys(parent.posts[0]._doc);
       // Check if queried fields already exist in parent
       const available = queriedFields.every((field) => fieldsInParent.includes(field));
+      const isPublished = (typeof args.isPublished == 'boolean' ? args.isPublished : true);
       if(parent.posts && available) {
         // If parent data is available and includes queried fields, no need to query db
-        return parent.posts;
+        return parent.posts.filter(post => post.isPublished == isPublished);
       }
       else {
         // Otherwise, query db and retrieve data
         return Post
-        .find({'author._id': parent._id}, (err, docs) => {
+        .find({'author._id': parent._id, 'isPublished': isPublished}, (err, docs) => {
           if (docs){ return docs; }
           if (err){ throw err; }
         });
@@ -60,7 +61,7 @@ module.exports = {
     },
   },
 
-  // GraphQL: Mutation resolvers
+  // Resolve mutations
   Mutation: {
     // Create a new author
     createAuthor: (root, args, context) => {

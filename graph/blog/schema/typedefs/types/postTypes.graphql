@@ -1,6 +1,7 @@
 # Definitions: Types
 type Post {
   _id: ID!,
+  isPublished: Boolean!,
   # Post title; must be unique
   title: String!,
   # Post body text; in markdown language

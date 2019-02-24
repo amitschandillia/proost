@@ -27,6 +27,10 @@ const postSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  isPublished: {
+    type: Boolean,
+    required: true,
+  },
   author: postAuthor,
 });
 

@@ -6,5 +6,5 @@ type Author {
   # Author last name
   lastName: String!,
   # Authored posts
-  posts: [Post],
+  posts(isPublished: Boolean): [Post],
 }

@@ -11,6 +11,10 @@ const authoredPost = mongoose.Schema({
     type: String,
     required: true,
   },
+  isPublished: {
+    type: Boolean,
+    required: true,
+  },
 },{ _id : false });
 
 const authorSchema = mongoose.Schema({
