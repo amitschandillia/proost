@@ -21,6 +21,27 @@ const postSchema = mongoose.Schema({
     required: true,
     unique: true,
   },
+  titleSecondary: {
+    type: String,
+  },
+  metaDescription: {
+    // Use in meta and og description tags
+    type: String,
+    required: true,
+  },
+  excerpt: {
+    type: String,
+    required: true,
+  },
+  slug: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  readingTime: {
+    type: Number,
+    required: true,
+  },
   content: {
     type: String,
     required: true,
@@ -53,58 +74,6 @@ module.exports = mongoose.model('Post', postSchema);
 // },{ _id : false });
 //
 // const postSchema = mongoose.Schema({
-//   _id: mongoose.Schema.Types.ObjectId,
-//   slug: {
-//     type: String,
-//     required: true,
-//   },
-//   reading_time: {
-//     type: Number,
-//     required: true,
-//   },
-//   isPublished: {
-//     // True if published, False if draft
-//     type: Boolean,
-//     required: true,
-//   },
-//   title: {
-//     type: String,
-//     required: true,
-//   },
-//   title_secondary: {
-//     type: String,
-//   },
-//   meta_description: {
-//     // Use in meta and og description tags
-//     type: String,
-//   },
-//   excerpt: {
-//     type: String,
-//     required: true,
-//   },
-//   content: {
-//     type: String,
-//     required: true,
-//   },
-//   author: {
-//     id: {
-//       type: String,
-//       required: true,
-//     },
-//     first_name: {
-//       type: String,
-//       required: true,
-//     },
-//     last_name: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   events: {
-//     created_at: { type: Date, required: true },
-//     published_at: { type: Date },
-//     last_modified_at: { type: Date },
-//   },
 //   tags: [postTag],
 //   category: {
 //     id: {

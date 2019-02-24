@@ -10,6 +10,12 @@ type Post {
   isPublished: Boolean!,
   # Post title; must be unique
   title: String!,
+  titleSecondary: String,
+  metaDescription: String!,
+  excerpt: String!,
+  # Slug must be unique
+  slug: String!,
+  readingTime: Int!,
   # Post body text; in markdown language
   content: String!,
   # Post author

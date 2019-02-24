@@ -7,6 +7,11 @@ input PostAuthorInput {
 input PostInput {
   isPublished: Boolean!,
   title: String!,
+  titleSecondary: String,
+  metaDescription: String!,
+  excerpt: String!,
+  slug: String!,
+  readingTime: Int!,
   content: String!,
   author: PostAuthorInput!,
 }

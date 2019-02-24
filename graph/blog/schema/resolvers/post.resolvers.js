@@ -79,6 +79,11 @@ module.exports = {
         const createdPost = await Post({
           isPublished,
           title: args.postInput.title,
+          titleSecondary: args.postInput.titleSecondary,
+          metaDescription: args.postInput.metaDescription,
+          excerpt: args.postInput.excerpt,
+          slug: args.postInput.slug,
+          readingTime: args.postInput.readingTime,
           content: args.postInput.content,
           author: args.postInput.author,
           milestones,
@@ -91,6 +96,11 @@ module.exports = {
             _id: createdPost._id,
             isPublished: args.postInput.isPublished,
             title: args.postInput.title,
+            titleSecondary: args.postInput.titleSecondary,
+            metaDescription: args.postInput.metaDescription,
+            excerpt: args.postInput.excerpt,
+            slug: args.postInput.slug,
+            readingTime: args.postInput.readingTime,
           },
         };
         // Operation 2: Update authors collection

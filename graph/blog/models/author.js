@@ -13,6 +13,27 @@ const authoredPost = mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  titleSecondary: {
+    type: String,
+  },
+  metaDescription: {
+    // Use in meta and og description tags
+    type: String,
+    required: true,
+  },
+  excerpt: {
+    type: String,
+    required: true,
+  },
+  slug: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  readingTime: {
+    type: Number,
+    required: true,
+  },
 }, { _id: false });
 
 const authorSchema = mongoose.Schema({
