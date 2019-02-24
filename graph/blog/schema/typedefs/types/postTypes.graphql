@@ -8,4 +8,7 @@ type Post {
   content: String!,
   # Post author
   author: Author!,
+  # Molestones
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

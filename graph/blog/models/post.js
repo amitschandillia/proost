@@ -31,6 +31,17 @@ const postSchema = mongoose.Schema({
     type: Boolean,
     required: true,
   },
+  createdAt: {
+    type: Date,
+    required: true,
+  },
+  // publishedAt: {
+  //   type: Date
+  // },
+  updatedAt: {
+    type: Date,
+    required: true,
+  },
   author: postAuthor,
 });
 

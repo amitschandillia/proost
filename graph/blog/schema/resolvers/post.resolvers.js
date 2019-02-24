@@ -76,6 +76,8 @@ module.exports = {
           title: args.postInput.title,
           content: args.postInput.content,
           author: args.postInput.author,
+          createdAt: new Date(),
+          updatedAt: new Date(),
         }).save(opts);
         // Throw error and abort transaction if operation fails, i.e. createdPost = null
         if(!createdPost) throw new Error('Couldn\'t create post');
