@@ -35,12 +35,12 @@ const postSchema = mongoose.Schema({
     type: Date,
     required: true,
   },
-  // publishedAt: {
-  //   type: Date
-  // },
   updatedAt: {
     type: Date,
     required: true,
+  },
+  publishedAt: {
+    type: Date,
   },
   author: postAuthor,
 });

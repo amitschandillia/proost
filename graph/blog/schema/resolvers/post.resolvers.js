@@ -71,13 +71,31 @@ module.exports = {
         // Create session object
         const opts = { session, new: true };
         // Operation 1: Insert into posts collection
+        const isPublished = args.postInput.isPublished;
+        let milestones = {};
+        const currTime = new Date();
+        const createdAt = currTime;
+        const updatedAt = currTime;
+        const publishedAt = currTime;
+        if(isPublished){
+          milestones = {
+            createdAt,
+            updatedAt,
+            publishedAt
+          };
+        }
+        else {
+          milestones = {
+            createdAt,
+            updatedAt
+          };
+        }
         const createdPost = await Post({
-          isPublished: args.postInput.isPublished,
+          isPublished,
           title: args.postInput.title,
           content: args.postInput.content,
           author: args.postInput.author,
-          createdAt: new Date(),
-          updatedAt: new Date(),
+          ...milestones,
         }).save(opts);
         // Throw error and abort transaction if operation fails, i.e. createdPost = null
         if(!createdPost) throw new Error('Couldn\'t create post');
