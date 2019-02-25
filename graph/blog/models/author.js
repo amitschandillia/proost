@@ -53,7 +53,9 @@ const authorSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  posts: [authoredPost],
+  posts: {
+    type: [authoredPost],
+  },
 });
 
 module.exports = mongoose.model('Author', authorSchema);

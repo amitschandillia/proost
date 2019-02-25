@@ -1,5 +1,28 @@
 import mongoose from 'mongoose';
 
+const taggedPostAuthor = mongoose.Schema({
+  _id: {
+    type: String,
+    required: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  bio: {
+    type: String,
+    required: true,
+  },
+}, { _id: false });
+
 const taggedPost = mongoose.Schema({
   _id: {
     type: String,
@@ -31,6 +54,10 @@ const taggedPost = mongoose.Schema({
   },
   readingTime: {
     type: Number,
+    required: true,
+  },
+  author: {
+    type: taggedPostAuthor,
     required: true,
   },
 }, { _id: false });
