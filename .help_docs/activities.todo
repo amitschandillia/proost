@@ -4,8 +4,8 @@ GraphQL Tasks:
   ✔ Create author @done(February-25-2019 19:45) @project(GraphQL Tasks)
   ✔ Update tag @done(February-25-2019 19:46) @project(GraphQL Tasks)
   ✔ Add author field to tag.posts @done(February-25-2019 20:22) @project(GraphQL Tasks)
-  ☐ Add tags field to author.posts
-  ☐ Retrieve posts by tag
+  ✔ Add tags field to author.posts @done(February-25-2019 21:09) @project(GraphQL Tasks)
+  ✔ Retrieve posts by tag @done(February-25-2019 22:10) @project(GraphQL Tasks)
   ☐ Update author
   ☐ Update post
   ☐ Create category
