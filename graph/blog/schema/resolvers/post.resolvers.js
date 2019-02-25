@@ -76,32 +76,17 @@ module.exports = {
             updatedAt: currTime,
           };
         }
-        const createdPost = await Post({
-          isPublished,
-          title: args.postInput.title,
-          titleSecondary: args.postInput.titleSecondary,
-          metaDescription: args.postInput.metaDescription,
-          excerpt: args.postInput.excerpt,
-          slug: args.postInput.slug,
-          readingTime: args.postInput.readingTime,
-          content: args.postInput.content,
-          author: args.postInput.author,
-          milestones,
-        }).save(opts);
+        const postObj = args.postInput;
+        postObj.isPublished = isPublished;
+        postObj.milestones = milestones;
+        const createdPost = await Post(postObj).save(opts);
         // Throw error and abort transaction if operation fails, i.e. createdPost = null
         if (!createdPost) throw new Error('Couldn\'t create post');
         // Work object to be used in the next operation
+        const authoredPostObj = { _id: createdPost._id, ...postObj };
+        delete authoredPostObj.content;
         const work = {
-          posts: {
-            _id: createdPost._id,
-            isPublished: args.postInput.isPublished,
-            title: args.postInput.title,
-            titleSecondary: args.postInput.titleSecondary,
-            metaDescription: args.postInput.metaDescription,
-            excerpt: args.postInput.excerpt,
-            slug: args.postInput.slug,
-            readingTime: args.postInput.readingTime,
-          },
+          posts: authoredPostObj,
         };
         // Operation 2: Update authors collection
         const updatedAuthor = await Author
