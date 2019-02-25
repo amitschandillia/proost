@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { hello, add } from '../testDummy';
 
 describe('hello', () => {
