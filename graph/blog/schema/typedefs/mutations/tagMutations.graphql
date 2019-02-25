@@ -1,0 +1,10 @@
+# Definitions: Input objects
+input TagInput {
+  name: String!,
+  description: String!,
+}
+
+# Definitions: Mutations
+type Mutation {
+  createTag(tagInput: TagInput!): Tag
+}

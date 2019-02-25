@@ -13,6 +13,14 @@ const postAuthor = mongoose.Schema({
     type: String,
     required: true,
   },
+  email: {
+    type: String,
+    required: true,
+  },
+  bio: {
+    type: String,
+    required: true,
+  },
 }, { _id: false });
 
 const postSchema = mongoose.Schema({

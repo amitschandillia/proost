@@ -3,6 +3,8 @@ input PostAuthorInput {
   _id: String!
   firstName: String!,
   lastName: String!,
+  email: String!,
+  bio: String!,
 }
 input PostInput {
   isPublished: Boolean!,

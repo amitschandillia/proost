@@ -5,6 +5,10 @@ type Author {
   firstName: String!,
   # Author last name
   lastName: String!,
+  # Author's email (must be unique)
+  email: String!,
+  # Brief introduction
+  bio: String!,
   # Authored posts
   posts(isPublished: Boolean): [Post],
 }

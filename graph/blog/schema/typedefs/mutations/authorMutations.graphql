@@ -2,6 +2,8 @@
 input AuthorInput {
   firstName: String!,
   lastName: String!,
+  email: String!,
+  bio: String!,
 }
 
 # Definitions: Mutations

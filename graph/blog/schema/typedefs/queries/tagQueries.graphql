@@ -1,0 +1,5 @@
+# Definitions: Queries
+type Query {
+  tags: [Tag!]!,
+  tag(_id: ID!): Tag,
+}

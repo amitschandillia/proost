@@ -56,6 +56,8 @@ module.exports = {
       const author = new Author({
         firstName: args.authorInput.firstName,
         lastName: args.authorInput.lastName,
+        email: args.authorInput.email,
+        bio: args.authorInput.bio,
       });
       return author
         .save()

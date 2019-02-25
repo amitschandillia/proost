@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "./node_modules/.bin/eslint",
     "test": "jest",
-    "dev": "babel-watch ./server.js"
+    "dev": "babel-watch ./server.js",
+    "git": "cd ../.. && git add ."
   },
   "license": "MIT",
   "dependencies": {
