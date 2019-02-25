@@ -6,8 +6,7 @@
     "lint": "./node_modules/.bin/eslint",
     "test": "jest",
     "dev": "babel-watch ./server.js",
-    "git": "bash ../../toGit.sh",
-    "a": "jest"
+    "git": "bash ../../toGit.sh"
   },
   "license": "MIT",
   "dependencies": {
