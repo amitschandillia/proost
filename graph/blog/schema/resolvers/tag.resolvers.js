@@ -1,7 +1,5 @@
 // Imports: Mongoose
 import mongoose from 'mongoose';
-// Imports: graphql-fields
-// import graphqlFields from 'graphql-fields';
 // Imports: Models
 import Tag from '../../models/tag';
 import Post from '../../models/post';
@@ -53,29 +51,26 @@ module.exports = {
         // Operation 1: Update tags collection
         const updatedTag = await Tag
           .findOneAndUpdate({ _id: args.oldTagInfo._id },
-            { $set: {
-              name: args.oldTagInfo.name,
-              description: args.oldTagInfo.description
-            }
-          }, opts);
+            {
+              $set: {
+                name: args.oldTagInfo.name,
+                description: args.oldTagInfo.description,
+              },
+            }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedTag = null
         if (!updatedTag) throw new Error('Couldn\'t update tag');
         // Operation 2: Update tag data in posts collection
         const { posts } = updatedTag;
         for (let i = 0; i < posts.length; i++) {
-          // in all post docs with _id == posts[i]._id, retrieve tags array
-          // in retrieved tags array, retrieve object where _id == args.oldTagInfo._id
-          // in retrieved object, update name = updatedTag.name, description = updatedTag.description
-          const updatedPost = await Post
+          const updatedPost = await Post // eslint-disable-line no-await-in-loop
             .updateMany({ 'tags._id': args.oldTagInfo._id },
               // update logic here
               {
                 $set: {
                   'tags.$.name': args.oldTagInfo.name,
                   'tags.$.description': args.oldTagInfo.description,
-                }
-              }, opts
-            );
+                },
+              }, opts);
           // Throw error and abort transaction if operation fails, i.e. updatedPost = null
           if (!updatedPost) throw new Error('Couldn\'t update post');
         }
