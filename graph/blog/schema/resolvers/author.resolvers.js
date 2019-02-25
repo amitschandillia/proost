@@ -28,10 +28,15 @@ module.exports = {
     posts: (parent, args, context, ast) => {
       // Retrieve fields being queried
       const queriedFields = Object.keys(graphqlFields(ast));
-      // Retrieve fields returned by parent, if any
-      const fieldsInParent = Object.keys(parent.posts[0]._doc);
-      // Check if queried fields already exist in parent
-      const available = queriedFields.every(field => fieldsInParent.includes(field));
+      let available = true;
+      try {
+        // Retrieve fields returned by parent, if any
+        const fieldsInParent = Object.keys(parent.posts[0]._doc);
+        // Check if queried fields already exist in parent
+        available = queriedFields.every(field => fieldsInParent.includes(field));
+      } catch (err) {
+        available = false;
+      }
       const isPublished = (typeof args.isPublished === 'boolean' ? args.isPublished : true);
       let postsData = {};
       if (parent.posts && available) {

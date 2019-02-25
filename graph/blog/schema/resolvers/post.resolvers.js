@@ -92,7 +92,7 @@ module.exports = {
         // Operation 2: Update tags collection
         const { tags } = args.postData;
         for (let i = 0; i < tags.length; i++) {
-          const updatedTag = await Tag
+          const updatedTag = await Tag // eslint-disable-line no-await-in-loop
             .findOneAndUpdate({ _id: tags[i]._id }, { $push: work }, opts);
           // Throw error and abort transaction if operation fails, i.e. updatedTag = null
           if (!updatedTag) throw new Error('Couldn\'t update tag');

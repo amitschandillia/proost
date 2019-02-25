@@ -82,7 +82,9 @@ const postSchema = mongoose.Schema({
     type: postAuthor,
     required: true,
   },
-  tags: [postTag],
+  tags: {
+    type: [postTag],
+  },
 });
 
 module.exports = mongoose.model('Post', postSchema);
