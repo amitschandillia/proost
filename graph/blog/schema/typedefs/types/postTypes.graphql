@@ -21,5 +21,7 @@ type Post {
   # Post author
   author: Author!,
   # Milestones
-  milestones: Milestones!
+  milestones: Milestones!,
+  # Tags
+  tags: [Tag]
 }

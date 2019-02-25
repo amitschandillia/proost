@@ -6,5 +6,5 @@ type Tag {
   # Tag description
   description: String!,
   # Tagged posts
-  # posts(isPublished: Boolean): [Post],
+  posts(isPublished: Boolean): [Post],
 }

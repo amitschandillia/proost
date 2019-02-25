@@ -5,6 +5,7 @@ import graphqlFields from 'graphql-fields';
 // Imports: Models
 import Post from '../../models/post';
 import Author from '../../models/author';
+import Tag from '../../models/tag';
 
 // GraphQL: Resolvers
 module.exports = {
@@ -88,11 +89,21 @@ module.exports = {
         const work = {
           posts: authoredPostObj,
         };
-        // Operation 2: Update authors collection
+        // Operation 2: Update tags collection
+        const tags = args.postInput.tags;
+        for (let i = 0; i < tags.length; i++) {
+          const updatedTag = await Tag
+            .findOneAndUpdate({ _id: tags[i]._id }, { $push: work }, opts);
+          // Throw error and abort transaction if operation fails, i.e. updatedTag = null
+          if (!updatedTag) throw new Error('Couldn\'t update tag');
+        }
+        // Operation 3: Update authors collection
         const updatedAuthor = await Author
           .findOneAndUpdate({ _id: args.postInput.author._id }, { $push: work }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedAuthor = null
         if (!updatedAuthor) throw new Error('Couldn\'t update author');
+
+        // Commit transaction
         await session.commitTransaction();
         session.endSession();
         // Return post data as GraphQL response

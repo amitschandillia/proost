@@ -28,7 +28,6 @@ const authoredPost = mongoose.Schema({
   slug: {
     type: String,
     required: true,
-    unique: true,
   },
   readingTime: {
     type: Number,

@@ -6,6 +6,12 @@ input PostAuthorInput {
   email: String!,
   bio: String!,
 }
+input PostTagInput {
+  _id: String
+  name: String!,
+  description: String!,
+}
+
 input PostInput {
   isPublished: Boolean!,
   title: String!,
@@ -16,6 +22,7 @@ input PostInput {
   readingTime: Int!,
   content: String!,
   author: PostAuthorInput!,
+  tags: [PostTagInput!]
 }
 
 # Definitions: Mutations
