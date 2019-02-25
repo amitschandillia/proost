@@ -5,8 +5,15 @@ input AuthorData {
   email: String!,
   bio: String!,
 }
-
+input newAuthorData {
+  _id: ID!
+  firstName: String!,
+  lastName: String!,
+  email: String!,
+  bio: String!,
+}
 # Definitions: Mutations
 type Mutation {
   createAuthor(authorData: AuthorData!): Author,
+  updateAuthor(newAuthorData: NewAuthorData!): Author,
 }

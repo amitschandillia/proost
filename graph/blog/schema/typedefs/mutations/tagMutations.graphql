@@ -3,7 +3,7 @@ input TagInfo {
   name: String!,
   description: String!,
 }
-input OldTagInfo {
+input NewTagInfo {
   _id: ID!
   name: String!,
   description: String!,
@@ -12,5 +12,5 @@ input OldTagInfo {
 # Definitions: Mutations
 type Mutation {
   createTag(tagInfo: TagInfo!): Tag,
-  updateTag(oldTagInfo: OldTagInfo!): Tag,
+  updateTag(newTagInfo: NewTagInfo!): Tag,
 }

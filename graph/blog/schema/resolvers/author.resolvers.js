@@ -71,5 +71,10 @@ module.exports = {
           throw err;
         });
     },
+    // Update an existing author
+    updateAuthor: async (root, args) => {
+      // update author data in authors collection
+      // update author data in posts collection
+    },
   },
 };

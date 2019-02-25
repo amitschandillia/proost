@@ -82,11 +82,11 @@ module.exports = {
         const opts = { session, new: true };
         // Operation 1: Update tags collection
         const updatedTag = await Tag
-          .findOneAndUpdate({ _id: args.oldTagInfo._id },
+          .findOneAndUpdate({ _id: args.newTagInfo._id },
             {
               $set: {
-                name: args.oldTagInfo.name,
-                description: args.oldTagInfo.description,
+                name: args.newTagInfo.name,
+                description: args.newTagInfo.description,
               },
             }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedTag = null
@@ -95,17 +95,19 @@ module.exports = {
         const { posts } = updatedTag;
         for (let i = 0; i < posts.length; i++) {
           const updatedPost = await Post // eslint-disable-line no-await-in-loop
-            .updateMany({ 'tags._id': args.oldTagInfo._id },
+            .updateMany({ 'tags._id': args.newTagInfo._id },
               // update logic here
               {
                 $set: {
-                  'tags.$.name': args.oldTagInfo.name,
-                  'tags.$.description': args.oldTagInfo.description,
+                  'tags.$.name': args.newTagInfo.name,
+                  'tags.$.description': args.newTagInfo.description,
                 },
               }, opts);
           // Throw error and abort transaction if operation fails, i.e. updatedPost = null
           if (!updatedPost) throw new Error('Couldn\'t update post');
         }
+        // Operation 3: Update tag data in authors collection
+        // ...
         // Commit transaction
         await session.commitTransaction();
         session.endSession();

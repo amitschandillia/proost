@@ -6,8 +6,13 @@ GraphQL Tasks:
   ✔ Add author field to tag.posts @done(February-25-2019 20:22) @project(GraphQL Tasks)
   ✔ Add tags field to author.posts @done(February-25-2019 21:09) @project(GraphQL Tasks)
   ✔ Retrieve posts by tag @done(February-25-2019 22:10) @project(GraphQL Tasks)
-  ☐ Update author
-  ☐ Update post
+  ☐ Update tag data in authors collection
+  ☐ Update author data in authors collection
+  ☐ Update author data in posts collection
+  ☐ Update author data in tags collection
+  ☐ Update post data in posts collection
+  ☐ Update post data in authors collection
+  ☐ Update post data in tags collection
   ☐ Create category
   ☐ Update category
   ☐ Add remaining fields to posts collection
