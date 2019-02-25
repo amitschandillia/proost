@@ -1,5 +1,5 @@
 # Definitions: Input objects
-input AuthorInput {
+input AuthorData {
   firstName: String!,
   lastName: String!,
   email: String!,
@@ -8,5 +8,5 @@ input AuthorInput {
 
 # Definitions: Mutations
 type Mutation {
-  createAuthor(authorInput: AuthorInput!): Author
+  createAuthor(authorData: AuthorData!): Author,
 }

@@ -1,18 +1,18 @@
 # Definitions: Input objects
-input PostAuthorInput {
+input PostAuthor {
   _id: String!
   firstName: String!,
   lastName: String!,
   email: String!,
   bio: String!,
 }
-input PostTagInput {
+input PostTags {
   _id: String
   name: String!,
   description: String!,
 }
 
-input PostInput {
+input PostData {
   isPublished: Boolean!,
   title: String!,
   titleSecondary: String,
@@ -21,11 +21,11 @@ input PostInput {
   slug: String!,
   readingTime: Int!,
   content: String!,
-  author: PostAuthorInput!,
-  tags: [PostTagInput!]
+  author: PostAuthor!,
+  tags: [PostTags!]
 }
 
 # Definitions: Mutations
 type Mutation {
-  createPost(postInput: PostInput!): Post
+  createPost(postData: PostData!): Post
 }

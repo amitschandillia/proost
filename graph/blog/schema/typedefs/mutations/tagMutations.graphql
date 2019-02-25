@@ -1,10 +1,16 @@
 # Definitions: Input objects
-input TagInput {
+input TagInfo {
+  name: String!,
+  description: String!,
+}
+input OldTagInfo {
+  _id: ID!
   name: String!,
   description: String!,
 }
 
 # Definitions: Mutations
 type Mutation {
-  createTag(tagInput: TagInput!): Tag
+  createTag(tagInfo: TagInfo!): Tag,
+  updateTag(oldTagInfo: OldTagInfo!): Tag,
 }

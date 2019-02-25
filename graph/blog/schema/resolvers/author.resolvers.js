@@ -54,10 +54,10 @@ module.exports = {
     // Create a new author
     createAuthor: (root, args) => {
       const author = new Author({
-        firstName: args.authorInput.firstName,
-        lastName: args.authorInput.lastName,
-        email: args.authorInput.email,
-        bio: args.authorInput.bio,
+        firstName: args.authorData.firstName,
+        lastName: args.authorData.lastName,
+        email: args.authorData.email,
+        bio: args.authorData.bio,
       });
       return author
         .save()

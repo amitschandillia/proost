@@ -62,7 +62,7 @@ module.exports = {
         // Create session object
         const opts = { session, new: true };
         // Operation 1: Insert into posts collection
-        const { isPublished } = args.postInput;
+        const { isPublished } = args.postData;
         let milestones = {};
         const currTime = new Date();
         if (isPublished) {
@@ -77,7 +77,7 @@ module.exports = {
             updatedAt: currTime,
           };
         }
-        const postObj = args.postInput;
+        const postObj = args.postData;
         postObj.isPublished = isPublished;
         postObj.milestones = milestones;
         const createdPost = await Post(postObj).save(opts);
@@ -90,7 +90,7 @@ module.exports = {
           posts: authoredPostObj,
         };
         // Operation 2: Update tags collection
-        const tags = args.postInput.tags;
+        const { tags } = args.postData;
         for (let i = 0; i < tags.length; i++) {
           const updatedTag = await Tag
             .findOneAndUpdate({ _id: tags[i]._id }, { $push: work }, opts);
@@ -99,7 +99,7 @@ module.exports = {
         }
         // Operation 3: Update authors collection
         const updatedAuthor = await Author
-          .findOneAndUpdate({ _id: args.postInput.author._id }, { $push: work }, opts);
+          .findOneAndUpdate({ _id: args.postData.author._id }, { $push: work }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedAuthor = null
         if (!updatedAuthor) throw new Error('Couldn\'t update author');
 
