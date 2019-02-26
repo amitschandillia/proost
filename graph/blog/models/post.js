@@ -38,6 +38,21 @@ const postTag = mongoose.Schema({
   }
 }, { _id : false });
 
+const postCategory = mongoose.Schema({
+  _id: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+}, { _id: false });
+
 const postSchema = mongoose.Schema({
   title: {
     type: String,
@@ -84,6 +99,9 @@ const postSchema = mongoose.Schema({
   },
   tags: {
     type: [postTag],
+  },
+  category: {
+    type: postCategory,
   },
 });
 

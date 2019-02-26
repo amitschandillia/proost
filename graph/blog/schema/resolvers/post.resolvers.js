@@ -102,6 +102,8 @@ module.exports = {
           .findOneAndUpdate({ _id: args.postData.author._id }, { $push: work }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedAuthor = null
         if (!updatedAuthor) throw new Error('Couldn\'t update author');
+        // Operation 4: Update categories collection
+        //.....
 
         // Commit transaction
         await session.commitTransaction();

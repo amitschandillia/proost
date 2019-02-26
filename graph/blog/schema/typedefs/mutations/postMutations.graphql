@@ -11,6 +11,11 @@ input PostTags {
   name: String!,
   description: String!,
 }
+input PostCategory {
+  _id: String
+  name: String!,
+  description: String!,
+}
 
 input PostData {
   isPublished: Boolean!,
@@ -22,7 +27,8 @@ input PostData {
   readingTime: Int!,
   content: String!,
   author: PostAuthor!,
-  tags: [PostTags!]
+  tags: [PostTags!],
+  category: PostCategory
 }
 
 # Definitions: Mutations

@@ -1,0 +1,10 @@
+# Definitions: Types
+type Category {
+  _id: ID!,
+  # Tag name
+  name: String!,
+  # Tag description
+  description: String!,
+  # Tagged posts
+  posts(isPublished: Boolean): [Post],
+}

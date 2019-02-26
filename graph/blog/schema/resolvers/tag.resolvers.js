@@ -93,7 +93,7 @@ module.exports = {
         // Throw error and abort transaction if operation fails, i.e. updatedTag = null
         if (!updatedTag) throw new Error('Couldn\'t update tag');
         // Operation 2: Update tag data in posts collection
-        const { posts } = updatedTag;
+        const { posts } = updatedTag; // remove
         const updatedPost = await Post
           .updateMany({ 'tags._id': args.newTagInfo._id },
             // update logic here
@@ -109,11 +109,11 @@ module.exports = {
         // DOES NOT WORK...NEEDS FIXING!
         // const updatedTagInAuthor = await Author
         //   .updateMany({ 'posts.tags._id': args.newTagInfo._id },
-        //     {
-        //       $set: {
-        //         'posts.$[].tags.$.name': args.newTagInfo.name,
-        //       }
-        //     }, opts);
+            // {
+            //   $set: {
+            //     'posts.$[].tags.$.name': args.newTagInfo.name,
+            //   }
+            // }, opts);
         // Operation 3: Update tag data in categories collection
         //.....
 

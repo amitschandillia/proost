@@ -1,27 +1,57 @@
+---------------------------------------------------------------------
+Keybindings: ==============================
+---------------------------------------------------------------------
+ctrl-enter: add a new todo item below the current
+ctrl-shift-enter: add a new todo item above the current
+ctrl-d: toggle completion of the task
+ctrl-shift-a: move all completed tasks to the archive section
+alt-c: cancel the selected tasks
+ctrl-shift-s: add/update timestamp for current task
+=======================================
+
+
 GraphQL Tasks:
-  ☐ Update tag data in authors collection
-  ☐ Update author data in authors collection
-  ☐ Update author data in posts collection
-  ☐ Update author data in tags collection
+  ☐ Update author data in categories collection
   ☐ Update post data in posts collection
   ☐ Update post data in authors collection
   ☐ Update post data in tags collection
+  ☐ Update post data in categories collection
+  ☐ Update tag data in categories collection
+  ☐ Update category data in categories collection
+  ☐ Update category data in posts collection
+  ☐ Update category data in authors collection
+  ☐ Update category data in tags collection
   ☐ Create category
-  ☐ Update category
-  ☐ Delete tag
-  ☐ Delete author
-  ☐ Delete category
-  ☐ Delete post
+  ☐ Delete tag from tags collection
+  ☐ Delete tag from posts collection
+  ☐ Delete tag from categories collection
+  ☐ Delete author from authors collection
+  ☐ Delete author from posts collection
+  ☐ Delete author from tags collection
+  ☐ Delete author from categories collection
+  ☐ Delete post from posts collection
+  ☐ Delete post from authors collection
+  ☐ Delete post from tags collection
+  ☐ Delete post from categories collection
+  ☐ Delete category from categories collection
+  ☐ Delete category from posts collection
+  ☐ Delete category from authors collection
+  ☐ Delete category from tags collection
   ☐ Add remaining fields to posts collection
   ☐ Add sample resolver test
   ☐ Add sample schema test
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✘ Update category @cancelled(February 26, 2019 09:25 pm) @project(GraphQL Tasks)
+  ✔ Update author data in authors collection @done(February 26, 2019 09:22 pm) @project(GraphQL Tasks)
+  ✔ Update author data in posts collection @done(February 26, 2019 09:22 pm) @project(GraphQL Tasks)
+  ✔ Update author data in tags collection @done(February 26, 2019 09:22 pm) @project(GraphQL Tasks)
+  ✘ Update tag data in authors collection @cancelled(February 26, 2019 08:44 pm) @project(GraphQL Tasks)
   ✔ Create tag @done(February 26, 2019 09:42 am) @project(Archive)
   ✔ Create post @done(February 26, 2019 09:42 am) @project(Archive)
   ✔ Create author @done(February 26, 2019 09:42 am) @project(Archive)
   ✔ Update tag @done(February 26, 2019 09:42 am) @project(Archive)
   ✔ Add author field to tag.posts @done(February 26, 2019 09:42 am) @project(Archive)
-  ✔ Add tags field to author.posts @done(February 26, 2019 09:42 am) @project(Archive)
+  ✘ Add tags field to author.posts @cancelled(February 26, 2019 08:45 pm) @project(Archive)
   ✔ Retrieve posts by tag @done(February 26, 2019 09:42 am) @project(Archive)

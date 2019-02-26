@@ -23,5 +23,7 @@ type Post {
   # Milestones
   milestones: Milestones!,
   # Tags
-  tags: [Tag]
+  tags: [Tag],
+  # Category
+  category: Category
 }

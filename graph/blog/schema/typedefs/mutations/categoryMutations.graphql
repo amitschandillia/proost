@@ -1,0 +1,16 @@
+# Definitions: Input objects
+input CategoryInfo {
+  name: String!,
+  description: String!,
+}
+input NewCategoryInfo {
+  _id: ID!
+  name: String!,
+  description: String!,
+}
+
+# Definitions: Mutations
+type Mutation {
+  createCategory(categoryInfo: CategoryInfo!): Category,
+  updateCategory(newCategoryInfo: NewCategoryInfo!): Category,
+}
