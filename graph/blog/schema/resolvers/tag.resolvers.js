@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 // Imports: Models
 import Tag from '../../models/tag';
 import Post from '../../models/post';
+import Author from '../../models/author';
 
 // Resolve queries
 module.exports = {
@@ -93,21 +94,29 @@ module.exports = {
         if (!updatedTag) throw new Error('Couldn\'t update tag');
         // Operation 2: Update tag data in posts collection
         const { posts } = updatedTag;
-        for (let i = 0; i < posts.length; i++) {
-          const updatedPost = await Post // eslint-disable-line no-await-in-loop
-            .updateMany({ 'tags._id': args.newTagInfo._id },
-              // update logic here
-              {
-                $set: {
-                  'tags.$.name': args.newTagInfo.name,
-                  'tags.$.description': args.newTagInfo.description,
-                },
-              }, opts);
-          // Throw error and abort transaction if operation fails, i.e. updatedPost = null
-          if (!updatedPost) throw new Error('Couldn\'t update post');
-        }
+        const updatedPost = await Post
+          .updateMany({ 'tags._id': args.newTagInfo._id },
+            // update logic here
+            {
+              $set: {
+                'tags.$.name': args.newTagInfo.name,
+                'tags.$.description': args.newTagInfo.description,
+              },
+            }, opts);
+        // Throw error and abort transaction if operation fails, i.e. updatedPost = null
+        if (!updatedPost) throw new Error('Couldn\'t update post');
         // Operation 3: Update tag data in authors collection
-        // ...
+        // DOES NOT WORK...NEEDS FIXING!
+        // const updatedTagInAuthor = await Author
+        //   .updateMany({ 'posts.tags._id': args.newTagInfo._id },
+        //     {
+        //       $set: {
+        //         'posts.$[].tags.$.name': args.newTagInfo.name,
+        //       }
+        //     }, opts);
+        // Operation 3: Update tag data in categories collection
+        //.....
+
         // Commit transaction
         await session.commitTransaction();
         session.endSession();

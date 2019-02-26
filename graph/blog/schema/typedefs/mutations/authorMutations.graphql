@@ -5,7 +5,7 @@ input AuthorData {
   email: String!,
   bio: String!,
 }
-input newAuthorData {
+input NewAuthorData {
   _id: ID!
   firstName: String!,
   lastName: String!,

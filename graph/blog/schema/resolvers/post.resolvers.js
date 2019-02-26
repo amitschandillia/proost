@@ -116,6 +116,11 @@ module.exports = {
       }
     },
     // Update an existing post
-    // updatePost:
+    // updatePost: async (root, args) => {
+      // update post data in posts collection
+      // update post data in authors collection
+      // update post data in tags collection
+      // update post data in categories collection
+    // }
   },
 };

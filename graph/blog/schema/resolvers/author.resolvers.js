@@ -75,6 +75,8 @@ module.exports = {
     updateAuthor: async (root, args) => {
       // update author data in authors collection
       // update author data in posts collection
+      // update author data in tags collection
+      // update author data in categories collection
     },
   },
 };
