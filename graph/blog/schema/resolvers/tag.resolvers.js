@@ -93,8 +93,7 @@ module.exports = {
         // Throw error and abort transaction if operation fails, i.e. updatedTag = null
         if (!updatedTag) throw new Error('Couldn\'t update tag');
         // Operation 2: Update tag data in posts collection
-        const { posts } = updatedTag; // remove
-        const updatedPost = await Post
+        const updatedPosts = await Post
           .updateMany({ 'tags._id': args.newTagInfo._id },
             // update logic here
             {
@@ -104,7 +103,7 @@ module.exports = {
               },
             }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedPost = null
-        if (!updatedPost) throw new Error('Couldn\'t update post');
+        if (!updatedPosts) throw new Error('Couldn\'t update posts');
         // Operation 3: Update tag data in authors collection
         // DOES NOT WORK...NEEDS FIXING!
         // const updatedTagInAuthor = await Author

@@ -15,13 +15,12 @@ GraphQL Tasks:
   ☐ Update post data in posts collection
   ☐ Update post data in authors collection
   ☐ Update post data in tags collection
-  ☐ Update post data in categories collection
+  ✔ Update post data in categories collection @done(February 27, 2019 10:25 am) @project(GraphQL Tasks)
   ☐ Update tag data in categories collection
   ☐ Update category data in categories collection
   ☐ Update category data in posts collection
   ☐ Update category data in authors collection
   ☐ Update category data in tags collection
-  ☐ Create category
   ☐ Delete tag from tags collection
   ☐ Delete tag from posts collection
   ☐ Delete tag from categories collection
@@ -43,6 +42,9 @@ GraphQL Tasks:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✔ Create category @done(February 26, 2019 10:07 pm) @project(GraphQL Tasks)
+  ✔ Retrieve all categories @done(February 26, 2019 10:08 pm) @project(GraphQL Tasks)
+  ✔ Retrieve category by id @done(February 26, 2019 10:08 pm) @project(GraphQL Tasks)
   ✘ Update category @cancelled(February 26, 2019 09:25 pm) @project(GraphQL Tasks)
   ✔ Update author data in authors collection @done(February 26, 2019 09:22 pm) @project(GraphQL Tasks)
   ✔ Update author data in posts collection @done(February 26, 2019 09:22 pm) @project(GraphQL Tasks)

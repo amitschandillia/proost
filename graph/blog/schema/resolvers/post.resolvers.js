@@ -6,6 +6,7 @@ import graphqlFields from 'graphql-fields';
 import Post from '../../models/post';
 import Author from '../../models/author';
 import Tag from '../../models/tag';
+import Category from '../../models/category';
 
 // GraphQL: Resolvers
 module.exports = {
@@ -61,7 +62,7 @@ module.exports = {
       try {
         // Create session object
         const opts = { session, new: true };
-        // Operation 1: Insert into posts collection
+        // Operation 1: Insert post data in into posts collection
         const { isPublished } = args.postData;
         let milestones = {};
         const currTime = new Date();
@@ -89,21 +90,22 @@ module.exports = {
         const work = {
           posts: authoredPostObj,
         };
-        // Operation 2: Update tags collection
-        const { tags } = args.postData;
-        for (let i = 0; i < tags.length; i++) {
-          const updatedTag = await Tag // eslint-disable-line no-await-in-loop
-            .findOneAndUpdate({ _id: tags[i]._id }, { $push: work }, opts);
-          // Throw error and abort transaction if operation fails, i.e. updatedTag = null
-          if (!updatedTag) throw new Error('Couldn\'t update tag');
-        }
-        // Operation 3: Update authors collection
+        // Operation 2: Update post data in tags collection
+        let tagIds = args.postData.tags.map(({ _id }) => _id);
+        const updatedTags = await Tag
+          .updateMany({ _id: { $in: tagIds }}, { $push: work }, opts);
+        // Throw error and abort transaction if operation fails, i.e. updatedTag = null
+        if (!updatedTags) throw new Error('Couldn\'t update tags');
+        // Operation 3: Update post data in authors collection
         const updatedAuthor = await Author
           .findOneAndUpdate({ _id: args.postData.author._id }, { $push: work }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedAuthor = null
         if (!updatedAuthor) throw new Error('Couldn\'t update author');
-        // Operation 4: Update categories collection
-        //.....
+        // Operation 4: Update post data in categories collection
+        const updatedCategory = await Category
+          .findOneAndUpdate({ _id: args.postData.category._id }, { $push: work }, opts);
+        // Throw error and abort transaction if operation fails, i.e. updatedCategory = null
+        if (!updatedCategory) throw new Error('Couldn\'t update category');
 
         // Commit transaction
         await session.commitTransaction();
