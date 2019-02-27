@@ -5,7 +5,6 @@ import mongoose from 'mongoose';
 // Imports: Models
 import Tag from '../../models/tag';
 import Post from '../../models/post';
-import Author from '../../models/author';
 
 // Resolve queries
 module.exports = {
@@ -104,17 +103,8 @@ module.exports = {
             }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedPost = null
         if (!updatedPosts) throw new Error('Couldn\'t update posts');
-        // Operation 3: Update tag data in authors collection
-        // DOES NOT WORK...NEEDS FIXING!
-        // const updatedTagInAuthor = await Author
-        //   .updateMany({ 'posts.tags._id': args.newTagInfo._id },
-            // {
-            //   $set: {
-            //     'posts.$[].tags.$.name': args.newTagInfo.name,
-            //   }
-            // }, opts);
         // Operation 3: Update tag data in categories collection
-        //.....
+        // .....
 
         // Commit transaction
         await session.commitTransaction();

@@ -116,7 +116,7 @@ module.exports = {
                 'posts.$.author.lastName': args.newAuthorData.lastName,
                 'posts.$.author.email': args.newAuthorData.email,
                 'posts.$.author.bio': args.newAuthorData.bio,
-              }
+              },
             }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedAuthorInTags = null
         if (!updatedAuthorInTags) throw new Error('Couldn\'t update tag');

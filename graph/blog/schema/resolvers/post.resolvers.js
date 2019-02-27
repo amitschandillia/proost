@@ -91,9 +91,9 @@ module.exports = {
           posts: authoredPostObj,
         };
         // Operation 2: Update post data in tags collection
-        let tagIds = args.postData.tags.map(({ _id }) => _id);
+        const tagIds = args.postData.tags.map(({ _id }) => _id);
         const updatedTags = await Tag
-          .updateMany({ _id: { $in: tagIds }}, { $push: work }, opts);
+          .updateMany({ _id: { $in: tagIds } }, { $push: work }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedTag = null
         if (!updatedTags) throw new Error('Couldn\'t update tags');
         // Operation 3: Update post data in authors collection
@@ -121,10 +121,10 @@ module.exports = {
     },
     // Update an existing post
     // updatePost: async (root, args) => {
-      // update post data in posts collection
-      // update post data in authors collection
-      // update post data in tags collection
-      // update post data in categories collection
+    //  update post data in posts collection
+    //  update post data in authors collection
+    //  update post data in tags collection
+    //  update post data in categories collection
     // }
   },
 };

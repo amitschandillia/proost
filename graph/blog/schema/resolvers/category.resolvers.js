@@ -1,12 +1,8 @@
 // Imports: graphql-fields
 import graphqlFields from 'graphql-fields';
-// Imports: Mongoose
-import mongoose from 'mongoose';
 // Imports: Models
 import Category from '../../models/category';
-import Author from '../../models/author';
 import Post from '../../models/post';
-import Tag from '../../models/tag';
 
 // Resolve queries
 module.exports = {
