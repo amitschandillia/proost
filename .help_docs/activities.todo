@@ -12,10 +12,9 @@ ctrl-shift-s: add/update timestamp for current task
 
 GraphQL Tasks:
   ☐ Update author data in categories collection
-  ☐ Update post data in posts collection
+  ✔ Update post data in posts collection @done(February 27, 2019 03:56 pm) @project(GraphQL Tasks)
   ☐ Update post data in authors collection
   ☐ Update post data in tags collection
-  ✔ Update post data in categories collection @done(February 27, 2019 10:25 am) @project(GraphQL Tasks)
   ☐ Update tag data in categories collection
   ☐ Update category data in categories collection
   ☐ Update category data in posts collection
@@ -42,6 +41,11 @@ GraphQL Tasks:
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✔ Add post data to posts collection @done(February 27, 2019 11:24 am) @project(GraphQL Tasks)
+  ✔ Add post data to authors collection @done(February 27, 2019 11:24 am) @project(GraphQL Tasks)
+  ✔ Add post data to tags collection @done(February 27, 2019 11:24 am) @project(GraphQL Tasks)
+  ✔ Add post data to categories collection @done(February 27, 2019 11:24 am) @project(GraphQL Tasks)
+  ✔ Update post data in categories collection @done(February 27, 2019 10:25 am) @project(GraphQL Tasks)
   ✔ Create category @done(February 26, 2019 10:07 pm) @project(GraphQL Tasks)
   ✔ Retrieve all categories @done(February 26, 2019 10:08 pm) @project(GraphQL Tasks)
   ✔ Retrieve category by id @done(February 26, 2019 10:08 pm) @project(GraphQL Tasks)

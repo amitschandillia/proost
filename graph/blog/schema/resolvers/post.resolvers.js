@@ -62,25 +62,19 @@ module.exports = {
       try {
         // Create session object
         const opts = { session, new: true };
-        // Operation 1: Insert post data in into posts collection
-        const { isPublished } = args.postData;
-        let milestones = {};
         const currTime = new Date();
-        if (isPublished) {
-          milestones = {
-            createdAt: currTime,
-            updatedAt: currTime,
-            publishedAt: currTime,
-          };
-        } else {
-          milestones = {
-            createdAt: currTime,
-            updatedAt: currTime,
-          };
-        }
+        // Operation 1: Add post data to posts collection
+        const { isPublished } = args.postData;
         const postObj = args.postData;
-        postObj.isPublished = isPublished;
-        postObj.milestones = milestones;
+        postObj.createdAt = currTime;
+        postObj.updatedAt = currTime;
+        // args.postData.createdAt = currTime;
+        // args.postData.updatedAt = currTime;
+        // args.postData.publishedAt = null;
+        postObj.publishedAt = null;
+        if (isPublished) {
+          postObj.publishedAt = currTime;
+        }
         const createdPost = await Post(postObj).save(opts);
         // Throw error and abort transaction if operation fails, i.e. createdPost = null
         if (!createdPost) throw new Error('Couldn\'t create post');
@@ -90,18 +84,18 @@ module.exports = {
         const work = {
           posts: authoredPostObj,
         };
-        // Operation 2: Update post data in tags collection
+        // Operation 2: Add post data to tags collection
         const tagIds = args.postData.tags.map(({ _id }) => _id);
         const updatedTags = await Tag
           .updateMany({ _id: { $in: tagIds } }, { $push: work }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedTag = null
         if (!updatedTags) throw new Error('Couldn\'t update tags');
-        // Operation 3: Update post data in authors collection
+        // Operation 3: Add post data to authors collection
         const updatedAuthor = await Author
           .findOneAndUpdate({ _id: args.postData.author._id }, { $push: work }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedAuthor = null
         if (!updatedAuthor) throw new Error('Couldn\'t update author');
-        // Operation 4: Update post data in categories collection
+        // Operation 4: Add post data to categories collection
         const updatedCategory = await Category
           .findOneAndUpdate({ _id: args.postData.category._id }, { $push: work }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedCategory = null
@@ -120,11 +114,69 @@ module.exports = {
       }
     },
     // Update an existing post
-    // updatePost: async (root, args) => {
-    //  update post data in posts collection
-    //  update post data in authors collection
-    //  update post data in tags collection
-    //  update post data in categories collection
-    // }
+    updatePost: async (root, args) => {
+      const PostDataToUpdate = Object.assign({}, args.newPostData);
+      delete PostDataToUpdate.areTagsChanged;
+      const currTime = new Date();
+      // Start session and transaction
+      const session = await mongoose.startSession();
+      session.startTransaction();
+      try {
+        // Create session object
+        const opts = { session, new: true };
+        const { hasPublishedStatusChanged, isPublished } = args.newPostData;
+        let thingsToUpdate = {};
+        const fieldsToUpdate = {
+          isPublished: args.newPostData.isPublished,
+          title: args.newPostData.title,
+          titleSecondary: args.newPostData.titleSecondary,
+          metaDescription: args.newPostData.metaDescription,
+          excerpt: args.newPostData.excerpt,
+          slug: args.newPostData.slug,
+          readingTime: args.newPostData.readingTime,
+          content: args.newPostData.content,
+          author: args.newPostData.author,
+          tags: args.newPostData.tags,
+          category: args.newPostData.category,
+          updatedAt: currTime,
+        };
+        if (hasPublishedStatusChanged && isPublished) {
+          thingsToUpdate = {
+            $set: {
+              ...fieldsToUpdate,
+              publishedAt: currTime,
+            },
+          };
+        } else if (hasPublishedStatusChanged && !isPublished) {
+          thingsToUpdate = {
+            $set: { ...fieldsToUpdate },
+            $unset: { publishedAt: '' },
+          };
+        } else if (!hasPublishedStatusChanged) {
+          thingsToUpdate = {
+            $set: { ...fieldsToUpdate },
+          };
+        }
+        //  Operation 1: Update post data in posts collection
+        const updatedPost = await Post
+          .findOneAndUpdate({ _id: args.newPostData._id },
+            thingsToUpdate, opts);
+        // Throw error and abort transaction if operation fails, i.e. updatedPost = null
+        if (!updatedPost) throw new Error('Couldn\'t update post');
+        //  Operation 2: Update post data in authors collection
+        //  Operation 3: Update post data in tags collection
+        //  Operation 4: Update post data in categories collection
+        // Commit transaction
+        await session.commitTransaction();
+        session.endSession();
+        // Return updated author as GraphQL response
+        return updatedPost;
+      } catch (err) {
+        // Abort and exit
+        await session.abortTransaction();
+        session.endSession();
+        throw err;
+      }
+    },
   },
 };

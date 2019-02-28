@@ -88,10 +88,17 @@ const postSchema = mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  milestones: {
-    createdAt: { type: Date, required: true },
-    updatedAt: { type: Date, required: true },
-    publishedAt: { type: Date },
+  createdAt: {
+    type: Date,
+    required: true,
+  },
+  updatedAt: {
+    type: Date,
+    required: true,
+  },
+  publishedAt: {
+    type: Date,
+    // required: true,
   },
   author: {
     type: postAuthor,

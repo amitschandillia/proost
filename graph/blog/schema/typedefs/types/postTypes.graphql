@@ -1,10 +1,4 @@
 # Definitions: Types
-type Milestones {
-  createdAt: DateTime,
-  updatedAt: DateTime,
-  publishedAt: DateTime,
-}
-
 type Post {
   _id: ID!,
   isPublished: Boolean!,
@@ -21,7 +15,9 @@ type Post {
   # Post author
   author: Author!,
   # Milestones
-  milestones: Milestones!,
+  createdAt: DateTime!,
+  updatedAt: DateTime!,
+  publishedAt: DateTime,
   # Tags
   tags: [Tag],
   # Category
