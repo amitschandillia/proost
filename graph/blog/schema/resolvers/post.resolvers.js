@@ -68,9 +68,6 @@ module.exports = {
         const postObj = args.postData;
         postObj.createdAt = currTime;
         postObj.updatedAt = currTime;
-        // args.postData.createdAt = currTime;
-        // args.postData.updatedAt = currTime;
-        // args.postData.publishedAt = null;
         postObj.publishedAt = null;
         if (isPublished) {
           postObj.publishedAt = currTime;
@@ -125,8 +122,7 @@ module.exports = {
         // Create session object
         const opts = { session, new: true };
         const { hasPublishedStatusChanged, isPublished } = args.newPostData;
-        let thingsToUpdate = {};
-        const fieldsToUpdate = {
+        let fieldsToUpdate = {
           isPublished: args.newPostData.isPublished,
           title: args.newPostData.title,
           titleSecondary: args.newPostData.titleSecondary,
@@ -141,29 +137,40 @@ module.exports = {
           updatedAt: currTime,
         };
         if (hasPublishedStatusChanged && isPublished) {
-          thingsToUpdate = {
+          fieldsToUpdate = {
             $set: {
               ...fieldsToUpdate,
               publishedAt: currTime,
             },
           };
         } else if (hasPublishedStatusChanged && !isPublished) {
-          thingsToUpdate = {
+          fieldsToUpdate = {
             $set: { ...fieldsToUpdate },
             $unset: { publishedAt: '' },
           };
         } else if (!hasPublishedStatusChanged) {
-          thingsToUpdate = {
+          fieldsToUpdate = {
             $set: { ...fieldsToUpdate },
           };
         }
         //  Operation 1: Update post data in posts collection
         const updatedPost = await Post
           .findOneAndUpdate({ _id: args.newPostData._id },
-            thingsToUpdate, opts);
+            fieldsToUpdate, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedPost = null
         if (!updatedPost) throw new Error('Couldn\'t update post');
         //  Operation 2: Update post data in authors collection
+        const fieldsToUpdateInAuthors = {};
+        Object.keys(args.newPostData)
+          .forEach(
+            (k) => { fieldsToUpdateInAuthors[`posts.$.${k}`] = args.newPostData[k]; },
+          );
+        const updatedAuthor = await Author
+          .findOneAndUpdate({ 'posts._id': args.newPostData._id }, {
+            $set: { ...fieldsToUpdateInAuthors },
+          }, opts);
+        // Throw error and abort transaction if operation fails, i.e. updatedAuthor = null
+        if (!updatedAuthor) throw new Error('Couldn\'t update author');
         //  Operation 3: Update post data in tags collection
         //  Operation 4: Update post data in categories collection
         // Commit transaction
