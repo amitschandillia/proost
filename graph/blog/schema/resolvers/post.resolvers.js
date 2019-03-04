@@ -66,9 +66,6 @@ module.exports = {
         // Operation 1: Add post data to posts collection
         const { isPublished } = args.postData;
         const postObj = args.postData;
-        postObj.createdAt = currTime;
-        postObj.updatedAt = currTime;
-        postObj.publishedAt = null;
         if (isPublished) {
           postObj.publishedAt = currTime;
         }
@@ -153,26 +150,66 @@ module.exports = {
             $set: { ...fieldsToUpdate },
           };
         }
+        const newPostData = Object.assign({}, args.newPostData);
+        delete newPostData.content;
+
         //  Operation 1: Update post data in posts collection
         const updatedPost = await Post
           .findOneAndUpdate({ _id: args.newPostData._id },
             fieldsToUpdate, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedPost = null
         if (!updatedPost) throw new Error('Couldn\'t update post');
+
         //  Operation 2: Update post data in authors collection
         const fieldsToUpdateInAuthors = {};
-        Object.keys(args.newPostData)
+        Object.keys(newPostData)
           .forEach(
-            (k) => { fieldsToUpdateInAuthors[`posts.$.${k}`] = args.newPostData[k]; },
+            (k) => { fieldsToUpdateInAuthors[`posts.$.${k}`] = newPostData[k]; },
           );
         const updatedAuthor = await Author
-          .findOneAndUpdate({ 'posts._id': args.newPostData._id }, {
+          .findOneAndUpdate({ 'posts._id': newPostData._id }, {
             $set: { ...fieldsToUpdateInAuthors },
           }, opts);
         // Throw error and abort transaction if operation fails, i.e. updatedAuthor = null
         if (!updatedAuthor) throw new Error('Couldn\'t update author');
+
         //  Operation 3: Update post data in tags collection
+        let updatedTags = {};
+        // Have tags changed?
+        if (newPostData.haveTagsChanged) {
+          // If yes, delete existing post data from tags collection posts array...
+          updatedTags = await Tag
+            .updateMany({ 'posts._id': newPostData._id }, {
+              $pull: { posts: { _id: newPostData._id } },
+            }, opts);
+          // Throw error and abort transaction if operation fails, i.e. updatedTag = null
+          if (!updatedTags) throw new Error('Couldn\'t update tags');
+          // ...and add new post data to the tags collection posts array
+          const tagIds = newPostData.tags.map(({ _id }) => _id);
+          updatedTags = await Tag
+            .updateMany({ _id: { $in: tagIds } }, { $push: { posts: newPostData } }, opts);
+          // Throw error and abort transaction if operation fails, i.e. updatedTag = null
+          if (!updatedTags) throw new Error('Couldn\'t update tags');
+        } else {
+          // If no, locate affected post array items and update
+          const fieldsToUpdateInTags = fieldsToUpdateInAuthors;
+          updatedTags = await Tag
+            .updateMany({ 'posts._id': newPostData._id }, {
+              $set: { ...fieldsToUpdateInTags },
+            }, opts);
+          // Throw error and abort transaction if operation fails, i.e. updatedTag = null
+          if (!updatedTags) throw new Error('Couldn\'t update tags');
+        }
+
         //  Operation 4: Update post data in categories collection
+        const fieldsToUpdateInCategories = fieldsToUpdateInAuthors;
+        const updatedCategory = await Category
+          .findOneAndUpdate({ 'posts._id': newPostData._id }, {
+            $set: { ...fieldsToUpdateInCategories },
+          }, opts);
+        // Throw error and abort transaction if operation fails, i.e. updatedCategory = null
+        if (!updatedCategory) throw new Error('Couldn\'t update category');
+
         // Commit transaction
         await session.commitTransaction();
         session.endSession();

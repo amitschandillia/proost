@@ -1,0 +1,7 @@
+# Definitions: Types
+type Foo {
+  _id: ID!,
+  title: String!,
+  createdAt: DateTime,
+  updatedAt: DateTime,
+}

@@ -54,19 +54,23 @@ const authorSchema = mongoose.Schema({
   firstName: {
     type: String,
     required: true,
+    trim: true,
   },
   lastName: {
     type: String,
     required: true,
+    trim: true,
   },
   email: {
     type: String,
     required: true,
+    trim: true,
     unique: true,
   },
   bio: {
     type: String,
     required: true,
+    trim: true,
   },
   posts: {
     type: [authoredPost],

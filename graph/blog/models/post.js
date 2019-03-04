@@ -57,23 +57,28 @@ const postSchema = mongoose.Schema({
   title: {
     type: String,
     required: true,
+    trim: true,
     unique: true,
   },
   titleSecondary: {
     type: String,
+    trim: true,
   },
   metaDescription: {
     // Use in meta and og description tags
     type: String,
     required: true,
+    trim: true,
   },
   excerpt: {
     type: String,
     required: true,
+    trim: true,
   },
   slug: {
     type: String,
     required: true,
+    trim: true,
     unique: true,
   },
   readingTime: {
@@ -83,22 +88,22 @@ const postSchema = mongoose.Schema({
   content: {
     type: String,
     required: true,
+    trim: true,
   },
   isPublished: {
     type: Boolean,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    required: true,
-  },
-  updatedAt: {
-    type: Date,
-    required: true,
-  },
+  // createdAt: {
+  //   type: Date,
+  //   required: true,
+  // },
+  // updatedAt: {
+  //   type: Date,
+  //   required: true,
+  // },
   publishedAt: {
     type: Date,
-    // required: true,
   },
   author: {
     type: postAuthor,
@@ -110,7 +115,8 @@ const postSchema = mongoose.Schema({
   category: {
     type: postCategory,
   },
-});
+},
+{ timestamps: true });
 
 module.exports = mongoose.model('Post', postSchema);
 
