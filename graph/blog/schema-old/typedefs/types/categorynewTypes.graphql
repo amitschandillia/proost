@@ -1,0 +1,6 @@
+# Definitions: Types
+type Categorynew {
+  _id: ID!,
+  # Tag name
+  name: String!,
+}

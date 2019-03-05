@@ -1,0 +1,15 @@
+# Definitions: Input objects
+input AuthorDatanew {
+  firstName: String!,
+  lastName: String!,
+}
+input NewAuthorDatanew {
+  _id: ID!
+  firstName: String!,
+  lastName: String!,
+}
+# Definitions: Mutations
+type Mutation {
+  createAuthornew(authorDatanew: AuthorDatanew!): Authornew,
+  updateAuthornew(newAuthorDatanew: NewAuthorDatanew!): Authornew,
+}

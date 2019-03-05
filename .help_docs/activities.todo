@@ -11,34 +11,51 @@ ctrl-shift-s: add/update timestamp for current task
 
 
 GraphQL Tasks:
-  ☐ Update author data in categories collection
-  ☐ Update post data in categories collection
-  ☐ Update tag data in categories collection
-  ☐ Update category data in categories collection
-  ☐ Update category data in posts collection
-  ☐ Update category data in authors collection
-  ☐ Update category data in tags collection
-  ☐ Delete tag from tags collection
-  ☐ Delete tag from posts collection
-  ☐ Delete tag from categories collection
-  ☐ Delete author from authors collection
-  ☐ Delete author from posts collection
-  ☐ Delete author from tags collection
-  ☐ Delete author from categories collection
-  ☐ Delete post from posts collection
-  ☐ Delete post from authors collection
-  ☐ Delete post from tags collection
-  ☐ Delete post from categories collection
-  ☐ Delete category from categories collection
-  ☐ Delete category from posts collection
-  ☐ Delete category from authors collection
-  ☐ Delete category from tags collection
+  ☐ Create new post
+  ☐ Update post -> publishedAt
+  ☐ Update post -> author
+  ☐ Update post -> tags
+  ☐ Update post -> category
+  ☐ Create new author
+  ☐ Update author in authors collection
+  ☐ Update author in posts collection
+  ☐ Query posts
+  ☐ Query post by id
+  ☐ Query post-author
+  ☐ Query authors
+  ☐ Query author by id
+  ☐ Query author-posts
   ☐ Add remaining fields to posts collection
+  ☐ Add remaining fields to authors collection
+  ☐ Add remaining fields to tags collection
+  ☐ Add remaining fields to categories collection
   ☐ Add sample resolver test
   ☐ Add sample schema test
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✘ Update author data in categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Update post data in categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Update tag data in categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Update category data in categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Update category data in posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Update category data in authors collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Update category data in tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete tag from tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete tag from posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete tag from categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete author from authors collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete author from posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete author from tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete author from categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete post from posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete post from authors collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete post from tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete post from categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete category from categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete category from posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete category from authors collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
+  ✘ Delete category from tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
   ✔ Update post data in tags collection @done(March 04, 2019 10:57 am) @project(GraphQL Tasks)
   ✔ Update post data in posts collection @done(February 27, 2019 03:56 pm) @project(GraphQL Tasks)
   ✔ Update post data in authors collection @done(February 28, 2019 02:44 pm) @project(GraphQL Tasks)

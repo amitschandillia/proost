@@ -1,0 +1,18 @@
+# Definitions: Types
+type Postnew {
+  _id: ID!,
+  isPublished: Boolean!,
+  # Post title; must be unique
+  title: String!,
+  content: String!,
+  # Post author
+  author: Authornew!,
+  # Milestones
+  createdAt: DateTime!,
+  updatedAt: DateTime!,
+  publishedAt: DateTime,
+  # Tags
+  tags: [Tagnew],
+  # Category
+  category: Categorynew
+}

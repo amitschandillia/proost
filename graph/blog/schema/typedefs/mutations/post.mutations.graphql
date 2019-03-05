@@ -1,0 +1,26 @@
+# Definitions: Input objects
+input PostAuthor {
+  _id: String!
+  firstName: String!,
+  lastName: String!,
+}
+input PostData {
+  isPublished: Boolean!,
+  title: String!,
+  content: String!,
+  author: PostAuthor!,
+}
+input NewPostData {
+  _id: ID!,
+  hasPublishedStatusChanged: Boolean!,
+  isPublished: Boolean!,
+  title: String,
+  content: String,
+  author: PostAuthor,
+}
+
+# Definitions: Mutations
+type Mutation {
+  createPost(postData: PostData!): Post,
+  updatePost(newPostData: NewPostData!): Post,
+}
