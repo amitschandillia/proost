@@ -3,4 +3,5 @@ type Author {
   _id: ID!,
   firstName: String!,
   lastName: String!,
+  posts(isPublished: Boolean): [Post],
 }

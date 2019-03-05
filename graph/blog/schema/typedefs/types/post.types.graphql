@@ -9,4 +9,6 @@ type Post {
   updatedAt: DateTime!,
   publishedAt: DateTime,
   author: Author!,
+  tags: [Tag],
+  category: Category
 }

@@ -27,6 +27,30 @@ module.exports = {
       }),
   },
 
+  // Resolve author of given post
+  Post: {
+    author: (parent, args, context, ast) => {
+      // Retrieve fields being queried
+      const queriedFields = Object.keys(graphqlFields(ast));
+      // Retrieve fields returned by parent, if any
+      const fieldsInParent = Object.keys(parent.author._doc);
+      // Check if queried fields already exist in parent
+      const available = queriedFields.every(field => fieldsInParent.includes(field));
+      let authorData = {};
+      if (parent.author && available) {
+        // If parent data is available and includes queried fields, no need to query db
+        authorData = parent.author;
+      } else {
+        // Otherwise, query db and retrieve data
+        authorData = Author.findOne({ _id: parent.author._id }, (err, docs) => {
+          if (err) { throw err; }
+          return docs;
+        });
+      }
+      return authorData;
+    },
+  },
+
   // Resolve mutations
   Mutation: {
     // Create a new post

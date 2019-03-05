@@ -1,0 +1,5 @@
+# Definitions: Queries
+type Query {
+  categories: [Category!]!,
+  category(_id: ID!): Category,
+}

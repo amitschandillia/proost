@@ -4,11 +4,23 @@ input PostAuthor {
   firstName: String!,
   lastName: String!,
 }
+input PostTags {
+  _id: String
+  name: String!,
+  description: String!,
+}
+input PostCategory {
+  _id: String
+  name: String!,
+  description: String!,
+}
 input PostData {
   isPublished: Boolean!,
   title: String!,
   content: String!,
   author: PostAuthor!,
+  tags: [PostTags!],
+  category: PostCategory,
 }
 input NewPostData {
   _id: ID!,
@@ -17,6 +29,8 @@ input NewPostData {
   title: String,
   content: String,
   author: PostAuthor,
+  tags: [PostTags!],
+  category: PostCategory,
 }
 
 # Definitions: Mutations
