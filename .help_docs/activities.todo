@@ -17,10 +17,19 @@ GraphQL Tasks:
   ☐ Add sample schema test
   ☐ DRY mutations
   ☐ DRY resolvers
-  ☐ Lint resolvers
+  ☐ Delete category from categories collection
+  ☐ Delete category from posts collection
+  ☐ Delete tag from tags collection
+  ☐ Delete tag from posts collection
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+  ✔ Permanently delete all marked posts @done(March 06, 2019 01:15 pm) @project(GraphQL Tasks)
+  ✔ Permanently delete one or more marked posts @done(March 06, 2019 12:58 pm) @project(GraphQL Tasks)
+  ✔ Delete one or more posts by id @done(March 06, 2019 12:38 pm) @project(GraphQL Tasks)
+  ✔ Restore one or more posts by id @done(March 06, 2019 12:38 pm) @project(GraphQL Tasks)
+  ✔ Restore all marked posts @done(March 06, 2019 12:38 pm) @project(GraphQL Tasks)
+  ✔ Lint resolvers @done(March 05, 2019 08:01 pm) @project(GraphQL Tasks)
   ✔ Add remaining fields to tags collection @done(March 05, 2019 05:16 pm) @project(GraphQL Tasks)
   ✔ Add remaining fields to categories collection @done(March 05, 2019 05:16 pm) @project(GraphQL Tasks)
   ✔ Schema (types) for category @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)

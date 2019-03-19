@@ -1,0 +1,47 @@
+# Definitions: Input objects
+input PostAuthor {
+  _id: String!
+  firstName: String!,
+  lastName: String!,
+}
+input PostTags {
+  _id: String
+  name: String!,
+  description: String!,
+}
+input PostCategory {
+  _id: String
+  name: String!,
+  description: String!,
+}
+# input PostData {
+#   title: String,
+#   author: PostAuthor!,
+# }
+input PostData {
+  _id: ID!,
+  hasPublishedStatusChanged: Boolean!,
+  isPublished: Boolean!,
+  title: String,
+  content: String,
+  author: PostAuthor,
+  tags: [PostTags!],
+  category: PostCategory,
+}
+input PostID {
+  _id: ID!,
+}
+type Result {
+  isSuccessful: Boolean,
+}
+
+# Definitions: Mutations
+type Mutation {
+  createPost(postAuthor: PostAuthor!): Post,
+  updatePost(postData: PostData!): Post,
+  deletePosts(postsToBeDeleted: [PostID]!): Result,
+  restorePosts(postsToBeRestored: [PostID]!): Result,
+  permanentlyDeletePosts(postsToBePermanentlyDeleted: [PostID]!): Result,
+  permanentlyDeleteAllMarkedPosts: Result,
+  restoreAllPosts: Result,
+}

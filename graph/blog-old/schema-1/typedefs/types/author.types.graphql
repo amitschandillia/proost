@@ -1,0 +1,11 @@
+# Definitions: Types
+type Author {
+  _id: ID!,
+  firstName: String!,
+  lastName: String!,
+  # posts(isPublished: Boolean): [Post],
+  posts (
+    isMarkedForDeletion: Boolean,
+    isPublished: Boolean,
+  ): [Post],
+}

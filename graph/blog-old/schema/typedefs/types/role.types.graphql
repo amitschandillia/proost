@@ -1,0 +1,26 @@
+type Permission {
+  _id: ID,
+  permissionName: String,
+  permissionDescription: String,
+}
+
+type Role {
+  _id: ID,
+  roleName: String,
+  roleDescription: String,
+  rolePermissions: [Permission],
+}
+
+input PermissionData {
+  _id: ID!,
+  permissionName: String!,
+  permissionDescription: String!,
+}
+
+type Mutation {
+  createRole(
+    roleName: String!,
+    roleDescription: String!,
+    rolePermissions: [PermissionData!]!
+  ): Role,
+}

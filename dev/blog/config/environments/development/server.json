@@ -1,0 +1,17 @@
+{
+  "host": "blog.dev.schandillia.com",
+  "port": 9001,
+  "proxy": {
+    "enabled": false
+  },
+  "autoReload": {
+    "enabled": true
+  },
+  "cron": {
+    "enabled": false
+  },
+  "admin": {
+    "path": "/dashboard",
+    "autoOpen": false
+  }
+}

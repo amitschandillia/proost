@@ -1,7 +1,0 @@
-# Definitions: Types
-type Category {
-  _id: ID!,
-  name: String!,
-  description: String!,
-  posts(isPublished: Boolean): [Post],
-}

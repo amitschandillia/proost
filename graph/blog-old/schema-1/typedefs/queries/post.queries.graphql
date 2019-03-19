@@ -1,0 +1,12 @@
+# Definitions: Queries
+# input PostFilter {
+#   isMarkedForDeletion: Boolean,
+#   isPublished: Boolean,
+# }
+type Query {
+  posts(
+    isMarkedForDeletion: Boolean,
+    isPublished: Boolean,
+  ): [Post!]!,
+  post(_id: ID!): Post,
+}

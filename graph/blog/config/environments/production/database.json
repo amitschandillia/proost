@@ -1,0 +1,15 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-mongoose",
+      "settings": {
+        "client": "mongo",
+        "uri": "mongodb+srv://usrBlog:pw7bgTjBsmlm1wZW@cluster0-mg1j6.mongodb.net/$dbBlog?retryWrites=true"
+      },
+      "options": {
+        "ssl": true
+      }
+    }
+  }
+}
