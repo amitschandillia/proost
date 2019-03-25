@@ -1,6 +1,6 @@
 {
   "connection": "default",
-  "collectionName": "",
+  "collectionName": "post",
   "info": {
     "name": "post",
     "description": "Web app blog posts"
@@ -28,8 +28,7 @@
     "slug": {
       "default": "",
       "unique": true,
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "body": {
       "default": "",
@@ -47,6 +46,32 @@
       "minLength": 110,
       "type": "text",
       "required": true
+    },
+    "isPublished": {
+      "default": false,
+      "type": "boolean",
+      "required": true
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "banner": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "category": {
+      "model": "category",
+      "via": "post"
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "posts",
+      "dominant": true
     }
   }
 }

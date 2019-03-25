@@ -7,7 +7,9 @@
 module.exports = {
   // Before saving a value.
   // Fired before an `insert` or `update` query.
-  // beforeSave: async (model) => {},
+  beforeSave: async (model) => {
+    model.slug = model.slug.replace(/ /g, '-').toLowerCase();
+  },
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
@@ -38,7 +40,13 @@ module.exports = {
 
   // Before updating a value.
   // Fired before an `update` query.
-  // beforeUpdate: async (model) => {},
+  beforeUpdate: async (model) => {
+    if (model._update) {
+      if (model._update.slug) {
+        model._update.slug = model._update.slug.replace(/ /g, '-').toLowerCase();
+      }
+    }
+  },
 
   // After updating a value.
   // Fired after an `update` query.

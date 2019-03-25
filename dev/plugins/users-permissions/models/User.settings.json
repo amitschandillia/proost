@@ -60,6 +60,12 @@
     "lastName": {
       "default": "",
       "type": "string"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
     }
   },
   "collectionName": "users-permissions_user"

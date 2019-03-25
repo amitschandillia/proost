@@ -36,6 +36,20 @@ module.exports = {
     return strapi.services.post.fetch(ctx.params);
   },
 
+    /**
+   * Retrieve a post record by slug.
+   *
+   * @return {Object}
+   */
+
+  findOneBySlug: async (ctx) => {
+    if (!ctx.params.slug.match(/^[a-z0-9-]+$/)) {
+      return ctx.notFound();
+    }
+
+    return strapi.services.post.fetch(ctx.params);
+  },
+
   /**
    * Count post records.
    *

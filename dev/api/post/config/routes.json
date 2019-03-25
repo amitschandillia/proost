@@ -18,8 +18,16 @@
     },
     {
       "method": "GET",
-      "path": "/posts/:_id",
+      "path": "/posts?id=:_id",
       "handler": "Post.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/posts/:slug",
+      "handler": "Post.findOneBySlug",
       "config": {
         "policies": []
       }

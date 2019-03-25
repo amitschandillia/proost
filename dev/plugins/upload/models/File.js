@@ -7,7 +7,11 @@
 module.exports = {
   // Before saving a value.
   // Fired before an `insert` or `update` query.
-  // beforeSave: async (model) => {},
+  beforeSave: async (model) => {
+    const url = model.url;
+    model.url = url.replace(/s3.amazonaws.com\//g, '');
+    console.log(model);
+  },
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
