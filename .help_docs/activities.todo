@@ -10,102 +10,15 @@ ctrl-shift-s: add/update timestamp for current task
 =======================================
 
 
-GraphQL Tasks:
-  ☐ Add remaining fields to posts collection
-  ☐ Add remaining fields to authors collection
-  ☐ Add sample resolver test
-  ☐ Add sample schema test
-  ☐ DRY mutations
-  ☐ DRY resolvers
-  ☐ Delete category from categories collection
-  ☐ Delete category from posts collection
-  ☐ Delete tag from tags collection
-  ☐ Delete tag from posts collection
-
-＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
-Archive:
-  ✔ Permanently delete all marked posts @done(March 06, 2019 01:15 pm) @project(GraphQL Tasks)
-  ✔ Permanently delete one or more marked posts @done(March 06, 2019 12:58 pm) @project(GraphQL Tasks)
-  ✔ Delete one or more posts by id @done(March 06, 2019 12:38 pm) @project(GraphQL Tasks)
-  ✔ Restore one or more posts by id @done(March 06, 2019 12:38 pm) @project(GraphQL Tasks)
-  ✔ Restore all marked posts @done(March 06, 2019 12:38 pm) @project(GraphQL Tasks)
-  ✔ Lint resolvers @done(March 05, 2019 08:01 pm) @project(GraphQL Tasks)
-  ✔ Add remaining fields to tags collection @done(March 05, 2019 05:16 pm) @project(GraphQL Tasks)
-  ✔ Add remaining fields to categories collection @done(March 05, 2019 05:16 pm) @project(GraphQL Tasks)
-  ✔ Schema (types) for category @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Schema (queries) for category @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Schema (mutations) for category @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Schema (types) for tag @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Schema (queries) for tag @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Schema (mutations) for tag @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Create new category @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Update category in categories collection @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Update category in posts collection @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Query categories @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Query category by id @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Query category-posts @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Query tags @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Query tag by id @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Query tag-posts @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Create new tag @done(March 05, 2019 05:13 pm) @project(GraphQL Tasks)
-  ✔ Model for category @done(March 05, 2019 03:10 pm) @project(GraphQL Tasks)
-  ✔ Model for tag @done(March 05, 2019 03:10 pm) @project(GraphQL Tasks)
-  ✔ Update post -> tags @done(March 05, 2019 02:52 pm) @project(GraphQL Tasks)
-  ✔ Update post -> category @done(March 05, 2019 02:52 pm) @project(GraphQL Tasks)
-  ✔ Update author in posts collection @done(March 05, 2019 02:51 pm) @project(GraphQL Tasks)
-  ✔ Update author in authors collection @done(March 05, 2019 02:18 pm) @project(GraphQL Tasks)
-  ✔ Create new author @done(March 05, 2019 02:18 pm) @project(GraphQL Tasks)
-  ✔ Query authors @done(March 05, 2019 02:18 pm) @project(GraphQL Tasks)
-  ✔ Query author by id @done(March 05, 2019 02:18 pm) @project(GraphQL Tasks)
-  ✔ Query author-posts @done(March 05, 2019 02:18 pm) @project(GraphQL Tasks)
-  ✔ Create new post @done(March 05, 2019 01:39 pm) @project(GraphQL Tasks)
-  ✔ Update post -> publishedAt @done(March 05, 2019 01:39 pm) @project(GraphQL Tasks)
-  ✔ Update post -> author @done(March 05, 2019 01:41 pm) @project(GraphQL Tasks)
-  ✔ Query posts @done(March 05, 2019 01:59 pm) @project(GraphQL Tasks)
-  ✔ Query post by id @done(March 05, 2019 01:59 pm) @project(GraphQL Tasks)
-  ✔ Query post-author @done(March 05, 2019 01:59 pm) @project(GraphQL Tasks)
-  ✘ Update author data in categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Update post data in categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Update tag data in categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Update category data in categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Update category data in posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Update category data in authors collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Update category data in tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete tag from tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete tag from posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete tag from categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete author from authors collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete author from posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete author from tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete author from categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete post from posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete post from authors collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete post from tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete post from categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete category from categories collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete category from posts collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete category from authors collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✘ Delete category from tags collection @cancelled(March 05, 2019 01:36 pm) @project(GraphQL Tasks)
-  ✔ Update post data in tags collection @done(March 04, 2019 10:57 am) @project(GraphQL Tasks)
-  ✔ Update post data in posts collection @done(February 27, 2019 03:56 pm) @project(GraphQL Tasks)
-  ✔ Update post data in authors collection @done(February 28, 2019 02:44 pm) @project(GraphQL Tasks)
-  ✔ Add post data to posts collection @done(February 27, 2019 11:24 am) @project(GraphQL Tasks)
-  ✔ Add post data to authors collection @done(February 27, 2019 11:24 am) @project(GraphQL Tasks)
-  ✔ Add post data to tags collection @done(February 27, 2019 11:24 am) @project(GraphQL Tasks)
-  ✔ Add post data to categories collection @done(February 27, 2019 11:24 am) @project(GraphQL Tasks)
-  ✔ Update post data in categories collection @done(February 27, 2019 10:25 am) @project(GraphQL Tasks)
-  ✔ Create category @done(February 26, 2019 10:07 pm) @project(GraphQL Tasks)
-  ✔ Retrieve all categories @done(February 26, 2019 10:08 pm) @project(GraphQL Tasks)
-  ✔ Retrieve category by id @done(February 26, 2019 10:08 pm) @project(GraphQL Tasks)
-  ✘ Update category @cancelled(February 26, 2019 09:25 pm) @project(GraphQL Tasks)
-  ✔ Update author data in authors collection @done(February 26, 2019 09:22 pm) @project(GraphQL Tasks)
-  ✔ Update author data in posts collection @done(February 26, 2019 09:22 pm) @project(GraphQL Tasks)
-  ✔ Update author data in tags collection @done(February 26, 2019 09:22 pm) @project(GraphQL Tasks)
-  ✘ Update tag data in authors collection @cancelled(February 26, 2019 08:44 pm) @project(GraphQL Tasks)
-  ✔ Create tag @done(February 26, 2019 09:42 am) @project(Archive)
-  ✔ Create post @done(February 26, 2019 09:42 am) @project(Archive)
-  ✔ Create author @done(February 26, 2019 09:42 am) @project(Archive)
-  ✔ Update tag @done(February 26, 2019 09:42 am) @project(Archive)
-  ✔ Add author field to tag.posts @done(February 26, 2019 09:42 am) @project(Archive)
-  ✘ Add tags field to author.posts @cancelled(February 26, 2019 08:45 pm) @project(Archive)
-  ✔ Retrieve posts by tag @done(February 26, 2019 09:42 am) @project(Archive)
+Web Tasks:
+  ☐ Service worker
+  ☐ Apollo client
+  ☐ User registration and authentication
+  ☐ SASS
+  ☐ Favicon
+  ☐ Ecommerce
+  ☐ RSS
+  ☐ Email subscription
+  ☐ Comments
+  ☐ Similar posts
+  ☐ Search

@@ -1,28 +1,39 @@
 {
-  "name": "proost",
+  "name": "hello-next",
   "version": "1.0.0",
-  "description": "Project Proost prototype",
-  "main": "./server.js",
+  "description": "",
+  "main": "./server",
   "scripts": {
-    "dev": "next",
+    "lint": "clear && ./node_modules/.bin/eslint",
+    "dev": "node ./server",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node ./server",
+    "test": "snyk test"
   },
-  "author": "Amit Schandillia",
+  "keywords": [],
+  "author": "",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "compression": "^1.7.3",
-    "cookie-parser": "^1.4.3",
-    "dotenv": "^6.2.0",
+    "@babel/register": "^7.4.0",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
-    "express-graphql": "^0.7.1",
-    "express-subdomain": "^1.0.5",
-    "graphql": "^14.1.1",
-    "helmet": "^3.15.0",
-    "next": "^7.0.2",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "glob": "^7.1.3",
+    "next": "^8.0.3",
     "path": "^0.12.7",
-    "react": "^16.8.1",
-    "react-dom": "^16.8.1"
+    "prop-types": "^15.7.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "webpack": "^4.29.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "eslint": "^5.15.3",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
+    "snyk": "^1.143.4"
   }
 }
