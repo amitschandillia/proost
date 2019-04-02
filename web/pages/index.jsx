@@ -23,8 +23,14 @@ class Index extends Component {
   }
 
   render() {
+    const title = 'Home | New Project Proost PWA Prototype';
+    const description = 'This is the description for the homepage';
     return (
       <Layout>
+        <Head>
+          <title>{ title }</title>
+          <meta name="description" content={description} key="description" />
+        </Head>
         <h1>My Blog</h1>
         <ul>
           <PostLink id="hello-nextjs" title="Hello Next.js" />
