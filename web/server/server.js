@@ -25,10 +25,6 @@ app.prepare().then(() => {
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: false }));
   server.use(cookieParser());
-  server.use(helmet.referrerPolicy({ policy: 'origin' }));
-  server.use(helmet.xssFilter());
-  server.use(helmet.frameguard());
-  server.use(helmet.noSniff());
   server.use(csp({
     directives: {
       defaultSrc: ["'self'"],
@@ -45,11 +41,11 @@ app.prepare().then(() => {
 
   // ---------------------------------------------------------------------
 
-  // Custom build resources aliases
+  // Custom static routes
   // ---------------------------------------------------------------------
   server.use('/_s', express.static(path.join(__dirname, '..',  '.build', 'static')));
-  server.use('/_f', express.static(path.join(__dirname, '..',  'static')));
-  server.use('/favicon.ico', express.static(path.join(__dirname, '..',  'static', 'images', 'icons', 'favicon.ico')));
+  // server.use('/_f', express.static(path.join(__dirname, '..',  'static')));
+  // server.use('/favicon.ico', express.static(path.join(__dirname, '..',  'static', 'images', 'icons', 'favicon.ico')));
   // ---------------------------------------------------------------------
 
   // Custom/dynamic routes
