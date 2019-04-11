@@ -4,3 +4,7 @@ cd ~/proost/web/ && rm -rf .build && pm2 flush && pm2 delete web && pm2 flush &&
 
 
 cd ~/proost/web/ && rm -rf .build && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server --name web && pm2 logs
+
+
+SWITCH BETWEEN WEB AND WEB2
+cd ~/proost/web/ && mov

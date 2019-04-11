@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 // import PropTypes from 'prop-types';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -21,8 +21,8 @@ class About extends Component {
     return (
       <Layout>
         <p>This is the about page</p>
-        <Link href="/newpage">
-          <a style={linkStyle2}>New Page</a>
+        <Link href="/">
+          <a style={linkStyle2}>HOME</a>
         </Link>
       </Layout>
     );

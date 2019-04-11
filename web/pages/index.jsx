@@ -1,28 +1,26 @@
 /* eslint-disable no-unused-vars */
 
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React, { PureComponent, Fragment } from 'react';
 import Head from 'next/head';
-import Link from 'next/link';
+import compose from 'recompose/compose';
 import Layout from '../components/Layout';
+import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
-const PostLink = (props) => {
-  const { id, title } = props;
-  return (
-    <li>
-      <Link as={`/p/${id}`} href={`/post?title=${title}`}>
-        <a>{title}</a>
-      </Link>
-    </li>
-  );
+const styles = {
+  root: {
+    textAlign: 'center',
+    paddingTop: 200,
+  },
+  p: {
+    textTransform: 'uppercase',
+    color: 'red',
+  },
 };
 
-class Index extends Component {
-  componentDidMount() {
-    // ...
-  }
-
+class Index extends PureComponent {
   render() {
+    const { classes } = this.props;
     const title = 'Home | New Project Proost PWA Prototype';
     const description = 'This is the description for the homepage';
     return (
@@ -31,20 +29,13 @@ class Index extends Component {
           <title>{ title }</title>
           <meta name="description" content={description} key="description" />
         </Head>
-        <h1>My Blog</h1>
-        <ul>
-          <PostLink id="hello-nextjs" title="Hello Next.js" />
-          <PostLink id="learn-nextjs" title="Learn Next.js is awesome" />
-          <PostLink id="deploy-nextjs" title="Deploy apps with Zeit" />
-        </ul>
+        <p className={classes.p}>amit</p>
+        <Button variant="contained" color="secondary">
+          Secondary
+        </Button>
       </Layout>
     );
   }
 }
 
-PostLink.propTypes = {
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-export default Index;
+export default withStyles(styles)(Index);
