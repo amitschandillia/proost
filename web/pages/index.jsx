@@ -21,21 +21,25 @@ const styles = {
 class Index extends PureComponent {
   render() {
     const { classes } = this.props;
-    const title = 'Home | New Project Proost PWA Prototype';
+    const title = 'Project Proost';
     const description = 'This is the description for the homepage';
     return (
-      <Layout>
+      <Fragment>
         <Head>
           <title>{ title }</title>
           <meta name="description" content={description} key="description" />
         </Head>
-        <p className={classes.p}>amit</p>
-        <Button variant="contained" color="secondary">
-          Secondary
-        </Button>
-      </Layout>
+        <Layout>
+          <p className={classes.p}>amit</p>
+          <Button variant="contained" color="secondary">
+            Secondary
+          </Button>
+        </Layout>
+      </Fragment>
     );
   }
 }
 
-export default withStyles(styles)(Index);
+export default compose(
+  withStyles(styles),
+)(Index);

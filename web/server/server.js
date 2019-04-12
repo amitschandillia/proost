@@ -32,8 +32,8 @@ app.prepare().then(() => {
       scriptSrc: ["'self'", '*.google-analytics.com'],
       imgSrc: ["'self'", '*.google-analytics.com'],
       connectSrc: ["'none'"],
-      styleSrc: ["'self'", "'unsafe-inline'", 'maxcdn.bootstrapcdn.com'], // Remove unsafe-inline for better security
-      fontSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'], // Remove unsafe-inline for better security
+      fontSrc: ["'self'", 'fonts.gstatic.com'],
       objectSrc: ["'self'"],
       mediaSrc: ["'self'"],
       frameSrc: ["'self'"]
@@ -69,9 +69,7 @@ app.prepare().then(() => {
     /* eslint-disable no-console */
     console.log(`
         =====================================================================================
-        -> Server (${chalk.bgBlue(
-          'react-redux-nextjs-material-ui-pwa-starter',
-        )}) 🏃 (running) on port ${chalk.green(process.env.WEB_PORT)}
+        -> Server ${chalk.bgBlue('Proost')} listening on port ${chalk.green(process.env.WEB_PORT)}...
         =====================================================================================
       `);
     /* eslint-enable no-console */
