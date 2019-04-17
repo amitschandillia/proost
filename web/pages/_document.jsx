@@ -1,77 +1,88 @@
-import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import flush from 'styled-jsx/server';
-import { ServerStyleSheet } from 'styled-components';
+import JssProvider from 'react-jss/lib/JssProvider';
+import getPageContext from '../lib/getPageContext';
 
-class RootDocument extends Document {
-  static async getInitialProps(ctx) {
-    let pageContext;
-    const page = ctx.renderPage(Component => {
-      const WrappedComponent = props => {
-        pageContext = props.pageContext;
-        return <Component {...props} />;
-      };
-      WrappedComponent.propTypes = {
-        pageContext: PropTypes.object.isRequired,
-      };
-      return WrappedComponent;
-    });
-    let css;
-    if (pageContext) {
-      css = pageContext.sheetsRegistry.toString();
+class MyDocument extends Document {
+    render() {
+        const { pageContext } = this.props;
+
+        return (
+            <html lang="en" dir="ltr">
+                <Head>
+                    <meta charSet="utf-8" />
+                    <meta
+                          name="viewport"
+                          content={
+                              'user-scalable=0, initial-scale=1, ' +
+                              'minimum-scale=1, width=device-width, height=device-height'
+                          }
+                      />
+                      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+                      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+                      <link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png" />
+                      <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
+                      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+                      <link rel="manifest" href="/site.webmanifest" />
+                      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#663300" />
+                      <meta name="msapplication-TileColor" content="#da532c" />
+                      <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+                      <meta name="theme-color" content="#ffcc66" />
+                      <meta name="theme-color" content={pageContext.theme.palette.primary[500]} />
+                    <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+                    />
+                </Head>
+                <body>
+                    <Main />
+                    <NextScript />
+                </body>
+            </html>
+        );
     }
-    const sheet = new ServerStyleSheet()
-    const originalRenderPage = ctx.renderPage
-    try {
-      ctx.renderPage = () => originalRenderPage({
-        enhanceApp: App => props => sheet.collectStyles(<App {...props} />)
-      })
-      const initialProps = await Document.getInitialProps(ctx)
-      return {
-        ...initialProps,
+}
+
+MyDocument.getInitialProps = ctx => {
+    // Resolution order
+    //
+    // On the server:
+    // 1. page.getInitialProps
+    // 2. document.getInitialProps
+    // 3. page.render
+    // 4. document.render
+    //
+    // On the server with error:
+    // 2. document.getInitialProps
+    // 3. page.render
+    // 4. document.render
+    //
+    // On the client
+    // 1. page.getInitialProps
+    // 3. page.render
+
+    // Get the context of the page to collect side effects.
+    const pageContext = getPageContext();
+    const page = ctx.renderPage(Component => props => (
+        <JssProvider
+            registry={pageContext.sheetsRegistry}
+            generateClassName={pageContext.generateClassName}
+        >
+            <Component pageContext={pageContext} {...props} />
+        </JssProvider>
+    ));
+
+    return {
         ...page,
         pageContext,
         styles: (
-          <Fragment>
             <style
-              id="jss-server-side"
-              // eslint-disable-next-line react/no-danger
-              dangerouslySetInnerHTML={{ __html: css }}
+                id="jss-server-side"
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: pageContext.sheetsRegistry.toString() }}
             />
-            {initialProps.styles}{sheet.getStyleElement()}{flush() || null}
-          </Fragment>
-        )
-      }
-    } finally {
-      sheet.seal()
-    }
-  }
+        ),
+    };
+};
 
-  render() {
-    const { pageContext } = this.props;
-    return (
-      <Html lang="en">
-        <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png" />
-          <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#663300" />
-          <meta name="msapplication-TileColor" content="#da532c" />
-          <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
-          <meta name="theme-color" content="#ffcc66" />
-        </Head>
-        <body className="custom_class">
-          <Main />
-          <NextScript />
-        </body>
-      </Html>
-    )
-  }
-}
-
-export default RootDocument
+export default MyDocument;

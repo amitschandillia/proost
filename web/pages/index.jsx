@@ -1,45 +1,55 @@
-/* eslint-disable no-unused-vars */
-
 import React, { PureComponent, Fragment } from 'react';
-import Head from 'next/head';
-import compose from 'recompose/compose';
-import Layout from '../components/Layout';
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Head from 'next/head';
+import withRoot from '../lib/withRoot';
 
-const styles = {
-  root: {
-    textAlign: 'center',
-    paddingTop: 200,
-  },
-  p: {
-    textTransform: 'uppercase',
-    color: 'red',
-  },
-};
+const styles = theme => ({
+    root: {
+        textAlign: 'center',
+        paddingTop: theme.spacing.unit * 20,
+    },
+});
 
 class Index extends PureComponent {
-  render() {
-    const { classes } = this.props;
-    const title = 'Project Proost';
-    const description = 'This is the description for the homepage';
-    return (
-      <Fragment>
-        <Head>
-          <title>{ title }</title>
-          <meta name="description" content={description} key="description" />
-        </Head>
-        <Layout>
-          <p className={classes.p}>amit</p>
-          <Button variant="contained" color="secondary">
-            Secondary
-          </Button>
-        </Layout>
-      </Fragment>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            open: false,
+        };
+    }
+
+    render() {
+        const { classes } = this.props;
+        const { open } = this.state;
+        const title = 'Project Proost';
+        const description = 'This is the description for the homepage';
+        return (
+          <Fragment>
+            <Head>
+              <title>{ title }</title>
+              <meta name="description" content={description} key="description" />
+            </Head>
+              <div className={classes.root}>
+                  <Typography variant="display1" gutterBottom>
+                  Material-UI
+                  </Typography>
+                  <Button variant="raised" color="primary">
+                  Super Secret Password
+                  </Button>
+                  <Button variant="raised" color="secondary">
+                  Super Secret Password
+                  </Button>
+              </div>
+          </Fragment>
+        );
+    }
 }
 
-export default compose(
-  withStyles(styles),
-)(Index);
+Index.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withRoot(withStyles(styles)(Index));

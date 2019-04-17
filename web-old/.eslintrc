@@ -1,0 +1,31 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "airbnb",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "describe": 1,
+    "it": 1,
+    "expect": 1
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "impliedStrict": true,
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+  }
+}
