@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import next from 'next';
 import path from 'path';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
 import chalk from 'chalk';
@@ -36,21 +36,21 @@ app.prepare().then(() => {
       fontSrc: ["'self'", 'fonts.gstatic.com'],
       objectSrc: ["'self'"],
       mediaSrc: ["'self'"],
-      frameSrc: ["'self'"]
-    }
+      frameSrc: ["'self'"],
+    },
   }));
 
   // ---------------------------------------------------------------------
 
   // Custom static routes
   // ---------------------------------------------------------------------
-  server.use('/_s', express.static(path.join(__dirname, '..',  '.build', 'static')));
+  server.use('/_s', express.static(path.join(__dirname, '..', '.build', 'static')));
   // server.use('/_f', express.static(path.join(__dirname, '..',  'static')));
   // server.use('/favicon.ico', express.static(path.join(__dirname, '..',  'static', 'images', 'icons', 'favicon.ico')));
   // ---------------------------------------------------------------------
 
   // Custom/dynamic routes
-    // ---------------------------------------------------------------------
+  // ---------------------------------------------------------------------
   server.get('/p/:id', (req, res) => {
     const actualPage = '/post';
     const queryParams = { title: req.params.id };
@@ -65,13 +65,14 @@ app.prepare().then(() => {
 
   // Express: Listener
   server.listen(process.env.WEB_PORT, () => {
-    // console.log(`Server listening on port: ${process.env.WEB_PORT}...`);
     /* eslint-disable no-console */
+    /* eslint-disable max-len */
     console.log(`
-        =====================================================================================
+        ===============================================================
         -> Server ${chalk.bgBlue('Proost')} listening on port ${chalk.green(process.env.WEB_PORT)}...
-        =====================================================================================
+        ===============================================================
       `);
+    /* eslint-enable max-len */
     /* eslint-enable no-console */
   });
 }).catch((ex) => {
