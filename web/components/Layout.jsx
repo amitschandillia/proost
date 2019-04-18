@@ -1,19 +1,25 @@
-import React, { Component, Fragment } from 'react';
-import Header from './Header'
+import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
+import Header from './Header';
 
 const layoutStyle = {
   margin: 20,
   padding: 20,
-  border: '1px solid #DDD'
-}
+  border: '1px solid #DDD',
+};
 
 export default function Layout(props) {
+  const { children } = props;
   return (
     <Fragment>
       <div style={layoutStyle}>
         <Header />
-        {props.children}
+        {children}
       </div>
     </Fragment>
-  )
+  );
 }
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
