@@ -19,7 +19,6 @@
     "@material-ui/icons": "^3.0.2",
     "@zeit/next-css": "^1.0.1",
     "body-parser": "^1.18.3",
-    "chalk": "^2.4.2",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.4",
     "dotenv": "^7.0.0",
@@ -45,7 +44,6 @@
     "redux-thunk": "^2.3.0",
     "sass-loader": "^7.1.0",
     "serve-favicon": "^2.5.0",
-    "styled-components": "^4.2.0",
     "webpack": "^4.29.6"
   },
   "devDependencies": {

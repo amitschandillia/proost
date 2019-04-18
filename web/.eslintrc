@@ -21,10 +21,13 @@
     "sourceType": "module",
   },
   "plugins": [
+    "react",
+    "jsx-a11y"
   ],
   "rules": {
     "jsx-a11y/anchor-is-valid": "off",
     "react/react-in-jsx-scope": "off",
+    "react/jsx-indent": ["error", 2, {checkAttributes: true}],
     "no-console": "off",
     "no-underscore-dangle": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],

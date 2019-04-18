@@ -8,7 +8,6 @@ import path from 'path';
 // import helmet from 'helmet';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
-import chalk from 'chalk';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -66,13 +65,7 @@ app.prepare().then(() => {
   // Express: Listener
   server.listen(process.env.WEB_PORT, () => {
     /* eslint-disable no-console */
-    /* eslint-disable max-len */
-    console.log(`
-        ===============================================================
-        -> Server ${chalk.bgBlue('Proost')} listening on port ${chalk.green(process.env.WEB_PORT)}...
-        ===============================================================
-      `);
-    /* eslint-enable max-len */
+    console.log(`>> Listening on port ${process.env.WEB_PORT}`);
     /* eslint-enable no-console */
   });
 }).catch((ex) => {

@@ -14,7 +14,7 @@ const styles = theme => ({
   },
 });
 
-class Index extends PureComponent {
+class About extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,8 +25,8 @@ class Index extends PureComponent {
   render() {
     const { classes } = this.props;
     const { open } = this.state; // eslint-disable-line no-unused-vars
-    const title = 'Home | Project Proost';
-    const description = 'This is the description for the homepage';
+    const title = 'About | Project Proost';
+    const description = 'This is the description for the about page';
     return (
       <Fragment>
         <Head>
@@ -38,15 +38,15 @@ class Index extends PureComponent {
             Material-UI
           </Typography>
           <Typography gutterBottom>
-            <Link href="/about">
-              <a>Go to the about page</a>
+            <Link href="/">
+              <a>Go home</a>
             </Link>
           </Typography>
           <Button variant="raised" color="primary">
-            Super Secret Password
+                  Super Secret Password
           </Button>
           <Button variant="raised" color="secondary">
-            Super Secret Password
+                  Super Secret Password
           </Button>
         </div>
       </Fragment>
@@ -54,14 +54,14 @@ class Index extends PureComponent {
   }
 }
 
-Index.propTypes = {
+About.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
 };
 
-// Index.propTypes = {
+// About.propTypes = {
 //   classes: PropTypes.object.isRequired,
 // };
 
-export default withRoot(withStyles(styles)(Index));
+export default withRoot(withStyles(styles)(About));
