@@ -10,7 +10,6 @@
     "start": "NODE_ENV=production node ./server",
     "test": "snyk test"
   },
-  "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
