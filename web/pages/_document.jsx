@@ -16,7 +16,7 @@ class MyDocument extends Document {
           <meta
             name="viewport"
             content={
-                              'user-scalable=0, initial-scale=1, '
+                            'user-scalable=0, initial-scale=1, '
                               + 'minimum-scale=1, width=device-width, height=device-height'
                           }
           />
@@ -36,6 +36,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
+          <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />
         </Head>
         <body>
           <Main />

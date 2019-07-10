@@ -22,6 +22,10 @@ class Index extends PureComponent {
     };
   }
 
+  componentDidMount() {
+    if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/serviceWorker.js'); }
+  }
+
   render() {
     const { classes } = this.props;
     const { open } = this.state; // eslint-disable-line no-unused-vars

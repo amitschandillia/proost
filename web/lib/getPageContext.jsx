@@ -22,6 +22,13 @@ const theme = createMuiTheme({
       dark: pink[700],
     },
   },
+  typography: {
+    "fontFamily": "\"Raleway\", \"Helvetica\", \"Arial\", sans-serif",
+    "fontSize": 14,
+    "fontWeightLight": 300,
+    "fontWeightRegular": 400,
+    "fontWeightMedium": 500
+  },
 });
 
 function createPageContext() {
