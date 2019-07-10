@@ -1,19 +1,22 @@
-1. Install Certbot =&gt; $ wget https://dl.eff.org/certbot-auto
+# Let's Encrypt Setup
+Follow these steps to set up a free **Let's Encrypt** SSL on an **Ubuntu 16+** server:
 
-2. Make it executable =&gt; $ chmod a+x certbot-auto
+ 1. Install *Certbot* =&gt; $ `wget https://dl.eff.org/certbot-auto`.
 
-3. Create a LetsEncrypt config file =&gt; $ sudo vi etc/letsencrypt/configs/example.com.conf
+2. Make it executable =&gt; $ `chmod a+x certbot-auto`.
 
-4. Press i to enter edit mode
+3. Create a *Let's Encrypt* config file =&gt; $  `sudo vi /etc/letsencrypt/configs/example.com.conf`.
 
-5. Paste contents of configs/letsencrypt_configs.txt (substitute appropriate values, i.e. DOMAIN NAME)
+4. Press `i` to enter *edit* mode.
 
-6. Press Esc and :wq to save and exit
+5. Paste contents of `configs/letsencrypt.conf` (substitute appropriate values for domain names).
 
-7. Run Cerbot =&gt; $ certbot-auto
+6. Press `Esc` and `:wq` to *save* and *exit*.
 
-8. Kill any running server on port 80 =&gt; $ sudo systemctl stop nginx
+7. Run *Cerbot* =&gt; $ `certbot-auto`.
 
-9. Generate certificates =&gt; ./certbot-auto certonly --standalone -d &lt;DOMAIN.COM&gt; -d &lt;WWW.DOMAIN.COM&gt; -d &lt;API.DOMAIN.COM&gt; -d &lt;ADMIN.DOMAIN.COM&gt;
+8. Kill any running server on *port 80* =&gt; $ `sudo systemctl stop nginx`.
 
-10. Update Ubuntu =&gt; $ sudo apt-get update && sudo apt-get upgrade -y
+9. Generate certificates =&gt; $ `./certbot-auto certonly --standalone -d schandillia.com -d www.schandillia.com -d blog.schandillia.com` (substitute appropriate values for domain names).
+
+10. Update *Ubuntu* =&gt; $ `sudo apt update && sudo apt upgrade -y`.
