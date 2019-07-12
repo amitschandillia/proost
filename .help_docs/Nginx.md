@@ -1,4 +1,5 @@
 # Nginx Setup
+
 Follow these steps to set up **Nginx** on an **Ubuntu 16+** server:
 
 1. Remove existing *Nginx* installation, if any => $ `sudo apt purge nginx nginx-common`.
