@@ -2,7 +2,10 @@
 
 Follow these steps to set up a free **Let's Encrypt** SSL on an **Ubuntu 16+** server:
 
-1. Install *Certbot* => $ `wget https://dl.eff.org/certbot-auto`.
+1. Install *Certbot* =>
+```diff
++ $ `wget https://dl.eff.org/certbot-auto`.
+```
 
 2. Make it executable => $ `chmod a+x ~/certbot-auto`.
 
@@ -36,8 +39,3 @@ Follow these steps to set up a free **Let's Encrypt** SSL on an **Ubuntu 16+** s
 2. Run renewal script => $ `~/certbot-auto certonly --standalone -d schandillia.com -d www.schandillia.com` (substitute appropriate values for domain names).
 
 3. Start *Nginx* => $ `sudo systemctl start nginx`.
-
-```diff
-+ green
-- red
-```
