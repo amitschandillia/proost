@@ -2,14 +2,20 @@
 
 Follow these steps to set up a free **Let's Encrypt** SSL on an **Ubuntu 16+** server:
 
-1. Install *Certbot* =>
+1. Install *Certbot*.
       ```diff
-      + $ `wget https://dl.eff.org/certbot-auto`.
+      $ wget https://dl.eff.org/certbot-auto
       ```
 
-2. Make it executable => $ `chmod a+x ~/certbot-auto`.
+2. Make it executable.
+      ```diff
+      $ chmod a+x ~/certbot-auto
+      ```
 
-3. Create a *Let's Encrypt* config file => $  `sudo vi /etc/letsencrypt/configs/example.com.conf`.
+3. Create a *Let's Encrypt* config file
+      ```diff
+      $  sudo vi /etc/letsencrypt/configs/example.com.conf
+      ```
 
 4. Press <kbd>i</kbd> to enter *edit* mode.
 
