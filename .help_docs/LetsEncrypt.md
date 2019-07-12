@@ -23,25 +23,56 @@ Follow these steps to set up a free **Let's Encrypt** SSL on an **Ubuntu 16+** s
 
 6. Press <kbd>Esc</kbd> and <kbd>:</kbd><kbd>w</kbd><kbd>q</kbd> to *save* and *exit*.
 
-7. Run *Cerbot* => $ `~/certbot-auto`.
+7. Run *Cerbot*.
+      ```diff
+      $ `~/certbot-auto`
+      ```
 
-8. Kill any running server on *port 80* => $ `sudo systemctl stop nginx`.
+8. Kill any running server on *port 80*.
+      ```diff
+      $ `sudo systemctl stop nginx`
+      ```
 
-9. Generate certificates => $ `~/certbot-auto certonly --standalone -d schandillia.com -d www.schandillia.com -d blog.schandillia.com` (substitute appropriate values for domain names).
+9. Generate certificates (substitute appropriate values for domain names).
+      ```diff
+      $ `~/certbot-auto certonly --standalone -d schandillia.com -d www.schandillia.com -d blog.schandillia.com`
+      ```
 
-10. Update *Ubuntu* => $ `sudo apt update && sudo apt upgrade -y`.
+10. Update *Ubuntu*.
+      ```diff
+      $ `sudo apt update && sudo apt upgrade -y`
+      ```
 
 ## Test If Auto-Renewal Is Working
-1. Stop *Nginx* => $ `sudo systemctl stop nginx`.
 
-2. Run test script => $ `sudo ~/certbot-auto renew --dry-run`.
+1. Stop *Nginx*.
+      ```diff
+      $ `sudo systemctl stop nginx`
+      ```
 
-3. Start *Nginx* => $ `sudo systemctl start nginx`.
+2. Run test script.
+      ```diff
+      $ `sudo ~/certbot-auto renew --dry-run`
+      ```
+
+3. Start *Nginx*.
+      ```diff
+      $ `sudo systemctl start nginx`
+      ```
 
 ## Manually Renew SSL
 
-1. Stop *Nginx* => $ `sudo systemctl stop nginx`.
+1. Stop *Nginx*.
+      ```diff
+      $ `sudo systemctl stop nginx`
+      ```
 
-2. Run renewal script => $ `~/certbot-auto certonly --standalone -d schandillia.com -d www.schandillia.com` (substitute appropriate values for domain names).
+2. Run renewal script (substitute appropriate values for domain names).
+      ```diff
+      $ `~/certbot-auto certonly --standalone -d schandillia.com -d www.schandillia.com`
+      ```
 
-3. Start *Nginx* => $ `sudo systemctl start nginx`.
+3. Start *Nginx*.
+      ```diff
+      $ `sudo systemctl start nginx`
+      ```
