@@ -4,42 +4,42 @@ Follow these steps to set up **Nginx** on an **Ubuntu 16+** server:
 
 1. Remove existing *Nginx* installation, if any.
       ```diff
-      $ `sudo apt purge nginx nginx-common
+      $ sudo apt purge nginx nginx-common
       ```
 
 2. Remove existing configs, if any.
       ```diff
-      $ `rm -rf /etc/nginx
+      $ rm -rf /etc/nginx
       ```
 
 3. Update *Ubuntu*.
       ```diff
-      $ `sudo apt update && sudo apt upgrade -y
+      $ sudo apt update && sudo apt upgrade -y
       ```
 
 4. Install *Nginx*.
       ```diff
-      $ `sudo apt install nginx -y
+      $ sudo apt install nginx -y
       ```
 
 5. Check *Nginx* status.
       ```diff
-      $ `sudo systemctl status nginx
+      $ sudo systemctl status nginx
       ```
 
 6. Start *Nginx*.
       ```diff
-      $ `sudo systemctl start nginx
+      $ sudo systemctl start nginx
       ```
 
 7. Enable *Nginx* to automatically run on startup.
       ```diff
-      $ `sudo systemctl enable nginx
+      $ sudo systemctl enable nginx
       ```
 
 8. Remove and add default file to *sites-available*.
       ```diff
-      $ `sudo rm /etc/nginx/sites-available/default && sudo vi /etc/nginx/sites-available/default
+      $ sudo rm /etc/nginx/sites-available/default && sudo vi /etc/nginx/sites-available/default
       ```
 
 9. Press <kbd>i</kbd> to enter *edit* mode.
@@ -50,12 +50,12 @@ Follow these steps to set up **Nginx** on an **Ubuntu 16+** server:
 
 12. Create `snippets` folder.
       ```diff
-      $ `sudo mkdir /etc/nginx/sites-available/snippets
+      $ sudo mkdir /etc/nginx/sites-available/snippets
       ```
 
 13. Create a *mime.types* config snippet.
       ```diff
-      $ `sudo vi /etc/nginx/sites-available/snippets/mime.types
+      $ sudo vi /etc/nginx/sites-available/snippets/mime.types
       ```
 
 14. Press <kbd>i</kbd> to enter *edit* mode.
@@ -66,7 +66,7 @@ Follow these steps to set up **Nginx** on an **Ubuntu 16+** server:
 
 17. Create a *proxy.conf* config snippet.
       ```diff
-      $ `sudo vi /etc/nginx/sites-available/snippets/proxy.conf
+      $ sudo vi /etc/nginx/sites-available/snippets/proxy.conf
       ```
 
 18. Press <kbd>i</kbd> to enter *edit* mode.
@@ -77,7 +77,7 @@ Follow these steps to set up **Nginx** on an **Ubuntu 16+** server:
 
 21. Create a *ssl-config.conf* config snippet.
       ```diff
-      $ `sudo vi /etc/nginx/sites-available/snippets/ssl-config.conf
+      $ sudo vi /etc/nginx/sites-available/snippets/ssl-config.conf
       ```
 
 22. Press <kbd>i</kbd> to enter *edit* mode.
@@ -88,7 +88,7 @@ Follow these steps to set up **Nginx** on an **Ubuntu 16+** server:
 
 25. Create a *static-config.conf* config snippet.
       ```diff
-      $ `sudo vi /etc/nginx/sites-available/snippets/static-config.conf
+      $ sudo vi /etc/nginx/sites-available/snippets/static-config.conf
       ```
 
 26. Press <kbd>i</kbd> to enter *edit* mode.
@@ -99,5 +99,5 @@ Follow these steps to set up **Nginx** on an **Ubuntu 16+** server:
 
 29. Reload *Nginx*.
       ```diff
-      $ `sudo /etc/init.d/nginx reload
+      $ sudo /etc/init.d/nginx reload
       ```
