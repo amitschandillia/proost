@@ -23,5 +23,7 @@ Follow these steps to set up a free **Let's Encrypt** SSL on an **Ubuntu 16+** s
 
 ## Test If Auto-Renewal Is Working
  1. Stop *Nginx* => $ `sudo systemctl stop nginx`.
+
  2. Run test script => $ `sudo ~/certbot-auto renew --dry-run`.
+
  3. Start *Nginx* => $ `sudo systemctl start nginx`.
