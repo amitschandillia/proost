@@ -75,7 +75,7 @@ Follow these steps to set up **Nginx** on an **Ubuntu 16+** server:
 
 20. Press <kbd>Esc</kbd> and <kbd>:</kbd><kbd>w</kbd><kbd>q</kbd> to *save* and *quit*.
 
-21. Create a *ssl-config.conf* config snippet.
+21. Create an *ssl-config.conf* config snippet.
       ```diff
       $ sudo vi /etc/nginx/sites-available/snippets/ssl-config.conf
       ```
