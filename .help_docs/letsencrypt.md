@@ -11,7 +11,7 @@ Follow these steps to set up a free **Let's Encrypt** SSL on an **Ubuntu 16+** s
 
 5. Paste contents of `configs/letsencrypt.conf` (substitute appropriate values for domain names).
 
-6. Press `Esc` and `:wq` to *save* and *exit*.
+6. Press <kbd>Esc<.kbd> and <kbd>:</kbd><kbd>w</kbd><kbd>q</kbd> to *save* and *exit*.
 
 7. Run *Cerbot* =&gt; $ `~/certbot-auto`.
 
