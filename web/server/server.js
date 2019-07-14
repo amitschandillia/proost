@@ -32,7 +32,7 @@ app.prepare().then(() => {
       defaultSrc: ["'self'"],
       scriptSrc: ["'self'", '*.google-analytics.com'],
       imgSrc: ["'self'", '*.google-analytics.com'],
-      connectSrc: ["'self'", 'fonts.googleapis.com', 'fonts.gstatic.com'],
+      connectSrc: ["'self'", 'dev.schandillia.com', 'fonts.googleapis.com', 'fonts.gstatic.com'],
       styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'], // Remove unsafe-inline for better security
       fontSrc: ["'self'", 'fonts.gstatic.com'],
       objectSrc: ["'self'"],

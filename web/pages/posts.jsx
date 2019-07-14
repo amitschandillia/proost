@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Head from 'next/head';
 import Link from 'next/link';
 import withRoot from '../lib/withRoot';
+import PostsList from '../components/PostsList';
 
 const styles = theme => ({
   root: {
@@ -14,14 +15,15 @@ const styles = theme => ({
   },
   paragraph: {
     fontFamily: 'Raleway',
-  }
+  },
 });
 
-class Index extends PureComponent {
+class Posts extends PureComponent {
   constructor(props) {
     super(props);
+    // query state will be passed to Posts for the filter query
     this.state = {
-      open: false,
+      query: '',
     };
   }
 
@@ -29,11 +31,17 @@ class Index extends PureComponent {
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/serviceWorker.js'); }
   }
 
+  onChange(e) {
+    // set the state = to the input typed in the search Input Component
+    // this.state.query gets passed into Posts to filter the results
+    this.setState({ query: e.target.value.toLowerCase() });
+  }
+
   render() {
     const { classes } = this.props;
     const { open } = this.state; // eslint-disable-line no-unused-vars
-    const title = 'Home | Project Proost';
-    const description = 'This is the description for the homepage';
+    const title = 'Posts | Project Proost';
+    const description = 'This is posts page';
     return (
       <Fragment>
         <Head>
@@ -51,7 +59,7 @@ class Index extends PureComponent {
           </Typography>
           <Typography gutterBottom>
             <Link href="/posts">
-              <a>View posts page</a>
+              <a>View posts</a>
             </Link>
           </Typography>
           <Button variant="raised" color="primary">
@@ -61,20 +69,20 @@ class Index extends PureComponent {
             Super Secret Password
           </Button>
         </div>
-        <p className={classes.paragraph}>All men must die</p>
+        <PostsList search={this.state.query} />
       </Fragment>
     );
   }
 }
 
-Index.propTypes = {
+Posts.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
 };
 
-// Index.propTypes = {
+// Posts.propTypes = {
 //   classes: PropTypes.object.isRequired,
 // };
 
-export default withRoot(withStyles(styles)(Index));
+export default withRoot(withStyles(styles)(Posts));

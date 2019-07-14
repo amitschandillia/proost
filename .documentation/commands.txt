@@ -4,3 +4,16 @@ cd ~/proost/web/ && rm -rf .build && node prepare.js && pm2 flush && pm2 delete 
 
 
 cd ~/proost/web/ && rm -rf .build && node prepare.js && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server --name web && pm2 logs
+
+
+
+
+
+
+
+
+
+
+
+
+yarn add graphql graphql-tag react-apollo next-apollo apollo-link-http apollo-client
