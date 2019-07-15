@@ -1,4 +1,4 @@
-const CACHE_NAME = 'f6ffde6294622e944356abc08b6f5717';
+const CACHE_NAME = '6de97e77f60c30c9808d24e275574706';
 const URLS_TO_CACHE = [
   '/',
   '/about',
