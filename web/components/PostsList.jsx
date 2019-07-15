@@ -1,41 +1,47 @@
-import gql from "graphql-tag";
-import Link from "next/link";
-import { graphql } from "react-apollo";
+import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+import { Fragment } from 'react';
+import Typography from '@material-ui/core/Typography';
 
-const PostsList = (
-  { data: { loading, error, posts }, search },
-  req
-) => {
-  if (error) return "Error loading posts";
-  //if posts are returned from the GraphQL query, run the filter query
-  //and set equal to variable postSearch
-
+const PostsList = ({ data: { error, posts } }) => {
+  let res = '';
+  if (error) res = (
+    <Typography variant="subtitle2" gutterBottom>
+      Error retrieving posts!
+    </Typography>
+  );
   if (posts && posts.length) {
-    //searchQuery
-    const searchQuery = posts.filter(query =>
-      query.title.toLowerCase().includes(search)
-    );
-    if (searchQuery.length != 0) {
-      return (
-        <div>
-          <div className="h-100">
-            {searchQuery.map(res => (
-              <div>
-                <p>{res._id}</p>
-                <h1>{res.title}</h1>
-                <h2>{res.secondaryTitle}</h2>
-                <p>{res.body}</p>
-              </div>
-            ))}
-          </div>
-
-        </div>
+    if (posts.length !== 0) {
+      // Payload returned
+      res = (
+        <Fragment>
+          {posts.map(post => (
+            <div>
+              <Typography variant="display1" gutterBottom>{post.title}</Typography>
+              <Typography variant="subtitle1" gutterBottom>{post.secondaryTitle}</Typography>
+              <Typography variant="subtitle2" gutterBottom>Post #{post._id}</Typography>
+              <Typography variant="body1" gutterBottom>{post.body}</Typography>
+            </div>
+          ))}
+        </Fragment>
       );
     } else {
-      return <h1>No posts Found</h1>;
+      res = (
+      // No payload returned
+        <Typography variant="subtitle2" gutterBottom>
+          No posts Found
+        </Typography>
+      );
     }
+  } else {
+    res = (
+    // Retrieving payload
+      <Typography variant="subtitle2" gutterBottom>
+        Loading...
+      </Typography>
+    );
   }
-  return <h1>Loading</h1>;
+  return res;
 };
 
 const query = gql`
@@ -48,15 +54,10 @@ const query = gql`
     }
   }
 `;
-// PostsList.getInitialProps = async ({ req }) => {
-//   const res = await fetch("https://api.github.com/repos/zeit/next.js");
-//   const json = await res.json();
-//   return { stars: json.stargazers_count };
-// };
-// The `graphql` wrapper executes a GraphQL query and makes the results
-// available on the `data` prop of the wrapped component (PostsList)
+// The 'graphql' wrapper executes a GraphQL query and makes the results
+// available on the 'data' prop of the wrapped component (PostsList)
 export default graphql(query, {
   props: ({ data }) => ({
-    data
-  })
+    data,
+  }),
 })(PostsList);

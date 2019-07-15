@@ -50,7 +50,7 @@ class Index extends PureComponent {
             </Link>
           </Typography>
           <Typography gutterBottom>
-            <Link href="/posts">
+            <Link href="/blog">
               <a>View posts page</a>
             </Link>
           </Typography>

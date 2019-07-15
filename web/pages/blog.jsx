@@ -1,3 +1,5 @@
+// web/pages/blog.jsx
+
 import React, { PureComponent, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -18,30 +20,19 @@ const styles = theme => ({
   },
 });
 
-class Posts extends PureComponent {
+class Blog extends PureComponent {
   constructor(props) {
     super(props);
-    // query state will be passed to Posts for the filter query
-    this.state = {
-      query: '',
-    };
   }
 
   componentDidMount() {
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/serviceWorker.js'); }
   }
 
-  onChange(e) {
-    // set the state = to the input typed in the search Input Component
-    // this.state.query gets passed into Posts to filter the results
-    this.setState({ query: e.target.value.toLowerCase() });
-  }
-
   render() {
     const { classes } = this.props;
-    const { open } = this.state; // eslint-disable-line no-unused-vars
-    const title = 'Posts | Project Proost';
-    const description = 'This is posts page';
+    const title = 'Blog | Project Proost';
+    const description = 'This is the blog page';
     return (
       <Fragment>
         <Head>
@@ -58,7 +49,7 @@ class Posts extends PureComponent {
             </Link>
           </Typography>
           <Typography gutterBottom>
-            <Link href="/posts">
+            <Link href="/blog">
               <a>View posts</a>
             </Link>
           </Typography>
@@ -69,13 +60,13 @@ class Posts extends PureComponent {
             Super Secret Password
           </Button>
         </div>
-        <PostsList search={this.state.query} />
+        <PostsList />
       </Fragment>
     );
   }
 }
 
-Posts.propTypes = {
+Blog.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
@@ -85,4 +76,4 @@ Posts.propTypes = {
 //   classes: PropTypes.object.isRequired,
 // };
 
-export default withRoot(withStyles(styles)(Posts));
+export default withRoot(withStyles(styles)(Blog));

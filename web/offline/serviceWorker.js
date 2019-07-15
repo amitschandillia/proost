@@ -1,9 +1,9 @@
-const CACHE_NAME = '4dee886ec7fd176a08d500965c9c1c56';
+const CACHE_NAME = '4428cf243ee69d7c5cadbe807f67b5d6';
 const URLS_TO_CACHE = [
   '/',
   '/about',
+  '/blog',
   '/index',
-  '/posts',
   'android-chrome-144x144.png',
   'android-chrome-192x192.png',
   'android-chrome-256x256.png',
