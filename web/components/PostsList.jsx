@@ -1,7 +1,9 @@
+import ReactMarkdown from 'react-markdown';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
 import { Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const PostsList = ({ data: { error, posts } }) => {
   let res = '';
@@ -20,7 +22,8 @@ const PostsList = ({ data: { error, posts } }) => {
               <Typography variant="display1" gutterBottom>{post.title}</Typography>
               <Typography variant="subtitle1" gutterBottom>{post.secondaryTitle}</Typography>
               <Typography variant="subtitle2" gutterBottom>Post #{post._id}</Typography>
-              <Typography variant="body1" gutterBottom>{post.body}</Typography>
+              <ReactMarkdown source={post.body} />
+              {post.body}
             </div>
           ))}
         </Fragment>
@@ -36,9 +39,7 @@ const PostsList = ({ data: { error, posts } }) => {
   } else {
     res = (
     // Retrieving payload
-      <Typography variant="subtitle2" gutterBottom>
-        Loading...
-      </Typography>
+      <CircularProgress />
     );
   }
   return res;
