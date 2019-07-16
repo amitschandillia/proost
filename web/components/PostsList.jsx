@@ -5,6 +5,10 @@ import { Fragment } from 'react';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+const renderers = {
+  paragraph: props => <Typography variant="body1" gutterBottom {...props} />
+};
+
 const PostsList = ({ data: { error, posts } }) => {
   let res = '';
   if (error) res = (
@@ -22,7 +26,7 @@ const PostsList = ({ data: { error, posts } }) => {
               <Typography variant="display1" gutterBottom>{post.title}</Typography>
               <Typography variant="subtitle1" gutterBottom>{post.secondaryTitle}</Typography>
               <Typography variant="subtitle2" gutterBottom>Post #{post._id}</Typography>
-              <ReactMarkdown source={post.body} />
+              <ReactMarkdown source={post.body} renderers={renderers} />
             </div>
           ))}
         </Fragment>
