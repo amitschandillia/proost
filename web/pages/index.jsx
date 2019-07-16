@@ -6,7 +6,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Head from 'next/head';
 import Link from 'next/link';
 import withRoot from '../lib/withRoot';
-import Fonts from '../lib/Fonts'
+// import Fonts from '../lib/Fonts'
+
+// import '../static/fonts/fonts.css';
 
 const styles = theme => ({
   root: {
@@ -28,7 +30,7 @@ class Index extends PureComponent {
 
   componentDidMount() {
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/serviceWorker.js'); }
-    Fonts();
+    // Fonts();
   }
 
   render() {
@@ -64,6 +66,7 @@ class Index extends PureComponent {
           </Button>
         </div>
         <p className={classes.paragraph}>All men must die</p>
+        <p className="example">test</p>
       </Fragment>
     );
   }

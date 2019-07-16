@@ -29,12 +29,12 @@ app.prepare().then(() => {
   server.use(cookieParser());
   server.use(csp({
     directives: {
-      defaultSrc: ["'self'"],
+      defaultSrc: ["'self'", 'fonts.googleapis.com'],
       scriptSrc: ["'self'", '*.google-analytics.com'],
       imgSrc: ["'self'", '*.google-analytics.com'],
       connectSrc: ["'self'", 'dev.schandillia.com', 'fonts.googleapis.com', 'fonts.gstatic.com'],
       styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'], // Remove unsafe-inline for better security
-      fontSrc: ["'self'", 'fonts.gstatic.com'],
+      fontSrc: ["'self'", 'fonts.gstatic.com', 'fonts.googleapis.com'],
       objectSrc: ["'self'"],
       mediaSrc: ["'self'"],
       frameSrc: ["'self'"],

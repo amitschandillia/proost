@@ -1,3 +1,6 @@
+// Remove if static/fonts works well
+
+
 const FontFaceObserver = require('fontfaceobserver');
 
 const addFont = (fontUrl) => {

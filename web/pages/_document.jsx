@@ -32,11 +32,6 @@ class MyDocument extends Document {
           {/* PWA primary color: Use either of the following 2 lines */}
           <meta name="theme-color" content="#ffcc66" />
           <meta name="theme-color" content={pageContext.theme.palette.primary[500]} />
-          {/*<link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
-          />*/}
-          {/*<link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />*/}
         </Head>
         <body>
           <Main />
@@ -46,6 +41,24 @@ class MyDocument extends Document {
     );
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 MyDocument.getInitialProps = (ctx) => {
   // Resolution order
