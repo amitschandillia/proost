@@ -17,8 +17,10 @@
 }
 
 
+$font-size: 30px;
+$color: #ff0000;
 
 .example {
-  font-size: 50px;
-  color: #ffff00;
+  font-size: $font-size;
+  color: $color;
 }

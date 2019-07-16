@@ -6,11 +6,11 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import webpack from 'webpack';
 import dotenv from 'dotenv';
 
-import withCSS from '@zeit/next-css';
+import withSass from '@zeit/next-sass';
 
 dotenv.config();
 
-module.exports = withCSS({
+module.exports = withSass({
   distDir: '.build',
   webpack: (config, options) => config,
 });

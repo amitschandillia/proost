@@ -8,8 +8,6 @@ import Link from 'next/link';
 import withRoot from '../lib/withRoot';
 // import Fonts from '../lib/Fonts'
 
-// import '../static/fonts/fonts.css';
-
 const styles = theme => ({
   root: {
     textAlign: 'center',

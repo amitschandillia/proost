@@ -2,7 +2,7 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import Layout from '../components/Layout';
 import withData from '../apollo';
-import '../static/fonts/fonts.css';
+import '../static/fonts/fonts.scss';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
