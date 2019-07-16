@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Head from 'next/head';
 import Link from 'next/link';
 import withRoot from '../lib/withRoot';
+import Fonts from '../lib/Fonts'
 
 const styles = theme => ({
   root: {
@@ -13,7 +14,7 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 20,
   },
   paragraph: {
-    fontFamily: 'Raleway',
+    fontFamily: 'Source Sans Pro',
   }
 });
 
@@ -27,6 +28,7 @@ class Index extends PureComponent {
 
   componentDidMount() {
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/serviceWorker.js'); }
+    Fonts();
   }
 
   render() {
