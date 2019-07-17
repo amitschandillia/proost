@@ -12,26 +12,9 @@ class MyDocument extends Document {
     return (
       <Html lang="en" dir="ltr">
         <Head>
-          <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content={
-                            'user-scalable=0, initial-scale=1, '
-                              + 'minimum-scale=1, width=device-width, height=device-height'
-                          }
-          />
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="194x194" href="/favicon-194x194.png" />
-          <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-          <link rel="manifest" href="/site.webmanifest" />
-          <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#663300" />
-          <meta name="msapplication-TileColor" content="#da532c" />
-          <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
           {/* PWA primary color: Use either of the following 2 lines */}
           <meta name="theme-color" content="#ffcc66" />
-          <meta name="theme-color" content={pageContext.theme.palette.primary[500]} />
+          <meta name="theme-color" content={pageContext.theme.palette.primary.main} />
         </Head>
         <body>
           <Main />
@@ -41,23 +24,6 @@ class MyDocument extends Document {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 MyDocument.getInitialProps = (ctx) => {

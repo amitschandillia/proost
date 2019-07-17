@@ -63,6 +63,19 @@ walkSync('./static/brand/pwa', (filePath) => {
   let cachedItem =filePath.substr(17);
   cachedItems.push(cachedItem);
 });
+// Cache fonts
+walkSync('./static/fonts', (filePath) => {
+  let cachedItem =filePath.substr(13);
+  if(!(cachedItem.substr(cachedItem.length - 4) === 'scss')) {
+    cachedItems.push('/_f/fonts/' + cachedItem);
+  }
+});
+// Cache stylesheet
+// walkSync('./.build/static/css', (filePath) => {
+//   let cachedItem =filePath.substr(18);
+//   cachedItems.push('/_next/static/css/' + cachedItem);
+// });
+
 
 // Prepare URLSTOCACHE
 // -----------------------------------------------------------------------------

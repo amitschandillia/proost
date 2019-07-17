@@ -1,4 +1,4 @@
-const CACHE_NAME = '70b5f5a245002099ba2f4c032c72f721';
+const CACHE_NAME = 'e43ad143df5f598a5205ab5eed193680';
 const URLS_TO_CACHE = [
   '/',
   '/about',
@@ -54,6 +54,8 @@ const URLS_TO_CACHE = [
   'icon-72x72.png',
   'icon-96x96.png',
   'manifest.json',
+  '/_f/fonts/KFOlCnqEu92Fr1MmEU9fBBc4.woff2',
+  '/_f/fonts/KFOmCnqEu92Fr1Mu4mxK.woff2',
 ];
 
 // Call install event
