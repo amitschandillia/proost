@@ -62,7 +62,7 @@ class Index extends PureComponent {
           </Button>
         </div>
         <p className={classes.paragraph}>All men must die</p>
-        <p className="example test">test</p>
+        <p className="xt test">test</p>
       </Fragment>
     );
   }

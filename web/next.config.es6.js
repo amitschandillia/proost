@@ -7,12 +7,17 @@ import webpack from 'webpack';
 import dotenv from 'dotenv';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import withSass from '@zeit/next-sass';
+import withCSS from '@zeit/next-css';
 import withPurgeCss from 'next-purgecss';
 
 dotenv.config();
 
-module.exports = withSass(withPurgeCss({
+module.exports = withCSS(withSass(withPurgeCss({
   distDir: '.build',
+  purgeCssPaths: [
+    'pages/**/*',
+    'components/**/*',
+  ],
   webpack: (config, { dev, isServer }) => {
     if (isServer) {
       return config;
@@ -27,4 +32,4 @@ module.exports = withSass(withPurgeCss({
     );
     return config;
   },
-}));
+})));

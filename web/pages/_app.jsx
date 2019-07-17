@@ -3,8 +3,9 @@ import App, { Container } from 'next/app';
 import Head from 'next/head';
 import Layout from '../components/Layout';
 import withData from '../apollo';
-import '../static/fonts/fonts.scss';
-import '../static/style.scss';
+import '../static/styles/fonts.scss';
+import '../static/styles/style.scss';
+import '../static/styles/some.css';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
