@@ -1,4 +1,6 @@
-const CACHE_NAME = 'e43ad143df5f598a5205ab5eed193680';
+/* eslint-disable */
+
+const CACHE_NAME = 'b3374b86c15c9c8bfacc7cc0291d0d22';
 const URLS_TO_CACHE = [
   '/',
   '/about',
@@ -64,7 +66,7 @@ self.addEventListener('install', (e) => {
     caches
       .open(CACHE_NAME)
       .then(cache => cache.addAll(URLS_TO_CACHE))
-      .then(() => self.skipWaiting())
+      .then(() => self.skipWaiting()),
   );
 });
 
@@ -77,16 +79,16 @@ self.addEventListener('activate', (e) => {
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
             return caches.delete(cache);
-}
-        })
+          }
+        }),
       );
-})
+    }),
   );
 });
 
 // Call fetch event
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    fetch(e.request).catch(() => caches.match(e.request))
+    fetch(e.request).catch(() => caches.match(e.request)),
   );
 });

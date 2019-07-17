@@ -23,6 +23,9 @@ const styles = theme => ({
 class Blog extends PureComponent {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+    };
   }
 
   componentDidMount() {
@@ -31,6 +34,7 @@ class Blog extends PureComponent {
 
   render() {
     const { classes } = this.props;
+    const { open } = this.state; // eslint-disable-line no-unused-vars
     const title = 'Blog | Project Proost';
     const description = 'This is the blog page';
     return (

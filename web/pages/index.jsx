@@ -14,7 +14,7 @@ const styles = theme => ({
   },
   paragraph: {
     fontFamily: 'Source Sans Pro',
-  }
+  },
 });
 
 class Index extends PureComponent {
@@ -71,6 +71,7 @@ class Index extends PureComponent {
 Index.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
+    paragraph: PropTypes.string,
   }).isRequired,
 };
 

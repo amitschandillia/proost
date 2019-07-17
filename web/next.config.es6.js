@@ -6,12 +6,12 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import webpack from 'webpack';
 import dotenv from 'dotenv';
 import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-
 import withSass from '@zeit/next-sass';
+import withPurgeCss from 'next-purgecss';
 
 dotenv.config();
 
-module.exports = withSass({
+module.exports = withSass(withPurgeCss({
   distDir: '.build',
   webpack: (config, { dev, isServer }) => {
     if (isServer) {
@@ -27,4 +27,4 @@ module.exports = withSass({
     );
     return config;
   },
-});
+}));

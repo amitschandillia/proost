@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 const crypto = require('crypto');
-const editJsonFile = require('edit-json-file');
 
 // get hash seed
 const seed = String((new Date()).getTime());
@@ -17,15 +16,14 @@ const swPath = './offline/serviceWorker.js';
 
 // Delete existing service worker
 try {
-  stats = fs.statSync(swPath);
-  console.log("Service worker already exists...\nDeleting...");
+  fs.statSync(swPath);
+  console.log('Service worker already exists...\nDeleting...');
   fs.unlinkSync(swPath);
-}
-catch (e) {
-  console.log("Service worker does not exist...\nCreating...");
+} catch (e) {
+  console.log('Service worker does not exist...\nCreating...');
 }
 // Create new service worker
-fs.appendFile(swPath, '', function (err) {
+fs.appendFile(swPath, '', (err) => {
   if (err) throw err;
   console.log('New service worker created successfully.');
 });
@@ -53,21 +51,21 @@ walkSync('./pages/', (filePath) => {
 });
 // Cache favicons
 walkSync('./static/brand/favicons', (filePath) => {
-  let cachedItem =filePath.substr(22);
-  if(!(cachedItem === 'html_code.html' || cachedItem === 'README.md')) {
+  const cachedItem = filePath.substr(22);
+  if (!(cachedItem === 'html_code.html' || cachedItem === 'README.md')) {
     cachedItems.push(cachedItem);
   }
 });
 // Cache pwa icons
 walkSync('./static/brand/pwa', (filePath) => {
-  let cachedItem =filePath.substr(17);
+  const cachedItem = filePath.substr(17);
   cachedItems.push(cachedItem);
 });
 // Cache fonts
 walkSync('./static/fonts', (filePath) => {
-  let cachedItem =filePath.substr(13);
-  if(!(cachedItem.substr(cachedItem.length - 4) === 'scss')) {
-    cachedItems.push('/_f/fonts/' + cachedItem);
+  const cachedItem = filePath.substr(13);
+  if (!(cachedItem.substr(cachedItem.length - 4) === 'scss')) {
+    cachedItems.push(`/_f/fonts/${cachedItem}`);
   }
 });
 // Cache stylesheet
@@ -86,10 +84,11 @@ for (let i = 0; i < cachedItems.length; i += 1) {
 urlsToCache += ']';
 
 
-
 // Save updated contents to service worker
 // -----------------------------------------------------------------------------
-const swContent = `const CACHE_NAME = '${swcachehash}';
+const swContent = `/* eslint-disable */
+
+const CACHE_NAME = '${swcachehash}';
 ${urlsToCache};
 
 // Call install event
@@ -98,7 +97,7 @@ self.addEventListener('install', (e) => {
     caches
       .open(CACHE_NAME)
       .then(cache => cache.addAll(URLS_TO_CACHE))
-      .then(() => self.skipWaiting())
+      .then(() => self.skipWaiting()),
   );
 });
 
@@ -111,17 +110,17 @@ self.addEventListener('activate', (e) => {
         cacheNames.map((cache) => {
           if (cache !== CACHE_NAME) {
             return caches.delete(cache);
-}
-        })
+          }
+        }),
       );
-})
+    }),
   );
 });
 
 // Call fetch event
 self.addEventListener('fetch', (e) => {
   e.respondWith(
-    fetch(e.request).catch(() => caches.match(e.request))
+    fetch(e.request).catch(() => caches.match(e.request)),
   );
 });
 `;

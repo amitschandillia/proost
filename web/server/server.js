@@ -46,11 +46,11 @@ app.prepare().then(() => {
   // Custom static routes
   // ---------------------------------------------------------------------
   server.get('/serviceWorker.js', (req, res) => {
-      res.set({ 'Content-Type': 'text/javascript' });
-      createReadStream(path.join(__dirname, '..', 'offline', 'serviceWorker.js')).pipe(res);
-    });
+    res.set({ 'Content-Type': 'text/javascript' });
+    createReadStream(path.join(__dirname, '..', 'offline', 'serviceWorker.js')).pipe(res);
+  });
   server.use('/_s', express.static(path.join(__dirname, '..', '.build', 'static')));
-  server.use('/_f', express.static(path.join(__dirname, '..',  'static')));
+  server.use('/_f', express.static(path.join(__dirname, '..', 'static')));
   // ---------------------------------------------------------------------
 
   // Custom/dynamic routes
