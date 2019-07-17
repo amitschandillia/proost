@@ -13,7 +13,5 @@ cd ~/proost/web/ && rm -rf .build && node prepare.js && pm2 flush && clear && ya
 
 
 
-
-
-
-yarn add graphql graphql-tag react-apollo next-apollo apollo-link-http apollo-client
+1. Inline or cache css
+2. Combine js files into one and minify
