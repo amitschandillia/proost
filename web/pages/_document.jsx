@@ -5,10 +5,14 @@ import Document, {
   Html, Head, Main, NextScript,
 } from 'next/document';
 import JssProvider from 'react-jss/lib/JssProvider';
-
 import { readFileSync } from 'fs';
+import { memoize } from 'lodash';
 import { join } from 'path';
 import getPageContext from '../lib/getPageContext';
+
+
+const doGetContent = file => readFileSync(join(process.cwd(), '.build', file), 'utf8');
+const getContent = process.env.NODE_ENV === 'production' ? memoize(doGetContent) : doGetContent;
 
 
 class InlineStylesHead extends Head {
@@ -23,9 +27,10 @@ class InlineStylesHead extends Head {
     return files.filter(file => /\.css$/.test(file)).map(file => (
       <style
         key={file}
+        nonce={this.props.nonce}
         data-href={`${assetPrefix}/_next/${file}`}
         dangerouslySetInnerHTML={{
-          __html: readFileSync(join(process.cwd(), '.build', file), 'utf-8'),
+          __html: getContent(file),
         }}
       />
     ));
