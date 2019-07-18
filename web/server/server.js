@@ -2,7 +2,6 @@ import dotenv from 'dotenv';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-// import compression from 'compression';
 import next from 'next';
 import path from 'path';
 import { createReadStream } from 'fs';
@@ -22,7 +21,6 @@ app.prepare().then(() => {
 
   // Custom middleware
   // ---------------------------------------------------------------------
-  // server.use(compression());
   server.use(favicon(path.join(__dirname, '..', 'static', 'brand', 'favicons', 'favicon.ico')));
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: false }));
