@@ -10,6 +10,14 @@ import { memoize } from 'lodash';
 import { join } from 'path';
 import getPageContext from '../lib/getPageContext';
 
+import crypto from 'crypto'
+
+// const cspHashOf = (text) => {
+//   const hash = crypto.createHash('sha256')
+//   hash.update(text)
+//   return `sha256-${hash.digest('base64')}`
+// }
+
 
 const doGetContent = file => readFileSync(join(process.cwd(), '.build', file), 'utf8');
 const getContent = process.env.NODE_ENV === 'production' ? memoize(doGetContent) : doGetContent;

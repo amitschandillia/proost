@@ -5,10 +5,10 @@ import bodyParser from 'body-parser';
 import next from 'next';
 import path from 'path';
 import { createReadStream } from 'fs';
-// const { createReadStream } = require('fs');
-// import helmet from 'helmet';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
+
+import getDirectives from './getDirectives';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -26,17 +26,7 @@ app.prepare().then(() => {
   server.use(bodyParser.urlencoded({ extended: false }));
   server.use(cookieParser());
   server.use(csp({
-    directives: {
-      defaultSrc: ["'self'", 'fonts.googleapis.com'],
-      scriptSrc: ["'self'", '*.google-analytics.com'],
-      imgSrc: ["'self'", '*.google-analytics.com'],
-      connectSrc: ["'self'", 'dev.schandillia.com', 'fonts.googleapis.com', 'fonts.gstatic.com'],
-      styleSrc: ["'self'", "'unsafe-inline'", 'fonts.googleapis.com'], // Remove unsafe-inline for better security
-      fontSrc: ["'self'", 'fonts.gstatic.com', 'fonts.googleapis.com'],
-      objectSrc: ["'self'"],
-      mediaSrc: ["'self'"],
-      frameSrc: ["'self'"],
-    },
+    directives: getDirectives(),
   }));
 
   // ---------------------------------------------------------------------
