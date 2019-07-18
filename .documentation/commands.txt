@@ -13,5 +13,4 @@ cd ~/proost/web/ && rm -rf .build && node prepare.js && pm2 flush && clear && ya
 
 
 
-1. Inline or cache css
-2. Combine js files into one and minify
+TO DO: Combine js files into one and minify
