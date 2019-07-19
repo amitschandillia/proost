@@ -26,7 +26,7 @@ class MyApp extends App {
     return (
       <Container>
         <Head>
-          <meta name="viewport" content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+          <meta name="viewport" content="user-scalable=0, initial-scale=1, minimum-scale=1, width=device-width, height=device-height, shrink-to-fit=no" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
