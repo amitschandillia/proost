@@ -28,7 +28,7 @@ const PostsList = ({ data: { error, posts } }) => {
               <Typography variant="display1" gutterBottom>{post.title}</Typography>
               <Typography variant="subtitle1" gutterBottom>{post.secondaryTitle}</Typography>
               <Typography variant="subtitle2" gutterBottom>
-Post #
+                Post #
                 {post._id}
               </Typography>
               <ReactMarkdown source={post.body} renderers={renderers} />
