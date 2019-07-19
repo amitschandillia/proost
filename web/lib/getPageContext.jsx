@@ -7,6 +7,7 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import pink from '@material-ui/core/colors/pink';
 import green from '@material-ui/core/colors/green';
 
+
 // A theme with custom primary and secondary color.
 // It's optional.
 const theme = createMuiTheme({
@@ -23,11 +24,11 @@ const theme = createMuiTheme({
     },
   },
   typography: {
-    "fontFamily": "\"Roboto\", \"Helvetica\", \"Arial\", sans-serif",
-    "fontSize": 14,
-    "fontWeightLight": 300,
-    "fontWeightRegular": 400,
-    "fontWeightMedium": 500,
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontSize: 14,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 500,
   },
 });
 

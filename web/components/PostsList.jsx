@@ -6,16 +6,18 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const renderers = {
-  paragraph: props => <Typography variant="body1" gutterBottom {...props} />
+  paragraph: props => <Typography variant="body1" gutterBottom {...props} />,
 };
 
 const PostsList = ({ data: { error, posts } }) => {
   let res = '';
-  if (error) res = (
-    <Typography variant="subtitle2" gutterBottom>
+  if (error) {
+    res = (
+      <Typography variant="subtitle2" gutterBottom>
       Error retrieving posts!
-    </Typography>
-  );
+      </Typography>
+    );
+  }
   if (posts && posts.length) {
     if (posts.length !== 0) {
       // Payload returned
@@ -25,7 +27,10 @@ const PostsList = ({ data: { error, posts } }) => {
             <div>
               <Typography variant="display1" gutterBottom>{post.title}</Typography>
               <Typography variant="subtitle1" gutterBottom>{post.secondaryTitle}</Typography>
-              <Typography variant="subtitle2" gutterBottom>Post #{post._id}</Typography>
+              <Typography variant="subtitle2" gutterBottom>
+Post #
+                {post._id}
+              </Typography>
               <ReactMarkdown source={post.body} renderers={renderers} />
             </div>
           ))}
