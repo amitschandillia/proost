@@ -5,6 +5,7 @@
   "main": "./server",
   "scripts": {
     "lint": "clear && ./node_modules/.bin/eslint",
+    "slint": "clear && ./node_modules/.bin/stylelint static/styles/",
     "dev": "node ./server",
     "build": "next build",
     "start": "NODE_ENV=production node ./server",
@@ -22,7 +23,6 @@
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-client": "^2.6.3",
     "apollo-link-http": "^1.5.15",
-    "autoprefixer": "^9.6.1",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.4",
     "crypto": "^1.0.1",
@@ -64,12 +64,15 @@
   "devDependencies": {
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
+    "autoprefixer": "^9.6.1",
     "babel-plugin-styled-components": "^1.10.0",
     "eslint": "^5.15.3",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
-    "snyk": "^1.143.4"
+    "snyk": "^1.143.4",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0"
   }
 }

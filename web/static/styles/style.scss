@@ -7,15 +7,10 @@ $color: #fd3a94;
   font-weight: 700;
 }
 
-
-
-
-
-
-$bg: #ffccff;
+$bg: #fcf;
 
 .test {
   background-color: $bg;
   user-select: none;
-  font-style: oblique;
+  font-style: italic;
 }
