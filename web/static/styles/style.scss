@@ -1,6 +1,3 @@
-
-
-
 $font-size: 30px;
 $color: #fd3a94;
 
@@ -19,4 +16,6 @@ $bg: #ffccff;
 
 .test {
   background-color: $bg;
+  user-select: none;
+  font-style: oblique;
 }
