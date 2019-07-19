@@ -32,5 +32,6 @@
     "no-underscore-dangle": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "max-len": ["warn", { "ignoreComments": true, "code": 100 }],
+    "no-multiple-empty-lines": [2, {"max": 1}],
   },
 }

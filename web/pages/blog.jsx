@@ -8,7 +8,6 @@ import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 import PostsList from '../components/blog/PostsList';
 
-
 const styles = theme => ({
   root: {
     textAlign: 'center',

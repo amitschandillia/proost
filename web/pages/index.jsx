@@ -47,9 +47,6 @@ class Index extends PureComponent {
             <Typography variant="h4" component="h1" gutterBottom>
               Material-UI
             </Typography>
-            {/* <Typography variant="h4" component="h1" gutterBottom>
-              Next.js v4-beta example
-            </Typography> */}
             <Typography gutterBottom>
               <Link href="/about" color="secondary">
                 Go to the about page
