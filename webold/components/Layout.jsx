@@ -12,10 +12,10 @@ export default function Layout(props) {
   const { children } = props;
   return (
     <Fragment>
-      {/*<div style={layoutStyle}>*/}
+      <div style={layoutStyle}>
         <Header />
         {children}
-      {/*</div>*/}
+      </div>
     </Fragment>
   );
 }

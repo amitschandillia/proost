@@ -16,8 +16,9 @@
   "dependencies": {
     "@apollo/react-hooks": "^0.1.0-beta.10",
     "@babel/register": "^7.4.0",
-    "@material-ui/core": "3.9.3",
-    "@material-ui/icons": "3.0.2",
+    "@material-ui/core": "^4.2.1",
+    "@material-ui/icons": "^4.2.1",
+    "@material-ui/styles": "^4.2.1",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "apollo-cache-inmemory": "^1.6.2",

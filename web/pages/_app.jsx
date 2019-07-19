@@ -3,23 +3,26 @@
 import React from 'react';
 import App, { Container } from 'next/app';
 import Head from 'next/head';
-import Layout from '../components/Layout';
+import { ThemeProvider } from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import withData from '../apollo';
+import theme from '../lib/theme';
 import '../static/styles/fonts.scss';
 import '../static/styles/style.scss';
 import '../static/styles/some.css';
 
 class MyApp extends App {
-  static async getInitialProps({ Component, ctx }) {
-    let pageProps = {};
-    if (Component.getInitialProps) {
-      pageProps = await Component.getInitialProps(ctx);
+  componentDidMount() {
+    // Remove the server-side injected CSS.
+    const jssStyles = document.querySelector('#jss-server-side');
+    if (jssStyles) {
+      jssStyles.parentNode.removeChild(jssStyles);
     }
-    return { pageProps };
   }
 
   render() {
     const { Component, pageProps } = this.props;
+
     return (
       <Container>
         <Head>
@@ -35,11 +38,14 @@ class MyApp extends App {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
         </Head>
-        <Layout {...pageProps}>
+        <ThemeProvider theme={theme}>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
           <Component {...pageProps} />
-        </Layout>
+        </ThemeProvider>
       </Container>
     );
   }
 }
+
 export default withData(MyApp);

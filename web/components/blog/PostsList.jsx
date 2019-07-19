@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const renderers = {
-  paragraph: props => <Typography variant="body1" gutterBottom {...props} />,
+  paragraph: props => <Typography variant="body2" gutterBottom {...props} />,
 };
 
 const PostsList = ({ data: { error, posts } }) => {
@@ -25,9 +25,9 @@ const PostsList = ({ data: { error, posts } }) => {
         <Fragment>
           {posts.map(post => (
             <div>
-              <Typography variant="display1" gutterBottom>{post.title}</Typography>
+              <Typography variant="h6" gutterBottom>{post.title}</Typography>
               <Typography variant="subtitle1" gutterBottom>{post.secondaryTitle}</Typography>
-              <Typography variant="subtitle2" gutterBottom>
+              <Typography variant="body1" gutterBottom>
                 Post #
                 {post._id}
               </Typography>

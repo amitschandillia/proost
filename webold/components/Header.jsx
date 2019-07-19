@@ -1,14 +1,12 @@
 import Link from 'next/link';
-import NavBar from './NavBar';
 
 const linkStyle = {
   marginRight: 15,
 };
 
-const Header = () => {
+export default function Header() {
   return (
     <div>
-      <NavBar />
       <Link href="/">
         <a style={linkStyle}>Home</a>
       </Link>
@@ -21,5 +19,3 @@ const Header = () => {
     </div>
   );
 }
-
-export default Header;

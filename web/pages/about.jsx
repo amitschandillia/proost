@@ -1,16 +1,21 @@
 import React, { PureComponent, Fragment } from 'react';
+import Head from 'next/head';
 import PropTypes from 'prop-types';
+import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+// import MuiLink from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
-import Head from 'next/head';
 import Link from 'next/link';
-import withRoot from '../lib/withRoot';
 
 const styles = theme => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
+    paddingTop: theme.spacing(20),
+  },
+  paragraph: {
+    fontFamily: 'Source Sans Pro',
   },
 });
 
@@ -37,22 +42,24 @@ class About extends PureComponent {
           <title>{ title }</title>
           <meta name="description" content={description} key="description" />
         </Head>
-        <div className={classes.root}>
-          <Typography variant="display1" gutterBottom>
-            Material-UI
-          </Typography>
-          <Typography gutterBottom>
-            <Link href="/">
-              <a>Go home</a>
-            </Link>
-          </Typography>
-          <Button variant="raised" color="primary">
-                  Super Secret Password
-          </Button>
-          <Button variant="raised" color="secondary">
-                  Super Secret Password
-          </Button>
-        </div>
+        <Container>
+          <Box my={4} className={classes.root}>
+            <Typography variant="h4" gutterBottom>
+              Material-UI
+            </Typography>
+            <Typography gutterBottom>
+              <Link href="/">
+                <a>Go home</a>
+              </Link>
+            </Typography>
+            <Button variant="contained" color="primary">
+                    Super Secret Password
+            </Button>
+            <Button variant="contained" color="secondary">
+                    Super Secret Password
+            </Button>
+          </Box>
+        </Container>
       </Fragment>
     );
   }
@@ -61,11 +68,8 @@ class About extends PureComponent {
 About.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
+    paragraph: PropTypes.string,
   }).isRequired,
 };
 
-// About.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-export default withRoot(withStyles(styles)(About));
+export default withStyles(styles)(About);
