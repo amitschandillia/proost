@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import MuiLink from '@material-ui/core/Link';
-import { withStyles } from '@material-ui/core/styles';
-import Link from 'next/link';
+// import MuiLink from '@material-ui/core/Link';
+import withStyles from '@material-ui/core/styles/withStyles';
+// import Link from 'next/link';
+import NavBar from '../components/NavBar';
+import LinkTo from '../components/LinkTo';
 
 const styles = theme => ({
   root: {
@@ -51,40 +49,21 @@ class Index extends PureComponent {
           <meta name="description" content={description} key="description" />
         </Head>
         <Box my={4} className={classes.root}>
-          <AppBar position="static">
-            <Toolbar>
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                color="inherit"
-                aria-label="Menu"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" className={classes.title}>
-            News
-              </Typography>
-              <Button color="inherit">Login</Button>
-            </Toolbar>
-          </AppBar>
+          <NavBar />
           <Typography variant="h4" component="h1" gutterBottom>
               Material-UI
           </Typography>
           <Typography gutterBottom>
-            <Link href="/about" color="secondary">
+            <LinkTo href="/about" color="secondary">
                 Go to the about page
-            </Link>
+            </LinkTo>
           </Typography>
           <Typography gutterBottom>
-            {/*<MuiLink color="secondary" underline="none">*/}
-              <Link href="/about"><MuiLink color="secondary">About page (MUI Link demo)</MuiLink></Link>
-            {/*</MuiLink>*/}
+            <LinkTo href="/blog">
+              View posts page
+            </LinkTo>
           </Typography>
-          <Typography gutterBottom>
-            <Link href="/blog">
-              <a>View posts page</a>
-            </Link>
-          </Typography>
+          <LinkTo></LinkTo>
           <Button variant="contained" color="primary">
               Super Secret Password
           </Button>

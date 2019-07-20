@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
 
 import React from 'react';
-import App, { Container } from 'next/app';
+import App, {
+  Container,
+} from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
