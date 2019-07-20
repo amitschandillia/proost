@@ -38,7 +38,7 @@ class NavBar extends PureComponent {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-        News
+            News
           </Typography>
           <Button color="inherit">Login</Button>
         </Toolbar>
