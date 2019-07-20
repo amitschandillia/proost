@@ -8,7 +8,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-// import MuiLink from '@material-ui/core/Link';
+import MuiLink from '@material-ui/core/Link';
 import { withStyles } from '@material-ui/core/styles';
 import Link from 'next/link';
 
@@ -74,6 +74,11 @@ class Index extends PureComponent {
             <Link href="/about" color="secondary">
                 Go to the about page
             </Link>
+          </Typography>
+          <Typography gutterBottom>
+            {/*<MuiLink color="secondary" underline="none">*/}
+              <Link href="/about"><MuiLink color="secondary">About page (MUI Link demo)</MuiLink></Link>
+            {/*</MuiLink>*/}
           </Typography>
           <Typography gutterBottom>
             <Link href="/blog">
