@@ -43,11 +43,11 @@ app.prepare().then(() => {
 
   // Custom/dynamic routes
   // ---------------------------------------------------------------------
-  server.get('/p/:id', (req, res) => {
-    const actualPage = '/post';
-    const queryParams = { title: req.params.id };
-    app.render(req, res, actualPage, queryParams);
-  });
+  // server.get('/p/:id', (req, res) => {
+  //   const actualPage = '/post';
+  //   const queryParams = { title: req.params.id };
+  //   app.render(req, res, actualPage, queryParams);
+  // });
   // ---------------------------------------------------------------------
 
   // Default route (not to be edited)

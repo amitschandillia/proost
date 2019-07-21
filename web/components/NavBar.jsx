@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import withStyles from '@material-ui/core/styles/withStyles';
 import LinkTo from './LinkTo';
+import Login from './Login';
 
 const styles = theme => ({
   root: {
@@ -41,7 +42,7 @@ class NavBar extends PureComponent {
           <Typography variant="h6" className={classes.title}>
             <LinkTo href="/">SCHANDILLIA</LinkTo>
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Login />
         </Toolbar>
       </AppBar>
     );
