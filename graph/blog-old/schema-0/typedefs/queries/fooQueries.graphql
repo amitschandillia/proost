@@ -1,5 +1,0 @@
-# Definitions: Queries
-type Query {
-  foos: [Foo!]!,
-  foo(_id: ID!): Foo,
-}

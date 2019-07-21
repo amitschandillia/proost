@@ -1,6 +1,0 @@
-# Definitions: Types
-type Tagnew {
-  _id: ID!,
-  # Tag name
-  name: String!,
-}

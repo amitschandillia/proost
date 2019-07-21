@@ -1,5 +1,0 @@
-# Definitions: Queries
-type Query {
-  authorsnew: [Authornew!]!,
-  authornew(_id: ID!): Authornew,
-}

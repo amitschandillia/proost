@@ -1,5 +1,0 @@
-# Definitions: Queries
-type Query {
-  posts: [Post!]!,
-  post(_id: ID!): Post,
-}
