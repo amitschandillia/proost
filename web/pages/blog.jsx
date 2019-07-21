@@ -1,11 +1,11 @@
 import React, { PureComponent, Fragment } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Link from 'next/link';
+import NavBar from '../components/NavBar';
+import LinkTo from '../components/LinkTo';
 import PostsList from '../components/blog/PostsList';
 
 const styles = theme => ({
@@ -41,19 +41,18 @@ class Blog extends PureComponent {
           <title>{ title }</title>
           <meta name="description" content={description} key="description" />
         </Head>
-        <Container>
-          <Box my={4} className={classes.root}>
-            <Typography variant="h4" gutterBottom>
-              Material-UI
-            </Typography>
-            <Typography gutterBottom>
-              <Link href="/">
-                <a>Go home</a>
-              </Link>
-            </Typography>
-            <PostsList />
-          </Box>
-        </Container>
+        <NavBar />
+        <Box my={4} className={classes.root}>
+          <Typography variant="h4" gutterBottom>
+            Material-UI
+          </Typography>
+          <Typography gutterBottom>
+            <LinkTo href="/">
+              <a>Go home</a>
+            </LinkTo>
+          </Typography>
+          <PostsList />
+        </Box>
       </Fragment>
     );
   }

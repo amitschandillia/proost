@@ -1,13 +1,12 @@
 import React, { PureComponent, Fragment } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-// import MuiLink from '@material-ui/core/Link';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Link from 'next/link';
+import NavBar from '../components/NavBar';
+import LinkTo from '../components/LinkTo';
 
 const styles = theme => ({
   root: {
@@ -42,24 +41,23 @@ class About extends PureComponent {
           <title>{ title }</title>
           <meta name="description" content={description} key="description" />
         </Head>
-        <Container>
-          <Box my={4} className={classes.root}>
-            <Typography variant="h4" gutterBottom>
-              Material-UI
-            </Typography>
-            <Typography gutterBottom>
-              <Link href="/">
-                <a>Go home</a>
-              </Link>
-            </Typography>
-            <Button variant="contained" color="primary">
-                    Super Secret Password
-            </Button>
-            <Button variant="contained" color="secondary">
-                    Super Secret Password
-            </Button>
-          </Box>
-        </Container>
+        <NavBar />
+        <Box my={4} className={classes.root}>
+          <Typography variant="h4" gutterBottom>
+            Material-UI
+          </Typography>
+          <Typography gutterBottom>
+            <LinkTo href="/">
+              <a>Go home</a>
+            </LinkTo>
+          </Typography>
+          <Button variant="contained" color="primary">
+                  Super Secret Password
+          </Button>
+          <Button variant="contained" color="secondary">
+                  Super Secret Password
+          </Button>
+        </Box>
       </Fragment>
     );
   }

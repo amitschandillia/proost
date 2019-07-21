@@ -4,9 +4,8 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-// import MuiLink from '@material-ui/core/Link';
 import withStyles from '@material-ui/core/styles/withStyles';
-// import Link from 'next/link';
+import Link from 'next/link';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
 
@@ -48,8 +47,8 @@ class Index extends PureComponent {
           <title>{ title }</title>
           <meta name="description" content={description} key="description" />
         </Head>
+        <NavBar />
         <Box my={4} className={classes.root}>
-          <NavBar />
           <Typography variant="h4" component="h1" gutterBottom>
               Material-UI
           </Typography>
