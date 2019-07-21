@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const CACHE_NAME = 'ce8d50fef15741301e6c52210cd20df6';
+const CACHE_NAME = '2324bd62331a0b671835c95027afde34';
 const URLS_TO_CACHE = [
   '/',
   '/about',
@@ -58,8 +58,6 @@ const URLS_TO_CACHE = [
   'manifest.json',
   '/_f/fonts/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7l.woff2',
   '/_f/fonts/KFOlCnqEu92Fr1MmEU9fBBc4.woff2',
-  '/_f/fonts/KFOlCnqEu92Fr1MmSU5fBBc4.woff2',
-  '/_f/fonts/KFOlCnqEu92Fr1MmWUlfBBc4.woff2',
   '/_f/fonts/KFOmCnqEu92Fr1Mu4mxK.woff2',
 ];
 

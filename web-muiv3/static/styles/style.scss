@@ -1,0 +1,16 @@
+$font-size: 30px;
+$color: #fd3a94;
+
+.xt {
+  font-size: $font-size;
+  color: $color;
+  font-weight: 700;
+}
+
+$bg: #fcf;
+
+.test {
+  background-color: $bg;
+  user-select: none;
+  font-style: italic;
+}
