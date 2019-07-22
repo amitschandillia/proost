@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Link from 'next/link';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
 
@@ -62,7 +61,6 @@ class Index extends PureComponent {
               View posts page
             </LinkTo>
           </Typography>
-          <LinkTo></LinkTo>
           <Button variant="contained" color="primary">
               Super Secret Password
           </Button>
