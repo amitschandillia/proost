@@ -10,7 +10,8 @@ import withSass from '@zeit/next-sass';
 import withCSS from '@zeit/next-css';
 import withPurgeCss from 'next-purgecss';
 
-dotenv.config();
+// dotenv.config();
+const { parsed: localEnv } = dotenv.config();
 
 module.exports = withCSS(withSass(withPurgeCss({
   distDir: '.build',
@@ -23,6 +24,7 @@ module.exports = withCSS(withSass(withPurgeCss({
       return config;
     }
     config.plugins.push(
+      new webpack.EnvironmentPlugin(localEnv),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,
       }),

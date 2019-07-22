@@ -6,6 +6,7 @@ const getDirectives = () => {
   ];
   const images = [
     '*.google-analytics.com',
+    'data:',
   ];
   const styles = [
     // `https://fonts.googleapis.com/`,

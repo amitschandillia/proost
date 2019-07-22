@@ -28,7 +28,7 @@ class Index extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
+      dummy: false,
     };
   }
 
@@ -38,7 +38,7 @@ class Index extends PureComponent {
 
   render() {
     const { classes } = this.props;
-    const { open } = this.state; // eslint-disable-line no-unused-vars
+    const { dummy } = this.state; // eslint-disable-line no-unused-vars
     const title = 'Home | Project Proost';
     const description = 'This is the description for the homepage';
     return (

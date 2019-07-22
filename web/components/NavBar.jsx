@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -8,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import withStyles from '@material-ui/core/styles/withStyles';
 import LinkTo from './LinkTo';
-import Login from './Login';
+import LoginDialog from './LoginDialog';
 
 const styles = theme => ({
   root: {
@@ -42,7 +41,7 @@ class NavBar extends PureComponent {
           <Typography variant="h6" className={classes.title}>
             <LinkTo href="/">SCHANDILLIA</LinkTo>
           </Typography>
-          <Login />
+          <LoginDialog />
         </Toolbar>
       </AppBar>
     );
