@@ -29,6 +29,9 @@ const styles = theme => ({
   },
   dialogTitle: {
     textAlign: 'center',
+    backgroundColor: theme.palette.primary.main,
+    color: '#fff',
+    marginBottom: theme.spacing(2),
   },
   socialsIcon: {
     paddingLeft: theme.spacing(2),
