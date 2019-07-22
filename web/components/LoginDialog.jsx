@@ -30,7 +30,7 @@ const styles = theme => ({
   dialogTitle: {
     textAlign: 'center',
     backgroundColor: theme.palette.primary.main,
-    color: '#fff',
+    color: 'white',
     marginBottom: theme.spacing(2),
   },
   socialsIcon: {
