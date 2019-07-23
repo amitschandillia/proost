@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -41,6 +41,7 @@ const styles = theme => ({
 const LoginDialog = (props) => {
   const { classes } = props;
   const { pageURL } = props;
+  const googleCallback = '/auth/google?callback=' + pageURL;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -63,13 +64,13 @@ const LoginDialog = (props) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>{pageURL}</DialogTitle>
+        <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>Sign in</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <Grid container className={classes.root} spacing={2}>
               <Grid container item direction="column" justify="space-evenly" alignItems="stretch">
                 <ThemeProvider theme={googleTheme}>
-                  <Button variant="contained" size="large" color="primary" href="/auth/google">
+                  <Button variant="contained" size="large" color="primary" href={googleCallback}>
                     <Grid container>
                       <Grid item xl className={classes.socialsIcon}>
                         <FontAwesomeIcon icon={['fab', 'google']} />

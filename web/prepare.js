@@ -74,7 +74,6 @@ walkSync('./static/fonts', (filePath) => {
 //   cachedItems.push('/_next/static/css/' + cachedItem);
 // });
 
-
 // Prepare URLSTOCACHE
 // -----------------------------------------------------------------------------
 let urlsToCache = 'const URLS_TO_CACHE = [\n';
@@ -82,7 +81,6 @@ for (let i = 0; i < cachedItems.length; i += 1) {
   urlsToCache += `  '${cachedItems[i]}',\n`;
 }
 urlsToCache += ']';
-
 
 // Save updated contents to service worker
 // -----------------------------------------------------------------------------

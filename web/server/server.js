@@ -10,7 +10,6 @@ import csp from 'helmet-csp';
 
 import authRoutes from '../routes/auth-routes';
 
-
 import getDirectives from './getDirectives';
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -32,6 +31,19 @@ app.prepare().then(() => {
     directives: getDirectives(),
   }));
 
+  // // Cookie
+  // server.use(function (req, res, next) {
+  //   // check if client sent cookie
+  //   const pageURL = req.cookies.pageURL;
+  //   if (pageURL === undefined) {
+  //     console.log('NO COOKIE FOUND!!');
+  //   }
+  //   else {
+  //     console.log('COOKIE FOUND!!!!', pageURL);
+  //   }
+  //   next(); // <-- important!
+  // });
+
   // ---------------------------------------------------------------------
 
   // Custom static routes
@@ -48,7 +60,6 @@ app.prepare().then(() => {
   // ---------------------------------------------------------------------
   server.use('/auth', authRoutes);
   // ---------------------------------------------------------------------
-
 
   // Custom/dynamic routes
   // ---------------------------------------------------------------------

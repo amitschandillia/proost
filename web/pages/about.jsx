@@ -18,7 +18,7 @@ const styles = theme => ({
   },
 });
 
-const pageURL = process.env.BASE_URL + '/about';
+const pageURL = `${process.env.BASE_URL}/about`;
 
 class About extends PureComponent {
   constructor(props) {

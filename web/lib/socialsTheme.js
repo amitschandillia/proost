@@ -1,8 +1,4 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import brown from '@material-ui/core/colors/brown';
-import deepPurple from '@material-ui/core/colors/deepPurple';
-import blueGrey from '@material-ui/core/colors/blueGrey';
-import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import indigo from '@material-ui/core/colors/indigo';
 import lightBlue from '@material-ui/core/colors/lightBlue';
@@ -40,4 +36,4 @@ export {
   googleTheme,
   facebookTheme,
   twitterTheme,
-}
+};

@@ -1,9 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
-import brown from '@material-ui/core/colors/brown';
-import deepPurple from '@material-ui/core/colors/deepPurple';
 import blueGrey from '@material-ui/core/colors/blueGrey';
-import grey from '@material-ui/core/colors/grey';
 
 // Create a theme instance.
 // Color reference (MUI): https://material-ui.com/customization/color/#color-palette
@@ -17,7 +14,7 @@ const theme = createMuiTheme({
     primary: {
       main: blueGrey[700],
     },
-    secondary:{
+    secondary: {
       main: blueGrey[900],
     },
     error: {

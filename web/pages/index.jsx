@@ -23,7 +23,7 @@ const styles = theme => ({
   },
 });
 
-const pageURL = process.env.BASE_URL + '';
+const pageURL = `${process.env.BASE_URL}`;
 
 class Index extends PureComponent {
   constructor(props) {
