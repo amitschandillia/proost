@@ -8,6 +8,7 @@ import { createReadStream } from 'fs';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
 
+import mongoose from 'mongoose';
 import authRoutes from '../routes/auth-routes';
 
 import getDirectives from './getDirectives';
@@ -31,18 +32,11 @@ app.prepare().then(() => {
     directives: getDirectives(),
   }));
 
-  // // Cookie
-  // server.use(function (req, res, next) {
-  //   // check if client sent cookie
-  //   const pageURL = req.cookies.pageURL;
-  //   if (pageURL === undefined) {
-  //     console.log('NO COOKIE FOUND!!');
-  //   }
-  //   else {
-  //     console.log('COOKIE FOUND!!!!', pageURL);
-  //   }
-  //   next(); // <-- important!
-  // });
+  // Connect to MongoDB
+  mongoose.set('useNewUrlParser', true);
+  mongoose.connect(process.env.DATABASE_URI, () => {
+    // console.log('connected to mongo!');
+  });
 
   // ---------------------------------------------------------------------
 
