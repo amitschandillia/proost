@@ -24,6 +24,11 @@ module.exports = withCSS(withSass(withPurgeCss({
       return config;
     }
     config.plugins.push(
+      new webpack.DefinePlugin({
+        'process.env': {
+          BASE_URL: JSON.stringify(process.env.BASE_URL),
+        },
+      }),
       new webpack.EnvironmentPlugin(localEnv),
       new webpack.optimize.LimitChunkCountPlugin({
         maxChunks: 1,

@@ -46,6 +46,8 @@
     "next-purgecss": "^3.1.1",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^2.0.0",
     "path": "^0.12.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",

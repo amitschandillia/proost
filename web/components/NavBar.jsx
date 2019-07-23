@@ -27,6 +27,7 @@ const styles = theme => ({
 class NavBar extends PureComponent {
   render() {
     const { classes } = this.props;
+    const { pageURL } = this.props;
     return (
       <AppBar position="static">
         <Toolbar>
@@ -41,7 +42,7 @@ class NavBar extends PureComponent {
           <Typography variant="h6" className={classes.title}>
             <LinkTo href="/">SCHANDILLIA</LinkTo>
           </Typography>
-          <LoginDialog />
+          <LoginDialog pageURL={pageURL} />
         </Toolbar>
       </AppBar>
     );

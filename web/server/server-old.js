@@ -8,9 +8,6 @@ import { createReadStream } from 'fs';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
 
-import authRoutes from '../routes/auth-routes';
-
-
 import getDirectives from './getDirectives';
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -43,12 +40,6 @@ app.prepare().then(() => {
   server.use('/_s', express.static(path.join(__dirname, '..', '.build', 'static')));
   server.use('/_f', express.static(path.join(__dirname, '..', 'static')));
   // ---------------------------------------------------------------------
-
-  // Auth routes
-  // ---------------------------------------------------------------------
-  server.use('/auth', authRoutes);
-  // ---------------------------------------------------------------------
-
 
   // Custom/dynamic routes
   // ---------------------------------------------------------------------

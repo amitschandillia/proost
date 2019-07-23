@@ -23,6 +23,8 @@ const styles = theme => ({
   },
 });
 
+const pageURL = process.env.BASE_URL + '';
+
 class Index extends PureComponent {
   constructor(props) {
     super(props);
@@ -46,7 +48,7 @@ class Index extends PureComponent {
           <title>{ title }</title>
           <meta name="description" content={description} key="description" />
         </Head>
-        <NavBar />
+        <NavBar pageURL={pageURL} />
         <Box my={4} className={classes.root}>
           <Typography variant="h4" component="h1" gutterBottom>
               Material-UI

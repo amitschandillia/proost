@@ -40,6 +40,7 @@ const styles = theme => ({
 
 const LoginDialog = (props) => {
   const { classes } = props;
+  const { pageURL } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -62,13 +63,13 @@ const LoginDialog = (props) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>Sign In</DialogTitle>
+        <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>{pageURL}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <Grid container className={classes.root} spacing={2}>
               <Grid container item direction="column" justify="space-evenly" alignItems="stretch">
                 <ThemeProvider theme={googleTheme}>
-                  <Button variant="contained" size="large" color="primary">
+                  <Button variant="contained" size="large" color="primary" href="/auth/google">
                     <Grid container>
                       <Grid item xl className={classes.socialsIcon}>
                         <FontAwesomeIcon icon={['fab', 'google']} />
