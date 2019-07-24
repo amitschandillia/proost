@@ -7,7 +7,8 @@ import path from 'path';
 import { createReadStream } from 'fs';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
-
+import cookieSession from 'cookie-session';
+import passport from 'passport';
 import mongoose from 'mongoose';
 import authRoutes from '../routes/auth-routes';
 
@@ -31,6 +32,17 @@ app.prepare().then(() => {
   server.use(csp({
     directives: getDirectives(),
   }));
+
+  // Cookies
+  // ---------------------------------------------------------------------
+  server.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [process.env.COOKIE_KEY]
+  }));
+
+  // Initialize passport
+  server.use(passport.initialize());
+  server.use(passport.session());
 
   // Connect to MongoDB
   mongoose.set('useNewUrlParser', true);
@@ -66,7 +78,11 @@ app.prepare().then(() => {
 
   // Default route (not to be edited)
   // ---------------------------------------------------------------------
-  server.get('*', (req, res) => handle(req, res));
+  // server.get('*', (req, res) => handle(req, res));
+  server.get('*', (req, res) => {
+      res.locals.user = req.user || null;
+      handle(req, res);
+    });
   // ---------------------------------------------------------------------
 
   // Express: Listener

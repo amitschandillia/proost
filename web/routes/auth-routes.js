@@ -7,8 +7,6 @@ import passportSetup from '../config/passport-setup';
 
 const router = express.Router();
 
-router.use(passport.initialize());
-
 router.use(session({ resave: true, secret: '123456', saveUninitialized: true }));
 
 // auth login
@@ -26,6 +24,7 @@ router.get('/google', (req, res, next) => {
 }, passport.authenticate('google', { scope: ['profile'] }));
 
 router.get('/google/redirect', passport.authenticate('google'), (req, res) => {
+  console.log('FROM REDIRECT: ', req.user);
   res.redirect(req.session.callback);
 });
 
