@@ -8,6 +8,7 @@ import { createReadStream } from 'fs';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
 import cookieSession from 'cookie-session';
+// import session from 'express-session';
 import passport from 'passport';
 import mongoose from 'mongoose';
 import authRoutes from '../routes/auth-routes';
@@ -36,9 +37,17 @@ app.prepare().then(() => {
   // Cookies
   // ---------------------------------------------------------------------
   server.use(cookieSession({
+    name: '_SESS.CS',
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY]
+    keys: [process.env.COOKIE_KEY],
   }));
+
+  // server.use(session({
+  //   secret: 'keyboard cat',
+  //   resave: false,
+  //   saveUninitialized: true,
+  //   cookie: { secure: true }
+  // }))
 
   // Initialize passport
   server.use(passport.initialize());
@@ -80,9 +89,10 @@ app.prepare().then(() => {
   // ---------------------------------------------------------------------
   // server.get('*', (req, res) => handle(req, res));
   server.get('*', (req, res) => {
-      res.locals.user = req.user || null;
-      handle(req, res);
-    });
+    console.log('FROM SERVER', req.user);
+    res.locals.user = req.user || null;
+    handle(req, res);
+  });
   // ---------------------------------------------------------------------
 
   // Express: Listener

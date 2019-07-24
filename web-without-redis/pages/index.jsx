@@ -26,6 +26,14 @@ const styles = theme => ({
 const pageURL = `${process.env.BASE_URL}`;
 
 class Index extends PureComponent {
+  static async getInitialProps({ res }) {
+    if (res) {
+      console.log('GETINITIALPROPS - RES.LOCALS.USER', res.locals);
+      return res.locals;
+    }
+    return {};
+  }
+
   constructor(props) {
     super(props);
     this.state = {

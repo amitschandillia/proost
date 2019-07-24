@@ -17,7 +17,7 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new GoogleStrategy({
     // options for google strategy
-    callbackURL: 'https://www.schandillia.com/auth/google/redirect',
+    callbackURL: process.env.GOOGLE_CALLBACK_URI,
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   }, (accessToken, refreshToken, profile, done) => {
