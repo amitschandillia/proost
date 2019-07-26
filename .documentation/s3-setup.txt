@@ -1,1 +1,57 @@
+Creating a user with S3 bucket access:
+
+1. Visit https://console.aws.amazon.com/iam/home#users
+
+2. Click Add User
+
+3. Enter a name (e.g., CMS, Admin, etc.)
+
+4. Check "programmatic access" for Access Type
+
+5. Click Create Group (if one doesn't already exist for S3 permissions), enter a group name (e.g., S3 Users), select AmazonS3FullAccess, and submit
+
+6. Add tags (e.g., Name=Proost.S3.Owner) and follow through
+
+7. Keep note of Access Key ID and Secret Access Key.
+
+
+Creating an S3 bucket:
+
 https://www.h3xed.com/web-development/using-https-with-amazon-s3-and-your-domain
+
+Creating a ACM SSL for S3:
+
+Creating a CloudWatch CDN for S3 (log in as root user!):
+
+Adding S3 Policy:
+
+Adding S3 Credentials to Strapi File Upload Plugin:
+
+
+
+S3 BUCKET POLICY (PRINCIPAL.AWS: IAM USER ARN, RESOURCE: S3 BUCKET ARN)
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::929237205053:user/CMS"
+            },
+            "Action": "s3:ListBucket",
+            "Resource": "arn:aws:s3:::assets.schandillia.com"
+        },
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::929237205053:user/CMS"
+            },
+            "Action": [
+                "s3:PutObject",
+                "s3:GetObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": "arn:aws:s3:::assets.schandillia.com/*"
+        }
+    ]
+}
