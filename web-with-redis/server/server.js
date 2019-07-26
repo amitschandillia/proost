@@ -7,7 +7,7 @@ import path from 'path';
 import { createReadStream } from 'fs';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
-import cookieSession from 'cookie-session';
+// import cookieSession from 'cookie-session';
 // import session from 'express-session';
 import passport from 'passport';
 import mongoose from 'mongoose';
@@ -36,11 +36,11 @@ app.prepare().then(() => {
 
   // Cookies
   // ---------------------------------------------------------------------
-  server.use(cookieSession({
-    name: '_SESS.CS',
-    maxAge: 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY],
-  }));
+  // server.use(cookieSession({
+  //   name: '_SESS.CS',
+  //   maxAge: 24 * 60 * 60 * 1000,
+  //   keys: [process.env.COOKIE_KEY],
+  // }));
 
   // server.use(session({
   //   secret: 'keyboard cat',
