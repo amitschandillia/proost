@@ -23,9 +23,7 @@ passport.use(
   }, (accessToken, refreshToken, profile, done) => {
     // passport callback function
     // Check if user already exists in db
-    console.log('REACHED PASSPORT-SETUP');
     User.findOne({ googleID: profile.id }).then((existingUser) => {
-      console.log('INSIDE EXISTING USER LOOKUP LOGIC');
       if (existingUser) {
         // User already exists in db
         console.log('USER ALREADY EXISTS! ----->', existingUser);

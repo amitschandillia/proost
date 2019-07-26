@@ -56,6 +56,7 @@ app.prepare().then(() => {
   // Connect to MongoDB
   mongoose.set('useNewUrlParser', true);
   mongoose.connect(process.env.DATABASE_URI, () => {
+    // console.log('connected to mongo!');
   });
 
   // ---------------------------------------------------------------------
