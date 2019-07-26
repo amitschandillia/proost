@@ -31,6 +31,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.get('/google', (req, res, next) => {
+  console.log('REQ.SESSION', req.session);
   req.session.callback = req.query.callback;
   next();
 }, passport.authenticate('google', { scope: ['profile'] }));
