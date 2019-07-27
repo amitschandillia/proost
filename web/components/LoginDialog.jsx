@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -12,7 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import { ThemeProvider } from '@material-ui/styles';
-import { googleTheme, facebookTheme, twitterTheme } from '../lib/socialsTheme';
+import { googleTheme, facebookTheme, twitterTheme } from '../themes/socialsTheme';
 
 // For icons list, refer: https://github.com/FortAwesome/Font-Awesome/tree/1975bba5c4ade236c02bf2e5f9551160ee85109d/js-packages/%40fortawesome
 library.add(faFacebookF);
@@ -41,7 +41,7 @@ const styles = theme => ({
 const LoginDialog = (props) => {
   const { classes } = props;
   const { pageURL } = props;
-  const googleCallback = '/auth/google?callback=' + pageURL;
+  const googleCallback = `/auth/google?callback=${pageURL}`;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -124,6 +124,7 @@ const LoginDialog = (props) => {
 };
 
 LoginDialog.propTypes = {
+  pageURL: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     dialogTitle: PropTypes.string,

@@ -50,6 +50,7 @@ class NavBar extends PureComponent {
 }
 
 NavBar.propTypes = {
+  pageURL: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     paragraph: PropTypes.string,

@@ -12,4 +12,5 @@ const config = {
   }),
   cache,
 };
+
 export default withData(config);

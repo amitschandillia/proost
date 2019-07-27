@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import React, { PureComponent, Fragment } from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
@@ -5,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { connect } from 'react-redux';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
 
@@ -26,19 +29,10 @@ const styles = theme => ({
 const pageURL = `${process.env.BASE_URL}`;
 
 class Index extends PureComponent {
-  static async getInitialProps({ res }) {
-    if (res) {
-      console.log('GETINITIALPROPS - RES.LOCALS.USER', res.locals);
-      return res.locals;
-    }
-    return {};
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      dummy: false,
-    };
+  static async getInitialProps({
+    store, isServer, res, req,
+  }) {
+    return { custom: 'Amit' }; // you can pass some custom props to component from here
   }
 
   componentDidMount() {
@@ -46,8 +40,7 @@ class Index extends PureComponent {
   }
 
   render() {
-    const { classes } = this.props;
-    const { dummy } = this.state; // eslint-disable-line no-unused-vars
+    const { classes, userData, custom } = this.props;
     const title = 'Home | Project Proost';
     const description = 'This is the description for the homepage';
     return (
@@ -58,6 +51,14 @@ class Index extends PureComponent {
         </Head>
         <NavBar pageURL={pageURL} />
         <Box my={4} className={classes.root}>
+          <div>
+            userData from Redux:
+            {userData}
+          </div>
+          <div>
+            Prop from getInitialProps
+            {custom}
+          </div>
           <Typography variant="h4" component="h1" gutterBottom>
               Material-UI
           </Typography>
@@ -86,6 +87,8 @@ class Index extends PureComponent {
 }
 
 Index.propTypes = {
+  userData: PropTypes.string.isRequired,
+  custom: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     paragraph: PropTypes.string,
@@ -94,4 +97,4 @@ Index.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(Index);
+export default connect(state => state)(withStyles(styles)(Index));

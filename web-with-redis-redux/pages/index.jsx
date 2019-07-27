@@ -7,10 +7,6 @@ import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
-
-import parseCookies from '../config/parseCookies';
-
-
 import {connect} from "react-redux";
 
 const styles = theme => ({
@@ -32,11 +28,6 @@ const pageURL = `${process.env.BASE_URL}`;
 
 class Index extends PureComponent {
   static async getInitialProps({store, isServer, res, req }) {
-    let userData;
-    if(isServer) {
-      userData = parseCookies(req);
-      store.dispatch({type: 'ADDUSER', payload: userData}); // component will be able to read from store's state when rendered
-    }
     return {custom: 'Amit'}; // you can pass some custom props to component from here
   }
 

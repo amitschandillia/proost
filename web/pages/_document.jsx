@@ -11,7 +11,7 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import { readFileSync } from 'fs';
 import { memoize } from 'lodash';
 import { join } from 'path';
-import theme from '../lib/theme';
+import mainTheme from '../themes/mainTheme';
 
 const doGetContent = file => readFileSync(join(process.cwd(), '.build', file), 'utf8');
 const getContent = process.env.NODE_ENV === 'production' ? memoize(doGetContent) : doGetContent;
@@ -45,7 +45,7 @@ class MyDocument extends Document {
         <InlineStylesHead>
           {/* PWA primary color: Use either of the following 2 lines */}
           <meta name="theme-color" content="#ffcc66" />
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" content={mainTheme.palette.primary.main} />
         </InlineStylesHead>
         <body>
           <Main />

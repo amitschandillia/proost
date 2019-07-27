@@ -7,13 +7,27 @@ import App, {
 import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import { Provider } from 'react-redux';
+import withRedux from 'next-redux-wrapper';
 import withData from '../apollo';
-import theme from '../lib/theme';
+import mainTheme from '../themes/mainTheme';
 import '../static/styles/fonts.scss';
 import '../static/styles/style.scss';
 import '../static/styles/some.css';
+import makeStore from '../reducers';
+import parseCookies from '../utils/parseCookies';
 
 class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    let userData;
+    if (ctx.isServer) {
+      userData = parseCookies(ctx.req);
+      ctx.store.dispatch({ type: 'ADDUSER', payload: userData }); // component will be able to read from store's state when rendered
+    }
+    const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
+    return { pageProps };
+  }
+
   componentDidMount() {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -23,7 +37,7 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, store } = this.props;
 
     return (
       <Container>
@@ -40,14 +54,16 @@ class MyApp extends App {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
         </Head>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mainTheme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <Component {...pageProps} />
+          <Provider store={store}>
+            <Component {...pageProps} />
+          </Provider>
         </ThemeProvider>
       </Container>
     );
   }
 }
 
-export default withData(MyApp);
+export default withRedux(makeStore)(withData(MyApp));
