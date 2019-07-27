@@ -10,6 +10,9 @@ import LinkTo from '../components/LinkTo';
 
 import parseCookies from '../config/parseCookies';
 
+
+import {connect} from "react-redux";
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -28,20 +31,13 @@ const styles = theme => ({
 const pageURL = `${process.env.BASE_URL}`;
 
 class Index extends PureComponent {
-  static async getInitialProps({ res, req }) {
-    // Retrieve user data from cookie if !process.browser
-    // Store retrieved user data in Redux store
-    // Retrieve user data from Redux store if process.browser === true
-    const userData = parseCookies(process.browser, res, req);
-    console.log(userData);
-    return {};
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      dummy: false,
-    };
+  static async getInitialProps({store, isServer, res, req }) {
+    let userData;
+    if(isServer) {
+      userData = parseCookies(req);
+      store.dispatch({type: 'ADDUSER', payload: userData}); // component will be able to read from store's state when rendered
+    }
+    return {custom: 'Amit'}; // you can pass some custom props to component from here
   }
 
   componentDidMount() {
@@ -50,7 +46,7 @@ class Index extends PureComponent {
 
   render() {
     const { classes } = this.props;
-    const { dummy } = this.state; // eslint-disable-line no-unused-vars
+    // const { dummy } = this.state; // eslint-disable-line no-unused-vars
     const title = 'Home | Project Proost';
     const description = 'This is the description for the homepage';
     return (
@@ -61,6 +57,8 @@ class Index extends PureComponent {
         </Head>
         <NavBar pageURL={pageURL} />
         <Box my={4} className={classes.root}>
+          <div>userData from Redux: {this.props.userData}</div>
+          <div>Prop from getInitialProps {this.props.custom}</div>
           <Typography variant="h4" component="h1" gutterBottom>
               Material-UI
           </Typography>
@@ -88,13 +86,16 @@ class Index extends PureComponent {
   }
 }
 
-Index.propTypes = {
-  classes: PropTypes.shape({
-    root: PropTypes.string,
-    paragraph: PropTypes.string,
-    menuButton: PropTypes.string,
-    title: PropTypes.string,
-  }).isRequired,
-};
+// Index.propTypes = {
+//   classes: PropTypes.shape({
+//     root: PropTypes.string,
+//     paragraph: PropTypes.string,
+//     menuButton: PropTypes.string,
+//     title: PropTypes.string,
+//   }).isRequired,
+// };
 
-export default withStyles(styles)(Index);
+// export default withStyles(styles)(Index);
+
+
+export default connect(state => state)(withStyles(styles)(Index));

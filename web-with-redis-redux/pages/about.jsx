@@ -8,39 +8,23 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
 
-import parseCookies from '../config/parseCookies';
-
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 1,
+    textAlign: 'center',
+    paddingTop: theme.spacing(20),
   },
   paragraph: {
     fontFamily: 'Source Sans Pro',
   },
 });
 
-const pageURL = `${process.env.BASE_URL}`;
+const pageURL = `${process.env.BASE_URL}/about`;
 
-class Index extends PureComponent {
-  static async getInitialProps({ res, req }) {
-    // Retrieve user data from cookie if !process.browser
-    // Store retrieved user data in Redux store
-    // Retrieve user data from Redux store if process.browser === true
-    const userData = parseCookies(process.browser, res, req);
-    console.log(userData);
-    return {};
-  }
-
+class About extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      dummy: false,
+      open: false,
     };
   }
 
@@ -50,9 +34,9 @@ class Index extends PureComponent {
 
   render() {
     const { classes } = this.props;
-    const { dummy } = this.state; // eslint-disable-line no-unused-vars
-    const title = 'Home | Project Proost';
-    const description = 'This is the description for the homepage';
+    const { open } = this.state; // eslint-disable-line no-unused-vars
+    const title = 'About | Project Proost';
+    const description = 'This is the description for the about page';
     return (
       <Fragment>
         <Head>
@@ -61,40 +45,31 @@ class Index extends PureComponent {
         </Head>
         <NavBar pageURL={pageURL} />
         <Box my={4} className={classes.root}>
-          <Typography variant="h4" component="h1" gutterBottom>
-              Material-UI
+          <Typography variant="h4" gutterBottom>
+            Material-UI
           </Typography>
           <Typography gutterBottom>
-            <LinkTo href="/about" color="secondary">
-                Go to the about page
-            </LinkTo>
-          </Typography>
-          <Typography gutterBottom>
-            <LinkTo href="/blog">
-              View posts page
+            <LinkTo href="/">
+              <a>Go home</a>
             </LinkTo>
           </Typography>
           <Button variant="contained" color="primary">
-              Super Secret Password
+                  Super Secret Password
           </Button>
           <Button variant="contained" color="secondary">
-              Super Secret Password
+                  Super Secret Password
           </Button>
-          <p className={classes.paragraph}>All men must die</p>
-          <p className="xt test">test</p>
         </Box>
       </Fragment>
     );
   }
 }
 
-Index.propTypes = {
+About.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     paragraph: PropTypes.string,
-    menuButton: PropTypes.string,
-    title: PropTypes.string,
   }).isRequired,
 };
 
-export default withStyles(styles)(Index);
+export default withStyles(styles)(About);

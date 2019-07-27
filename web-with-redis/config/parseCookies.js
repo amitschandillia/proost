@@ -2,6 +2,7 @@ import cookies from 'browser-cookies';
 
 const parseCookies = (isBrowser, res, req) => {
   let userData = {};
+
   if (isBrowser) {
     console.log('ON CLIENT');
     userData = cookies.get('token');
@@ -13,6 +14,7 @@ const parseCookies = (isBrowser, res, req) => {
       }
     }
   }
+  
   return userData;
 };
 
