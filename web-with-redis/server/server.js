@@ -87,12 +87,7 @@ app.prepare().then(() => {
 
   // Default route (not to be edited)
   // ---------------------------------------------------------------------
-  // server.get('*', (req, res) => handle(req, res));
-  server.get('*', (req, res) => {
-    // console.log('FROM SERVER', req.user);
-    // res.locals.user = req.user || null;
-    handle(req, res);
-  });
+  server.get('*', (req, res) => handle(req, res));
   // ---------------------------------------------------------------------
 
   // Express: Listener
