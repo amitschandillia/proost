@@ -12,8 +12,6 @@ cd ~/proost/dev/ && pm2 flush && pm2 kill && pm2 flush && clear && NODE_ENV=prod
 
 
 
-OTHER COMMANDS:
-
 WITH REDIS
 cd ~/proost/dev/ && pm2 flush && pm2 kill && pm2 flush && clear && NODE_ENV=production pm2 start server.js --name api && cd ~/proost/web-with-redis/ && rm -rf .build && node prepare.js && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server/index.js --name web-redis && pm2 logs
 
