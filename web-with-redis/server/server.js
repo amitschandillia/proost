@@ -59,6 +59,8 @@ app.prepare().then(() => {
     // console.log('connected to mongo!');
   });
 
+  console.log('test');
+
   // ---------------------------------------------------------------------
 
   // Custom static routes
