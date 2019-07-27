@@ -8,7 +8,7 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import withData from '../apollo';
-import theme from '../lib/theme';
+import mainTheme from '../themes/mainTheme';
 import '../static/styles/fonts.scss';
 import '../static/styles/style.scss';
 import '../static/styles/some.css';
@@ -40,7 +40,7 @@ class MyApp extends App {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
         </Head>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mainTheme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Component {...pageProps} />

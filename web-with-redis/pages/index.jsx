@@ -8,6 +8,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
 
+import parseCookies from '../config/parseCookies';
+
 const styles = theme => ({
   root: {
     flexGrow: 1,
@@ -26,11 +28,12 @@ const styles = theme => ({
 const pageURL = `${process.env.BASE_URL}`;
 
 class Index extends PureComponent {
-  static async getInitialProps({ res }) {
-    if (res) {
-      console.log('GETINITIALPROPS - RES.LOCALS.USER', res.locals);
-      return res.locals;
-    }
+  static async getInitialProps({ isServer, res, req }) {
+
+    const userData = parseCookies(process.browser, res, req);
+
+    console.log(userData);
+
     return {};
   }
 

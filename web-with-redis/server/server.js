@@ -11,7 +11,7 @@ import csp from 'helmet-csp';
 // import session from 'express-session';
 import passport from 'passport';
 import mongoose from 'mongoose';
-import authRoutes from '../routes/auth-routes';
+import authRoutes from '../auth-routes';
 
 import getDirectives from './getDirectives';
 
@@ -89,8 +89,8 @@ app.prepare().then(() => {
   // ---------------------------------------------------------------------
   // server.get('*', (req, res) => handle(req, res));
   server.get('*', (req, res) => {
-    console.log('FROM SERVER', req.user);
-    res.locals.user = req.user || null;
+    // console.log('FROM SERVER', req.user);
+    // res.locals.user = req.user || null;
     handle(req, res);
   });
   // ---------------------------------------------------------------------

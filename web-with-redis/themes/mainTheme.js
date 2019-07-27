@@ -9,7 +9,7 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 // Numeric: <color>[code]; e.g., brown[500]
 // Alphanumeric: <color>.<code>; e.g., red.A400
 
-const theme = createMuiTheme({
+const mainTheme = createMuiTheme({
   palette: {
     primary: {
       main: blueGrey[700],
@@ -26,4 +26,4 @@ const theme = createMuiTheme({
   },
 });
 
-export default theme;
+export default mainTheme;
