@@ -10,8 +10,7 @@ import csp from 'helmet-csp';
 import passport from 'passport';
 import mongoose from 'mongoose';
 import authRoutes from '../auth-routes';
-
-import getDirectives from './getDirectives';
+import getDirectives from './get-directives';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });

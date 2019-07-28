@@ -3,8 +3,8 @@ const getSessIDFromCookies = (req) => {
 
   if (req) {
     if (req.cookies) {
-      if (req.cookies['user_sid']) {
-        sessID = req.cookies['user_sid'];
+      if (req.cookies['_ID.HSK']) {
+        sessID = req.cookies['_ID.HSK'];
         sessID = sessID.split('.')[0].split(':')[1];
       }
     }

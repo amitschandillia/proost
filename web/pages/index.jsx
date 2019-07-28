@@ -40,7 +40,7 @@ class Index extends PureComponent {
   }
 
   render() {
-    const { classes, userData, custom } = this.props;
+    const { classes, userData, sessID, custom } = this.props;
     const title = 'Home | Project Proost';
     const description = 'This is the description for the homepage';
     return (
@@ -54,6 +54,10 @@ class Index extends PureComponent {
           <div>
             userData from Redux:
             {userData}
+          </div>
+          <div>
+            sessID from Redux:
+            {sessID}
           </div>
           <div>
             Prop from getInitialProps
