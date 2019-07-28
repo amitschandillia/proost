@@ -18,12 +18,6 @@ import makeStore from '../reducers';
 import getUserDataFromCookies from '../utils/getUserDataFromCookies';
 import getSessIDFromCookies from '../utils/getSessIDFromCookies';
 
-
-
-// import redisLookup from '../utils/redis-lookup';
-
-
-
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let userData;
@@ -32,7 +26,6 @@ class MyApp extends App {
       userData = getUserDataFromCookies(ctx.req);
       sessID = getSessIDFromCookies(ctx.req);
       // look up sessID on redis store
-      // console.log(redisLookup());
       ctx.store.dispatch({ type: 'ADDSESSION', payload: sessID }); // component will be able to read from store's state when rendered
       ctx.store.dispatch({ type: 'ADDUSER', payload: userData });
     }

@@ -7,8 +7,6 @@ import path from 'path';
 import { createReadStream } from 'fs';
 import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
-// import cookieSession from 'cookie-session';
-// import session from 'express-session';
 import passport from 'passport';
 import mongoose from 'mongoose';
 import authRoutes from '../auth-routes';
@@ -59,22 +57,9 @@ app.prepare().then(() => {
   server.use('/auth', authRoutes);
   // ---------------------------------------------------------------------
 
-  // Custom/dynamic routes
-  // ---------------------------------------------------------------------
-  // server.get('/p/:id', (req, res) => {
-  //   const actualPage = '/post';
-  //   const queryParams = { title: req.params.id };
-  //   app.render(req, res, actualPage, queryParams);
-  // });
-  // ---------------------------------------------------------------------
-
   // Default route (not to be edited)
   // ---------------------------------------------------------------------
   server.get('*', (req, res) => handle(req, res));
-  // server.get('*', (req, res) => {
-  //   console.log(req);
-  //   handle(req, res);
-  // });
   // ---------------------------------------------------------------------
 
   // Express: Listener
