@@ -29,3 +29,22 @@ keys *
 flushall
 ctrl-] (exit redis)
 ctrl-z (exit telnet)
+
+
+
+
+REFRESH/FIRST LOAD
+get session id from browser
+look up session id on redis
+if id present in redis, stay logged in
+if not present, log out*
+
+to log out, delete all cookies.
+
+
+
+
+sudo apt install gcc
+sudo apt install make
+sudo apt install build-essential
+yarn add hiredis redis

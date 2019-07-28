@@ -40,9 +40,7 @@ app.prepare().then(() => {
 
   // Connect to MongoDB
   mongoose.set('useNewUrlParser', true);
-  mongoose.connect(process.env.DATABASE_URI, () => {
-    // console.log('connected to mongo!');
-  });
+  mongoose.connect(process.env.DATABASE_URI);
 
   // ---------------------------------------------------------------------
 
@@ -73,6 +71,10 @@ app.prepare().then(() => {
   // Default route (not to be edited)
   // ---------------------------------------------------------------------
   server.get('*', (req, res) => handle(req, res));
+  // server.get('*', (req, res) => {
+  //   console.log(req);
+  //   handle(req, res);
+  // });
   // ---------------------------------------------------------------------
 
   // Express: Listener

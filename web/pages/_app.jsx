@@ -15,14 +15,26 @@ import '../static/styles/fonts.scss';
 import '../static/styles/style.scss';
 import '../static/styles/some.css';
 import makeStore from '../reducers';
-import parseCookies from '../utils/parseCookies';
+import getUserDataFromCookies from '../utils/getUserDataFromCookies';
+import getSessIDFromCookies from '../utils/getSessIDFromCookies';
+
+
+
+// import redisLookup from '../utils/redis-lookup';
+
+
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let userData;
+    let sessID;
     if (ctx.isServer) {
-      userData = parseCookies(ctx.req);
-      ctx.store.dispatch({ type: 'ADDUSER', payload: userData }); // component will be able to read from store's state when rendered
+      userData = getUserDataFromCookies(ctx.req);
+      sessID = getSessIDFromCookies(ctx.req);
+      // look up sessID on redis store
+      // console.log(redisLookup());
+      ctx.store.dispatch({ type: 'ADDSESSION', payload: sessID }); // component will be able to read from store's state when rendered
+      ctx.store.dispatch({ type: 'ADDUSER', payload: userData });
     }
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };
