@@ -21,6 +21,10 @@ https://www.h3xed.com/web-development/using-https-with-amazon-s3-and-your-domain
 
 Creating a ACM SSL for S3:
 
+1. Visit https://console.aws.amazon.com/acm/home?region=us-east-1 (Region MUST be N. Virginia!!).
+
+2. Follow instructions.
+
 Creating a CloudWatch CDN for S3 (log in as root user!):
 
 Adding S3 Policy:

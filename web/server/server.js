@@ -9,8 +9,9 @@ import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
 import passport from 'passport';
 import mongoose from 'mongoose';
-import authRoutes from '../auth-routes';
 import getDirectives from './get-directives';
+import authRoutes from '../routes/auth-routes';
+import uploadRoute from '../routes/upload-route';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -54,6 +55,11 @@ app.prepare().then(() => {
   // Auth routes
   // ---------------------------------------------------------------------
   server.use('/auth', authRoutes);
+  // ---------------------------------------------------------------------
+
+  // Upload route
+  // ---------------------------------------------------------------------
+  server.use('/upload', uploadRoute);
   // ---------------------------------------------------------------------
 
   // Default route (not to be edited)

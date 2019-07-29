@@ -3,7 +3,9 @@ import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  username: String,
+  firstName: String,
+  lastName: String,
+  picture: String,
   googleID: String,
 });
 
