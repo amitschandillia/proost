@@ -1,25 +1,25 @@
-cd ~/proost/dev/ && pm2 flush && pm2 kill && pm2 flush && clear && NODE_ENV=production pm2 start server.js --name api && pm2 logs
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; pm2 logs
 
-cd ~/proost/web/ && rm -rf .build && node prepare.js && pm2 flush && pm2 delete web && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server/index.js --name web && pm2 logs
+cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; pm2 delete web; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
 
-cd ~/proost/web/ && rm -rf .build && node prepare.js && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server/index.js --name web && pm2 logs
+cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
 
 
 
 WEB
-cd ~/proost/dev/ && pm2 flush && pm2 kill && pm2 flush && clear && NODE_ENV=production pm2 start server.js --name api && cd ~/proost/web/ && rm -rf .build && node prepare.js && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server/index.js --name web && pm2 logs
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
 WITH REDIS
-cd ~/proost/dev/ && pm2 flush && pm2 kill && pm2 flush && clear && NODE_ENV=production pm2 start server.js --name api && cd ~/proost/web-with-redis/ && rm -rf .build && node prepare.js && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server/index.js --name web-redis && pm2 logs
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-with-redis/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web-redis; pm2 logs
 
 
 WITH REDIS-REDUX
-cd ~/proost/dev/ && pm2 flush && pm2 kill && pm2 flush && clear && NODE_ENV=production pm2 start server.js --name api && cd ~/proost/web-with-redis-redux/ && rm -rf .build && node prepare.js && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server/index.js --name web-redis-redux && pm2 logs
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-with-redis-redux/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web-redis-redux; pm2 logs
 
 BEFORE-S3
-cd ~/proost/dev/ && pm2 flush && pm2 kill && pm2 flush && clear && NODE_ENV=production pm2 start server.js --name api && cd ~/proost/web-before-s3/ && rm -rf .build && node prepare.js && pm2 flush && clear && yarn build && NODE_ENV=production pm2 start ./server/index.js --name web-before-s3 && pm2 logs
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-before-s3/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web-before-s3; pm2 logs
 
 
 
