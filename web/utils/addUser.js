@@ -12,7 +12,6 @@ const addUser = (user, done) => {
       done(null, existingUser);
     } else { // check if email exists (to be programmed)
       // User doesn't exist in db; create new user
-      delete user.email;
       let emails;
       if(user.email && user.email.length > 4) {
         emails = [user.email];
