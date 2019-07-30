@@ -1,7 +1,6 @@
 import dotenv from 'dotenv';
 import GoogleStrategy from 'passport-google-oauth20';
-import User from '../../models/user';
-import useProfileImg from '../../utils/useProfileImg';
+import addUser from '../../utils/addUser';
 
 dotenv.config();
 
@@ -12,32 +11,14 @@ const google = new GoogleStrategy({
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
 }, (accessToken, refreshToken, profile, done) => {
   // passport callback function
-  // Check if user already exists in db
-  User.findOne({ googleID: profile.id }).then((existingUser) => {
-    if (existingUser) {
-      // User already exists in db
-      console.log('USER ALREADY EXISTS! ----->', existingUser);
-      done(null, existingUser);
-    } else {
-      // User doesn't exist in db; create new user
-      new User({
-        firstName: profile.name.familyName,
-        lastName: profile.name.givenName,
-        googleID: profile.id,
-      }).save().then((newUser) => {
-        console.log('NEW USER CREATED! ---> ', newUser);
-        // If profile.photos[0].value exists, download image, save it to an S3 bucket, and name it newUser._id.
-        if (profile.photos) {
-          if (profile.photos[0]) {
-            console.log('IMAGE EXISTS!');
-            console.log('NEWUSER', newUser);
-            useProfileImg(profile.photos[0].value, newUser._id);
-          }
-        }
-        done(null, newUser);
-      });
-    }
-  });
+  const returnedUser = {
+    firstName: profile._json.given_name,
+    lastName: profile._json.family_name,
+    email: profile._json.email,
+    googleID: profile._json.sub,
+    picture: profile._json.picture,
+  };
+  addUser(returnedUser, done);
 });
 
 export default google;
