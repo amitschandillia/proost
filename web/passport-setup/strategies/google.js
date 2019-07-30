@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import GoogleStrategy from 'passport-google-oauth20';
 import User from '../../models/user';
-import processProfileImg from '../../utils/process-profile-img';
+import useProfileImg from '../../utils/useProfileImg';
 
 dotenv.config();
 
@@ -23,7 +23,6 @@ const google = new GoogleStrategy({
       new User({
         firstName: profile.name.familyName,
         lastName: profile.name.givenName,
-        picture: profile.photos[0].value,
         googleID: profile.id,
       }).save().then((newUser) => {
         console.log('NEW USER CREATED! ---> ', newUser);
@@ -32,7 +31,7 @@ const google = new GoogleStrategy({
           if (profile.photos[0]) {
             console.log('IMAGE EXISTS!');
             console.log('NEWUSER', newUser);
-            processProfileImg(profile.photos[0].value, newUser._id);
+            useProfileImg(profile.photos[0].value, newUser._id);
           }
         }
         done(null, newUser);
