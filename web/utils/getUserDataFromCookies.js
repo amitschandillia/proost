@@ -3,8 +3,8 @@ const getUserDataFromCookies = (req) => {
 
   if (req) {
     if (req.cookies) {
-      if (req.cookies['_UDATA.BB']) {
-        userData = req.cookies['_UDATA.BB'];
+      if (req.cookies['_UDATA.SIG.GG']) {
+        userData = req.cookies['_UDATA.SIG.GG'];
       }
     }
   }
