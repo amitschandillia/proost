@@ -29,10 +29,12 @@ const styles = theme => ({
 const pageURL = `${process.env.BASE_URL}`;
 
 const Index = (props) => {
-  const { classes, userData, sessID, custom } = props;
+  const {
+    classes, userData, sessID, custom,
+  } = props;
   const title = 'Home | Project Proost';
   const description = 'This is the description for the homepage';
-  return(
+  return (
     <Fragment>
       <Head>
         <title>{ title }</title>
@@ -78,8 +80,20 @@ const Index = (props) => {
   );
 };
 
-Index.getInitialProps = async({store, isServer, res, req}) => {
-  return { custom: 'Amit' }; // you can pass some custom props to component from here
-}
+Index.propTypes = {
+  sessID: PropTypes.string.isRequired,
+  userData: PropTypes.string.isRequired,
+  custom: PropTypes.string.isRequired,
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    paragraph: PropTypes.string,
+    menuButton: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
+};
+
+Index.getInitialProps = async ({
+  store, isServer, res, req,
+}) => ({ custom: 'Amit' }); // you can pass some custom props to component from here
 
 export default connect(state => state)(withStyles(styles)(Index));

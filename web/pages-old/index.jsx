@@ -36,7 +36,9 @@ class Index extends PureComponent {
   }
 
   render() {
-    const { classes, userData, sessID, custom } = this.props;
+    const {
+      classes, userData, sessID, custom,
+    } = this.props;
     const title = 'Home | Project Proost';
     const description = 'This is the description for the homepage';
     return (
@@ -87,6 +89,7 @@ class Index extends PureComponent {
 }
 
 Index.propTypes = {
+  sessID: PropTypes.string.isRequired,
   userData: PropTypes.string.isRequired,
   custom: PropTypes.string.isRequired,
   classes: PropTypes.shape({

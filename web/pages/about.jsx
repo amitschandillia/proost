@@ -25,7 +25,7 @@ const About = (props) => {
   const title = 'About | Project Proost';
   const description = 'This is the description for the about page';
 
-  return(
+  return (
     <Fragment>
       <Head>
         <title>{ title }</title>
@@ -50,6 +50,13 @@ const About = (props) => {
       </Box>
     </Fragment>
   );
+};
+
+About.propTypes = {
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    paragraph: PropTypes.string,
+  }).isRequired,
 };
 
 export default withStyles(styles)(About);

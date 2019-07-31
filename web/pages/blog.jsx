@@ -44,7 +44,14 @@ const Blog = (props) => {
         <PostsList />
       </Box>
     </Fragment>
-  )
+  );
+};
+
+Blog.propTypes = {
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    paragraph: PropTypes.string,
+  }).isRequired,
 };
 
 export default withStyles(styles)(Blog);
