@@ -18,7 +18,7 @@ const google = new GoogleStrategy({
     googleID: profile._json.sub,
     picture: profile._json.picture,
   };
-  addUser(returnedUser, done);
+  addUser(returnedUser, 'google', done);
 });
 
 export default google;

@@ -3,7 +3,10 @@
 import express from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import passportSetup from '../../passport-setup';
+
+dotenv.config();
 
 const router = express.Router();
 router.get('/', (req, res, next) => {
@@ -13,7 +16,7 @@ router.get('/', (req, res, next) => {
 
 router.get(
   '/redirect',
-  passport.authenticate('google'),
+  passport.authenticate('google', {failureRedirect: '/'}),
   (req, res) => {
     const signedUserData = jwt.sign({
       userID: req.user._id,
@@ -21,7 +24,7 @@ router.get(
       firstName: req.user.firstName,
       lastName: req.user.lastName,
     }, process.env.JWT_SECRET);
-    res.cookie('_UDATA.SIG.GG', signedUserData, {
+    res.cookie(process.env.USER_DATA_COOKIE, signedUserData, {
       httpOnly: true,
       secure: true,
     });

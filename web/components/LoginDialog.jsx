@@ -42,6 +42,7 @@ const LoginDialog = (props) => {
   const { classes } = props;
   const { pageURL } = props;
   const googleCallback = `/auth/google?callback=${pageURL}`;
+  const twitterCallback = `/auth/twitter?callback=${pageURL}`;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -98,7 +99,7 @@ const LoginDialog = (props) => {
               </Grid>
               <Grid container item direction="column" justify="space-evenly" alignItems="stretch">
                 <ThemeProvider theme={twitterTheme}>
-                  <Button variant="contained" size="large" color="primary">
+                  <Button variant="contained" size="large" color="primary" href={twitterCallback}>
                     <Grid container>
                       <Grid item xl className={classes.socialsIcon}>
                         <FontAwesomeIcon icon={['fab', 'twitter']} />

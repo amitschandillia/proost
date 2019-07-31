@@ -6,6 +6,7 @@ const userSchema = new Schema({
   firstName: String,
   lastName: String,
   googleID: String,
+  twitterID: String,
   emails: [String],
 });
 

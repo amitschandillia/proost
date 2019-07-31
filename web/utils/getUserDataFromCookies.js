@@ -1,10 +1,11 @@
 const getUserDataFromCookies = (req) => {
   let userData = '';
+  const userDataCookie = '_UDC';
 
   if (req) {
     if (req.cookies) {
-      if (req.cookies['_UDATA.SIG.GG']) {
-        userData = req.cookies['_UDATA.SIG.GG'];
+      if (req.cookies[userDataCookie]) {
+        userData = req.cookies[userDataCookie];
       }
     }
   }

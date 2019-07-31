@@ -27,8 +27,6 @@ module.exports = withCSS(withSass(withPurgeCss({
       new webpack.DefinePlugin({
         'process.env': {
           BASE_URL: JSON.stringify(process.env.BASE_URL),
-          // REDIS_HOST: JSON.stringify(process.env.REDIS_HOST),
-          // REDIS_PORT: JSON.stringify(process.env.REDIS_PORT),
         },
       }),
       new webpack.EnvironmentPlugin(localEnv),

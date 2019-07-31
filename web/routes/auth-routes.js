@@ -3,7 +3,7 @@ import session from 'express-session';
 import connectRedis from 'connect-redis';
 import uuidv4 from 'uuid/v4';
 import google from './auth-providers/google';
-// import twitter from './auth-providers/twitter';
+import twitter from './auth-providers/twitter';
 
 const RedisStore = connectRedis(session);
 const router = express.Router();
@@ -25,7 +25,7 @@ router.use(session({
 }));
 
 router.use('/google', google);
-// router.use('/twitter', twitter);
+router.use('/twitter', twitter);
 
 // auth login
 router.get('/login', (req, res) => {
@@ -33,7 +33,13 @@ router.get('/login', (req, res) => {
 });
 // auth logout
 router.get('/logout', (req, res) => {
-  res.send('log out...');
+  req.logout();
+  req.session.destroy(() => {
+    for (var cookie in req.cookies) {
+      res.clearCookie(cookie)
+    }
+    res.send('log out...');
+  });
 });
 
 module.exports = router;
