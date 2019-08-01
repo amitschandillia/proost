@@ -35,7 +35,7 @@ const getAuthProvider = (provider, user) => {
   return providerID;
 };
 
-const addUser = (user, provider, done) => {
+const addOrUpdateUser = (user, provider, done) => {
   // Define provider
   const providerID = getAuthProvider(provider, user);
   // Retrieve email address if provided
@@ -48,9 +48,9 @@ const addUser = (user, provider, done) => {
 
   // Lookup user in db
   User.findOne({ ...providerID }).then((existingUser) => {
-    // Does the given Google ID exist in db?
+    // Does the given provider ID exist in db?
     if (existingUser) {
-      // Yes, the given Google ID found; does the given email exist in db?
+      // Yes, the given provider ID found; does the given email exist in db?
       if (givenEmail) { // Was a valid email even provided?
         User.findOne({ emails: givenEmail }).then((existingUserWithEmail) => {
           if (existingUserWithEmail) {
@@ -66,11 +66,11 @@ const addUser = (user, provider, done) => {
             });
           }
         });
-      } // No, the given Google ID does not exist in db; does the given email exist in db?
+      } // No, the given provider ID does not exist in db; does the given email exist in db?
     } else if (givenEmail) { // Was a valid email even provided?
       User.findOne({ emails: givenEmail }).then((anotherUserWithEmail) => {
         if (anotherUserWithEmail) {
-          // Yes, the given email exists in db; update db with Google ID
+          // Yes, the given email exists in db; update db with provider ID
           User.findOneAndUpdate(
             { _id: anotherUserWithEmail._id },
             { ...providerID },
@@ -78,17 +78,17 @@ const addUser = (user, provider, done) => {
             done(null, anotherUserWithEmailUpdated);
           });
         } else {
-          // Valid email provided but neither that nor Google ID found; create new
+          // Valid email provided but neither that nor provider ID found; create new
           createNewUser(user, givenEmail, providerID, done);
         }
       });
     } else {
-      // No valid email provided and given Google ID not found in db; create new
+      // No valid email provided and given provider ID not found in db; create new
       createNewUser(user, givenEmail, providerID, done);
     }
   });
 };
-export default addUser;
+export default addOrUpdateUser;
 
 // does provider id exist?
 // yes: does email exist?

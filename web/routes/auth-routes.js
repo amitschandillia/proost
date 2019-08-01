@@ -24,6 +24,7 @@ router.use(session({
   resave: false,
 }));
 
+// Social auth routes
 router.use('/google', google);
 router.use('/twitter', twitter);
 
@@ -31,14 +32,14 @@ router.use('/twitter', twitter);
 router.get('/login', (req, res) => {
   res.send('login...');
 });
-// auth logout
+// Logout
 router.get('/logout', (req, res) => {
   req.logout();
   req.session.destroy(() => {
     for (var cookie in req.cookies) {
       res.clearCookie(cookie)
     }
-    res.send('log out...');
+    res.redirect(req.query.callback);
   });
 });
 

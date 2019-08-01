@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import GoogleStrategy from 'passport-google-oauth20';
-import addUser from '../../utils/addUser';
+import addOrUpdateUser from '../../utils/addOrUpdateUser';
 
 dotenv.config();
 
@@ -18,7 +18,7 @@ const google = new GoogleStrategy({
     googleID: profile._json.sub,
     picture: profile._json.picture,
   };
-  addUser(returnedUser, 'google', done);
+  addOrUpdateUser(returnedUser, 'google', done);
 });
 
 export default google;

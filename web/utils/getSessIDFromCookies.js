@@ -1,10 +1,11 @@
 const getSessIDFromCookies = (req) => {
   let sessID = '';
+  const sessionHandshakeCookie = '_ID.HSK';
 
   if (req) {
     if (req.cookies) {
-      if (req.cookies['_ID.HSK']) {
-        sessID = req.cookies['_ID.HSK'];
+      if (req.cookies[sessionHandshakeCookie]) {
+        sessID = req.cookies[sessionHandshakeCookie];
         sessID = sessID.split('.')[0].split(':')[1];
       }
     }

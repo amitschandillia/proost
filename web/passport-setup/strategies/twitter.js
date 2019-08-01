@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import TwitterStrategy from 'passport-twitter';
-import addUser from '../../utils/addUser';
+import addOrUpdateUser from '../../utils/addOrUpdateUser';
 
 dotenv.config();
 
@@ -19,7 +19,7 @@ const twitter = new TwitterStrategy({
     twitterID: profile._json.id,
     picture: profile._json.profile_image_url_https.replace('_normal', ''),
   };
-  addUser(returnedUser, 'twitter', done);
+  addOrUpdateUser(returnedUser, 'twitter', done);
 });
 
 export default twitter;

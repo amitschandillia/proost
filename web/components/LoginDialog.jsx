@@ -43,6 +43,7 @@ const LoginDialog = (props) => {
   const { pageURL } = props;
   const googleCallback = `/auth/google?callback=${pageURL}`;
   const twitterCallback = `/auth/twitter?callback=${pageURL}`;
+  const logout = `/auth/logout?callback=${pageURL}`;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -55,6 +56,9 @@ const LoginDialog = (props) => {
 
   return (
     <div>
+      <Button color="inherit" href={logout}>
+        Logout
+      </Button>
       <Button color="inherit" onClick={handleClickOpen}>
         Login
       </Button>
