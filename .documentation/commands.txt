@@ -33,6 +33,7 @@ ctrl-] (exit redis)
 ctrl-z (exit telnet)
 
 
+
 REFRESH/FIRST LOAD
 get session id from browser
 look up session id on redis
