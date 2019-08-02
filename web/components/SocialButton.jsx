@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import { ThemeProvider } from '@material-ui/styles';
+import { connect } from 'react-redux';
 import { googleTheme, facebookTheme, twitterTheme } from '../themes/socialsTheme';
 
 // For icons list, refer: https://github.com/FortAwesome/Font-Awesome/tree/1975bba5c4ade236c02bf2e5f9551160ee85109d/js-packages/%40fortawesome
@@ -84,4 +85,14 @@ const SocialButton = (props) => {
   );
 };
 
-export default withStyles(styles)(SocialButton);
+SocialButton.propTypes = {
+  pageURL: PropTypes.string.isRequired,
+  provider: PropTypes.string.isRequired,
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    signInText: PropTypes.string,
+    socialsIcon: PropTypes.string,
+  }).isRequired,
+};
+
+export default connect(state => state)(withStyles(styles)(SocialButton));
