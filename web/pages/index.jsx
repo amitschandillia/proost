@@ -52,7 +52,6 @@ const Index = (props) => {
         </div>
         <div>
           Prop from getInitialProps
-          {custom}
         </div>
         <Typography variant="h4" component="h1" gutterBottom>
             Material-UI
@@ -92,8 +91,9 @@ Index.propTypes = {
   }).isRequired,
 };
 
-Index.getInitialProps = async ({
-  store, isServer, res, req,
-}) => ({ custom: 'Amit' }); // you can pass some custom props to component from here
+// Uncomment the following snippet to pass custom props to the component
+// Index.getInitialProps = async ({
+//   store, isServer, res, req,
+// }) => ({ custom: 'Amit' });
 
 export default connect(state => state)(withStyles(styles)(Index));

@@ -8,11 +8,14 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Grid from '@material-ui/core/Grid';
-import { ThemeProvider } from '@material-ui/styles';
-import { googleTheme, facebookTheme, twitterTheme } from '../themes/socialsTheme';
+// import { ThemeProvider } from '@material-ui/styles';
+import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
+// import { googleTheme, facebookTheme, twitterTheme } from '../themes/socialsTheme';
+import SocialButton from './SocialButton';
 
 // For icons list, refer: https://github.com/FortAwesome/Font-Awesome/tree/1975bba5c4ade236c02bf2e5f9551160ee85109d/js-packages/%40fortawesome
 library.add(faFacebookF);
@@ -36,13 +39,19 @@ const styles = theme => ({
   socialsIcon: {
     paddingLeft: theme.spacing(2),
   },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
 });
 
 const LoginDialog = (props) => {
-  const { classes } = props;
-  const { pageURL } = props;
-  const googleCallback = `/auth/google?callback=${pageURL}`;
-  const twitterCallback = `/auth/twitter?callback=${pageURL}`;
+  const {
+    classes, pageURL,
+  } = props;
+  // const googleCallback = `/auth/google?callback=${pageURL}`;
+  // const twitterCallback = `/auth/twitter?callback=${pageURL}`;
   const logout = `/auth/logout?callback=${pageURL}`;
   const [open, setOpen] = React.useState(false);
 
@@ -72,49 +81,25 @@ const LoginDialog = (props) => {
         <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>Sign in</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
+            <TextField
+              id="standard-with-placeholder"
+              label="Your email"
+              placeholder="john@doe.com"
+              className={classes.textField}
+              margin="normal"
+            />
+            <TextField
+              id="standard-with-placeholder"
+              label="Password"
+              placeholder="*******"
+              className={classes.textField}
+              margin="normal"
+            />
+
             <Grid container className={classes.root} spacing={2}>
-              <Grid container item direction="column" justify="space-evenly" alignItems="stretch">
-                <ThemeProvider theme={googleTheme}>
-                  <Button variant="contained" size="large" color="primary" href={googleCallback}>
-                    <Grid container>
-                      <Grid item xl className={classes.socialsIcon}>
-                        <FontAwesomeIcon icon={['fab', 'google']} />
-                      </Grid>
-                      <Grid item xs className={classes.signInText}>
-                        <span>Sign in with Google</span>
-                      </Grid>
-                    </Grid>
-                  </Button>
-                </ThemeProvider>
-              </Grid>
-              <Grid container item direction="column" justify="space-evenly" alignItems="stretch">
-                <ThemeProvider theme={facebookTheme}>
-                  <Button variant="contained" size="large" color="primary">
-                    <Grid container>
-                      <Grid item xl className={classes.socialsIcon}>
-                        <FontAwesomeIcon icon={['fab', 'facebook-f']} />
-                      </Grid>
-                      <Grid item xs className={classes.signInText}>
-                        <span className={classes.signInText}>Sign in with Facebook</span>
-                      </Grid>
-                    </Grid>
-                  </Button>
-                </ThemeProvider>
-              </Grid>
-              <Grid container item direction="column" justify="space-evenly" alignItems="stretch">
-                <ThemeProvider theme={twitterTheme}>
-                  <Button variant="contained" size="large" color="primary" href={twitterCallback}>
-                    <Grid container>
-                      <Grid item xl className={classes.socialsIcon}>
-                        <FontAwesomeIcon icon={['fab', 'twitter']} />
-                      </Grid>
-                      <Grid item xs className={classes.signInText}>
-                        <span className={classes.signInText}>Sign in with Twitter</span>
-                      </Grid>
-                    </Grid>
-                  </Button>
-                </ThemeProvider>
-              </Grid>
+              <SocialButton pageURL={pageURL} provider="google" />
+              <SocialButton pageURL={pageURL} provider="twitter" />
+              <SocialButton pageURL={pageURL} provider="facebook" />
             </Grid>
           </DialogContentText>
         </DialogContent>
@@ -135,7 +120,9 @@ LoginDialog.propTypes = {
     dialogTitle: PropTypes.string,
     signInText: PropTypes.string,
     socialsIcon: PropTypes.string,
+    textField: PropTypes.string,
   }).isRequired,
 };
 
-export default withStyles(styles)(LoginDialog);
+// export default withStyles(styles)(LoginDialog);
+export default connect(state => state)(withStyles(styles)(LoginDialog));

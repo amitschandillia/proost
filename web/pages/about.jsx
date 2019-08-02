@@ -59,4 +59,9 @@ About.propTypes = {
   }).isRequired,
 };
 
+// Uncomment the following snippet to pass custom props to the component
+// About.getInitialProps = async ({
+//   store, isServer, res, req,
+// }) => ({ custom: 'Amit' });
+
 export default withStyles(styles)(About);
