@@ -4,6 +4,7 @@ import connectRedis from 'connect-redis';
 import uuidv4 from 'uuid/v4';
 import google from './auth-providers/google';
 import twitter from './auth-providers/twitter';
+import local from './auth-providers/local';
 
 const RedisStore = connectRedis(session);
 const router = express.Router();
@@ -27,6 +28,7 @@ router.use(session({
 // Social auth routes
 router.use('/google', google);
 router.use('/twitter', twitter);
+router.use('/local', local);
 
 // auth login
 router.get('/login', (req, res) => {

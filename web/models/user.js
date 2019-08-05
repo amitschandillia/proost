@@ -8,6 +8,8 @@ const userSchema = new Schema({
   googleID: String,
   twitterID: String,
   emails: [String],
+  hasPicture: Boolean,
+  signupToken: String,
 });
 
 const User = mongoose.model('user', userSchema);
