@@ -27,14 +27,6 @@ const styles = theme => ({
 });
 
 const NavBar = (props) => {
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const {
     classes, pageURL, sessID,
   } = props;
@@ -57,13 +49,8 @@ const NavBar = (props) => {
         </Typography>
         <span>{sessID}</span>
         <Button color="inherit" href={logout}>Logout</Button>
-        <Button color="inherit" onClick={handleClickOpen}>Sign in</Button>
-        <SignInDialog
-          pageURL={pageURL}
-          handleClose={handleClose}
-          open={open}
-          setOpen={setOpen}
-        />
+        <Button color="inherit" onClick={props.handleClickOpen}>Sign in</Button>
+        <SignInDialog pageURL={pageURL} />
       </Toolbar>
     </AppBar>
   );
@@ -80,9 +67,20 @@ NavBar.propTypes = {
   }).isRequired,
 };
 
-// Uncomment the following snippet to pass custom props to the component
-// NavBar.getInitialProps = async ({
-//   store, isServer, res, req,
-// }) => ({ custom: 'Amit' });
+const mapStateToProps = state => ({
+  // openSignInDialog: state.openSignInDialog,
+});
 
-export default connect(state => state)(withStyles(styles)(NavBar));
+const mapDispatchToProps = dispatch => ({
+  handleClickOpen: () => {
+    dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });
+    dispatch({ type: 'SHOWSUBMITEMAILVIEW', payload: false });
+    dispatch({ type: 'SHOWSIGNINVIEW', payload: true });
+    dispatch({ type: 'OPENSIGNINDIALOG', payload: true });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(NavBar));

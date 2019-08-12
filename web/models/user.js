@@ -10,6 +10,8 @@ const userSchema = new Schema({
   emails: [String],
   hasPicture: Boolean,
   signupToken: String,
+  token: String,
+  password: String,
 });
 
 const User = mongoose.model('user', userSchema);

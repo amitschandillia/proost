@@ -11,6 +11,7 @@ import passport from 'passport';
 import mongoose from 'mongoose';
 import getDirectives from './get-directives';
 import authRoutes from '../routes/auth-routes';
+import mailRoutes from '../routes/mail-routes';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -55,6 +56,11 @@ app.prepare().then(() => {
   // Auth routes
   // ---------------------------------------------------------------------
   server.use('/auth', authRoutes);
+  // ---------------------------------------------------------------------
+
+  // Mail routes
+  // ---------------------------------------------------------------------
+  server.use('/mail', mailRoutes);
   // ---------------------------------------------------------------------
 
   // Default route (not to be edited)
