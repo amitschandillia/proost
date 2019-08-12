@@ -70,10 +70,6 @@ SignInView.propTypes = {
   }).isRequired,
 };
 
-
-
-
-
 const mapStateToProps = state => ({
   errorState: state.emailWarning,
 });
@@ -95,14 +91,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(withStyles(styles)(SignInView));
-
-
-
-
-
-
-
-
-
-
-// export default connect(state => state)(withStyles(styles)(SignInView));
