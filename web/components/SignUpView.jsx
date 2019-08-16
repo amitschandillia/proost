@@ -4,13 +4,10 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import emailValidator from 'email-validator';
 import SocialButton from './SocialButton';
 import EmailField from './EmailField';
-import PasswordField from './PasswordField';
-// import isEmailValid from '../utils/validateEmail';
-
-import emailValidator from 'email-validator';
-
+import signUpEmail from '../utils/signUpEmail';
 
 const styles = theme => ({
   root: {
@@ -37,26 +34,30 @@ const styles = theme => ({
 });
 
 const SignUpView = (props) => {
-  const { classes, pageURL, flagEmailError } = props;
+  const {
+    classes, pageURL, flagEmailError, emailStatus, emailAlreadyExists, showSignIn,
+  } = props;
 
-  const submitEmail = (e) => {
-    const emailVal = e.target['to'].value;
-    if(!emailValidator.validate(emailVal)) {
-      props.flagError();
-      e.preventDefault();
+  const submitEmail = async (e) => {
+    const emailVal = e.target.to.value;
+    if (!emailValidator.validate(emailVal)) { props.flagError(); } else {
+      const data = await signUpEmail(emailVal);
+      const { verify } = data;
+      const { signin } = data;
+      const { ewarn } = data;
+      if (verify) emailStatus(verify);
+      if (signin) emailAlreadyExists(signin, ewarn);
     }
   };
 
   return (
     <Fragment>
-      <form action="/mail" method="POST" onSubmit={(e) => {submitEmail(e)}}>
+      <form onSubmit={(e) => { e.preventDefault(); submitEmail(e); }}>
         <EmailField
           name="to"
           error={flagEmailError}
         />
-        <input type="hidden" name="pageURL" value={pageURL} />
       </form>
-
 
       <Grid container className={classes.root} spacing={2}>
         <SocialButton pageURL={pageURL} provider="google" />
@@ -64,23 +65,24 @@ const SignUpView = (props) => {
         <SocialButton pageURL={pageURL} provider="facebook" />
       </Grid>
       <span>Already have an account?</span>
-      <Button color="inherit" onClick={props.showSignIn}>Sign in</Button>
+      <Button color="inherit" onClick={showSignIn}>Sign in</Button>
     </Fragment>
   );
 };
 
 SignUpView.propTypes = {
+  flagEmailError: PropTypes.bool.isRequired,
   pageURL: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     dialogTitle: PropTypes.string,
     textField: PropTypes.string,
   }).isRequired,
+  emailStatus: PropTypes.func.isRequired,
+  emailAlreadyExists: PropTypes.func.isRequired,
+  showSignIn: PropTypes.func.isRequired,
+  flagError: PropTypes.func.isRequired,
 };
-
-
-
-
 
 const mapStateToProps = state => ({
   flagEmailError: state.flagEmailError,
@@ -93,6 +95,16 @@ const mapDispatchToProps = dispatch => ({
   },
   flagError: () => {
     dispatch({ type: 'FLAGEMAILERROR', payload: true });
+  },
+  emailStatus: (verify) => {
+    dispatch({ type: 'OPENSIGNINDIALOG', payload: false });
+    dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
+    dispatch({ type: 'OPENSUBMITEMAILDIALOG', payload: verify });
+  },
+  emailAlreadyExists: (signin, ewarn) => {
+    dispatch({ type: 'SHOWSIGNUPVIEW', payload: !signin });
+    dispatch({ type: 'SHOWSIGNINVIEW', payload: signin });
+    dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: ewarn });
   },
 });
 

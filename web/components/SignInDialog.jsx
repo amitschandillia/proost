@@ -1,7 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-// import Typography from '@material-ui/core/Typography';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -37,10 +35,10 @@ const styles = theme => ({
 
 const SignInDialog = (props) => {
   const {
-    classes, pageURL, handleClose, open,
+    classes, pageURL, handleClose, open, showSignInView, showSignUpView,
   } = props;
 
-  const dialogTitle = props.showSignInView ? 'Sign in' : 'Sign up';
+  const dialogTitle = showSignInView ? 'Sign in' : 'Sign up';
 
   return (
     <Dialog
@@ -50,15 +48,17 @@ const SignInDialog = (props) => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>{dialogTitle}</DialogTitle>
-      {props.showSignInView && (
+      <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>
+        {dialogTitle}
+      </DialogTitle>
+      {showSignInView && (
       <DialogContent component="div">
         <DialogContentText>
           <SignInView pageURL={pageURL} />
         </DialogContentText>
       </DialogContent>
       )}
-      {props.showSignUpView && (
+      {showSignUpView && (
       <DialogContent component="div">
         <DialogContentText>
           <SignUpView pageURL={pageURL} />
@@ -72,6 +72,8 @@ const SignInDialog = (props) => {
 SignInDialog.propTypes = {
   pageURL: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
+  showSignInView: PropTypes.bool.isRequired,
+  showSignUpView: PropTypes.bool.isRequired,
   open: PropTypes.bool.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,

@@ -1,11 +1,12 @@
 /* eslint-disable */
 
-const CACHE_NAME = '875e79c150a1e3cae4a3b6ebc2f2b231';
+const CACHE_NAME = 'c079e1ccb079fbdff4be0d9fc33aa84c';
 const URLS_TO_CACHE = [
   '/',
   '/about',
   '/blog',
   '/index',
+  '/registration',
   'android-chrome-144x144.png',
   'android-chrome-192x192.png',
   'android-chrome-256x256.png',

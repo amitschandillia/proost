@@ -17,28 +17,18 @@ import '../static/styles/some.css';
 import makeStore from '../reducers';
 import getUserDataFromCookies from '../utils/getUserDataFromCookies';
 import getSessIDFromCookies from '../utils/getSessIDFromCookies';
-import SubmitEmailDialog from '../components/SubmitEmailDialog';
-import SignInDialog from '../components/SignInDialog';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let userData;
     let sessID;
-    let verify = 0;
-    let signin = 0;
-    let ewarn = 0;
-    if(ctx.req && ctx.req.query && ctx.req.query.verify) { verify = ctx.req.query.verify; }
-    if(ctx.req && ctx.req.query && ctx.req.query.signin) { signin = ctx.req.query.signin; }
-    if(ctx.req && ctx.req.query && ctx.req.query.ewarn) { ewarn = ctx.req.query.ewarn; }
+
     if (ctx.isServer) {
       userData = getUserDataFromCookies(ctx.req);
       sessID = getSessIDFromCookies(ctx.req);
       // look up sessID on redis store
       ctx.store.dispatch({ type: 'ADDSESSION', payload: sessID }); // component will be able to read from store's state when rendered
       ctx.store.dispatch({ type: 'ADDUSER', payload: userData });
-      ctx.store.dispatch({ type: 'OPENSUBMITEMAILDIALOG', payload: verify });
-      ctx.store.dispatch({ type: 'OPENSIGNINDIALOG', payload: signin });
-      ctx.store.dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: ewarn });
     }
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };
@@ -76,7 +66,6 @@ class MyApp extends App {
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Provider store={store}>
-            <SubmitEmailDialog />
             <Component {...pageProps} />
           </Provider>
         </ThemeProvider>

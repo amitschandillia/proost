@@ -57,3 +57,47 @@ yarn add hiredis redis
 
 cookie tampered
 google logged out
+
+
+
+
+
+
+
+
+
+
+
+REGISTER:
+------------
+
+Input email
+Generate token
+
+check if email exists in db
+    no:
+          create entry with email and token
+          send verification email
+    yes:
+          retrieve entry
+          does entry have a token?
+                yes: update token, send verification email
+                no: does entry have password?
+                      yes: throw error - account already exists
+                      no: add token to entry and send verification email
+
+
+
+VERIFICATION:
+-----------------
+
+retrieve email and token from link
+check if email exists in db
+    no: throw error - this link has expired
+    yes: check if entry contains token
+          no: throw error - this link has expired
+          yes: do tokens match?
+                no: throw error - this link has expired
+                yes: check if entry contains firstname, lastname, etc.
+                      yes: only offer to set password and/or username and update db
+                      no: offer to set password and/or username AND firstname, lastname, etc. and update db

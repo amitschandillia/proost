@@ -34,10 +34,12 @@ const styles = theme => ({
 });
 
 const SignInView = (props) => {
-  const { classes, pageURL, errorState } = props;
+  const {
+    classes, pageURL, errorState, showSignUp,
+  } = props;
 
-  let emailAlreadyExistsErr ;
-  if(errorState == 1) {
+  let emailAlreadyExistsErr;
+  if (errorState === 1) {
     emailAlreadyExistsErr = 'Email already exists!';
   }
 
@@ -55,13 +57,15 @@ const SignInView = (props) => {
         <SocialButton pageURL={pageURL} provider="twitter" />
         <SocialButton pageURL={pageURL} provider="facebook" />
       </Grid>
-      <span>Don't have an account?</span>
-      <Button color="inherit" onClick={props.showSignUp}>Sign up</Button>
+      <span>Don&apos;t have an account?</span>
+      <Button color="inherit" onClick={showSignUp}>Sign up</Button>
     </Fragment>
   );
 };
 
 SignInView.propTypes = {
+  errorState: PropTypes.number.isRequired,
+  showSignUp: PropTypes.func.isRequired,
   pageURL: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
@@ -82,10 +86,6 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
   },
 });
-
-
-
-
 
 export default connect(
   mapStateToProps,
