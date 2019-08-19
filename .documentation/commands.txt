@@ -98,6 +98,11 @@ check if email exists in db
           no: throw error - this link has expired
           yes: do tokens match?
                 no: throw error - this link has expired
-                yes: check if entry contains firstname, lastname, etc.
-                      yes: only offer to set password and/or username and update db
-                      no: offer to set password and/or username AND firstname, lastname, etc. and update db
+                yes: check if entry contains firstname, lastname, username
+                        offer to add missing data (firstname, lastname, username)
+                        offer to add password
+                        offer to confirm password
+                        validate fields on client
+                        validate fields on server
+                        encrypt password using argon, delete token and update db
+                        show success page

@@ -72,10 +72,6 @@ NavBar.propTypes = {
   handleClickOpen: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  // flagEmailError: state.flagEmailError,
-});
-
 const mapDispatchToProps = dispatch => ({
   handleClickOpen: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });
@@ -86,6 +82,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(withStyles(styles)(NavBar));

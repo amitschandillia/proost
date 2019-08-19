@@ -8,8 +8,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
-
-import RegisterForm from '../components/RegisterForm';
+import CompleteRegistrationForm from '../components/CompleteRegistrationForm';
+import RegistrationError from '../components/RegistrationError';
 
 const styles = theme => ({
   root: {
@@ -24,9 +24,9 @@ const styles = theme => ({
 const pageURL = `${process.env.BASE_URL}/registration`;
 
 const Registration = (props) => {
-  const { classes, token, email, expired, retrievedData } = props;
-  const title = 'Registration | Project Proost';
-  const description = 'This is the description for the registration page';
+  const { classes, token, email, expired, retrievedData, error } = props;
+  const title = 'Complete Registration | Project Proost';
+  const description = 'This is the description for the complete registration page';
 
   return (
     <Fragment>
@@ -36,25 +36,18 @@ const Registration = (props) => {
       </Head>
       <NavBar pageURL={pageURL} />
       <Box my={4} className={classes.root}>
-        <Typography variant="h4" gutterBottom>
-          {token}
-          {expired && '   This link has expired!'}
-          <p>firstName {retrievedData.firstName}</p>
-          <p>lastName {retrievedData.lastName}</p>
-          <p>username {retrievedData.username}</p>
-        </Typography>
-        <RegisterForm pageURL={pageURL} email={email} />
+        {error && <RegistrationError />}
+        {!error && <CompleteRegistrationForm
+          email={email}
+          token={token}
+          expired={expired}
+          retrievedData={retrievedData}
+        />}
         <Typography gutterBottom>
           <LinkTo href="/">
             <a>Go home</a>
           </LinkTo>
         </Typography>
-        <Button variant="contained" color="primary">
-                Super Secret Password
-        </Button>
-        <Button variant="contained" color="secondary">
-                Super Secret Password
-        </Button>
       </Box>
     </Fragment>
   );
@@ -70,11 +63,17 @@ Registration.propTypes = {
 // Uncomment the following snippet to pass custom props to the component
 Registration.getInitialProps = ({req, query}) => {
   var retrievedData = {};
-  if(req.existingUser) {
-    const {firstName, lastName, username} = req.existingUser;
-    retrievedData = {firstName, lastName, username};
+  var initProps = {};
+  if(req) {
+    if(req.existingUser) {
+      const {firstName, lastName, username} = req.existingUser;
+      retrievedData = {firstName, lastName, username};
+    }
+    initProps = {token: query.t, email: query.i, expired: req.expired, retrievedData};
+  } else {
+    initProps = {error: true};
   }
-  return {token: query.t, email: query.i, expired: req.expired, retrievedData};
+  return initProps;
 };
 
 export default withStyles(styles)(Registration);

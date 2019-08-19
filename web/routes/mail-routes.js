@@ -12,7 +12,6 @@ const sendVerificationEmail = (res, req, to, token) => {
   sendEmail(to, token).then(() => {
     res.json({ verify: 2 });
   }).catch(() => {
-    req.verify = 1;
     res.json({ verify: 1 });
   });
 };

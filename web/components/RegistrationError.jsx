@@ -33,26 +33,17 @@ const styles = theme => ({
   },
 });
 
-const RegisterForm = (props) => {
-  const { classes, pageURL, email } = props;
+const RegistrationError = (props) => {
+  const { classes, email, error, token, expired, retrievedData } = props;
 
   return (
     <Fragment>
-      <EmailField fullWidth={false} disabled={true} value={email} helperText="" required={false} />
-      <PasswordField />
-      <Grid container className={classes.root} spacing={2}>
-        <SocialButton pageURL={pageURL} provider="google" />
-        <SocialButton pageURL={pageURL} provider="twitter" />
-        <SocialButton pageURL={pageURL} provider="facebook" />
-      </Grid>
-      <span>Don't have an account?</span>
-      <Button color="inherit" onClick={props.showSignUp}>Sign up</Button>
+      'This page has expired!'
     </Fragment>
   );
 };
 
-RegisterForm.propTypes = {
-  pageURL: PropTypes.string.isRequired,
+RegistrationError.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     dialogTitle: PropTypes.string,
@@ -65,12 +56,12 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  showSignUp: () => {
-    dispatch({ type: 'SHOWSIGNUPVIEW', payload: true });
-    dispatch({ type: 'SHOWSIGNINVIEW', payload: false });
-    dispatch({ type: 'FLAGEMAILERROR', payload: false });
-    dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
-  },
+  // showSignUp: () => {
+  //   dispatch({ type: 'SHOWSIGNUPVIEW', payload: true });
+  //   dispatch({ type: 'SHOWSIGNINVIEW', payload: false });
+  //   dispatch({ type: 'FLAGEMAILERROR', payload: false });
+  //   dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
+  // },
 });
 
 
@@ -80,4 +71,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(RegisterForm));
+)(withStyles(styles)(RegistrationError));

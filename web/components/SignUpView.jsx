@@ -35,16 +35,14 @@ const styles = theme => ({
 
 const SignUpView = (props) => {
   const {
-    classes, pageURL, flagEmailError, emailStatus, emailAlreadyExists, showSignIn,
+    classes, pageURL, flagEmailError, emailStatus, emailAlreadyExists, showSignIn, flagError,
   } = props;
 
   const submitEmail = async (e) => {
     const emailVal = e.target.to.value;
-    if (!emailValidator.validate(emailVal)) { props.flagError(); } else {
+    if (!emailValidator.validate(emailVal)) { flagError(); } else {
       const data = await signUpEmail(emailVal);
-      const { verify } = data;
-      const { signin } = data;
-      const { ewarn } = data;
+      const { verify, signin, ewarn } = data;
       if (verify) emailStatus(verify);
       if (signin) emailAlreadyExists(signin, ewarn);
     }

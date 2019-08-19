@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { connect } from 'react-redux';
-import EmailIcon from './svg-icons/EmailIcon';
+import NameIcon from './svg-icons/NameIcon';
 
 const styles = theme => ({
   root: {
@@ -16,37 +16,39 @@ const styles = theme => ({
   },
 });
 
-const EmailField = (props) => {
-  const { classes, name, error, fullWidth = true, disabled = false, value, helperText = 'Please enter a valid email address', required = true } = props;
+const LastNameField = (props) => {
+  const {
+    classes, name = 'lname', error, fullWidth = true, disabled = false, value, helperText = '', required = true,
+  } = props;
 
   return (
     <TextField
       {...{
-        id: 'emailField',
+        id: 'lastNameField',
+        placeholder: 'Doe',
         error,
         fullWidth,
         disabled,
         required,
         variant: 'outlined',
         className: classes.margin,
-        label: 'Email',
+        label: 'Last Name',
         name,
         helperText,
         ...(value && { value }),
       }}
       InputProps={{
-        startAdornment: <InputAdornment position="start"><EmailIcon /></InputAdornment>,
+        startAdornment: <InputAdornment position="start"><NameIcon /></InputAdornment>,
       }}
     />
   );
 };
 
-EmailField.propTypes = {
+LastNameField.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     margin: PropTypes.string,
   }).isRequired,
 };
 
-
-export default connect(state => state)(withStyles(styles)(EmailField));
+export default connect(state => state)(withStyles(styles)(LastNameField));
