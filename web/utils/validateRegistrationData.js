@@ -21,7 +21,7 @@ const isValidName = (name) => {
   let letters = `a-zA-Z`;
   letters += `àáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšž`;
   letters += `ÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð`;
-  const re = new RegExp(`^[${letters}][${letters} ,.'’-]+[${letters}.]$`, 'u')
+  const re = new RegExp(`^(?!.*[ ,'’]$)(?![ .,'’])[${letters} ,.'’-]+$`, 'u');
   return(name.match(re));
 };
 

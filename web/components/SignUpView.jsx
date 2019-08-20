@@ -39,9 +39,9 @@ const SignUpView = (props) => {
   } = props;
 
   const submitEmail = async (e) => {
-    const emailVal = e.target.to.value;
-    if (!emailValidator.validate(emailVal)) { flagError(); } else {
-      const data = await signUpEmail(emailVal);
+    const {target: {to: {value: to}}} = e;
+    if (!emailValidator.validate(to)) { flagError(); } else {
+      const data = await signUpEmail(to);
       const { verify, signin, ewarn } = data;
       if (verify) emailStatus(verify);
       if (signin) emailAlreadyExists(signin, ewarn);

@@ -78,6 +78,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: 'SHOWSUBMITEMAILVIEW', payload: false });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: true });
     dispatch({ type: 'OPENSIGNINDIALOG', payload: true });
+    dispatch({ type: 'FLAGEMAILERROR', payload: false });
+    dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
   },
 });
 

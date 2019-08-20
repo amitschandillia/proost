@@ -37,6 +37,7 @@ const UsernameField = (props) => {
         helperText,
         ...(value && { value }),
       }}
+      autoComplete="username"
       InputProps={{
         startAdornment: <InputAdornment position="start"><UsernameIcon /></InputAdornment>,
       }}

@@ -15,6 +15,7 @@ const reducer = (state = {
   password2Error: false,
   argonError: false,
   dbError: false,
+  registered: null,
   firstNameHelper: 'Your first name',
   lastNameHelper: 'Your last name',
   usernameHelper: 'Your username of choice',
@@ -62,6 +63,8 @@ const reducer = (state = {
       return { ...state, argonError: action.payload };
     case 'TOGGLEDBERROR':
       return { ...state, dbError: action.payload };
+    case 'UPDATEREGISTEREDUSER':
+      return { ...state, registered: action.payload };
     default:
       return state;
   }

@@ -17,13 +17,15 @@ const styles = theme => ({
 });
 
 const EmailField = (props) => {
-  const { classes, name, error, fullWidth = true, disabled = false, value, helperText = 'Please enter a valid email address', required = true } = props;
+  const { classes, name, error, placeholder = 'john@doe.com', fullWidth = true, type = 'email', disabled = false, value, helperText = 'Please enter a valid email address', required = true } = props;
 
   return (
     <TextField
       {...{
         id: 'emailField',
+        placeholder,
         error,
+        type,
         fullWidth,
         disabled,
         required,
@@ -34,6 +36,7 @@ const EmailField = (props) => {
         helperText,
         ...(value && { value }),
       }}
+      autoComplete="username email"
       InputProps={{
         startAdornment: <InputAdornment position="start"><EmailIcon /></InputAdornment>,
       }}

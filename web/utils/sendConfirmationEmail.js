@@ -3,8 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const sendEmail = (recipient, token) => {
-  const verificationURL = 'https://www.schandillia.com/registration?t=' + token + '&i=' + recipient;
+const sendConfirmationEmail = (recipient, user) => {
   const transport = nodemailer.createTransport({
     service: 'ses',
     host: process.env.SES_HOST, // Amazon email SMTP hostname
@@ -19,7 +18,7 @@ const sendEmail = (recipient, token) => {
     from: 'no-reply <no-reply@schandillia.com>', // sender address
     to: `Amit Schandillia <${recipient}>`, // list of receivers
     subject: 'Brand new email', // Subject line
-    html: `<b>This mail is haunted!</b><p><a href="${verificationURL}">${verificationURL}</a></p>`, // email body
+    html: `<b>This mail is haunted!</b><h2>Congrats!!!</h2>`, // email body
   };
   return new Promise((resolve, reject) => {
     transport.sendMail(mailOptions, (error, info) => {
@@ -29,4 +28,4 @@ const sendEmail = (recipient, token) => {
   });
 };
 
-export default sendEmail;
+export default sendConfirmationEmail;

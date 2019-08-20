@@ -1,15 +1,15 @@
 import express from 'express';
 import uuidv4 from 'uuid/v4';
 import { check, validationResult } from 'express-validator';
-import sendEmail from '../utils/sendEmail';
+import sendVerificationEmail from '../utils/sendVerificationEmail';
 import userInDB from '../utils/userInDB';
 import createUserWithToken from '../utils/createUserWithToken';
 import updateTokenInDB from '../utils/updateTokenInDB';
 
 const router = express.Router();
 
-const sendVerificationEmail = (res, req, to, token) => {
-  sendEmail(to, token).then(() => {
+const sendEmail = (res, req, to, token) => {
+  sendVerificationEmail(to, token).then(() => {
     res.json({ verify: 2 });
   }).catch(() => {
     res.json({ verify: 1 });
@@ -35,7 +35,7 @@ router.post('/', [
       const newUser = await createUserWithToken(to, token);
       // 2. Send verification email with token
       if (newUser) {
-        sendVerificationEmail(res, req, to, token);
+        sendEmail(res, req, to, token);
       } else { res.json({ verify: 1 }); }
     } else if (existingUser.token) {
       // Email exists in db
@@ -45,7 +45,7 @@ router.post('/', [
       const updatedUser = await updateTokenInDB(existingUser._id, token);
       // 2. Send verification email with token
       if (updatedUser) {
-        sendVerificationEmail(res, req, to, token);
+        sendEmail(res, req, to, token);
       } else { res.json({ verify: 1 }); }
     } else if (existingUser.password) {
       // Entry does not have a token
@@ -63,7 +63,7 @@ router.post('/', [
       const userWithToken = await updateTokenInDB(existingUser._id, token);
       // 2. Send verification email with token
       if (userWithToken) {
-        sendVerificationEmail(res, req, to, token);
+        sendEmail(res, req, to, token);
       } else { res.json({ verify: 1 }); }
     }
   }

@@ -20,7 +20,7 @@ const styles = theme => ({
 });
 
 const PasswordField = (props) => {
-  const { classes, name = 'password', error, fullWidth = true, label = 'Password', id = 'passwordField', helperText = 'Please enter your secret password' } = props;
+  const { classes, name = 'password', error, fullWidth = true, label = 'Password', id = 'passwordField', helperText = 'Please enter your secret password', placeholder = 'Secret!' } = props;
   const [values, setValues] = useState({
     password: '',
     showPassword: false,
@@ -39,6 +39,7 @@ const PasswordField = (props) => {
       id={id}
       fullWidth={fullWidth}
       required
+      placeholder={placeholder}
       variant="outlined"
       className={classes.margin}
       type={values.showPassword ? 'text' : 'password'}
@@ -48,6 +49,7 @@ const PasswordField = (props) => {
       onChange={handleChange('password')}
       error={error}
       helperText={helperText}
+      autoComplete="new-password"
       InputProps={{
         startAdornment: <InputAdornment position="start"><PasswordIcon /></InputAdornment>,
         endAdornment: (

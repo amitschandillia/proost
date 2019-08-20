@@ -1,5 +1,4 @@
 import express from 'express';
-import sendEmail from '../utils/sendEmail';
 import userInDB from '../utils/userInDB';
 import {tokenInDB, createAccount} from '../utils/createAccount';
 import uuidv4 from 'uuid/v4';
@@ -9,6 +8,7 @@ import updateTokenInDB from '../utils/updateTokenInDB';
 import {validateName, validateUsername, validatePassword} from '../utils/validateRegistrationData';
 import { check, validationResult } from 'express-validator';
 import argonConfigs from '../utils/argonConfigs';
+import sendConfirmationEmail from '../utils/sendConfirmationEmail';
 
 const router = express.Router();
 
@@ -62,7 +62,6 @@ router.post('/', async (req, res, next) => {
     // Encrypt password
     try {
       const hashedPass = await argon2.hash(pass, argonConfigs);
-      console.log('hashedPass:', hashedPass);
       // Lookup db for user who:
       // 1. matches token
       // 2. does not have password
@@ -72,8 +71,22 @@ router.post('/', async (req, res, next) => {
       if(existingUser) {
         // update password and remove token from existingUser
         const updatedUser = await createAccount(fname, lname, uname, hashedPass, existingUser);
-        console.log('updatedUser', updatedUser);
-        res.json({ validationResults });
+        if(updatedUser) {
+          // User registered. Send confirmation email
+          validationResults = { wasRegistered: true, updatedUser: updatedUser };
+          sendConfirmationEmail(email, updatedUser).then(() => {
+            // Confirmation email sent; return registered data to browser
+            res.json({ validationResults });
+          }).catch(() => {
+            // User registered but confirmation email not sent; return error to browser
+            validationResults.emailErr = true;
+            res.json({ validationResults });
+          });
+        } else {
+          // User could not be registered. Throw error: Could not register
+          validationResults = { dbErr: true };
+          res.json({ validationResults });
+        }
       } else {
         // Throw error: Could not register
         validationResults = { dbErr: true };

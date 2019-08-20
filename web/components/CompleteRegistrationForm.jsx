@@ -70,6 +70,8 @@ const CompleteRegistrationForm = (props) => {
     password2Error,
     argonError,
     dbError,
+    registered,
+    updateRegisteredUser,
     raiseFNError,
     raiseLNError,
     raiseUNError,
@@ -156,12 +158,28 @@ const CompleteRegistrationForm = (props) => {
       if(validationResults.dbErr) {
         raiseDbError(validationResults.dbErr)
       }
+      if(validationResults.wasRegistered) {
+        const {updatedUser} = validationResults;
+        updateRegisteredUser(updatedUser);
+      }
     }
   };
 
   let renderedView;
   if (expired) {
     renderedView = <h3>This link has expired! Please register again</h3>;
+  } else if (registered){
+    renderedView = (
+      <Fragment>
+        <h2>User was successfully registered. Here are the details:</h2>
+        <h3>_id: {registered._id}</h3>
+        <h3>Token: {registered.token}</h3>
+        <h3>Username: {registered.username}</h3>
+        <h3>First Name: {registered.firstName}</h3>
+        <h3>Last Name: {registered.lastName}</h3>
+        <h3>Password: {registered.password}</h3>
+      </Fragment>
+    );
   } else {
     renderedView = (
       <Fragment>
@@ -213,6 +231,7 @@ const mapStateToProps = state => ({
   password2Error: state.password2Error,
   argonError: state.argonError,
   dbError: state.dbError,
+  registered: state.registered,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -228,6 +247,7 @@ const mapDispatchToProps = dispatch => ({
   raisePass2Error: (error = true) => { dispatch({ type: 'TOGGLEPASS2ERROR', payload: error }); },
   raiseArgonError: (error = true) => { dispatch({ type: 'TOGGLEARGONERROR', payload: error }); },
   raiseDbError: (error = true) => { dispatch({ type: 'TOGGLEDBERROR', payload: error }); },
+  updateRegisteredUser: (user) => { dispatch({ type: 'UPDATEREGISTEREDUSER', payload: user }); },
 });
 
 export default connect(
