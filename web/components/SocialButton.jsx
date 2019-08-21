@@ -8,7 +8,7 @@ import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-i
 import Grid from '@material-ui/core/Grid';
 import { ThemeProvider } from '@material-ui/styles';
 import { connect } from 'react-redux';
-import { googleTheme, facebookTheme, twitterTheme } from '../themes/socialsTheme';
+import { googleTheme, facebookTheme, twitterTheme } from '../themes/socials-theme';
 
 // For icons list, refer: https://github.com/FortAwesome/Font-Awesome/tree/1975bba5c4ade236c02bf2e5f9551160ee85109d/js-packages/%40fortawesome
 library.add(faFacebookF);

@@ -10,10 +10,9 @@ import FirstNameField from './FirstNameField';
 import LastNameField from './LastNameField';
 import UsernameField from './UsernameField';
 import PasswordField from './PasswordField';
-import ArgonErrorAlert from './ArgonErrorAlert';
 import DbErrorAlert from './DbErrorAlert';
-import {validateName, validateUsername, validatePassword } from '../utils/validateRegistrationData';
-import completeLocalRegistration from '../utils/completeLocalRegistration';
+import {validateName, validateUsername, validatePassword } from '../utils/validate-registration-data.js';
+import completeLocalRegistration from '../utils/complete-local-registration';
 
 const styles = theme => ({
   root: {
@@ -68,7 +67,6 @@ const CompleteRegistrationForm = (props) => {
     usernameError,
     passwordError,
     password2Error,
-    argonError,
     dbError,
     registered,
     updateRegisteredUser,
@@ -77,7 +75,6 @@ const CompleteRegistrationForm = (props) => {
     raiseUNError,
     raisePassError,
     raisePass2Error,
-    raiseArgonError,
     raiseDbError,
   } = props;
 
@@ -152,9 +149,6 @@ const CompleteRegistrationForm = (props) => {
         changePass2Helper(validationResults.pass2.text);
         raisePass2Error(validationResults.pass2.err);
       }
-      if(validationResults.argonErr) {
-        raiseArgonError(validationResults.argonErr);
-      }
       if(validationResults.dbErr) {
         raiseDbError(validationResults.dbErr)
       }
@@ -201,7 +195,6 @@ const CompleteRegistrationForm = (props) => {
             Submit
           </Button>
         </form>
-        <ArgonErrorAlert />
         <DbErrorAlert />
       </Fragment>
     );
@@ -229,7 +222,6 @@ const mapStateToProps = state => ({
   usernameError: state.usernameError,
   passwordError: state.passwordError,
   password2Error: state.password2Error,
-  argonError: state.argonError,
   dbError: state.dbError,
   registered: state.registered,
 });
@@ -245,7 +237,6 @@ const mapDispatchToProps = dispatch => ({
   raisePassError: (error = true) => { dispatch({ type: 'TOGGLEPASSERROR', payload: error }); },
   changePass2Helper: (helper) => { dispatch({ type: 'CHANGEPASS2HELPER', payload: helper }); },
   raisePass2Error: (error = true) => { dispatch({ type: 'TOGGLEPASS2ERROR', payload: error }); },
-  raiseArgonError: (error = true) => { dispatch({ type: 'TOGGLEARGONERROR', payload: error }); },
   raiseDbError: (error = true) => { dispatch({ type: 'TOGGLEDBERROR', payload: error }); },
   updateRegisteredUser: (user) => { dispatch({ type: 'UPDATEREGISTEREDUSER', payload: user }); },
 });

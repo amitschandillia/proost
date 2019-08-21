@@ -93,6 +93,7 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: true });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: false });
     dispatch({ type: 'FLAGEMAILERROR', payload: false });
+    dispatch({ type: 'FLAGEPASSWORDERROR', payload: false });
   },
   showSignIn: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });

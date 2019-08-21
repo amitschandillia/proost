@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import emailValidator from 'email-validator';
 import SocialButton from './SocialButton';
 import EmailField from './EmailField';
-import signUpEmail from '../utils/signUpEmail';
+import signUpEmail from '../utils/sign-up-email';
 
 const styles = theme => ({
   root: {
@@ -90,6 +90,9 @@ const mapDispatchToProps = dispatch => ({
   showSignIn: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: true });
+    dispatch({ type: 'FLAGPASSWORDERROR', payload: false });
+    dispatch({ type: 'FLAGEMAILERROR', payload: false });
+    dispatch({ type: 'FLAGCREDENTIALSERROR', payload: 'none' });
   },
   flagError: () => {
     dispatch({ type: 'FLAGEMAILERROR', payload: true });

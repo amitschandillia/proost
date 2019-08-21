@@ -1,9 +1,11 @@
 import passport from 'passport';
 import google from './strategies/google';
 import twitter from './strategies/twitter';
+import local from './strategies/local';
 import User from '../models/user';
 
 passport.serializeUser((user, done) => {
+  // console.log('SERIALIZE', user);
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
@@ -14,3 +16,4 @@ passport.deserializeUser((id, done) => {
 
 passport.use(google);
 passport.use(twitter);
+passport.use(local);

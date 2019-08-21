@@ -12,6 +12,5 @@ export const createAccount = async (fname, lname, uname, pass, existingUser) => 
   if(uname) { fieldsToUpdate.username = uname }
   if(pass) { fieldsToUpdate.password = pass }
   const updatedUser = await User.findOneAndUpdate({_id: existingUser._id}, {...fieldsToUpdate, $unset: {token: 1}}, {new: true});
-  // const updatedUser = await User.findOneAndUpdate({_id: existingUser._id}, fieldsToUpdate, {new: true});
   return updatedUser;
 };

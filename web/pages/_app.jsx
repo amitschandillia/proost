@@ -10,13 +10,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
 import withData from '../apollo';
-import mainTheme from '../themes/mainTheme';
+import mainTheme from '../themes/main-theme';
 import '../static/styles/fonts.scss';
 import '../static/styles/style.scss';
 import '../static/styles/some.css';
 import makeStore from '../reducers';
-import getUserDataFromCookies from '../utils/getUserDataFromCookies';
-import getSessIDFromCookies from '../utils/getSessIDFromCookies';
+import getUserDataFromCookies from '../utils/get-user-data-from-cookies';
+import getSessIDFromCookies from '../utils/get-sessid-from-cookies';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {

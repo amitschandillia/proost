@@ -1,5 +1,6 @@
 import validator from 'validator';
 import passwordValidator from 'password-validator';
+import passwordBlacklist from '../configs/password-blacklist';
 
 const schema = new passwordValidator();
 
@@ -12,8 +13,7 @@ schema
 .has().uppercase()
 .has().lowercase()
 .has().digits()
-.is().not().oneOf(['Passw0rd', 'Password123']);
-
+.is().not().oneOf(passwordBlacklist);
 
 const capitalize = text => `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
 

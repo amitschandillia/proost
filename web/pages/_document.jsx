@@ -11,7 +11,7 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import { readFileSync } from 'fs';
 import { memoize } from 'lodash';
 import { join } from 'path';
-import mainTheme from '../themes/mainTheme';
+import mainTheme from '../themes/main-theme';
 
 const doGetContent = file => readFileSync(join(process.cwd(), '.build', file), 'utf8');
 const getContent = process.env.NODE_ENV === 'production' ? memoize(doGetContent) : doGetContent;

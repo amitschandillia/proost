@@ -12,9 +12,10 @@ const reducer = (state = {
   lastNameError: false,
   usernameError: false,
   passwordError: false,
+  passwordErrorSignIn: false,
   password2Error: false,
-  argonError: false,
   dbError: false,
+  credentialsErrorDisplay: 'none',
   registered: null,
   firstNameHelper: 'Your first name',
   lastNameHelper: 'Your last name',
@@ -35,8 +36,12 @@ const reducer = (state = {
       return { ...state, showSignUpView: action.payload };
     case 'OPENSUBMITEMAILDIALOG':
       return { ...state, openSubmitEmailDialog: action.payload };
+    case 'FLAGCREDENTIALSERROR':
+      return { ...state, credentialsErrorDisplay: action.payload };
     case 'FLAGEMAILERROR':
       return { ...state, flagEmailError: action.payload };
+    case 'FLAGPASSWORDERROR':
+      return { ...state, passwordErrorSignIn: action.payload };
     case 'WARNFOREXISTINGEMAIL':
       return { ...state, emailWarning: action.payload };
     case 'CHANGEFNHELPER':
@@ -59,8 +64,6 @@ const reducer = (state = {
       return { ...state, passwordError: action.payload };
     case 'TOGGLEPASS2ERROR':
       return { ...state, password2Error: action.payload };
-    case 'TOGGLEARGONERROR':
-      return { ...state, argonError: action.payload };
     case 'TOGGLEDBERROR':
       return { ...state, dbError: action.payload };
     case 'UPDATEREGISTEREDUSER':

@@ -2,10 +2,12 @@ import express from 'express';
 import userInDB from '../utils/user-in-db';
 import {tokenInDB, createAccount} from '../utils/create-account';
 import uuidv4 from 'uuid/v4';
+import argon2 from 'argon2';
 import createUserWithToken from '../utils/create-user-with-token';
 import updateTokenInDB from '../utils/update-token-in-db';
 import {validateName, validateUsername, validatePassword} from '../utils/validate-registration-data';
 import { check, validationResult } from 'express-validator';
+import argonConfigs from '../configs/argon-configs';
 import sendConfirmationEmail from '../utils/send-confirmation-email';
 
 const router = express.Router();
@@ -57,34 +59,42 @@ router.post('/', async (req, res, next) => {
     formErr = formErr || password2ValidationError;
   }
   if(formErr) { res.json({ validationResults }); } else {
-    // Lookup db for user who:
-    // 1. matches token
-    // 2. does not have password
-    // 3. matches email
-    // Check if token and email exist in db
-    const existingUser = await tokenInDB(token, email);
-    if(existingUser) {
-      // update password and remove token from existingUser
-      const updatedUser = await createAccount(fname, lname, uname, pass, existingUser);
-      if(updatedUser) {
-        // User registered. Send confirmation email
-        validationResults = { wasRegistered: true, updatedUser: updatedUser };
-        sendConfirmationEmail(email, updatedUser).then(() => {
-          // Confirmation email sent; return registered data to browser
+    // Encrypt password
+    try {
+      const hashedPass = await argon2.hash(pass, argonConfigs);
+      // Lookup db for user who:
+      // 1. matches token
+      // 2. does not have password
+      // 3. matches email
+      // Check if token and email exist in db
+      const existingUser = await tokenInDB(token, email);
+      if(existingUser) {
+        // update password and remove token from existingUser
+        const updatedUser = await createAccount(fname, lname, uname, hashedPass, existingUser);
+        if(updatedUser) {
+          // User registered. Send confirmation email
+          validationResults = { wasRegistered: true, updatedUser: updatedUser };
+          sendConfirmationEmail(email, updatedUser).then(() => {
+            // Confirmation email sent; return registered data to browser
+            res.json({ validationResults });
+          }).catch(() => {
+            // User registered but confirmation email not sent; return error to browser
+            validationResults.emailErr = true;
+            res.json({ validationResults });
+          });
+        } else {
+          // User could not be registered. Throw error: Could not register
+          validationResults = { dbErr: true };
           res.json({ validationResults });
-        }).catch(() => {
-          // User registered but confirmation email not sent; return error to browser
-          validationResults.emailErr = true;
-          res.json({ validationResults });
-        });
+        }
       } else {
-        // User could not be registered. Throw error: Could not register
+        // Throw error: Could not register
         validationResults = { dbErr: true };
         res.json({ validationResults });
       }
-    } else {
-      // Throw error: Could not register
-      validationResults = { dbErr: true };
+    } catch (err) {
+      // Flag Argon encryption error
+      validationResults = { argonErr: true };
       res.json({ validationResults });
     }
   }

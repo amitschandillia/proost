@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import TwitterStrategy from 'passport-twitter';
-import addOrUpdateUser from '../../utils/addOrUpdateUser';
+import addOrUpdateUser from '../../utils/add-or-update-user';
 
 dotenv.config();
 
@@ -12,9 +12,10 @@ const twitter = new TwitterStrategy({
   includeEmail: true,
 }, (token, tokenSecret, profile, done) => {
   // passport callback function
+  const name = profile._json.name.split(' ');
   const returnedUser = {
-    firstName: profile._json.name.split(' ')[0],
-    lastName: profile._json.name.split(' ')[1],
+    lastName: name.pop(),
+    firstName: name.join(' '),
     email: profile._json.email,
     twitterID: profile._json.id,
     picture: profile._json.profile_image_url_https.replace('_normal', ''),

@@ -1,5 +1,5 @@
 import User from '../models/user';
-import useProfileImg from './useProfileImg';
+import useProfileImg from './use-profile-img';
 
 const createNewUser = (user, givenEmail, providerID, hasPicture, done) => {
   let emails;

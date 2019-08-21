@@ -79,6 +79,8 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: 'SHOWSIGNINVIEW', payload: true });
     dispatch({ type: 'OPENSIGNINDIALOG', payload: true });
     dispatch({ type: 'FLAGEMAILERROR', payload: false });
+    dispatch({ type: 'FLAGCREDENTIALSERROR', payload: 'none' });
+    dispatch({ type: 'FLAGEPASSWORDERROR', payload: false });
     dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
   },
 });

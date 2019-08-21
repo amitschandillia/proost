@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import argon2 from 'argon2';
+import argonConfigs from '../configs/argon-configs';
 
 const { Schema } = mongoose;
 
@@ -14,6 +16,24 @@ const userSchema = new Schema({
   username: String,
   password: String,
 });
+
+userSchema.pre('findOneAndUpdate', async function(next) {
+  if (this._update.password) {
+    const password = this._update.password;
+    this._update.password = await argon2.hash(password, argonConfigs);
+  }
+  next();
+});
+
+userSchema.methods.verifyPassword = async function(password) {
+  let isVerified = false;
+  if(await argon2.verify(this.password, password)) {
+    // passwords match
+    isVerified = true;
+  }
+  return isVerified;
+};
+
 
 const User = mongoose.model('user', userSchema);
 

@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { connect } from 'react-redux';
 import EmailIcon from './svg-icons/EmailIcon';
+import UsernameIcon from './svg-icons/UsernameIcon';
 
 const styles = theme => ({
   root: {
@@ -17,7 +18,17 @@ const styles = theme => ({
 });
 
 const EmailField = (props) => {
-  const { classes, name, error, placeholder = 'john@doe.com', fullWidth = true, type = 'email', disabled = false, value, helperText = 'Please enter a valid email address', required = true } = props;
+  const { classes, name, error, placeholder = 'john@doe.com', fullWidth = true, type = 'email', disabled = false, value, helperText = 'Please enter a valid email address', label = 'Email', required = true } = props;
+
+  const FieldIcon = () => {
+    let element;
+    if(type === 'email') {
+      element = <EmailIcon />;
+    } else {
+      element = <UsernameIcon />;
+    }
+    return element;
+  };
 
   return (
     <TextField
@@ -31,14 +42,17 @@ const EmailField = (props) => {
         required,
         variant: 'outlined',
         className: classes.margin,
-        label: 'Email',
+        label,
         name,
         helperText,
         ...(value && { value }),
       }}
       autoComplete="username email"
       InputProps={{
-        startAdornment: <InputAdornment position="start"><EmailIcon /></InputAdornment>,
+        startAdornment:
+          <InputAdornment position="start">
+            <FieldIcon />
+          </InputAdornment>,
       }}
     />
   );

@@ -1,18 +1,5 @@
-import grey from '@material-ui/core/colors/grey';
+import IconTemplate from './IconTemplate';
 
+const d = 'M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z';
 
-// For MaterialUI icons, refer to https://www.materialui.co/icons
-
-const inputAdornmentIcon = {
-  fill: grey[600],
-};
-
-const PasswordIcon = () => {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path style={inputAdornmentIcon} d="M12.65 10C11.83 7.67 9.61 6 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/>
-    </svg>
-  );
-}
-
-export default PasswordIcon;
+export default function() { return <IconTemplate d={d} />; }

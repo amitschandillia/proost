@@ -9,7 +9,12 @@ import emailValidator from 'email-validator';
 import SocialButton from './SocialButton';
 import EmailField from './EmailField';
 import PasswordField from './PasswordField';
-import {validateUsername} from '../utils/validateRegistrationData';
+import WrongCredentialsError from './WrongCredentialsError';
+import loginUser from '../utils/login-user';
+import {
+  validateUsername,
+  validatePassword,
+} from '../utils/validate-registration-data';
 
 const styles = theme => ({
   root: {
@@ -40,7 +45,7 @@ const styles = theme => ({
 
 const SignInView = (props) => {
   const {
-    classes, pageURL, errorState, showSignUp, flagEmailError, flagUserIDError,
+    classes, pageURL, errorState, showSignUp, flagEmailError, flagUserIDError, passwordErrorSignIn, flagPasswordError, flagCredentialsError,
   } = props;
 
   let emailAlreadyExistsErr;
@@ -49,27 +54,45 @@ const SignInView = (props) => {
   }
 
   const submitLogin = async (e) => {
-    // const userid = e.target.userid.value;
-    // const password = e.target.password.value;
     let { target: { userid: { value: userid }, password: { value: password } } } = e;
     userid = userid.trim();
     password = password.trim();
-    // if (!emailValidator.validate(userid)) { flagUserIDError(); } else {}
-
     // Is userid a valid email OR username?
     const emailValidationError = !emailValidator.validate(userid);
-    const { usernameValidationText, usernameValidationError } = validateUsername(userid);
+    const { usernameValidationError } = validateUsername(userid);
+    const { passwordValidationError } = validatePassword(password);
+    let anyError = false;
+
     if (emailValidationError && usernameValidationError) {
       flagUserIDError();
+      anyError = true;
     } else {
-      // userid IS valid.
-      console.log('NO MISTAKE!');
       flagUserIDError(false);
+    }
+    if(passwordValidationError) {
+      flagPasswordError();
+      anyError = true;
+    } else {
+      flagPasswordError(false);
+    }
+    if(!anyError) {
+      // No validation error; proceed to login
+      const isLoggedIn = await loginUser(userid, password);
+      // console.log('isLoggedIn', isLoggedIn);
+      // console.log('isLoggedIn.success', isLoggedIn.success);
+      if(!isLoggedIn.success) {
+        // Failed to login
+        flagCredentialsError('block');
+      } else {
+        // Successfully logged in
+        console.log('LOGGED IN!');
+      }
     }
   };
 
   return (
     <Fragment>
+      <WrongCredentialsError />
       {emailAlreadyExistsErr && (
         <Typography color="error" variant="body1" gutterBottom>
           {emailAlreadyExistsErr}
@@ -82,8 +105,9 @@ const SignInView = (props) => {
           placeholder={`"john@doe.com" or "johndoe123"`}
           error={flagEmailError}
           helperText="Your registered email or username"
+          label="Email or username"
         />
-        <PasswordField name="password" />
+      <PasswordField name="password" error={passwordErrorSignIn} />
         <Button
           size="large"
           color="primary"
@@ -119,6 +143,7 @@ SignInView.propTypes = {
 const mapStateToProps = state => ({
   errorState: state.emailWarning,
   flagEmailError: state.flagEmailError,
+  passwordErrorSignIn: state.passwordErrorSignIn,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -126,10 +151,17 @@ const mapDispatchToProps = dispatch => ({
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: true });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: false });
     dispatch({ type: 'FLAGEMAILERROR', payload: false });
+    dispatch({ type: 'FLAGPASSWORDERROR', payload: false });
     dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
   },
   flagUserIDError: (errState = true) => {
     dispatch({ type: 'FLAGEMAILERROR', payload: errState });
+  },
+  flagPasswordError: (errState = true) => {
+    dispatch({ type: 'FLAGPASSWORDERROR', payload: errState });
+  },
+  flagCredentialsError: (errState) => {
+    dispatch({ type: 'FLAGCREDENTIALSERROR', payload: errState });
   },
 });
 

@@ -1,10 +1,10 @@
 import express from 'express';
 import uuidv4 from 'uuid/v4';
 import { check, validationResult } from 'express-validator';
-import sendVerificationEmail from '../utils/sendVerificationEmail';
-import userInDB from '../utils/userInDB';
-import createUserWithToken from '../utils/createUserWithToken';
-import updateTokenInDB from '../utils/updateTokenInDB';
+import sendVerificationEmail from '../utils/send-verification-email';
+import userInDB from '../utils/user-in-db.js';
+import createUserWithToken from '../utils/create-user-with-token.js';
+import updateTokenInDB from '../utils/update-token-in-db.js';
 
 const router = express.Router();
 
