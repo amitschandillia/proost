@@ -1,81 +1,52 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import userToken from './reducers/userToken';
+import userInfo from './reducers/userInfo';
+import sessID from './reducers/sessID';
+import openSignInDialog from './reducers/openSignInDialog';
+import showSignInView from './reducers/showSignInView';
+import showSignUpView from './reducers/showSignUpView';
+import flagEmailError from './reducers/flagEmailError';
+import emailWarning from './reducers/emailWarning';
+import firstNameError from './reducers/firstNameError';
+import lastNameError from './reducers/lastNameError';
+import usernameError from './reducers/usernameError';
+import passwordError from './reducers/passwordError';
+import passwordErrorSignIn from './reducers/passwordErrorSignIn';
+import password2Error from './reducers/password2Error';
+import dbError from './reducers/dbError';
+import credentialsErrorDisplay from './reducers/credentialsErrorDisplay';
+import registered from './reducers/registered';
+import firstNameHelper from './reducers/firstNameHelper';
+import lastNameHelper from './reducers/lastNameHelper';
+import usernameHelper from './reducers/usernameHelper';
+import passwordHelper from './reducers/passwordHelper';
+import password2Helper from './reducers/password2Helper';
 
-const reducer = (state = {
-  userToken: '',
-  userInfo: {},
-  sessID: '',
-  openSignInDialog: false,
-  showSignInView: true,
-  showSignUpView: false,
-  flagEmailError: false,
-  emailWarning: 0,
-  firstNameError: false,
-  lastNameError: false,
-  usernameError: false,
-  passwordError: false,
-  passwordErrorSignIn: false,
-  password2Error: false,
-  dbError: false,
-  credentialsErrorDisplay: 'none',
-  registered: null,
-  firstNameHelper: 'Your first name',
-  lastNameHelper: 'Your last name',
-  usernameHelper: 'Your username of choice',
-  passwordHelper: 'Enter a secret password',
-  password2Helper: 'Enter password again',
-}, action) => {
-  switch (action.type) {
-    case 'ADDUSERTOKEN':
-      return { ...state, userToken: action.payload };
-    case 'ADDUSERINFO':
-      return { ...state, userInfo: action.payload };
-    case 'ADDSESSION':
-      return { ...state, sessID: action.payload };
-    case 'OPENSIGNINDIALOG':
-      return { ...state, openSignInDialog: action.payload };
-    case 'SHOWSIGNINVIEW':
-      return { ...state, showSignInView: action.payload };
-    case 'SHOWSIGNUPVIEW':
-      return { ...state, showSignUpView: action.payload };
-    case 'OPENSUBMITEMAILDIALOG':
-      return { ...state, openSubmitEmailDialog: action.payload };
-    case 'FLAGCREDENTIALSERROR':
-      return { ...state, credentialsErrorDisplay: action.payload };
-    case 'FLAGEMAILERROR':
-      return { ...state, flagEmailError: action.payload };
-    case 'FLAGPASSWORDERROR':
-      return { ...state, passwordErrorSignIn: action.payload };
-    case 'WARNFOREXISTINGEMAIL':
-      return { ...state, emailWarning: action.payload };
-    case 'CHANGEFNHELPER':
-      return { ...state, firstNameHelper: action.payload };
-    case 'CHANGELNHELPER':
-      return { ...state, lastNameHelper: action.payload };
-    case 'CHANGEUNHELPER':
-      return { ...state, usernameHelper: action.payload };
-    case 'CHANGEPASSHELPER':
-      return { ...state, passwordHelper: action.payload };
-    case 'CHANGEPASS2HELPER':
-      return { ...state, password2Helper: action.payload };
-    case 'TOGGLEFNERROR':
-      return { ...state, firstNameError: action.payload };
-    case 'TOGGLELNERROR':
-      return { ...state, lastNameError: action.payload };
-    case 'TOGGLEUNERROR':
-      return { ...state, usernameError: action.payload };
-    case 'TOGGLEPASSERROR':
-      return { ...state, passwordError: action.payload };
-    case 'TOGGLEPASS2ERROR':
-      return { ...state, password2Error: action.payload };
-    case 'TOGGLEDBERROR':
-      return { ...state, dbError: action.payload };
-    case 'UPDATEREGISTEREDUSER':
-      return { ...state, registered: action.payload };
-    default:
-      return state;
-  }
-};
+const reducerStore = combineReducers({
+  userToken,
+  userInfo,
+  sessID,
+  openSignInDialog,
+  showSignInView,
+  showSignUpView,
+  flagEmailError,
+  emailWarning,
+  firstNameError,
+  lastNameError,
+  usernameError,
+  passwordError,
+  passwordErrorSignIn,
+  password2Error,
+  dbError,
+  credentialsErrorDisplay,
+  registered,
+  firstNameHelper,
+  lastNameHelper,
+  usernameHelper,
+  passwordHelper,
+  password2Helper,
+});
 
-const makeStore = initialState => createStore(reducer, initialState);
+const makeStore = initialState => createStore(reducerStore, initialState);
 
 export default makeStore;

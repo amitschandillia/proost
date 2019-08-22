@@ -45,7 +45,7 @@ const styles = theme => ({
 
 const SignInView = (props) => {
   const {
-    classes, pageURL, errorState, showSignUp, flagEmailError, flagUserIDError, passwordErrorSignIn, flagPasswordError, flagCredentialsError, addUser,
+    classes, pageURL, errorState, showSignUp, flagEmailError, flagUserIDError, passwordErrorSignIn, flagPasswordError, flagCredentialsError,
   } = props;
 
   let emailAlreadyExistsErr;
@@ -69,26 +69,20 @@ const SignInView = (props) => {
     } else {
       flagUserIDError(false);
     }
-    if(passwordValidationError) {
+    if (passwordValidationError) {
       flagPasswordError();
       anyError = true;
     } else {
       flagPasswordError(false);
     }
-    if(!anyError) {
+    if (!anyError) {
       // No validation error; proceed to login
-      const isLoggedIn = await loginUser(userid, password, pageURL);
-      if(!isLoggedIn) {
+      let isLoggedIn = await loginUser(userid, password, pageURL);
+      isLoggedIn = typeof isLoggedIn === 'undefined' ? true : isLoggedIn;
+      if (!isLoggedIn) {
         // Failed to login
         flagCredentialsError('block');
       }
-      // if(!isLoggedIn.success) {
-        // Failed to login
-        // flagCredentialsError('block');
-      // } else {
-        // Successfully logged in
-        // addUser(isLoggedIn.userToken, isLoggedIn.userInfo)
-      // }
     }
   };
 
@@ -104,12 +98,12 @@ const SignInView = (props) => {
         <EmailField
           type="text"
           name="userid"
-          placeholder={`"john@doe.com" or "johndoe123"`}
+          placeholder={'"john@doe.com" or "johndoe123"'}
           error={flagEmailError}
           helperText="Your registered email or username"
           label="Email or username"
         />
-      <PasswordField name="password" error={passwordErrorSignIn} />
+        <PasswordField name="password" error={passwordErrorSignIn} />
         <Button
           size="large"
           color="primary"
@@ -165,10 +159,10 @@ const mapDispatchToProps = dispatch => ({
   flagCredentialsError: (errState) => {
     dispatch({ type: 'FLAGCREDENTIALSERROR', payload: errState });
   },
-  addUser: (userToken, userInfo) => {
-    dispatch({ type: 'ADDUSERTOKEN', payload: userToken });
-    dispatch({ type: 'ADDUSERINFO', payload: userInfo });
-  },
+  // addUser: (userToken, userInfo) => {
+  //   dispatch({ type: 'ADDUSERTOKEN', payload: userToken });
+  //   dispatch({ type: 'ADDUSERINFO', payload: userInfo });
+  // },
 });
 
 export default connect(

@@ -95,9 +95,4 @@ Index.propTypes = {
   }).isRequired,
 };
 
-// Uncomment the following snippet to pass custom props to the component
-// Index.getInitialProps = async ({
-//   store, isServer, res, req,
-// }) => ({ custom: 'Amit' });
-
 export default connect(state => state)(withStyles(styles)(Index));
