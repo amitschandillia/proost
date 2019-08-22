@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const loginUser = async (username, password) => {
+const loginUser = async (username, password, pageURL) => {
   const url = '/auth/local';
   const res = await axios({
     method: 'post',
@@ -8,7 +8,13 @@ const loginUser = async (username, password) => {
     headers: { 'Content-Type': 'application/json; charset=UTF-8' },
     data: { username, password },
   });
-  return (res.data);
+  if(res.data.success) {
+    // Login successful
+    window.location = pageURL;
+  } else {
+    // Login failed
+    return false;
+  }
 };
 
 export default loginUser;

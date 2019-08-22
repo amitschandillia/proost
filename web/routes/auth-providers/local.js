@@ -12,8 +12,6 @@ const router = express.Router();
 router.post('/',
   passport.authenticate('local', { failureRedirect: '/' }),
   (req, res) => {
-    console.log('REQ.USER', req.user);
-
     const signedUserData = jwt.sign({
       userID: req.user._id,
       emails: req.user.emails,
@@ -26,7 +24,7 @@ router.post('/',
       httpOnly: true,
       secure: true,
     });
-    res.json({ success: true });
+    res.json({success: true});
   }
 );
 

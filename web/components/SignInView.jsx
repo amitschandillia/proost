@@ -45,7 +45,7 @@ const styles = theme => ({
 
 const SignInView = (props) => {
   const {
-    classes, pageURL, errorState, showSignUp, flagEmailError, flagUserIDError, passwordErrorSignIn, flagPasswordError, flagCredentialsError,
+    classes, pageURL, errorState, showSignUp, flagEmailError, flagUserIDError, passwordErrorSignIn, flagPasswordError, flagCredentialsError, addUser,
   } = props;
 
   let emailAlreadyExistsErr;
@@ -77,16 +77,18 @@ const SignInView = (props) => {
     }
     if(!anyError) {
       // No validation error; proceed to login
-      const isLoggedIn = await loginUser(userid, password);
-      // console.log('isLoggedIn', isLoggedIn);
-      // console.log('isLoggedIn.success', isLoggedIn.success);
-      if(!isLoggedIn.success) {
+      const isLoggedIn = await loginUser(userid, password, pageURL);
+      if(!isLoggedIn) {
         // Failed to login
         flagCredentialsError('block');
-      } else {
-        // Successfully logged in
-        console.log('LOGGED IN!');
       }
+      // if(!isLoggedIn.success) {
+        // Failed to login
+        // flagCredentialsError('block');
+      // } else {
+        // Successfully logged in
+        // addUser(isLoggedIn.userToken, isLoggedIn.userInfo)
+      // }
     }
   };
 
@@ -162,6 +164,10 @@ const mapDispatchToProps = dispatch => ({
   },
   flagCredentialsError: (errState) => {
     dispatch({ type: 'FLAGCREDENTIALSERROR', payload: errState });
+  },
+  addUser: (userToken, userInfo) => {
+    dispatch({ type: 'ADDUSERTOKEN', payload: userToken });
+    dispatch({ type: 'ADDUSERINFO', payload: userInfo });
   },
 });
 

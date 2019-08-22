@@ -5,7 +5,6 @@ import local from './strategies/local';
 import User from '../models/user';
 
 passport.serializeUser((user, done) => {
-  // console.log('SERIALIZE', user);
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {

@@ -10,7 +10,7 @@ const RedisStore = connectRedis(session);
 const router = express.Router();
 
 router.use(session({
-  name: '_ID.HSK',
+  name: process.env.SESSION_COOKIE,
   genid: () => uuidv4(),
   cookie: {
     httpOnly: true,
@@ -30,10 +30,6 @@ router.use('/google', google);
 router.use('/twitter', twitter);
 router.use('/local', local);
 
-// auth login
-router.get('/login', (req, res) => {
-  res.send('login...');
-});
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();

@@ -1,7 +1,8 @@
 import { createStore } from 'redux';
 
 const reducer = (state = {
-  userData: '',
+  userToken: '',
+  userInfo: {},
   sessID: '',
   openSignInDialog: false,
   showSignInView: true,
@@ -24,8 +25,10 @@ const reducer = (state = {
   password2Helper: 'Enter password again',
 }, action) => {
   switch (action.type) {
-    case 'ADDUSER':
-      return { ...state, userData: action.payload };
+    case 'ADDUSERTOKEN':
+      return { ...state, userToken: action.payload };
+    case 'ADDUSERINFO':
+      return { ...state, userInfo: action.payload };
     case 'ADDSESSION':
       return { ...state, sessID: action.payload };
     case 'OPENSIGNINDIALOG':

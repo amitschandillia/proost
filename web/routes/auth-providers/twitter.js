@@ -8,9 +8,11 @@ import passportSetup from '../../passport-setup';
 
 dotenv.config();
 
+let pageURL = '/';
+
 const router = express.Router();
 router.get('/', (req, res, next) => {
-  req.session.callback = req.query.callback;
+  pageURL = req.query.callback;
   next();
 }, passport.authenticate('twitter'));
 
@@ -28,7 +30,7 @@ router.get(
       httpOnly: true,
       secure: true,
     });
-    res.redirect(req.session.callback);
+    res.redirect(pageURL);
   },
 );
 

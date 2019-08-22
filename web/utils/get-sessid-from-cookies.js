@@ -1,6 +1,6 @@
 const getSessIDFromCookies = (req) => {
   let sessID = '';
-  const sessionHandshakeCookie = '_ID.HSK';
+  const sessionHandshakeCookie = process.env.SESSION_COOKIE;
 
   if (req) {
     if (req.cookies) {

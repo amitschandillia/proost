@@ -39,4 +39,9 @@ module.exports = withCSS(withSass(withPurgeCss({
     );
     return config;
   },
+  env: {
+    'JWT_SECRET': process.env.JWT_SECRET,
+    'USER_DATA_COOKIE': process.env.USER_DATA_COOKIE,
+    'SESSION_COOKIE': process.env.SESSION_COOKIE,
+  }
 })));

@@ -9,26 +9,31 @@ import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { Provider } from 'react-redux';
 import withRedux from 'next-redux-wrapper';
+import jwt from 'jsonwebtoken';
 import withData from '../apollo';
 import mainTheme from '../themes/main-theme';
 import '../static/styles/fonts.scss';
 import '../static/styles/style.scss';
 import '../static/styles/some.css';
 import makeStore from '../reducers';
-import getUserDataFromCookies from '../utils/get-user-data-from-cookies';
+import getUserTokenFromCookies from '../utils/get-user-token-from-cookies';
 import getSessIDFromCookies from '../utils/get-sessid-from-cookies';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
-    let userData;
+    let userToken;
     let sessID;
 
     if (ctx.isServer) {
-      userData = getUserDataFromCookies(ctx.req);
+      userToken = getUserTokenFromCookies(ctx.req);
       sessID = getSessIDFromCookies(ctx.req);
-      // look up sessID on redis store
+      if(userToken) {
+        const userInfo = jwt.verify(userToken, process.env.JWT_SECRET);
+        ctx.store.dispatch({ type: 'ADDUSERINFO', payload: userInfo });
+      }
+      // look up sessID on redis store...
       ctx.store.dispatch({ type: 'ADDSESSION', payload: sessID }); // component will be able to read from store's state when rendered
-      ctx.store.dispatch({ type: 'ADDUSER', payload: userData });
+      ctx.store.dispatch({ type: 'ADDUSERTOKEN', payload: userToken });
     }
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };
