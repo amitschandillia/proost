@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import LinkTo from './LinkTo';
 import SignInDialog from './SignInDialog';
 import SubmitEmailDialog from './SubmitEmailDialog';
+import LogoutButton from './LogoutButton';
 
 const styles = theme => ({
   root: {
@@ -32,8 +33,6 @@ const NavBar = (props) => {
     classes, pageURL, sessID, handleClickOpen,
   } = props;
 
-  const logout = `/auth/logout?callback=${pageURL}`;
-
   return (
     <Fragment>
       <AppBar position="static">
@@ -50,7 +49,7 @@ const NavBar = (props) => {
             <LinkTo href="/">SCHANDILLIA</LinkTo>
           </Typography>
           <span>{sessID}</span>
-          <Button color="inherit" href={logout}>Logout</Button>
+          <LogoutButton pageURL={pageURL} />
           <Button color="inherit" onClick={handleClickOpen}>Sign in</Button>
           <SignInDialog pageURL={pageURL} />
         </Toolbar>

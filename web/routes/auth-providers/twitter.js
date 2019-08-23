@@ -21,7 +21,6 @@ router.get(
   '/redirect',
   passport.authenticate('twitter', {failureRedirect: '/'}),
   (req, res) => {
-    console.log('TWITTER USER', req.user);
     const signedUserData = jwt.sign(userPayload(req), process.env.JWT_SECRET);
     res.cookie(process.env.USER_DATA_COOKIE, signedUserData, {
       httpOnly: true,

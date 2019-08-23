@@ -2,18 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faGoogle, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import Grid from '@material-ui/core/Grid';
 import { ThemeProvider } from '@material-ui/styles';
 import { connect } from 'react-redux';
+import SocialIcon from './SocialIcon';
 import { googleTheme, facebookTheme, twitterTheme } from '../themes/socials-theme';
-
-// For icons list, refer: https://github.com/FortAwesome/Font-Awesome/tree/1975bba5c4ade236c02bf2e5f9551160ee85109d/js-packages/%40fortawesome
-library.add(faFacebookF);
-library.add(faGoogle);
-library.add(faTwitter);
 
 const styles = theme => ({
   root: {
@@ -29,9 +22,6 @@ const styles = theme => ({
     color: 'white',
     marginBottom: theme.spacing(2),
   },
-  socialsIcon: {
-    paddingLeft: theme.spacing(2),
-  },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
@@ -40,9 +30,7 @@ const styles = theme => ({
 });
 
 const SocialButton = (props) => {
-  const { classes } = props;
-  const { pageURL } = props;
-  const { provider } = props;
+  const { classes, provider, pageURL } = props;
   let providerTheme;
   let providerIcon;
   let providerLabel;
@@ -67,14 +55,22 @@ const SocialButton = (props) => {
       break;
   }
   const callback = `/auth/${provider}?callback=${pageURL}`;
+
+  const clickHandler = () => {
+    window.location = callback;
+  };
+
   return (
     <Grid container item direction="column" justify="space-evenly" alignItems="stretch">
       <ThemeProvider theme={providerTheme}>
-        <Button variant="contained" size="large" color="primary" href={callback}>
+        <Button
+          variant="contained"
+          size="large"
+          color="primary"
+          onClick={(e) => { e.preventDefault(); clickHandler(); }}
+        >
           <Grid container>
-            <Grid item xl className={classes.socialsIcon}>
-              <FontAwesomeIcon icon={['fab', providerIcon]} />
-            </Grid>
+            <SocialIcon providerIcon={providerIcon} />
             <Grid item xs className={classes.signInText}>
               <span>{providerLabel}</span>
             </Grid>
@@ -91,7 +87,6 @@ SocialButton.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     signInText: PropTypes.string,
-    socialsIcon: PropTypes.string,
   }).isRequired,
 };
 
