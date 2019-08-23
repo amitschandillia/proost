@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import argon2 from 'argon2';
+
 dotenv.config();
 
 const argonConfigs = {

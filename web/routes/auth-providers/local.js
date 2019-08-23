@@ -18,8 +18,7 @@ router.post('/',
       httpOnly: true,
       secure: true,
     });
-    res.json({success: true});
-  }
-);
+    res.json({ success: true });
+  });
 
 module.exports = router;

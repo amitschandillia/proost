@@ -1,6 +1,6 @@
 const passwordBlacklist = [
   'Passw0rd',
-  'Password123'
-]
+  'Password123',
+];
 
 export default passwordBlacklist;

@@ -2,9 +2,9 @@ import express from 'express';
 import uuidv4 from 'uuid/v4';
 import { check, validationResult } from 'express-validator';
 import sendVerificationEmail from '../utils/send-verification-email';
-import userInDB from '../utils/user-in-db.js';
-import createUserWithToken from '../utils/create-user-with-token.js';
-import updateTokenInDB from '../utils/update-token-in-db.js';
+import userInDB from '../utils/user-in-db';
+import createUserWithToken from '../utils/create-user-with-token';
+import updateTokenInDB from '../utils/update-token-in-db';
 
 const router = express.Router();
 

@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 
 router.get(
   '/redirect',
-  passport.authenticate('google', {failureRedirect: '/'}),
+  passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
     const signedUserData = jwt.sign(userPayload(req), process.env.JWT_SECRET);
     res.cookie(process.env.USER_DATA_COOKIE, signedUserData, {

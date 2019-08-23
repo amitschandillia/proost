@@ -4,7 +4,7 @@ const updateTokenInDB = async (_id, token) => {
   const updatedUser = await User.findOneAndUpdate(
     { _id },
     { token },
-    {new: true}
+    { new: true },
   );
   return updatedUser;
 };

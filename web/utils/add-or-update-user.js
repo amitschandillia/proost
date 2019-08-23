@@ -73,7 +73,7 @@ const addOrUpdateUser = (user, provider, done) => {
             User.findOneAndUpdate(
               { _id: existingUser._id },
               { hasPicture: true },
-              {new: true},
+              { new: true },
             ).then((updatedUserWithPic) => {
               useProfileImg(givenImage, updatedUserWithPic._id);
               done(null, updatedUserWithPic);
@@ -86,7 +86,7 @@ const addOrUpdateUser = (user, provider, done) => {
           User.findOneAndUpdate(
             { _id: existingUser._id },
             { $push: { emails: givenEmail } },
-            {new: true},
+            { new: true },
           ).then((updatedUserWithEmail) => {
             done(null, updatedUserWithEmail);
           });
@@ -98,7 +98,7 @@ const addOrUpdateUser = (user, provider, done) => {
               $push: { emails: givenEmail },
               hasPicture: true,
             },
-            {new: true},
+            { new: true },
           ).then((updatedUserWithEmailAndPic) => {
             useProfileImg(givenImage, updatedUserWithEmailAndPic._id);
             done(null, updatedUserWithEmailAndPic);
@@ -115,7 +115,7 @@ const addOrUpdateUser = (user, provider, done) => {
         User.findOneAndUpdate(
           { _id: existingUser._id },
           { hasPicture: true },
-          {new: true},
+          { new: true },
         ).then((updatedUserWithPicNoEmail) => {
           useProfileImg(givenImage, updatedUserWithPicNoEmail._id);
           done(null, updatedUserWithPicNoEmail);
@@ -135,7 +135,7 @@ const addOrUpdateUser = (user, provider, done) => {
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
               { ...providerID },
-              {new: true},
+              { new: true },
             ).then((userWithMatchingEmailUpdatedID) => {
               done(null, userWithMatchingEmailUpdatedID);
             });
@@ -148,7 +148,7 @@ const addOrUpdateUser = (user, provider, done) => {
                 ...providerID,
                 hasPicture: true,
               },
-              {new: true},
+              { new: true },
             ).then((userWithMatchingEmailUpdatedIDandPic) => {
               useProfileImg(givenImage, userWithMatchingEmailUpdatedIDandPic._id);
               done(null, userWithMatchingEmailUpdatedIDandPic);
@@ -159,7 +159,7 @@ const addOrUpdateUser = (user, provider, done) => {
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
               { ...providerID },
-              {new: true},
+              { new: true },
             ).then((userWithMatchingEmailUpdatedIDnoPic) => {
               done(null, userWithMatchingEmailUpdatedIDnoPic);
             });

@@ -20,7 +20,16 @@ const styles = theme => ({
 });
 
 const PasswordField = (props) => {
-  const { classes, name = 'password', error, fullWidth = true, label = 'Password', id = 'passwordField', helperText = 'Please enter your secret password', placeholder = 'Secret!' } = props;
+  const {
+    classes,
+    name = 'password',
+    error,
+    fullWidth = true,
+    label = 'Password',
+    id = 'passwordField',
+    helperText = 'Please enter your secret password',
+    placeholder = 'Secret!',
+  } = props;
   const [values, setValues] = useState({
     password: '',
     showPassword: false,
@@ -69,6 +78,13 @@ const PasswordField = (props) => {
 };
 
 PasswordField.propTypes = {
+  name: PropTypes.string.isRequired,
+  error: PropTypes.bool.isRequired,
+  fullWidth: PropTypes.bool.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  helperText: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     margin: PropTypes.string,

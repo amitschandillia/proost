@@ -39,7 +39,7 @@ const SignUpView = (props) => {
   } = props;
 
   const submitEmail = async (e) => {
-    const {target: {to: {value: to}}} = e;
+    const { target: { to: { value: to } } } = e;
     if (!emailValidator.validate(to)) { flagError(); } else {
       const data = await signUpEmail(to);
       const { verify, signin, ewarn } = data;

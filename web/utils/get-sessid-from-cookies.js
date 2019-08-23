@@ -6,7 +6,8 @@ const getSessIDFromCookies = (req) => {
     if (req.cookies) {
       if (req.cookies[sessionHandshakeCookie]) {
         sessID = req.cookies[sessionHandshakeCookie];
-        sessID = sessID.split('.')[0].split(':')[1];
+        [sessID] = sessID.split('.');
+        [, sessID] = sessID.split(':');
       }
     }
   }

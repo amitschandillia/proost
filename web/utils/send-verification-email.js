@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const sendVerificationEmail = (recipient, token) => {
-  const verificationURL = 'https://www.schandillia.com/registration?t=' + token + '&i=' + recipient;
+  const verificationURL = `https://www.schandillia.com/registration?t=${token}&i=${recipient}`;
   const transport = nodemailer.createTransport({
     service: 'ses',
     host: process.env.SES_HOST, // Amazon email SMTP hostname

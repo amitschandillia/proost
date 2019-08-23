@@ -3,6 +3,7 @@ import userToken from './reducers/userToken';
 import userInfo from './reducers/userInfo';
 import sessID from './reducers/sessID';
 import openSignInDialog from './reducers/openSignInDialog';
+import openSubmitEmailDialog from './reducers/openSubmitEmailDialog';
 import showSignInView from './reducers/showSignInView';
 import showSignUpView from './reducers/showSignUpView';
 import flagEmailError from './reducers/flagEmailError';
@@ -27,6 +28,7 @@ const reducerStore = combineReducers({
   userInfo,
   sessID,
   openSignInDialog,
+  openSubmitEmailDialog,
   showSignInView,
   showSignUpView,
   flagEmailError,

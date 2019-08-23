@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
@@ -34,7 +33,9 @@ const styles = theme => ({
 
 const SubmitEmailDialog = (props) => {
   const {
-    classes, handleClose, openSubmitEmailDialog
+    classes,
+    handleClose,
+    openSubmitEmailDialog,
   } = props;
 
   const dialogTitle = 'Email sent?';
@@ -47,31 +48,31 @@ const SubmitEmailDialog = (props) => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>{dialogTitle}</DialogTitle>
-        <DialogContent component="div">
-          <DialogContentText>
-            {openSubmitEmailDialog == 2 ? (
-              <h1>Email sent successfully!</h1>
-            ) : (
-              <h1>Email could not be sent!</h1>
-            )}
-          </DialogContentText>
-        </DialogContent>
+      <DialogTitle id="alert-dialog-title" className={classes.dialogTitle}>
+        {dialogTitle}
+      </DialogTitle>
+      <DialogContent component="div">
+        <DialogContentText>
+          {openSubmitEmailDialog === 2 ? (
+            <h1>Email sent successfully!</h1>
+          ) : (
+            <h1>Email could not be sent!</h1>
+          )}
+        </DialogContentText>
+      </DialogContent>
     </Dialog>
   );
 };
 
 SubmitEmailDialog.propTypes = {
-  pageURL: PropTypes.string.isRequired,
   handleClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+  openSubmitEmailDialog: PropTypes.bool.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     dialogTitle: PropTypes.string,
     textField: PropTypes.string,
   }).isRequired,
 };
-
 
 const mapStateToProps = state => ({
   openSubmitEmailDialog: state.openSubmitEmailDialog,

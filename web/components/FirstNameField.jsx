@@ -18,7 +18,14 @@ const styles = theme => ({
 
 const FirstNameField = (props) => {
   const {
-    classes, name = 'fname', error, fullWidth = true, disabled = false, value, helperText = '', required = true,
+    classes,
+    name = 'fname',
+    error,
+    fullWidth = true,
+    disabled = false,
+    value,
+    helperText = '',
+    required = true,
   } = props;
 
   return (
@@ -45,6 +52,13 @@ const FirstNameField = (props) => {
 };
 
 FirstNameField.propTypes = {
+  name: PropTypes.string.isRequired,
+  error: PropTypes.bool.isRequired,
+  fullWidth: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  helperText: PropTypes.string.isRequired,
+  required: PropTypes.bool.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     margin: PropTypes.string,

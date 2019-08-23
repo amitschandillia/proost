@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import EmailField from './EmailField';
@@ -11,7 +9,11 @@ import LastNameField from './LastNameField';
 import UsernameField from './UsernameField';
 import PasswordField from './PasswordField';
 import DbErrorAlert from './DbErrorAlert';
-import {validateName, validateUsername, validatePassword } from '../utils/validate-registration-data.js';
+import {
+  validateName,
+  validateUsername,
+  validatePassword,
+} from '../utils/validate-registration-data';
 import completeLocalRegistration from '../utils/complete-local-registration';
 
 const styles = theme => ({
@@ -67,7 +69,6 @@ const CompleteRegistrationForm = (props) => {
     usernameError,
     passwordError,
     password2Error,
-    dbError,
     registered,
     updateRegisteredUser,
     raiseFNError,
@@ -92,68 +93,85 @@ const CompleteRegistrationForm = (props) => {
     let password2Err = false;
 
     // Validate first name
-    if(fname) {
-      const {nameValidationText: fnameValidationText, nameValidationError: fnameValidationError} = validateName(fname);
+    if (fname) {
+      const {
+        nameValidationText: fnameValidationText,
+        nameValidationError: fnameValidationError,
+      } = validateName(fname);
       changeFNHelper(fnameValidationText);
       raiseFNError(fnameValidationError);
       fnameErr = fnameValidationError;
     }
     // Validate last name
-    if(lname) {
-      const {nameValidationText: lnameValidationText, nameValidationError: lnameValidationError} = validateName(lname, 'last');
+    if (lname) {
+      const {
+        nameValidationText: lnameValidationText,
+        nameValidationError: lnameValidationError,
+      } = validateName(lname, 'last');
       changeLNHelper(lnameValidationText);
       raiseLNError(lnameValidationError);
       lnameErr = lnameValidationError;
     }
     // Validate username
-    if(uname) {
-      const {usernameValidationText, usernameValidationError} = validateUsername(uname);
+    if (uname) {
+      const { usernameValidationText, usernameValidationError } = validateUsername(uname);
       changeUNHelper(usernameValidationText);
       raiseUNError(usernameValidationError);
       unameErr = usernameValidationError;
     }
     // Validate password
-    if(pass) {
-      const {passwordValidationText, passwordValidationError} = validatePassword(pass);
+    if (pass) {
+      const { passwordValidationText, passwordValidationError } = validatePassword(pass);
       changePassHelper(passwordValidationText);
       raisePassError(passwordValidationError);
       passwordErr = passwordValidationError;
     }
     // Validate password2
-    if(pass2) {
-      const {passwordValidationText: password2ValidationText, passwordValidationError: password2ValidationError} = validatePassword(pass2, pass);
+    if (pass2) {
+      const {
+        passwordValidationText: password2ValidationText,
+        passwordValidationError: password2ValidationError,
+      } = validatePassword(pass2, pass);
       changePass2Helper(password2ValidationText);
       raisePass2Error(password2ValidationError);
       password2Err = password2ValidationError;
     }
     // Retrieve server-side validation results and flag fields
-    if(!(fnameErr || lnameErr || unameErr || passwordErr || password2Err)) {
-      const {validationResults} = await completeLocalRegistration(token, email, fname, lname, uname, pass, pass2);
-      if(validationResults.fname) {
+    if (!(fnameErr || lnameErr || unameErr || passwordErr || password2Err)) {
+      const { validationResults } = await completeLocalRegistration(
+        token,
+        email,
+        fname,
+        lname,
+        uname,
+        pass,
+        pass2,
+      );
+      if (validationResults.fname) {
         changeFNHelper(validationResults.fname.text);
         raiseFNError(validationResults.fname.err);
       }
-      if(validationResults.lname) {
+      if (validationResults.lname) {
         changeLNHelper(validationResults.lname.text);
         raiseLNError(validationResults.lname.err);
       }
-      if(validationResults.uname) {
+      if (validationResults.uname) {
         changeUNHelper(validationResults.uname.text);
         raiseUNError(validationResults.uname.err);
       }
-      if(validationResults.pass) {
+      if (validationResults.pass) {
         changePassHelper(validationResults.pass.text);
         raisePassError(validationResults.pass.err);
       }
-      if(validationResults.pass2) {
+      if (validationResults.pass2) {
         changePass2Helper(validationResults.pass2.text);
         raisePass2Error(validationResults.pass2.err);
       }
-      if(validationResults.dbErr) {
-        raiseDbError(validationResults.dbErr)
+      if (validationResults.dbErr) {
+        raiseDbError(validationResults.dbErr);
       }
-      if(validationResults.wasRegistered) {
-        const {updatedUser} = validationResults;
+      if (validationResults.wasRegistered) {
+        const { updatedUser } = validationResults;
         updateRegisteredUser(updatedUser);
       }
     }
@@ -162,29 +180,88 @@ const CompleteRegistrationForm = (props) => {
   let renderedView;
   if (expired) {
     renderedView = <h3>This link has expired! Please register again</h3>;
-  } else if (registered){
+  } else if (registered) {
     renderedView = (
       <Fragment>
         <h2>User was successfully registered. Here are the details:</h2>
-        <h3>_id: {registered._id}</h3>
-        <h3>Token: {registered.token}</h3>
-        <h3>Username: {registered.username}</h3>
-        <h3>First Name: {registered.firstName}</h3>
-        <h3>Last Name: {registered.lastName}</h3>
-        <h3>Password: {registered.password}</h3>
+        <h3>
+          _id:
+          {registered._id}
+        </h3>
+        <h3>
+          Token:
+          {registered.token}
+        </h3>
+        <h3>
+          Username:
+          {registered.username}
+        </h3>
+        <h3>
+          First Name:
+          {registered.firstName}
+        </h3>
+        <h3>
+          Last Name:
+          {registered.lastName}
+        </h3>
+        <h3>
+          Password:
+          {registered.password}
+        </h3>
       </Fragment>
     );
   } else {
     renderedView = (
       <Fragment>
         <form onSubmit={(e) => { e.preventDefault(); submitForm(e); }}>
-          <EmailField fullWidth={false} disabled value={email} helperText="" required={false} />
+          <EmailField
+            fullWidth={false}
+            disabled
+            value={email}
+            helperText=""
+            required={false}
+          />
           {token && <p>{token}</p>}
-          <FirstNameField fullWidth={false} error={firstNameError} disabled={!!firstName} value={firstName} helperText={!firstName && firstNameHelper} required={!firstName} />
-          <LastNameField fullWidth={false} error={lastNameError} disabled={!!lastName} value={lastName} helperText={!lastName && lastNameHelper} required={!lastName} />
-          <UsernameField fullWidth={false} error={usernameError} disabled={!!username} value={username} helperText={!username && usernameHelper} required={!username} />
-          <PasswordField fullWidth={false} error={passwordError} name="registerPassword" label="Enter a Password" id="registerPasswordField" helperText={passwordHelper} />
-          <PasswordField fullWidth={false} error={password2Error} name="confirmPassword" label="Confirm Password" id="confirmPasswordField" helperText={password2Helper} />
+          <FirstNameField
+            fullWidth={false}
+            error={firstNameError}
+            disabled={!!firstName}
+            value={firstName}
+            helperText={!firstName && firstNameHelper}
+            required={!firstName}
+          />
+          <LastNameField
+            fullWidth={false}
+            error={lastNameError}
+            disabled={!!lastName}
+            value={lastName}
+            helperText={!lastName && lastNameHelper}
+            required={!lastName}
+          />
+          <UsernameField
+            fullWidth={false}
+            error={usernameError}
+            disabled={!!username}
+            value={username}
+            helperText={!username && usernameHelper}
+            required={!username}
+          />
+          <PasswordField
+            fullWidth={false}
+            error={passwordError}
+            name="registerPassword"
+            label="Enter a Password"
+            id="registerPasswordField"
+            helperText={passwordHelper}
+          />
+          <PasswordField
+            fullWidth={false}
+            error={password2Error}
+            name="confirmPassword"
+            label="Confirm Password"
+            id="confirmPasswordField"
+            helperText={password2Helper}
+          />
           <Button
             size="large"
             color="primary"
@@ -222,7 +299,6 @@ const mapStateToProps = state => ({
   usernameError: state.usernameError,
   passwordError: state.passwordError,
   password2Error: state.password2Error,
-  dbError: state.dbError,
   registered: state.registered,
 });
 

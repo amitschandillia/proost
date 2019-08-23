@@ -38,8 +38,7 @@ const styles = theme => ({
 
 // export default function DbErrorAlert() {
 const DbErrorAlert = (props) => {
-
-  const {dbError, closeDbError} = props;
+  const { dbError, closeDbError } = props;
 
   return (
     <Dialog
@@ -48,7 +47,7 @@ const DbErrorAlert = (props) => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">{"Account Creation Error!"}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">Account Creation Error!</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           There was an error creating your account. Please try again...
@@ -61,15 +60,19 @@ const DbErrorAlert = (props) => {
       </DialogActions>
     </Dialog>
   );
-}
+};
 
+DbErrorAlert.propTypes = {
+  dbError: PropTypes.bool.isRequired,
+  closeDbError: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   dbError: state.dbError,
 });
 
 const mapDispatchToProps = dispatch => ({
-  closeDbError: (error = true) => { dispatch({ type: 'TOGGLEDBERROR', payload: false }); },
+  closeDbError: () => { dispatch({ type: 'TOGGLEDBERROR', payload: false }); },
 });
 
 export default connect(

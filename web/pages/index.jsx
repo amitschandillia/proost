@@ -93,6 +93,9 @@ Index.propTypes = {
     menuButton: PropTypes.string,
     title: PropTypes.string,
   }).isRequired,
+  userInfo: PropTypes.shape({
+    firstName: PropTypes.string,
+  }).isRequired,
 };
 
 export default connect(state => state)(withStyles(styles)(Index));

@@ -17,23 +17,22 @@ const userSchema = new Schema({
   password: String,
 });
 
-userSchema.pre('findOneAndUpdate', async function(next) {
+userSchema.pre('findOneAndUpdate', async function encrypt(next) {
   if (this._update.password) {
-    const password = this._update.password;
+    const { password } = this._update;
     this._update.password = await argon2.hash(password, argonConfigs);
   }
   next();
 });
 
-userSchema.methods.verifyPassword = async function(password) {
+userSchema.methods.verifyPassword = async function compare(password) {
   let isVerified = false;
-  if(await argon2.verify(this.password, password)) {
+  if (await argon2.verify(this.password, password)) {
     // passwords match
     isVerified = true;
   }
   return isVerified;
 };
-
 
 const User = mongoose.model('user', userSchema);
 

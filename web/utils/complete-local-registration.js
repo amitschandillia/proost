@@ -6,7 +6,9 @@ const completeLocalRegistration = async (token, email, fname, lname, uname, pass
     method: 'post',
     url,
     headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-    data: { token, email, fname, lname, uname, pass, pass2 },
+    data: {
+      token, email, fname, lname, uname, pass, pass2,
+    },
   });
   return (res.data);
 };

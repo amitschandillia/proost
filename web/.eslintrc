@@ -31,7 +31,15 @@
     "no-console": "off",
     "no-underscore-dangle": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "max-len": ["warn", { "ignoreComments": true, "code": 100 }],
+    "max-len": ["warn", {
+      "ignoreComments": true,
+      "ignoreTrailingComments": true,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true,
+      "code": 100
+    }],
     "no-multiple-empty-lines": [2, {"max": 1}],
   },
 }

@@ -18,11 +18,23 @@ const styles = theme => ({
 });
 
 const EmailField = (props) => {
-  const { classes, name, error, placeholder = 'john@doe.com', fullWidth = true, type = 'email', disabled = false, value, helperText = 'Please enter a valid email address', label = 'Email', required = true } = props;
+  const {
+    classes,
+    name,
+    error,
+    placeholder = 'john@doe.com',
+    fullWidth = true,
+    type = 'email',
+    disabled = false,
+    value,
+    helperText = 'Please enter a valid email address',
+    label = 'Email',
+    required = true,
+  } = props;
 
   const FieldIcon = () => {
     let element;
-    if(type === 'email') {
+    if (type === 'email') {
       element = <EmailIcon />;
     } else {
       element = <UsernameIcon />;
@@ -50,20 +62,29 @@ const EmailField = (props) => {
       autoComplete="username email"
       InputProps={{
         startAdornment:
-          <InputAdornment position="start">
-            <FieldIcon />
-          </InputAdornment>,
+  <InputAdornment position="start">
+    <FieldIcon />
+  </InputAdornment>,
       }}
     />
   );
 };
 
 EmailField.propTypes = {
+  error: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  fullWidth: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  disabled: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired,
+  helperText: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  required: PropTypes.bool.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     margin: PropTypes.string,
   }).isRequired,
 };
-
 
 export default connect(state => state)(withStyles(styles)(EmailField));

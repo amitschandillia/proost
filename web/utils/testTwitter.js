@@ -1,8 +1,9 @@
 /* eslint-disable no-await-in-loop */
 const Twitter = require('twitter');
 const dotenv = require('dotenv');
+
 dotenv.config();
-const {split, Syntax} = require('sentence-splitter');
+const { split } = require('sentence-splitter');
 
 const limit = 200;
 
@@ -60,29 +61,29 @@ const postTweet = async (message) => {
   });
 };
 
-const messages = (bigmessage) => {
-  let sentences = split(bigmessage);
+const messages = (msg) => {
+  const sentences = split(msg);
   for (let i = 0; i < sentences.length; i++) {
     sentences.splice(i + 1, 1);
   }
   sentences.forEach((s, i) => { sentences[i] = s.raw; });
-  let para = [];
+  const para = [];
   let fsentence = '';
-  sentences.forEach((s, i) => {
-    if((fsentence.length + s.length + 1) <= limit) {
-      fsentence = fsentence + ' ' + s;
+  sentences.forEach((s) => {
+    if ((fsentence.length + s.length + 1) <= limit) {
+      fsentence = `${fsentence} ${s}`;
     } else {
       para.push(fsentence.trim());
       fsentence = s;
     }
   });
-  para.push(fsentence.trim())
+  para.push(fsentence.trim());
   para.forEach((sentence, i) => {
-    para[i] = '[' + (i + 1) + '/' + para.length + '] ' + sentence + ' [contd...]';
+    para[i] = `[${i + 1}/${para.length}] ${sentence} [contd...]`;
   });
-  para[0] = '#Thread\n' + para[0];
-  para[para.length - 1] = para[para.length - 1].substr(0, para[para.length - 1].length-11)
-  return(para);
+  para[0] = `#Thread\n${para[0]}`;
+  para[para.length - 1] = para[para.length - 1].substr(0, para[para.length - 1].length - 11);
+  return (para);
 };
 
 postTweet(messages(bigmessage));

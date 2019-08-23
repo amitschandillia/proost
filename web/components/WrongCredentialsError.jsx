@@ -30,9 +30,7 @@ const styles = theme => ({
 });
 
 const WrongCredentialsError = (props) => {
-  const {
-    classes, credentialsErrorDisplay,
-  } = props;
+  const { credentialsErrorDisplay } = props;
 
   return (
     <Box display={credentialsErrorDisplay}>
@@ -44,9 +42,7 @@ const WrongCredentialsError = (props) => {
 };
 
 WrongCredentialsError.propTypes = {
-  pageURL: PropTypes.string.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
+  credentialsErrorDisplay: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     dialogTitle: PropTypes.string,
@@ -54,18 +50,11 @@ WrongCredentialsError.propTypes = {
   }).isRequired,
 };
 
-
 const mapStateToProps = state => ({
   credentialsErrorDisplay: state.credentialsErrorDisplay,
 });
 
-const mapDispatchToProps = dispatch => ({
-  handleClose: () => {
-    // dispatch({ type: 'OPENSUBMITEMAILDIALOG', payload: 0 });
-  },
-});
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(withStyles(styles)(WrongCredentialsError));

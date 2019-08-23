@@ -45,7 +45,15 @@ const styles = theme => ({
 
 const SignInView = (props) => {
   const {
-    classes, pageURL, errorState, showSignUp, flagEmailError, flagUserIDError, passwordErrorSignIn, flagPasswordError, flagCredentialsError,
+    classes,
+    pageURL,
+    errorState,
+    showSignUp,
+    flagEmailError,
+    flagUserIDError,
+    passwordErrorSignIn,
+    flagPasswordError,
+    flagCredentialsError,
   } = props;
 
   let emailAlreadyExistsErr;
@@ -126,6 +134,11 @@ const SignInView = (props) => {
 };
 
 SignInView.propTypes = {
+  flagEmailError: PropTypes.bool.isRequired,
+  flagUserIDError: PropTypes.func.isRequired,
+  passwordErrorSignIn: PropTypes.bool.isRequired,
+  flagPasswordError: PropTypes.func.isRequired,
+  flagCredentialsError: PropTypes.func.isRequired,
   errorState: PropTypes.number.isRequired,
   showSignUp: PropTypes.func.isRequired,
   pageURL: PropTypes.string.isRequired,
@@ -133,6 +146,7 @@ SignInView.propTypes = {
     root: PropTypes.string,
     dialogTitle: PropTypes.string,
     textField: PropTypes.string,
+    margin: PropTypes.string,
   }).isRequired,
 };
 
@@ -159,10 +173,6 @@ const mapDispatchToProps = dispatch => ({
   flagCredentialsError: (errState) => {
     dispatch({ type: 'FLAGCREDENTIALSERROR', payload: errState });
   },
-  // addUser: (userToken, userInfo) => {
-  //   dispatch({ type: 'ADDUSERTOKEN', payload: userToken });
-  //   dispatch({ type: 'ADDUSERINFO', payload: userInfo });
-  // },
 });
 
 export default connect(

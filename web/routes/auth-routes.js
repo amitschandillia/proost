@@ -34,9 +34,9 @@ router.use('/local', local);
 router.get('/logout', (req, res) => {
   req.logout();
   req.session.destroy(() => {
-    for (var cookie in req.cookies) {
-      res.clearCookie(cookie)
-    }
+    Object.keys(req.cookies).forEach((cookie) => {
+      res.clearCookie(cookie);
+    });
     res.redirect(req.query.callback);
   });
 });
