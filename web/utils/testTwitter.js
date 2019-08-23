@@ -1,4 +1,6 @@
 /* eslint-disable no-await-in-loop */
+/* eslint-disable no-console */
+
 const Twitter = require('twitter');
 const dotenv = require('dotenv');
 

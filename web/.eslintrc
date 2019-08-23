@@ -28,7 +28,6 @@
     "jsx-a11y/anchor-is-valid": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-indent": ["error", 2, {checkAttributes: true}],
-    "no-console": "off",
     "no-underscore-dangle": "off",
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     "max-len": ["warn", {
