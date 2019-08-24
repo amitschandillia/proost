@@ -1,6 +1,7 @@
 import passport from 'passport';
 import google from './strategies/google';
 import twitter from './strategies/twitter';
+import facebook from './strategies/facebook';
 import local from './strategies/local';
 import User from '../models/user';
 
@@ -15,4 +16,5 @@ passport.deserializeUser((id, done) => {
 
 passport.use(google);
 passport.use(twitter);
+passport.use(facebook);
 passport.use(local);

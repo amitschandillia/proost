@@ -4,6 +4,7 @@ import connectRedis from 'connect-redis';
 import uuidv4 from 'uuid/v4';
 import google from './auth-providers/google';
 import twitter from './auth-providers/twitter';
+import facebook from './auth-providers/facebook';
 import local from './auth-providers/local';
 
 const RedisStore = connectRedis(session);
@@ -28,6 +29,7 @@ router.use(session({
 // Social auth routes
 router.use('/google', google);
 router.use('/twitter', twitter);
+router.use('/facebook', facebook);
 router.use('/local', local);
 
 // Logout

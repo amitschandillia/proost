@@ -9,6 +9,7 @@ const userSchema = new Schema({
   lastName: String,
   googleID: String,
   twitterID: String,
+  facebookID: String,
   emails: [String],
   hasPicture: Boolean,
   signupToken: String,
