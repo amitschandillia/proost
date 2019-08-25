@@ -38,7 +38,7 @@ const Blog = (props) => {
         </Typography>
         <Typography gutterBottom>
           <LinkTo href="/">
-            <a>Go home</a>
+            Go home
           </LinkTo>
         </Typography>
         <PostsList />

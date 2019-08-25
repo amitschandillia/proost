@@ -38,7 +38,7 @@ const About = (props) => {
         </Typography>
         <Typography gutterBottom>
           <LinkTo href="/">
-            <a>Go home</a>
+            Go home
           </LinkTo>
         </Typography>
         <Button variant="contained" color="primary">

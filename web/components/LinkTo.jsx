@@ -7,9 +7,7 @@ const LinkTo = (props) => {
   const { href, color, children } = props;
   return (
     <Link href={href} passHref>
-      <MuiLink
-        color={color}
-      >
+      <MuiLink color={color}>
         {children}
       </MuiLink>
     </Link>
