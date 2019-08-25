@@ -18,6 +18,7 @@ import '../static/styles/some.css';
 import makeStore from '../reducers';
 import getUserTokenFromCookies from '../utils/get-user-token-from-cookies';
 import getSessIDFromCookies from '../utils/get-sessid-from-cookies';
+import removeFbHash from '../utils/remove-fb-hash';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -60,6 +61,9 @@ class MyApp extends App {
     }
     // Register serviceWorker
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/serviceWorker.js'); }
+
+    // Handle FB's ugly redirect URL hash
+    removeFbHash(window, document)
   }
 
   render() {

@@ -12,7 +12,6 @@ const facebook = new FacebookStrategy({
   profileFields: ['id', 'emails', 'name'],
 }, (accessToken, refreshToken, profile, done) => {
   // passport callback function
-  console.log('FACEBOOK DATA', profile);
   const returnedUser = {
     firstName: profile.name.givenName,
     lastName: profile.name.familyName,
