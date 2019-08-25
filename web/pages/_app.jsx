@@ -47,7 +47,7 @@ class MyApp extends App {
       }
       // look up sessID on redis store...
       ctx.store.dispatch({ type: 'ADDSESSION', payload: sessID }); // component will be able to read from store's state when rendered
-      ctx.store.dispatch({ type: 'ADDUSERTOKEN', payload: userToken });
+      // ctx.store.dispatch({ type: 'ADDUSERTOKEN', payload: userToken });
     }
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };

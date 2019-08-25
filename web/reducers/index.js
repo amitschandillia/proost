@@ -1,5 +1,4 @@
 import { createStore, combineReducers } from 'redux';
-import userToken from './reducers/userToken';
 import userInfo from './reducers/userInfo';
 import sessID from './reducers/sessID';
 import openSignInDialog from './reducers/openSignInDialog';
@@ -24,7 +23,6 @@ import passwordHelper from './reducers/passwordHelper';
 import password2Helper from './reducers/password2Helper';
 
 const reducerStore = combineReducers({
-  userToken,
   userInfo,
   sessID,
   openSignInDialog,

@@ -30,7 +30,7 @@ const pageURL = `${process.env.BASE_URL}`;
 
 const Index = (props) => {
   const {
-    classes, userToken, userInfo, sessID, custom,
+    classes, userInfo, sessID, custom,
   } = props;
   const title = 'Home | Project Proost';
   const description = 'This is the description for the homepage';
@@ -43,19 +43,12 @@ const Index = (props) => {
       <NavBar pageURL={pageURL} />
       <Box my={4} className={classes.root}>
         <div>
-          userToken from Redux:
-          {userToken}
-        </div>
-        <div>
           First name from Redux:
           {userInfo.firstName}
         </div>
         <div>
           sessID from Redux:
           {sessID}
-        </div>
-        <div>
-          Prop from getInitialProps
         </div>
         <Typography variant="h4" component="h1" gutterBottom>
             Material-UI
