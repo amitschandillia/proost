@@ -12,6 +12,7 @@ const userSchema = new Schema({
   facebookID: String,
   emails: [String],
   hasPicture: Boolean,
+  versionID: String,
   signupToken: String,
   token: String,
   username: String,

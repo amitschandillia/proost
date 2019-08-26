@@ -9,7 +9,7 @@ const s3 = new AWS.S3({
   secretAccessKey: process.env.IAM_SECRET_ACCESS_KEY,
 });
 
-const useProfileImg = (imageURL, userID) => {
+const useProfileImg = (imageURL, userID, versionID) => {
   const options = {
     uri: imageURL,
     encoding: null,
@@ -20,7 +20,7 @@ const useProfileImg = (imageURL, userID) => {
     const uploadResult = await s3.upload({
       ACL: 'public-read',
       Bucket: `${process.env.S3_BUCKET_NAME}/w`,
-      Key: `${userID}.jpg`,
+      Key: `${userID}.${versionID}.jpg`,
       Body: response.body,
       ContentType: response.headers['content-type'],
     }).promise();

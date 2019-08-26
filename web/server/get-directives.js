@@ -1,3 +1,7 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 const getDirectives = () => {
   const self = '\'self\'';
   const unsafeInline = '\'unsafe-inline\'';
@@ -7,13 +11,15 @@ const getDirectives = () => {
   const images = [
     '*.google-analytics.com',
     'data:',
+    `i.${process.env.THIS_DOMAIN}.com`,
   ];
   const styles = [
     // `https://fonts.googleapis.com/`,
     // `https://platform.twitter.com/`
   ];
   const connect = [
-    'https://dev.schandillia.com',
+    `dev.${process.env.THIS_DOMAIN}.com`,
+    `i.${process.env.THIS_DOMAIN}.com`,
   ];
   const frames = [
     'https://www.youtube.com/',

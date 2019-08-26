@@ -15,7 +15,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   pageURL = req.query.callback;
   next();
-}, passport.authenticate('facebook', { scope: ['email']}));
+}, passport.authenticate('facebook', { scope: ['email'] }));
 
 router.get(
   '/redirect',

@@ -30,19 +30,6 @@ class MyApp extends App {
       sessID = getSessIDFromCookies(ctx.req);
       if (userToken) {
         const userInfo = jwt.verify(userToken, process.env.JWT_SECRET);
-        if (userInfo) {
-          if (!userInfo.firstName || userInfo.firstName.length < 1) {
-            if (!userInfo.lastName || userInfo.lastName.length < 1) {
-              if (!userInfo.username || userInfo.username.length < 1) {
-                userInfo.firstName = 'Guest';
-              } else {
-                userInfo.firstName = userInfo.username;
-              }
-            } else {
-              userInfo.firstName = userInfo.lastName;
-            }
-          }
-        }
         ctx.store.dispatch({ type: 'ADDUSERINFO', payload: userInfo });
       }
       // look up sessID on redis store...

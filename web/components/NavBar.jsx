@@ -12,6 +12,7 @@ import LinkTo from './LinkTo';
 import SignInDialog from './SignInDialog';
 import SubmitEmailDialog from './SubmitEmailDialog';
 import LogoutButton from './LogoutButton';
+import ProfileMenu from './ProfileMenu';
 
 const styles = theme => ({
   root: {
@@ -51,6 +52,7 @@ const NavBar = (props) => {
           <span>{sessID}</span>
           <LogoutButton pageURL={pageURL} />
           <Button color="inherit" onClick={handleClickOpen}>Sign in</Button>
+          <ProfileMenu pageURL={pageURL} />
           <SignInDialog pageURL={pageURL} />
         </Toolbar>
       </AppBar>

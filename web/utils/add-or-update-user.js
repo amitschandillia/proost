@@ -1,7 +1,16 @@
+import uuidv4 from 'uuid/v4';
 import User from '../models/user';
 import useProfileImg from './use-profile-img';
 
-const createNewUser = (user, givenEmail, providerID, hasPicture, done) => {
+const fieldExists = (field) => {
+  let itExists = true;
+  if (!field || typeof field === 'undefined' || field.length < 1) {
+    itExists = false;
+  }
+  return itExists;
+};
+
+const createNewUser = (user, givenEmail, providerID, hasPicture, versionID, done) => {
   let emails;
   if (givenEmail) { emails = [givenEmail]; }
   new User({
@@ -10,9 +19,10 @@ const createNewUser = (user, givenEmail, providerID, hasPicture, done) => {
     ...providerID,
     emails,
     hasPicture,
+    versionID,
   }).save().then((newUser) => {
     if (hasPicture) {
-      useProfileImg(user.picture, newUser._id);
+      useProfileImg(user.picture, newUser._id, versionID);
     }
     done(null, newUser);
   });
@@ -37,6 +47,9 @@ const getAuthProvider = (provider, user) => {
 };
 
 const addOrUpdateUser = (user, provider, done) => {
+  let fn = {};
+  let ln = {};
+  let versionID;
   // Define provider
   const providerID = getAuthProvider(provider, user);
   // Retrieve email address if provided
@@ -61,6 +74,13 @@ const addOrUpdateUser = (user, provider, done) => {
   User.findOne({ ...providerID }).then((existingUser) => {
     // Does the given provider ID exist in db?
     if (existingUser) {
+      // Validate name fields
+      if (!fieldExists(existingUser.firstName)) {
+        fn = { firstName: user.firstName };
+      }
+      if (!fieldExists(existingUser.lastName)) {
+        ln = { lastName: user.lastName };
+      }
       // Yes, the given provider ID found; does the given email exist in db?
       if (givenEmail) { // Was a valid email even provided?
         if (existingUser.emails.includes(givenEmail)) {
@@ -70,12 +90,15 @@ const addOrUpdateUser = (user, provider, done) => {
             done(null, existingUser);
           } else if (givenImage) {
             // Existing user doesn't have picture but valid picture provided
+            versionID = uuidv4();
             User.findOneAndUpdate(
               { _id: existingUser._id },
-              { hasPicture: true },
+              {
+                hasPicture: true, versionID, ...fn, ...ln,
+              },
               { new: true },
             ).then((updatedUserWithPic) => {
-              useProfileImg(givenImage, updatedUserWithPic._id);
+              useProfileImg(givenImage, updatedUserWithPic._id, versionID);
               done(null, updatedUserWithPic);
             });
           }
@@ -85,22 +108,26 @@ const addOrUpdateUser = (user, provider, done) => {
           // But existing user has a picture; just add email and return
           User.findOneAndUpdate(
             { _id: existingUser._id },
-            { $push: { emails: givenEmail } },
+            { $push: { emails: givenEmail }, ...fn, ...ln },
             { new: true },
           ).then((updatedUserWithEmail) => {
             done(null, updatedUserWithEmail);
           });
         } else {
           // No existing user doesn't have a picture either; update both picture and email
+          versionID = uuidv4();
           User.findOneAndUpdate(
             { _id: existingUser._id },
             {
               $push: { emails: givenEmail },
               hasPicture: true,
+              versionID,
+              ...fn,
+              ...ln,
             },
             { new: true },
           ).then((updatedUserWithEmailAndPic) => {
-            useProfileImg(givenImage, updatedUserWithEmailAndPic._id);
+            useProfileImg(givenImage, updatedUserWithEmailAndPic._id, versionID);
             done(null, updatedUserWithEmailAndPic);
           });
         }
@@ -112,12 +139,18 @@ const addOrUpdateUser = (user, provider, done) => {
       } else if (givenImage) {
         // No, existing user does not have picture but an image has been provided
         // pdate picture and return
+        versionID = uuidv4();
         User.findOneAndUpdate(
           { _id: existingUser._id },
-          { hasPicture: true },
+          {
+            hasPicture: true,
+            versionID,
+            ...fn,
+            ...ln,
+          },
           { new: true },
         ).then((updatedUserWithPicNoEmail) => {
-          useProfileImg(givenImage, updatedUserWithPicNoEmail._id);
+          useProfileImg(givenImage, updatedUserWithPicNoEmail._id, versionID);
           done(null, updatedUserWithPicNoEmail);
         });
       } else {
@@ -129,12 +162,19 @@ const addOrUpdateUser = (user, provider, done) => {
       // Was an email even provided? Yes
       User.findOne({ emails: givenEmail }).then((userWithMatchingEmail) => {
         if (userWithMatchingEmail) {
+          // Validate name fields
+          if (!fieldExists(userWithMatchingEmail.firstName)) {
+            fn = { firstName: user.firstName };
+          }
+          if (!fieldExists(userWithMatchingEmail.lastName)) {
+            ln = { lastName: user.lastName };
+          }
           // given email exists in db; check if user has picture
           if (userWithMatchingEmail.hasPicture) {
             // userwithmatching email also has picture; just add providerID and return
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
-              { ...providerID },
+              { ...providerID, ...fn, ...ln },
               { new: true },
             ).then((userWithMatchingEmailUpdatedID) => {
               done(null, userWithMatchingEmailUpdatedID);
@@ -142,15 +182,19 @@ const addOrUpdateUser = (user, provider, done) => {
           } else if (givenImage) {
             // User in db does not have picture
             // Add picture AND providerID and return
+            versionID = uuidv4();
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
               {
                 ...providerID,
+                ...fn,
+                ...ln,
                 hasPicture: true,
+                versionID,
               },
               { new: true },
             ).then((userWithMatchingEmailUpdatedIDandPic) => {
-              useProfileImg(givenImage, userWithMatchingEmailUpdatedIDandPic._id);
+              useProfileImg(givenImage, userWithMatchingEmailUpdatedIDandPic._id, versionID);
               done(null, userWithMatchingEmailUpdatedIDandPic);
             });
           } else {
@@ -158,7 +202,7 @@ const addOrUpdateUser = (user, provider, done) => {
             // Just add providerID and return
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
-              { ...providerID },
+              { ...providerID, ...fn, ...ln },
               { new: true },
             ).then((userWithMatchingEmailUpdatedIDnoPic) => {
               done(null, userWithMatchingEmailUpdatedIDnoPic);
@@ -166,12 +210,14 @@ const addOrUpdateUser = (user, provider, done) => {
           }
         } else {
           // Neither providerID, nor email exists in db; create new user
-          createNewUser(user, givenEmail, providerID, hasPicture, done);
+          versionID = uuidv4();
+          createNewUser(user, givenEmail, providerID, hasPicture, versionID, done);
         }
       });
     } else {
       // No, provider ID does not exist in db and no email was provided; create new user
-      createNewUser(user, givenEmail, providerID, hasPicture, done);
+      versionID = uuidv4();
+      createNewUser(user, givenEmail, providerID, hasPicture, versionID, done);
     }
   });
 };

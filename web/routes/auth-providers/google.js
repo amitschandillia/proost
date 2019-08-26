@@ -21,7 +21,6 @@ router.get(
   '/redirect',
   passport.authenticate('google', { failureRedirect: '/' }),
   (req, res) => {
-
     res.cookie(process.env.USER_DATA_COOKIE, signedUserData(req), {
       httpOnly: true,
       secure: true,

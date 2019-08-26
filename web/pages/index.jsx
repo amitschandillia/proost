@@ -43,8 +43,8 @@ const Index = (props) => {
       <NavBar pageURL={pageURL} />
       <Box my={4} className={classes.root}>
         <div>
-          First name from Redux:
-          {userInfo.firstName}
+          nameToAddress from Redux:
+          {userInfo.nameToAddress}
         </div>
         <div>
           sessID from Redux:
@@ -63,10 +63,10 @@ const Index = (props) => {
             View posts page
           </LinkTo>
         </Typography>
-        <Button variant="contained" color="primary">
+        <Button size="large" variant="contained" color="primary">
             Super Secret Password
         </Button>
-        <Button variant="contained" color="secondary">
+        <Button size="large" variant="contained" color="secondary">
             Super Secret Password
         </Button>
         <p className={classes.paragraph}>All men must die</p>
@@ -88,6 +88,7 @@ Index.propTypes = {
   }).isRequired,
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
+    nameToAddress: PropTypes.string,
   }).isRequired,
 };
 
