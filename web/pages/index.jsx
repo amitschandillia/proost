@@ -10,6 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
+import Banner from '../components/Banner';
 
 const styles = theme => ({
   root: {
@@ -40,7 +41,10 @@ const Index = (props) => {
         <title>{ title }</title>
         <meta name="description" content={description} key="description" />
       </Head>
-      <NavBar pageURL={pageURL} />
+      <NavBar pageURL={pageURL} transparent={true} />
+      <Banner>
+        <Typography variant='h5'>This is a text</Typography>
+      </Banner>
       <Box my={4} className={classes.root}>
         <div>
           nameToAddress from Redux:
@@ -78,7 +82,6 @@ const Index = (props) => {
 
 Index.propTypes = {
   sessID: PropTypes.string.isRequired,
-  userToken: PropTypes.string.isRequired,
   custom: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,

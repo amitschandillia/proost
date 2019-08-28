@@ -12,6 +12,7 @@ const getDirectives = () => {
     '*.google-analytics.com',
     'data:',
     `i.${process.env.THIS_DOMAIN}.com`,
+    'media.geeksforgeeks.org' // to be removed
   ];
   const styles = [
     // `https://fonts.googleapis.com/`,
@@ -20,6 +21,7 @@ const getDirectives = () => {
   const connect = [
     `dev.${process.env.THIS_DOMAIN}.com`,
     `i.${process.env.THIS_DOMAIN}.com`,
+    'media.geeksforgeeks.org', // to be removed
   ];
   const frames = [
     'https://www.youtube.com/',

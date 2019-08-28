@@ -10,6 +10,9 @@ import { connect } from 'react-redux';
 import SignInView from './SignInView';
 import SignUpView from './SignUpView';
 import avatarTheme from '../themes/avatar-theme';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+
+import ProfileDropDown from './ProfileDropDown';
 
 const styles = theme => ({
   root: {
@@ -35,29 +38,44 @@ const styles = theme => ({
   },
   avatar: {
     margin: 10,
+    marginRight: 0,
+    cursor: 'pointer',
   },
   anonymousAvatar: {
     margin: 10,
+    marginRight: 0,
     backgroundColor: avatarTheme.palette.primary.main,
+    cursor: 'pointer',
   },
 });
 
 const ProfileMenu = (props) => {
   const {
-    classes, pageURL, handleClose, open, showSignInView, showSignUpView, userInfo,
+    classes, pageURL, handleClose, open, showSignInView, showSignUpView, userInfo, profileMenu, openProfileMenu
   } = props;
 
-  const imgURL = `https://i.${process.env.THIS_DOMAIN}.com/w/${userInfo.userID}.${userInfo.versionID}.jpg`;
+  const imgURL = `https://i.${process.env.THIS_DOMAIN}.com/w/${userInfo.userID}.${userInfo.pictureVersion}.jpg`;
   let fullName = `${userInfo.firstName} ${userInfo.lastName}`;
   if(fullName && typeof fullName !== undefined) { fullName = fullName.trim(); }
 
   let ProfileCircle;
   if(userInfo.hasPicture) {
-    ProfileCircle = <Avatar alt={fullName} src={imgURL} className={classes.avatar} />;
+    ProfileCircle = (
+      <Fragment>
+        <Avatar onClick={openProfileMenu} alt={fullName} src={imgURL} className={classes.avatar} />
+        <KeyboardArrowDownIcon onClick={openProfileMenu} />
+        <ProfileDropDown pageURL={pageURL} />
+      </Fragment>
+    );
   } else {
-    ProfileCircle = <Avatar className={classes.anonymousAvatar}>{userInfo.initials}</Avatar>;
+    ProfileCircle = (
+      <Fragment>
+        <Avatar onClick={openProfileMenu} className={classes.anonymousAvatar}>{userInfo.initials}</Avatar>
+        <KeyboardArrowDownIcon onClick={openProfileMenu} />
+        <ProfileDropDown pageURL={pageURL} />
+      </Fragment>
+    );
   }
-
   return ProfileCircle;
 };
 
@@ -82,6 +100,7 @@ const mapStateToProps = state => ({
   showSignInView: state.showSignInView,
   showSignUpView: state.showSignUpView,
   userInfo: state.userInfo,
+  profileMenu: state.profileMenu,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -98,6 +117,10 @@ const mapDispatchToProps = dispatch => ({
   handleClose: () => {
     dispatch({ type: 'OPENSIGNINDIALOG', payload: false });
     dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
+  },
+  openProfileMenu: (e) => {
+    dispatch({ type: 'OPENPROFILEMENU', payload: Boolean(e.currentTarget) });
+    dispatch({ type: 'CHANGEPROFILEMENUANCHOREL', payload: e.currentTarget });
   },
 });
 

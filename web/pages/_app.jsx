@@ -50,7 +50,7 @@ class MyApp extends App {
     if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/serviceWorker.js'); }
 
     // Handle FB's ugly redirect URL hash
-    removeFbHash(window, document)
+    removeFbHash(window, document);
   }
 
   render() {

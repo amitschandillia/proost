@@ -43,5 +43,6 @@ module.exports = withCSS(withSass(withPurgeCss({
     JWT_SECRET: process.env.JWT_SECRET,
     USER_DATA_COOKIE: process.env.USER_DATA_COOKIE,
     SESSION_COOKIE: process.env.SESSION_COOKIE,
+    THIS_DOMAIN_LONG: process.env.THIS_DOMAIN_LONG,
   },
 })));

@@ -21,6 +21,8 @@ import lastNameHelper from './reducers/lastNameHelper';
 import usernameHelper from './reducers/usernameHelper';
 import passwordHelper from './reducers/passwordHelper';
 import password2Helper from './reducers/password2Helper';
+import profileMenu from './reducers/profileMenu';
+import profileMenuAnchorEl from './reducers/profileMenuAnchorEl';
 
 const reducerStore = combineReducers({
   userInfo,
@@ -45,6 +47,8 @@ const reducerStore = combineReducers({
   usernameHelper,
   passwordHelper,
   password2Helper,
+  profileMenu,
+  profileMenuAnchorEl,
 });
 
 const makeStore = initialState => createStore(reducerStore, initialState);

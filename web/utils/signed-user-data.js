@@ -15,7 +15,7 @@ const signedUserData = (req) => {
     facebookID: req.user.facebookID,
     username: req.user.username,
     hasPicture: req.user.hasPicture,
-    versionID: req.user.versionID,
+    pictureVersion: req.user.pictureVersion,
     firstName: req.user.firstName,
     lastName: req.user.lastName,
     emails: req.user.emails,

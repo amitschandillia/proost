@@ -1,20 +1,18 @@
-import React, { Fragment } from 'react';
+import React, { useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import LinkTo from './LinkTo';
 import SignInDialog from './SignInDialog';
 import SubmitEmailDialog from './SubmitEmailDialog';
-import LogoutButton from './LogoutButton';
 import ProfileMenu from './ProfileMenu';
+import SearchField from './SearchField';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -27,53 +25,98 @@ const styles = theme => ({
   paragraph: {
     fontFamily: 'Source Sans Pro',
   },
+  transparentAppBar: {
+    lineHeight: '7rem',
+    boxShadow: 'none',
+    background: 'transparent',
+  },
+  overlay: {
+    content: '\'\'',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    left: 0,
+    bottom: 0,
+    background: theme.palette.primary.main,
+    opacity: 0,
+    zIndex: -1,
+  },
 });
 
-const NavBar = (props) => {
+const NavBar2 = (props) => {
   const {
-    classes, pageURL, sessID, handleClickOpen,
+    classes, pageURL, userInfo, handleClickOpen, transparent = false,
   } = props;
+  const loggedIn = Object.entries(userInfo).length === 0;
+
+  let transparentStyle = (transparent ? classes.transparentAppBar : null);
+
+  const scrollFunction = () => {
+    const nav = document.getElementById('nav');
+    const overlay = document.getElementById('nav-overlay');
+    const travel = document.documentElement.scrollTop;
+    const travelRem = travel / 16;
+    const navHeight = 7 - (travelRem / 6);
+    if (navHeight <= 4) {
+      nav.style.lineHeight = `${4}rem`;
+      overlay.style.opacity = 1;
+    } else if (navHeight >= 7) {
+      nav.style.lineHeight = `${7}rem`;
+      overlay.style.opacity = 0;
+    } else {
+      nav.style.lineHeight = `${navHeight}rem`;
+      overlay.style.opacity = (7 - navHeight) / 3;
+    }
+  };
+
+  useLayoutEffect(() => {
+    if(transparent) { window.addEventListener('scroll', scrollFunction); }
+
+    // returned function will be called on component unmount
+    return () => {
+      window.removeEventListener('scroll', scrollFunction);
+    }
+  }, []);
 
   return (
-    <Fragment>
-      <AppBar position="static">
+    <>
+      <AppBar id="nav" className={transparentStyle} position="fixed">
+        {transparent && <span id="nav-overlay" className={classes.overlay} />}
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="Menu"
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" className={classes.title}>
             <LinkTo href="/">SCHANDILLIA</LinkTo>
           </Typography>
-          <span>{sessID}</span>
-          <LogoutButton pageURL={pageURL} />
-          <Button color="inherit" onClick={handleClickOpen}>Sign in</Button>
-          <ProfileMenu pageURL={pageURL} />
+          <SearchField />
+          {loggedIn && <Button color="inherit" onClick={handleClickOpen}>Sign in</Button>}
+          {!loggedIn && <ProfileMenu pageURL={pageURL} />}
           <SignInDialog pageURL={pageURL} />
         </Toolbar>
       </AppBar>
       <SubmitEmailDialog />
-    </Fragment>
+    </>
   );
 };
 
-NavBar.propTypes = {
-  sessID: PropTypes.string.isRequired,
+NavBar2.propTypes = {
+  userInfo: PropTypes.shape({
+    firstName: PropTypes.string,
+    nameToAddress: PropTypes.string,
+  }).isRequired,
   pageURL: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
-    paragraph: PropTypes.string,
-    menuButton: PropTypes.string,
+    transparentAppBar: PropTypes.string,
+    overlay: PropTypes.string,
     title: PropTypes.string,
   }).isRequired,
   handleClickOpen: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
+const mapStateToProps = (state) => ({
+  userInfo: state.userInfo,
+});
+
+const mapDispatchToProps = (dispatch) => ({
   handleClickOpen: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });
     dispatch({ type: 'SHOWSUBMITEMAILVIEW', payload: false });
@@ -87,6 +130,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(NavBar));
+)(withStyles(styles)(NavBar2));

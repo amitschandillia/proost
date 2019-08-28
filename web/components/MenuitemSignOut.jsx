@@ -2,7 +2,10 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const styles = theme => ({
   root: {
@@ -19,28 +22,26 @@ const styles = theme => ({
   },
 });
 
-const LogoutButton = (props) => {
+const MenuitemSignOut = (props) => {
   const { pageURL } = props;
-
   const logoutRoute = `/auth/logout?callback=${pageURL}`;
-
   const clickHandler = () => {
     window.location = logoutRoute;
   };
 
   return (
     <Fragment>
-      <Button
-        color="inherit"
+      <MenuItem
         onClick={(e) => { e.preventDefault(); clickHandler(); }}
       >
-        Logout
-      </Button>
+        <ListItemIcon><ExitToAppIcon /></ListItemIcon>
+        <ListItemText primary="Sign out" />
+      </MenuItem>
     </Fragment>
   );
 };
 
-LogoutButton.propTypes = {
+MenuitemSignOut.propTypes = {
   pageURL: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
@@ -50,13 +51,7 @@ LogoutButton.propTypes = {
   }).isRequired,
 };
 
-// const mapDispatchToProps = dispatch => ({
-//   handleClickOpen: () => {
-//     dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
-//   },
-// });
-
 export default connect(
   null,
   null,
-)(withStyles(styles)(LogoutButton));
+)(withStyles(styles)(MenuitemSignOut));
