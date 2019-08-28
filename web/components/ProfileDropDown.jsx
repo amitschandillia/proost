@@ -6,20 +6,18 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import MenuitemSignOut from './MenuitemSignOut';
-import ProfileMenuHeader from './ProfileMenuHeader';
-import ProfileMenuFooter from './ProfileMenuFooter';
-
 import Divider from '@material-ui/core/Divider';
-import PersonIcon from '@material-ui/icons/Person';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import LanguageIcon from '@material-ui/icons/Language';
 import ModeCommentIcon from '@material-ui/icons/ModeComment';
+import ProfileMenuFooter from './ProfileMenuFooter';
+import ProfileMenuHeader from './ProfileMenuHeader';
+import MenuitemSignOut from './MenuitemSignOut';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
-    marginTop: '.75rem',
+    marginTop: theme.typography.htmlFontSize * 0.75,
   },
 });
 
@@ -27,7 +25,6 @@ const ProfileDropDown = (props) => {
   const {
     classes,
     pageURL,
-    userInfo,
     profileMenu,
     profileMenuAnchorEl,
     closeProfileDropDown,
@@ -45,25 +42,25 @@ const ProfileDropDown = (props) => {
       onClose={closeProfileDropDown}
     >
       <ProfileMenuHeader />
-        <MenuItem>
-          <ListItemIcon><ModeCommentIcon /></ListItemIcon>
-          <ListItemText primary="Messages" />
-        </MenuItem>
-        <Divider variant='fullWidth' />
-        <MenuItem>
-          <ListItemIcon><SettingsIcon /></ListItemIcon>
-          <ListItemText primary="Settings" />
-        </MenuItem>
-        <MenuItem>
-          <ListItemIcon><LanguageIcon /></ListItemIcon>
-          <ListItemText primary="Languages" />
-        </MenuItem>
+      <MenuItem>
+        <ListItemIcon><ModeCommentIcon /></ListItemIcon>
+        <ListItemText primary="Messages" />
+      </MenuItem>
+      <Divider variant="fullWidth" />
+      <MenuItem>
+        <ListItemIcon><SettingsIcon /></ListItemIcon>
+        <ListItemText primary="Settings" />
+      </MenuItem>
+      <MenuItem>
+        <ListItemIcon><LanguageIcon /></ListItemIcon>
+        <ListItemText primary="Languages" />
+      </MenuItem>
       <MenuItem>
         <ListItemIcon><HelpIcon /></ListItemIcon>
         <ListItemText primary="Help" />
       </MenuItem>
       <MenuitemSignOut pageURL={pageURL} />
-      <Divider variant='fullWidth' />
+      <Divider variant="fullWidth" />
       <ProfileMenuFooter />
     </Menu>
   );
@@ -84,16 +81,15 @@ ProfileDropDown.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   open: state.openProfileDropDown,
   showSignInView: state.showSignInView,
   showSignUpView: state.showSignUpView,
-  userInfo: state.userInfo,
   profileMenu: state.profileMenu,
   profileMenuAnchorEl: state.profileMenuAnchorEl,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   closeProfileDropDown: () => {
     dispatch({ type: 'OPENPROFILEMENU', payload: false });
   },

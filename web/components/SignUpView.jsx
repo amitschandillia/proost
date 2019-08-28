@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +9,7 @@ import SocialButton from './SocialButton';
 import EmailField from './EmailField';
 import signUpEmail from '../utils/sign-up-email';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -49,7 +49,7 @@ const SignUpView = (props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <form onSubmit={(e) => { e.preventDefault(); submitEmail(e); }}>
         <EmailField
           name="to"
@@ -64,7 +64,7 @@ const SignUpView = (props) => {
       </Grid>
       <span>Already have an account?</span>
       <Button color="inherit" onClick={showSignIn}>Sign in</Button>
-    </Fragment>
+    </>
   );
 };
 
@@ -82,11 +82,11 @@ SignUpView.propTypes = {
   flagError: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   flagEmailError: state.flagEmailError,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   showSignIn: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: true });

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
@@ -16,7 +16,7 @@ import {
   validatePassword,
 } from '../utils/validate-registration-data';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -95,7 +95,7 @@ const SignInView = (props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <WrongCredentialsError />
       {emailAlreadyExistsErr && (
         <Typography color="error" variant="body1" gutterBottom>
@@ -129,7 +129,7 @@ const SignInView = (props) => {
       </Grid>
       <span>Don&apos;t have an account?</span>
       <Button color="inherit" onClick={showSignUp}>Sign up</Button>
-    </Fragment>
+    </>
   );
 };
 
@@ -150,13 +150,13 @@ SignInView.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   errorState: state.emailWarning,
   flagEmailError: state.flagEmailError,
   passwordErrorSignIn: state.passwordErrorSignIn,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   showSignUp: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: true });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: false });

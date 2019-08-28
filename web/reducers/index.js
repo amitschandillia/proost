@@ -51,6 +51,6 @@ const reducerStore = combineReducers({
   profileMenuAnchorEl,
 });
 
-const makeStore = initialState => createStore(reducerStore, initialState);
+const makeStore = (initialState) => createStore(reducerStore, initialState);
 
 export default makeStore;

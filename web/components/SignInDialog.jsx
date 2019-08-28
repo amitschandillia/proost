@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import SignInView from './SignInView';
 import SignUpView from './SignUpView';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -82,13 +82,13 @@ SignInDialog.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   open: state.openSignInDialog,
   showSignInView: state.showSignInView,
   showSignUpView: state.showSignUpView,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   showSignUp: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: true });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: false });

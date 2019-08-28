@@ -12,7 +12,7 @@ const getDirectives = () => {
     '*.google-analytics.com',
     'data:',
     `i.${process.env.THIS_DOMAIN}.com`,
-    'media.geeksforgeeks.org' // to be removed
+    'media.geeksforgeeks.org', // to be removed
   ];
   const styles = [
     // `https://fonts.googleapis.com/`,

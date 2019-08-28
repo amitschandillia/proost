@@ -12,7 +12,7 @@ library.add(faFacebookF);
 library.add(faGoogle);
 library.add(faTwitter);
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -55,4 +55,4 @@ SocialIcon.propTypes = {
   providerIcon: PropTypes.string.isRequired,
 };
 
-export default connect(state => state)(withStyles(styles)(SocialIcon));
+export default connect((state) => state)(withStyles(styles)(SocialIcon));

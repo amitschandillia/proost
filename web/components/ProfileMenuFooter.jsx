@@ -1,13 +1,12 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 import LinkTo from './LinkTo';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -31,42 +30,36 @@ const styles = theme => ({
   },
 });
 
-const ProfileMenuFooter = (props) => {
-  const {
-    classes,
-  } = props;
-
-  return (
-    <Fragment>
-      <Container>
-        <LinkTo href="/">
-          <Typography component="span" variant='caption'>About</Typography>
-        </LinkTo>
-        <Typography component="span" variant='caption'> &#8226; </Typography>
-        <LinkTo href="/">
-          <Typography component="span" variant='caption'>Careers</Typography>
-        </LinkTo>
-        <Typography component="span" variant='caption'> &#8226; </Typography>
-          <LinkTo href="/">
-            <Typography component="span" variant='caption'>Terms</Typography>
-          </LinkTo>
-          <Typography component="span" variant='caption'> &#8226; </Typography>
-          <br />
-        <LinkTo href="/">
-          <Typography component="span" variant='caption'>Privacy</Typography>
-        </LinkTo>
-        <Typography component="span" variant='caption'> &#8226; </Typography>
-        <LinkTo href="/">
-          <Typography component="span" variant='caption'>Acceptable Use</Typography>
-        </LinkTo>
-        <Typography component="span" variant='caption'> &#8226; </Typography>
-        <LinkTo href="/">
-          <Typography component="span" variant='caption'>Businesses</Typography>
-        </LinkTo>
-      </Container>
-    </Fragment>
-  );
-};
+const ProfileMenuFooter = () => (
+  <>
+    <Container>
+      <LinkTo href="/">
+        <Typography component="span" variant="caption">About</Typography>
+      </LinkTo>
+      <Typography component="span" variant="caption"> &#8226; </Typography>
+      <LinkTo href="/">
+        <Typography component="span" variant="caption">Careers</Typography>
+      </LinkTo>
+      <Typography component="span" variant="caption"> &#8226; </Typography>
+      <LinkTo href="/">
+        <Typography component="span" variant="caption">Terms</Typography>
+      </LinkTo>
+      <Typography component="span" variant="caption"> &#8226; </Typography>
+      <br />
+      <LinkTo href="/">
+        <Typography component="span" variant="caption">Privacy</Typography>
+      </LinkTo>
+      <Typography component="span" variant="caption"> &#8226; </Typography>
+      <LinkTo href="/">
+        <Typography component="span" variant="caption">Acceptable Use</Typography>
+      </LinkTo>
+      <Typography component="span" variant="caption"> &#8226; </Typography>
+      <LinkTo href="/">
+        <Typography component="span" variant="caption">Businesses</Typography>
+      </LinkTo>
+    </Container>
+  </>
+);
 
 ProfileMenuFooter.propTypes = {
   classes: PropTypes.shape({
@@ -76,18 +69,7 @@ ProfileMenuFooter.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
-  open: state.openProfileMenuFooter,
-  userInfo: state.userInfo,
-});
-
-const mapDispatchToProps = dispatch => ({
-  // closeProfileMenuFooter: () => {
-  //   dispatch({ type: 'OPENPROFILEMENU', payload: false });
-  // },
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  null,
+  null,
 )(withStyles(styles)(ProfileMenuFooter));

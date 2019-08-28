@@ -6,7 +6,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { connect } from 'react-redux';
 import UsernameIcon from './svg-icons/UsernameIcon';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -66,4 +66,4 @@ UsernameField.propTypes = {
   }).isRequired,
 };
 
-export default connect(state => state)(withStyles(styles)(UsernameField));
+export default connect((state) => state)(withStyles(styles)(UsernameField));

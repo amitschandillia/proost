@@ -6,7 +6,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import { connect } from 'react-redux';
 import NameIcon from './svg-icons/NameIcon';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -65,4 +65,4 @@ FirstNameField.propTypes = {
   }).isRequired,
 };
 
-export default connect(state => state)(withStyles(styles)(FirstNameField));
+export default connect((state) => state)(withStyles(styles)(FirstNameField));

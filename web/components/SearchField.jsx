@@ -1,16 +1,12 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { fade } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import Paper from '@material-ui/core/Paper';
 
-const styles = theme => ({
+const styles = (theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
@@ -58,58 +54,41 @@ const styles = theme => ({
 const SearchField = (props) => {
   const {
     classes,
-    pageURL,
-    userInfo,
-    profileMenu,
-    profileMenuAnchorEl,
-    closeSearchField,
   } = props;
 
   return (
     <form>
       <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'Search' }}
-          />
+        <div className={classes.searchIcon}>
+          <SearchIcon />
         </div>
+        <InputBase
+          placeholder="Search…"
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+          inputProps={{ 'aria-label': 'Search' }}
+        />
+      </div>
     </form>
   );
 };
 
 SearchField.propTypes = {
-  pageURL: PropTypes.string.isRequired,
-  profileMenu: PropTypes.bool.isRequired,
-  profileMenuAnchorEl: PropTypes.element.isRequired,
-  closeSearchField: PropTypes.func.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
-    dialogTitle: PropTypes.string,
-    textField: PropTypes.string,
+    inputRoot: PropTypes.string,
+    inputInput: PropTypes.string,
+    search: PropTypes.string,
+    searchIcon: PropTypes.string,
   }).isRequired,
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
-  // profileMenuAnchorEl: state.profileMenuAnchorEl,
-});
-
-const mapDispatchToProps = dispatch => ({
-  // closeSearchField: () => {
-  //   dispatch({ type: 'OPENPROFILEMENU', payload: false });
-  // },
-});
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  null,
+  null,
 )(withStyles(styles)(SearchField));

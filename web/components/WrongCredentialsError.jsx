@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -50,7 +50,7 @@ WrongCredentialsError.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   credentialsErrorDisplay: state.credentialsErrorDisplay,
 });
 

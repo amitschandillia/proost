@@ -7,7 +7,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -74,11 +74,11 @@ SubmitEmailDialog.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   openSubmitEmailDialog: state.openSubmitEmailDialog,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   handleClose: () => {
     dispatch({ type: 'OPENSUBMITEMAILDIALOG', payload: 0 });
   },

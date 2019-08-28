@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
@@ -16,7 +16,7 @@ import {
 } from '../utils/validate-registration-data';
 import completeLocalRegistration from '../utils/complete-local-registration';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -182,7 +182,7 @@ const CompleteRegistrationForm = (props) => {
     renderedView = <h3>This link has expired! Please register again</h3>;
   } else if (registered) {
     renderedView = (
-      <Fragment>
+      <>
         <h2>User was successfully registered. Here are the details:</h2>
         <h3>
           _id:
@@ -208,11 +208,11 @@ const CompleteRegistrationForm = (props) => {
           Password:
           {registered.password}
         </h3>
-      </Fragment>
+      </>
     );
   } else {
     renderedView = (
-      <Fragment>
+      <>
         <form onSubmit={(e) => { e.preventDefault(); submitForm(e); }}>
           <EmailField
             fullWidth={false}
@@ -273,7 +273,7 @@ const CompleteRegistrationForm = (props) => {
           </Button>
         </form>
         <DbErrorAlert />
-      </Fragment>
+      </>
     );
   }
 
@@ -288,7 +288,7 @@ CompleteRegistrationForm.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   firstNameHelper: state.firstNameHelper,
   lastNameHelper: state.lastNameHelper,
   usernameHelper: state.usernameHelper,
@@ -302,7 +302,7 @@ const mapStateToProps = state => ({
   registered: state.registered,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   changeFNHelper: (helper) => { dispatch({ type: 'CHANGEFNHELPER', payload: helper }); },
   raiseFNError: (error = true) => { dispatch({ type: 'TOGGLEFNERROR', payload: error }); },
   changeLNHelper: (helper) => { dispatch({ type: 'CHANGELNHELPER', payload: helper }); },

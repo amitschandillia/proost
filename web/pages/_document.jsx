@@ -1,4 +1,5 @@
-/* eslint-disable react/no-danger */
+/* eslint react/no-danger: 0 */
+/* eslint max-classes-per-file: 0 */
 
 import React from 'react';
 import Document, {
@@ -13,7 +14,7 @@ import { memoize } from 'lodash';
 import { join } from 'path';
 import mainTheme from '../themes/main-theme';
 
-const doGetContent = file => readFileSync(join(process.cwd(), '.build', file), 'utf8');
+const doGetContent = (file) => readFileSync(join(process.cwd(), '.build', file), 'utf8');
 const getContent = process.env.NODE_ENV === 'production' ? memoize(doGetContent) : doGetContent;
 
 class InlineStylesHead extends Head {
@@ -25,7 +26,7 @@ class InlineStylesHead extends Head {
     const { assetPrefix, files } = this.context._documentProps;
     if (!files || files.length === 0) return null;
 
-    return files.filter(file => /\.css$/.test(file)).map(file => (
+    return files.filter((file) => /\.css$/.test(file)).map((file) => (
       <style
         key={file}
         nonce={this.props.nonce}
@@ -84,7 +85,7 @@ MyDocument.getInitialProps = async (ctx) => {
   const originalRenderPage = ctx.renderPage;
 
   ctx.renderPage = () => originalRenderPage({
-    enhanceApp: App => props => sheets.collect(<App {...props} />),
+    enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
   });
 
   const initialProps = await Document.getInitialProps(ctx);

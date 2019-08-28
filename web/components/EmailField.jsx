@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import EmailIcon from './svg-icons/EmailIcon';
 import UsernameIcon from './svg-icons/UsernameIcon';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -87,4 +87,4 @@ EmailField.propTypes = {
   }).isRequired,
 };
 
-export default connect(state => state)(withStyles(styles)(EmailField));
+export default connect((state) => state)(withStyles(styles)(EmailField));

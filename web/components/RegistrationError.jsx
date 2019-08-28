@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -28,9 +28,9 @@ const styles = theme => ({
 });
 
 const RegistrationError = () => (
-  <Fragment>
+  <>
       This page has expired!
-  </Fragment>
+  </>
 );
 
 RegistrationError.propTypes = {

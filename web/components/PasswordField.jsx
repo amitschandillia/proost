@@ -9,7 +9,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { connect } from 'react-redux';
 import PasswordIcon from './svg-icons/PasswordIcon';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -35,7 +35,7 @@ const PasswordField = (props) => {
     showPassword: false,
   });
 
-  const handleChange = prop => (event) => {
+  const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
   };
 
@@ -91,4 +91,4 @@ PasswordField.propTypes = {
   }).isRequired,
 };
 
-export default connect(state => state)(withStyles(styles)(PasswordField));
+export default connect((state) => state)(withStyles(styles)(PasswordField));

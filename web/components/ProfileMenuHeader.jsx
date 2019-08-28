@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
@@ -9,7 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import LinkTo from './LinkTo';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -22,14 +22,6 @@ const styles = theme => ({
     color: 'white',
     marginBottom: theme.spacing(2),
   },
-  socialsIcon: {
-    paddingLeft: theme.spacing(2),
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
 });
 
 const ProfileMenuHeader = (props) => {
@@ -38,52 +30,46 @@ const ProfileMenuHeader = (props) => {
     userInfo,
   } = props;
 
-  const fullName = `${userInfo.firstName} ${userInfo.lastName }`.trim();
-  const email = Boolean(userInfo.emails) ? userInfo.emails[0] : null;
+  const fullName = `${userInfo.firstName} ${userInfo.lastName}`.trim();
+  const email = userInfo.emails ? userInfo.emails[0] : null;
 
   return (
-    <Fragment>
+    <>
       <Container className={classes.headerContainer}>
-      <Grid container alignItems="center">
-        <Grid item xs={11}>
-          <Typography variant='subtitle2'>{fullName}</Typography>
-          <Typography gutterBottom variant='caption'>{email}</Typography>
+        <Grid container alignItems="center">
+          <Grid item xs={11}>
+            <Typography variant="subtitle2">{fullName}</Typography>
+            <Typography gutterBottom variant="caption">{email}</Typography>
+          </Grid>
+          <Grid item xs={1}>
+            <LinkTo href="/">
+              <NavigateNextIcon />
+            </LinkTo>
+          </Grid>
         </Grid>
-        <Grid item xs={1}>
-          <LinkTo href="/">
-            <NavigateNextIcon />
-          </LinkTo>
-        </Grid>
-      </Grid>
       </Container>
-      <Divider variant='fullWidth' />
-    </Fragment>
+      <Divider variant="fullWidth" />
+    </>
   );
 };
 
 ProfileMenuHeader.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
-    dialogTitle: PropTypes.string,
-    textField: PropTypes.string,
+    headerContainer: PropTypes.string,
   }).isRequired,
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
+    lastName: PropTypes.string,
+    emails: PropTypes.array,
   }).isRequired,
 };
 
-const mapStateToProps = state => ({
-  open: state.openProfileMenuHeader,
+const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
-});
-
-const mapDispatchToProps = dispatch => ({
-  // closeProfileMenuHeader: () => {
-  //   dispatch({ type: 'OPENPROFILEMENU', payload: false });
-  // },
 });
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(withStyles(styles)(ProfileMenuHeader));

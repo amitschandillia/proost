@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -30,14 +30,14 @@ const MenuitemSignOut = (props) => {
   };
 
   return (
-    <Fragment>
+    <>
       <MenuItem
         onClick={(e) => { e.preventDefault(); clickHandler(); }}
       >
         <ListItemIcon><ExitToAppIcon /></ListItemIcon>
         <ListItemText primary="Sign out" />
       </MenuItem>
-    </Fragment>
+    </>
   );
 };
 

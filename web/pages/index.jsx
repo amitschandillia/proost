@@ -12,7 +12,7 @@ import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
 import Banner from '../components/Banner';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -36,14 +36,14 @@ const Index = (props) => {
   const title = 'Home | Project Proost';
   const description = 'This is the description for the homepage';
   return (
-    <Fragment>
+    <>
       <Head>
         <title>{ title }</title>
         <meta name="description" content={description} key="description" />
       </Head>
-      <NavBar pageURL={pageURL} transparent={true} />
+      <NavBar pageURL={pageURL} transparent />
       <Banner>
-        <Typography variant='h5'>This is a text</Typography>
+        <Typography variant="h5">This is a text</Typography>
       </Banner>
       <Box my={4} className={classes.root}>
         <div>
@@ -76,7 +76,7 @@ const Index = (props) => {
         <p className={classes.paragraph}>All men must die</p>
         <p className="xt test">test</p>
       </Box>
-    </Fragment>
+    </>
   );
 };
 
@@ -95,4 +95,4 @@ Index.propTypes = {
   }).isRequired,
 };
 
-export default connect(state => state)(withStyles(styles)(Index));
+export default connect((state) => state)(withStyles(styles)(Index));

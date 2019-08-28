@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -8,7 +8,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     textAlign: 'center',
     paddingTop: theme.spacing(20),
@@ -26,7 +26,7 @@ const About = (props) => {
   const description = 'This is the description for the about page';
 
   return (
-    <Fragment>
+    <>
       <Head>
         <title>{ title }</title>
         <meta name="description" content={description} key="description" />
@@ -48,7 +48,7 @@ const About = (props) => {
                 Super Secret Password
         </Button>
       </Box>
-    </Fragment>
+    </>
   );
 };
 

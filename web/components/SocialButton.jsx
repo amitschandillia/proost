@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import SocialIcon from './SocialIcon';
 import { googleTheme, facebookTheme, twitterTheme } from '../themes/socials-theme';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -90,4 +90,4 @@ SocialButton.propTypes = {
   }).isRequired,
 };
 
-export default connect(state => state)(withStyles(styles)(SocialButton));
+export default connect((state) => state)(withStyles(styles)(SocialButton));

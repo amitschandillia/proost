@@ -19,7 +19,7 @@ schema
   .not()
   .oneOf(passwordBlacklist);
 
-const capitalize = text => `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
+const capitalize = (text) => `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
 
 const isValidName = (name) => {
   let letters = 'a-zA-Z';

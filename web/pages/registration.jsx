@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
@@ -9,7 +9,7 @@ import LinkTo from '../components/LinkTo';
 import CompleteRegistrationForm from '../components/CompleteRegistrationForm';
 import RegistrationError from '../components/RegistrationError';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     textAlign: 'center',
     paddingTop: theme.spacing(20),
@@ -34,7 +34,7 @@ const Registration = (props) => {
   const description = 'This is the description for the complete registration page';
 
   return (
-    <Fragment>
+    <>
       <Head>
         <title>{ title }</title>
         <meta name="description" content={description} key="description" />
@@ -56,7 +56,7 @@ const Registration = (props) => {
           </LinkTo>
         </Typography>
       </Box>
-    </Fragment>
+    </>
   );
 };
 

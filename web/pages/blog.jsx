@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
@@ -8,7 +8,7 @@ import NavBar from '../components/NavBar';
 import LinkTo from '../components/LinkTo';
 import PostsList from '../components/blog/PostsList';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     textAlign: 'center',
     paddingTop: theme.spacing(20),
@@ -26,7 +26,7 @@ const Blog = (props) => {
   const description = 'This is the description for the Blog page';
 
   return (
-    <Fragment>
+    <>
       <Head>
         <title>{ title }</title>
         <meta name="description" content={description} key="description" />
@@ -43,7 +43,7 @@ const Blog = (props) => {
         </Typography>
         <PostsList />
       </Box>
-    </Fragment>
+    </>
   );
 };
 

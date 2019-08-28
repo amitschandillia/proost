@@ -49,12 +49,12 @@ const NavBar2 = (props) => {
   } = props;
   const loggedIn = Object.entries(userInfo).length === 0;
 
-  let transparentStyle = (transparent ? classes.transparentAppBar : null);
+  const transparentStyle = (transparent ? classes.transparentAppBar : null);
 
   const scrollFunction = () => {
     const nav = document.getElementById('nav');
     const overlay = document.getElementById('nav-overlay');
-    const travel = document.documentElement.scrollTop;
+    const travel = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY;
     const travelRem = travel / 16;
     const navHeight = 7 - (travelRem / 6);
     if (navHeight <= 4) {
@@ -70,12 +70,12 @@ const NavBar2 = (props) => {
   };
 
   useLayoutEffect(() => {
-    if(transparent) { window.addEventListener('scroll', scrollFunction); }
+    if (transparent) { window.addEventListener('scroll', scrollFunction); }
 
     // returned function will be called on component unmount
     return () => {
       window.removeEventListener('scroll', scrollFunction);
-    }
+    };
   }, []);
 
   return (
@@ -110,6 +110,7 @@ NavBar2.propTypes = {
     title: PropTypes.string,
   }).isRequired,
   handleClickOpen: PropTypes.func.isRequired,
+  transparent: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
