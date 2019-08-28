@@ -11,6 +11,9 @@ import SignInDialog from './SignInDialog';
 import SubmitEmailDialog from './SubmitEmailDialog';
 import ProfileMenu from './ProfileMenu';
 import SearchField from './SearchField';
+import Cart from './Cart';
+import Notifications from './Notifications';
+import Messages from './Messages';
 
 const styles = (theme) => ({
   root: {
@@ -43,7 +46,7 @@ const styles = (theme) => ({
   },
 });
 
-const NavBar2 = (props) => {
+const NavBar = (props) => {
   const {
     classes, pageURL, userInfo, handleClickOpen, transparent = false,
   } = props;
@@ -70,8 +73,10 @@ const NavBar2 = (props) => {
   };
 
   useLayoutEffect(() => {
-    if (transparent) { window.addEventListener('scroll', scrollFunction); }
-
+    if (transparent) {
+      window.addEventListener('scroll', scrollFunction);
+      scrollFunction();
+    }
     // returned function will be called on component unmount
     return () => {
       window.removeEventListener('scroll', scrollFunction);
@@ -87,6 +92,9 @@ const NavBar2 = (props) => {
             <LinkTo href="/">SCHANDILLIA</LinkTo>
           </Typography>
           <SearchField />
+            <Messages />
+            <Notifications />
+          <Cart />
           {loggedIn && <Button color="inherit" onClick={handleClickOpen}>Sign in</Button>}
           {!loggedIn && <ProfileMenu pageURL={pageURL} />}
           <SignInDialog pageURL={pageURL} />
@@ -97,7 +105,7 @@ const NavBar2 = (props) => {
   );
 };
 
-NavBar2.propTypes = {
+NavBar.propTypes = {
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
     nameToAddress: PropTypes.string,
@@ -133,4 +141,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(NavBar2));
+)(withStyles(styles)(NavBar));

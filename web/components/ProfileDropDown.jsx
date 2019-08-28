@@ -10,7 +10,7 @@ import Divider from '@material-ui/core/Divider';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import LanguageIcon from '@material-ui/icons/Language';
-import ModeCommentIcon from '@material-ui/icons/ModeComment';
+import EmailIcon from '@material-ui/icons/Email';
 import ProfileMenuFooter from './ProfileMenuFooter';
 import ProfileMenuHeader from './ProfileMenuHeader';
 import MenuitemSignOut from './MenuitemSignOut';
@@ -43,7 +43,7 @@ const ProfileDropDown = (props) => {
     >
       <ProfileMenuHeader />
       <MenuItem>
-        <ListItemIcon><ModeCommentIcon /></ListItemIcon>
+        <ListItemIcon><EmailIcon /></ListItemIcon>
         <ListItemText primary="Messages" />
       </MenuItem>
       <Divider variant="fullWidth" />
