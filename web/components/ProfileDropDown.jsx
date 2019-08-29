@@ -10,10 +10,12 @@ import Divider from '@material-ui/core/Divider';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import LanguageIcon from '@material-ui/icons/Language';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import EmailIcon from '@material-ui/icons/Email';
 import ProfileMenuFooter from './ProfileMenuFooter';
 import ProfileMenuHeader from './ProfileMenuHeader';
 import MenuitemSignOut from './MenuitemSignOut';
+import Badge from '@material-ui/core/Badge';
 
 const styles = (theme) => ({
   root: {
@@ -44,8 +46,20 @@ const ProfileDropDown = (props) => {
     >
       <ProfileMenuHeader />
       <MenuItem>
-        <ListItemIcon><EmailIcon /></ListItemIcon>
+        <ListItemIcon>
+          <Badge badgeContent={176} color="error">
+            <EmailIcon />
+          </Badge>
+        </ListItemIcon>
         <ListItemText primary="Messages" />
+      </MenuItem>
+      <MenuItem>
+        <ListItemIcon>
+          <Badge badgeContent={176} color="error">
+            <NotificationsIcon />
+          </Badge>
+        </ListItemIcon>
+        <ListItemText primary="Notifications" />
       </MenuItem>
       <Divider variant="fullWidth" />
       <MenuItem>

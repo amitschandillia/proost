@@ -52,20 +52,29 @@ walkSync('./pages/', (filePath) => {
   }
 });
 // Cache favicons
-walkSync('./static/brand/favicons', (filePath) => {
-  const cachedItem = filePath.substr(22);
+const faviconList = './static/brand/favicons';
+walkSync(faviconList, (filePath) => {
+  const cachedItem = filePath.substr(faviconList.length - 1);
   if (!(cachedItem === 'html_code.html' || cachedItem === 'README.md')) {
     cachedItems.push(cachedItem);
   }
 });
 // Cache pwa icons
-walkSync('./static/brand/pwa', (filePath) => {
-  const cachedItem = filePath.substr(17);
+const pwaList = './static/brand/pwa';
+walkSync(pwaList, (filePath) => {
+  const cachedItem = filePath.substr(pwaList.length - 1);
   cachedItems.push(cachedItem);
 });
+// Cache images
+const imageList = './static/images';
+walkSync(imageList, (filePath) => {
+  const cachedItem = filePath.substr(imageList.length - 1);
+  cachedItems.push(`/_f/images/${cachedItem}`);
+});
 // Cache fonts
-walkSync('./static/fonts', (filePath) => {
-  const cachedItem = filePath.substr(13);
+const fontList = './static/fonts';
+walkSync(fontList, (filePath) => {
+  const cachedItem = filePath.substr(fontList.length - 1);
   if (!(cachedItem.substr(cachedItem.length - 4) === 'scss')) {
     cachedItems.push(`/_f/fonts/${cachedItem}`);
   }

@@ -12,8 +12,6 @@ import SubmitEmailDialog from './SubmitEmailDialog';
 import ProfileMenu from './ProfileMenu';
 import SearchField from './SearchField';
 import Cart from './Cart';
-import Notifications from './Notifications';
-import Messages from './Messages';
 import Store from './Store';
 import BlogButton from './BlogButton';
 import IconButton from '@material-ui/core/IconButton';
@@ -118,8 +116,6 @@ const NavBar = (props) => {
       <SearchField className={classes.sectionDesktopSearch} />
       <div className={classes.grow} />
       <div className={classes.sectionDesktop}>
-        <Messages />
-        <Notifications />
         <BlogButton />
         <Store />
         <Cart />

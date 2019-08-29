@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const CACHE_NAME = '6111d36d5cf409d31cd4486a565634f1';
+const CACHE_NAME = 'ca74acdec23735ddbfad12b71e83d77a';
 const URLS_TO_CACHE = [
   '/',
   '/about',
@@ -57,6 +57,7 @@ const URLS_TO_CACHE = [
   'icon-72x72.png',
   'icon-96x96.png',
   'manifest.json',
+  '/_f/images/banner.png',
   '/_f/fonts/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7l.woff2',
   '/_f/fonts/KFOlCnqEu92Fr1MmEU9fBBc4.woff2',
   '/_f/fonts/KFOlCnqEu92Fr1MmSU5fBBc4.woff2',

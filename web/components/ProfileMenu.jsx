@@ -10,6 +10,15 @@ import ProfileDropDown from './ProfileDropDown';
 import Grid from '@material-ui/core/Grid';
 import Badge from '@material-ui/core/Badge';
 
+const StyledBadge = withStyles(theme => ({
+  badge: {
+    top: '25%',
+    right: 3,
+    width: theme.typography.htmlFontSize / 2,
+    height: theme.typography.htmlFontSize / 2,
+  },
+}))(Badge);
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -44,7 +53,9 @@ const ProfileMenu = (props) => {
     ProfileCircle = (
       <>
         <Grid className={classes.profileGrid} container justify="center" alignItems="center">
-          <Avatar onClick={openProfileMenu} alt={fullName} src={imgURL} className={classes.avatar} />
+          <StyledBadge badgeContent={124} color="error" variant="dot">
+            <Avatar onClick={openProfileMenu} alt={fullName} src={imgURL} className={classes.avatar} />
+          </StyledBadge>
           {!profileMenu && <KeyboardArrowDownIcon />}
           {profileMenu && <KeyboardArrowUpIcon />}
           <ProfileDropDown pageURL={pageURL} />
@@ -55,9 +66,11 @@ const ProfileMenu = (props) => {
     ProfileCircle = (
       <>
         <Grid className={classes.profileGrid} container justify="center" alignItems="center">
-          <Avatar onClick={openProfileMenu} className={classes.anonymousAvatar}>
-            {userInfo.initials}
-          </Avatar>
+          <StyledBadge badgeContent={124} color="error" variant="dot">
+            <Avatar onClick={openProfileMenu} className={classes.anonymousAvatar}>
+              {userInfo.initials}
+            </Avatar>
+          </StyledBadge>
           {!profileMenu && <KeyboardArrowDownIcon />}
           {profileMenu && <KeyboardArrowUpIcon />}
           <ProfileDropDown pageURL={pageURL} />
