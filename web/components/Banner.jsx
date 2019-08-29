@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 
-const bg = 'https://media.geeksforgeeks.org/wp-content/uploads/Screen-Shot-2017-11-13-at-10.23.39-AM.png';
+const bg = '/_f/images/banner.png';
 
 const styles = (theme) => ({
   root: {

@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 const styles = (theme) => ({
   storeStyle: {
     verticalAlign: 'middle',
-    marginRight: theme.spacing(1) /2,
+    marginRight: theme.spacing(1) / 2,
   },
 });
 
@@ -19,7 +19,7 @@ const Store = (props) => {
   const loggedIn = Object.entries(userInfo).length === 0;
 
   return (
-    <Button disableFocusRipple={true} disableRipple={true} color="inherit" className={classes.storeStyle}>
+    <Button disableFocusRipple disableRipple color="inherit" className={classes.storeStyle}>
       <StoreIcon />
       Store
     </Button>

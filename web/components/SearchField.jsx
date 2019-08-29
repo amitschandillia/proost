@@ -53,11 +53,11 @@ const styles = (theme) => ({
 
 const SearchField = (props) => {
   const {
-    classes,
+    classes, className,
   } = props;
 
   return (
-    <form>
+    <form className={className}>
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon />

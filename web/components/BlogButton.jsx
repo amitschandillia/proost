@@ -24,13 +24,13 @@ const BlogButton = (props) => {
   return (
     <>
       <Button
-        disableFocusRipple={true}
-        disableRipple={true}
+        disableFocusRipple
+        disableRipple
         color="inherit"
         onClick={openBlogMenu}
-        className={classes.blogButtonStyle}>
-        <LibraryBooksIcon
-      />
+        className={classes.blogButtonStyle}
+      >
+        <LibraryBooksIcon />
         Blog
         {!blogMenu && <KeyboardArrowDownIcon />}
         {blogMenu && <KeyboardArrowUpIcon />}

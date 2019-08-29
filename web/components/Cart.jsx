@@ -22,13 +22,13 @@ const styles = (theme) => ({
 
 const Cart = (props) => {
   const {
-    classes, userInfo,
+    classes, userInfo, itemsInCart = 0,
   } = props;
   const loggedIn = Object.entries(userInfo).length === 0;
 
   return (
     <Button disableFocusRipple={true} disableRipple={true} color="inherit" className={classes.cartStyle}>
-      <Badge badgeContent={175} color="error">
+      <Badge badgeContent={itemsInCart} color="error">
         <ShoppingCartIcon />
         Cart
       </Badge>

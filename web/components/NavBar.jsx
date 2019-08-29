@@ -18,6 +18,7 @@ import Store from './Store';
 import BlogButton from './BlogButton';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import Grid from '@material-ui/core/Grid';
 
 const styles = (theme) => ({
   root: {
@@ -52,6 +53,11 @@ const styles = (theme) => ({
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
+    },
+  },
+  sectionDesktopSearch: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
     },
   },
   sectionMobile: {
@@ -99,45 +105,57 @@ const NavBar = (props) => {
     };
   }, []);
 
+  const brand = (
+    <Typography variant="h6" className={classes.title}>
+      <LinkTo href="/">SCHANDILLIA</LinkTo>
+    </Typography>
+  );
+  const desktopMenu = (
+    <>
+      <SearchField className={classes.sectionDesktopSearch} />
+      <div className={classes.sectionDesktop}>
+        <Messages />
+        <Notifications />
+        <BlogButton />
+        <Store />
+        <Cart />
+        {
+          loggedIn &&
+          <Button
+            className={classes.loginBtn}
+            variant="outlined"
+            color="inherit"
+            onClick={handleClickOpen}
+          >
+            Sign in
+          </Button>
+        }
+        {!loggedIn && <ProfileMenu pageURL={pageURL} />}
+        <SignInDialog pageURL={pageURL} />
+      </div>
+    </>
+  );
+  const mobileMenu = (
+    <div className={classes.sectionMobile}>
+      <IconButton
+        edge="start"
+        className={classes.menuButton}
+        color="inherit"
+        aria-label="open drawer"
+      >
+        <MenuIcon />
+      </IconButton>
+    </div>
+  );
+
   return (
     <>
       <AppBar id="nav" className={transparentStyle} position="fixed">
         {transparent && <span id="nav-overlay" className={classes.overlay} />}
         <Toolbar>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="open drawer"
-            >
-              <MenuIcon />
-            </IconButton>
-          </div>
-          <Typography variant="h6" className={classes.title}>
-            <LinkTo href="/">SCHANDILLIA</LinkTo>
-          </Typography>
-          <SearchField />
-          <div className={classes.sectionDesktop}>
-            <Messages />
-            <Notifications />
-            <BlogButton />
-            <Store />
-            <Cart />
-            {
-              loggedIn &&
-              <Button
-                className={classes.loginBtn}
-                variant="outlined"
-                color="inherit"
-                onClick={handleClickOpen}
-              >
-                Sign in
-              </Button>
-            }
-            {!loggedIn && <ProfileMenu pageURL={pageURL} />}
-            <SignInDialog pageURL={pageURL} />
-          </div>
+          {mobileMenu}
+          {brand}
+          {desktopMenu}
         </Toolbar>
       </AppBar>
       <SubmitEmailDialog />
