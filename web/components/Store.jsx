@@ -2,36 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Tooltip from '@material-ui/core/Tooltip';
+import StoreIcon from '@material-ui/icons/Store';
+import Button from '@material-ui/core/Button';
 
 const styles = (theme) => ({
-  notificationsStyle: {
+  storeStyle: {
     verticalAlign: 'middle',
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(1) /2,
   },
 });
 
-const Notifications = (props) => {
+const Store = (props) => {
   const {
-    userInfo,
+    classes, userInfo,
   } = props;
   const loggedIn = Object.entries(userInfo).length === 0;
 
   return (
-    <Tooltip title="Notifications">
-      <IconButton aria-label="show 17 new notifications" color="inherit">
-        <Badge badgeContent={176} color="error">
-          <NotificationsIcon />
-        </Badge>
-      </IconButton>
-    </Tooltip>
+    <Button disableFocusRipple={true} disableRipple={true} color="inherit" className={classes.storeStyle}>
+      <StoreIcon />
+      Store
+    </Button>
   );
 };
 
-Notifications.propTypes = {
+Store.propTypes = {
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
     nameToAddress: PropTypes.string,
@@ -51,4 +46,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   null,
-)(withStyles(styles)(Notifications));
+)(withStyles(styles)(Store));

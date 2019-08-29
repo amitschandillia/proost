@@ -23,6 +23,8 @@ import passwordHelper from './reducers/passwordHelper';
 import password2Helper from './reducers/password2Helper';
 import profileMenu from './reducers/profileMenu';
 import profileMenuAnchorEl from './reducers/profileMenuAnchorEl';
+import blogMenu from './reducers/blogMenu';
+import blogMenuAnchorEl from './reducers/blogMenuAnchorEl';
 
 const reducerStore = combineReducers({
   userInfo,
@@ -49,6 +51,8 @@ const reducerStore = combineReducers({
   password2Helper,
   profileMenu,
   profileMenuAnchorEl,
+  blogMenu,
+  blogMenuAnchorEl,
 });
 
 const makeStore = (initialState) => createStore(reducerStore, initialState);

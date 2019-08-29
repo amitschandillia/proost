@@ -14,6 +14,10 @@ import SearchField from './SearchField';
 import Cart from './Cart';
 import Notifications from './Notifications';
 import Messages from './Messages';
+import Store from './Store';
+import BlogButton from './BlogButton';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = (theme) => ({
   root: {
@@ -25,8 +29,8 @@ const styles = (theme) => ({
   title: {
     flexGrow: 1,
   },
-  paragraph: {
-    fontFamily: 'Source Sans Pro',
+  loginBtn: {
+    marginLeft: theme.spacing(2),
   },
   transparentAppBar: {
     lineHeight: '7rem',
@@ -43,6 +47,18 @@ const styles = (theme) => ({
     background: theme.palette.primary.main,
     opacity: 0,
     zIndex: -1,
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
   },
 });
 
@@ -88,16 +104,40 @@ const NavBar = (props) => {
       <AppBar id="nav" className={transparentStyle} position="fixed">
         {transparent && <span id="nav-overlay" className={classes.overlay} />}
         <Toolbar>
+          <div className={classes.sectionMobile}>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+            >
+              <MenuIcon />
+            </IconButton>
+          </div>
           <Typography variant="h6" className={classes.title}>
             <LinkTo href="/">SCHANDILLIA</LinkTo>
           </Typography>
           <SearchField />
+          <div className={classes.sectionDesktop}>
             <Messages />
             <Notifications />
-          <Cart />
-          {loggedIn && <Button color="inherit" onClick={handleClickOpen}>Sign in</Button>}
-          {!loggedIn && <ProfileMenu pageURL={pageURL} />}
-          <SignInDialog pageURL={pageURL} />
+            <BlogButton />
+            <Store />
+            <Cart />
+            {
+              loggedIn &&
+              <Button
+                className={classes.loginBtn}
+                variant="outlined"
+                color="inherit"
+                onClick={handleClickOpen}
+              >
+                Sign in
+              </Button>
+            }
+            {!loggedIn && <ProfileMenu pageURL={pageURL} />}
+            <SignInDialog pageURL={pageURL} />
+          </div>
         </Toolbar>
       </AppBar>
       <SubmitEmailDialog />

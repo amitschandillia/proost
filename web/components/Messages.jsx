@@ -10,7 +10,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 const styles = (theme) => ({
   messagesStyle: {
     verticalAlign: 'middle',
-    marginRight: theme.typography.htmlFontSize / 2,
+    marginRight: theme.spacing(1),
   },
 });
 

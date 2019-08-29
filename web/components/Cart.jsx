@@ -16,7 +16,7 @@ import Badge from '@material-ui/core/Badge';
 
 const styles = (theme) => ({
   cartStyle: {
-    marginRight: theme.typography.htmlFontSize / 4,
+    marginRight: theme.spacing(1) /2,
   },
 });
 
@@ -27,7 +27,7 @@ const Cart = (props) => {
   const loggedIn = Object.entries(userInfo).length === 0;
 
   return (
-    <Button color="inherit" className={classes.cartStyle}>
+    <Button disableFocusRipple={true} disableRipple={true} color="inherit" className={classes.cartStyle}>
       <Badge badgeContent={175} color="error">
         <ShoppingCartIcon />
         Cart

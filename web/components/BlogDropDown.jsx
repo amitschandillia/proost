@@ -11,67 +11,56 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import HelpIcon from '@material-ui/icons/Help';
 import LanguageIcon from '@material-ui/icons/Language';
 import EmailIcon from '@material-ui/icons/Email';
-import ProfileMenuFooter from './ProfileMenuFooter';
-import ProfileMenuHeader from './ProfileMenuHeader';
 import MenuitemSignOut from './MenuitemSignOut';
 
 const styles = (theme) => ({
   root: {
-    // marginTop: theme.typography.htmlFontSize * 0.75,
     marginTop: theme.spacing(1.5),
   },
 });
 
-const ProfileDropDown = (props) => {
+const BlogDropDown = (props) => {
   const {
     classes,
     pageURL,
-    profileMenu,
-    profileMenuAnchorEl,
-    closeProfileDropDown,
+    blogMenu,
+    blogMenuAnchorEl,
+    closeBlogDropDown,
   } = props;
 
   return (
     <Menu
       id="customized-menu"
       className={classes.root}
-      anchorEl={profileMenuAnchorEl}
+      anchorEl={blogMenuAnchorEl}
       getContentAnchorEl={null}
       anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
       transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-      open={profileMenu}
-      onClose={closeProfileDropDown}
+      open={blogMenu}
+      onClose={closeBlogDropDown}
     >
-      <ProfileMenuHeader />
       <MenuItem>
-        <ListItemIcon><EmailIcon /></ListItemIcon>
-        <ListItemText primary="Messages" />
+        <ListItemText primary="Latest Posts" />
       </MenuItem>
       <Divider variant="fullWidth" />
       <MenuItem>
-        <ListItemIcon><SettingsIcon /></ListItemIcon>
-        <ListItemText primary="Settings" />
+        <ListItemText primary="Learn French" />
       </MenuItem>
       <MenuItem>
-        <ListItemIcon><LanguageIcon /></ListItemIcon>
-        <ListItemText primary="Languages" />
+        <ListItemText primary="Learn Latin" />
       </MenuItem>
       <MenuItem>
-        <ListItemIcon><HelpIcon /></ListItemIcon>
-        <ListItemText primary="Help" />
+        <ListItemText primary="Learn Italian" />
       </MenuItem>
-      <MenuitemSignOut pageURL={pageURL} />
-      <Divider variant="fullWidth" />
-      <ProfileMenuFooter />
     </Menu>
   );
 };
 
-ProfileDropDown.propTypes = {
+BlogDropDown.propTypes = {
   pageURL: PropTypes.string.isRequired,
-  profileMenu: PropTypes.bool.isRequired,
-  profileMenuAnchorEl: PropTypes.element.isRequired,
-  closeProfileDropDown: PropTypes.func.isRequired,
+  blogMenu: PropTypes.bool.isRequired,
+  blogMenuAnchorEl: PropTypes.element.isRequired,
+  closeBlogDropDown: PropTypes.func.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
     dialogTitle: PropTypes.string,
@@ -83,20 +72,20 @@ ProfileDropDown.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  open: state.openProfileDropDown,
+  open: state.openBlogDropDown,
   showSignInView: state.showSignInView,
   showSignUpView: state.showSignUpView,
-  profileMenu: state.profileMenu,
-  profileMenuAnchorEl: state.profileMenuAnchorEl,
+  blogMenu: state.blogMenu,
+  blogMenuAnchorEl: state.blogMenuAnchorEl,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  closeProfileDropDown: () => {
-    dispatch({ type: 'OPENPROFILEMENU', payload: false });
+  closeBlogDropDown: () => {
+    dispatch({ type: 'OPENBLOGMENU', payload: false });
   },
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withStyles(styles)(ProfileDropDown));
+)(withStyles(styles)(BlogDropDown));

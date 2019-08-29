@@ -6,30 +6,15 @@ import { connect } from 'react-redux';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import avatarTheme from '../themes/avatar-theme';
-
 import ProfileDropDown from './ProfileDropDown';
+import Grid from '@material-ui/core/Grid';
 
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
-  signInText: {
-    marginLeft: theme.spacing(1),
-    textAlign: 'center',
-  },
-  dialogTitle: {
-    textAlign: 'center',
-    backgroundColor: theme.palette.primary.main,
-    color: 'white',
-    marginBottom: theme.spacing(2),
-  },
-  socialsIcon: {
-    paddingLeft: theme.spacing(2),
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
+  profileGrid: {
+    width: 'inherit',
   },
   avatar: {
     margin: 10,
@@ -57,21 +42,25 @@ const ProfileMenu = (props) => {
   if (userInfo.hasPicture) {
     ProfileCircle = (
       <>
-        <Avatar onClick={openProfileMenu} alt={fullName} src={imgURL} className={classes.avatar} />
-        {!profileMenu && <KeyboardArrowDownIcon />}
-        {profileMenu && <KeyboardArrowUpIcon />}
-        <ProfileDropDown pageURL={pageURL} />
+        <Grid className={classes.profileGrid} container justify="center" alignItems="center">
+          <Avatar onClick={openProfileMenu} alt={fullName} src={imgURL} className={classes.avatar} />
+          {!profileMenu && <KeyboardArrowDownIcon />}
+          {profileMenu && <KeyboardArrowUpIcon />}
+          <ProfileDropDown pageURL={pageURL} />
+        </Grid>
       </>
     );
   } else {
     ProfileCircle = (
       <>
-        <Avatar onClick={openProfileMenu} className={classes.anonymousAvatar}>
-          {userInfo.initials}
-        </Avatar>
-        {!profileMenu && <KeyboardArrowDownIcon />}
-        {profileMenu && <KeyboardArrowUpIcon />}
-        <ProfileDropDown pageURL={pageURL} />
+        <Grid className={classes.profileGrid} container justify="center" alignItems="center">
+          <Avatar onClick={openProfileMenu} className={classes.anonymousAvatar}>
+            {userInfo.initials}
+          </Avatar>
+          {!profileMenu && <KeyboardArrowDownIcon />}
+          {profileMenu && <KeyboardArrowUpIcon />}
+          <ProfileDropDown pageURL={pageURL} />
+        </Grid>
       </>
     );
   }
