@@ -8,6 +8,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import avatarTheme from '../themes/avatar-theme';
 import ProfileDropDown from './ProfileDropDown';
 import Grid from '@material-ui/core/Grid';
+import Badge from '@material-ui/core/Badge';
 
 const styles = (theme) => ({
   root: {

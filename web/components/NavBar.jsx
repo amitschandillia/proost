@@ -18,7 +18,6 @@ import Store from './Store';
 import BlogButton from './BlogButton';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import Grid from '@material-ui/core/Grid';
 
 const styles = (theme) => ({
   root: {
@@ -28,6 +27,9 @@ const styles = (theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
+    flexGrow: 1,
+  },
+  grow: {
     flexGrow: 1,
   },
   loginBtn: {
@@ -50,6 +52,7 @@ const styles = (theme) => ({
     zIndex: -1,
   },
   sectionDesktop: {
+    alignItems: 'center',
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
@@ -113,6 +116,7 @@ const NavBar = (props) => {
   const desktopMenu = (
     <>
       <SearchField className={classes.sectionDesktopSearch} />
+      <div className={classes.grow} />
       <div className={classes.sectionDesktop}>
         <Messages />
         <Notifications />
@@ -155,6 +159,7 @@ const NavBar = (props) => {
         <Toolbar>
           {mobileMenu}
           {brand}
+          <div className={classes.grow} />
           {desktopMenu}
         </Toolbar>
       </AppBar>
