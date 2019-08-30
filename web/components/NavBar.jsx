@@ -13,8 +13,8 @@ import SignInDialog from './SignInDialog';
 import SubmitEmailDialog from './SubmitEmailDialog';
 import ProfileMenu from './ProfileMenu';
 import SearchField from './SearchField';
-import Cart from './Cart';
-import Store from './Store';
+import CartButton from './CartButton';
+import StoreButton from './StoreButton';
 import BlogButton from './BlogButton';
 import ToolsButton from './ToolsButton';
 
@@ -125,9 +125,9 @@ const NavBar = (props) => {
         <div className={classes.grow} />
         <BlogButton />
         <div className={classes.grow} />
-        <Store />
+        <StoreButton />
         <div className={classes.grow} />
-        <Cart />
+        <CartButton />
         <div className={classes.grow} />
         {
         loggedIn

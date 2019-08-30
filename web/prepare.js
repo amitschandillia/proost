@@ -161,12 +161,12 @@ fs.appendFile(reducerPath, '', (err) => {
 const reducers = [];
 let reducerStore = 'const reducerStore = combineReducers({\n ';
 let imports = 'import { createStore, combineReducers } from \'redux\';\n';
-const reducersList = './reducers/slice-reducers';
+const reducersList = './reducers/slices';
 walkSync(reducersList, (filePath) => {
   let reducer = filePath.substr(reducersList.length - 1);
   reducer = reducer.substring(0, reducer.length - 3);
   reducerStore += ` ${reducer},\n `;
-  imports += `import ${reducer} from './slice-reducers/${reducer}';\n`;
+  imports += `import ${reducer} from './slices/${reducer}';\n`;
   reducers.push(reducer);
 });
 imports += '\n';

@@ -12,7 +12,7 @@ const styles = (theme) => ({
   },
 });
 
-const Store = (props) => {
+const StoreButton = (props) => {
   const {
     classes, userInfo,
   } = props;
@@ -26,7 +26,7 @@ const Store = (props) => {
   );
 };
 
-Store.propTypes = {
+StoreButton.propTypes = {
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
     nameToAddress: PropTypes.string,
@@ -46,4 +46,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   null,
-)(withStyles(styles)(Store));
+)(withStyles(styles)(StoreButton));

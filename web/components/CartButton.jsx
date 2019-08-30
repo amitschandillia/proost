@@ -20,7 +20,7 @@ const styles = (theme) => ({
   },
 });
 
-const Cart = (props) => {
+const CartButton = (props) => {
   const {
     classes, userInfo, itemsInCart = 0,
   } = props;
@@ -36,7 +36,7 @@ const Cart = (props) => {
   );
 };
 
-Cart.propTypes = {
+CartButton.propTypes = {
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
     nameToAddress: PropTypes.string,
@@ -53,4 +53,4 @@ const mapStateToProps = (state) => ({
 export default connect(
   mapStateToProps,
   null,
-)(withStyles(styles)(Cart));
+)(withStyles(styles)(CartButton));

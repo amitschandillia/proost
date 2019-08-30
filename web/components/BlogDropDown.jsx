@@ -17,6 +17,14 @@ const styles = (theme) => ({
   root: {
     marginTop: theme.spacing(1.5),
   },
+  popoverPaper: {
+    width: '90%',
+    height: '80%',
+    maxHeight: 'unset',
+    maxWidth: 'unset',
+    top: `${theme.spacing(6.25)}px !important`,
+    left: '5% !important'
+  },
 });
 
 const BlogDropDown = (props) => {
@@ -34,10 +42,9 @@ const BlogDropDown = (props) => {
       className={classes.root}
       anchorEl={blogMenuAnchorEl}
       getContentAnchorEl={null}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      transformOrigin={{ vertical: 'top', horizontal: 'center' }}
       open={blogMenu}
       onClose={closeBlogDropDown}
+      PopoverClasses={{paper: props.classes.popoverPaper}}
     >
       <MenuItem>
         <ListItemText primary="Latest Posts" />
