@@ -16,6 +16,7 @@ import SearchField from './SearchField';
 import Cart from './Cart';
 import Store from './Store';
 import BlogButton from './BlogButton';
+import ToolsButton from './ToolsButton';
 
 const styles = (theme) => ({
   root: {
@@ -119,6 +120,8 @@ const NavBar = (props) => {
     <>
       <div className={classes.sectionDesktop}>
         <SearchField />
+        <div className={classes.grow} />
+        <ToolsButton />
         <div className={classes.grow} />
         <BlogButton />
         <div className={classes.grow} />

@@ -22,6 +22,8 @@ import registered from './slice-reducers/registered';
 import sessID from './slice-reducers/sessID';
 import showSignInView from './slice-reducers/showSignInView';
 import showSignUpView from './slice-reducers/showSignUpView';
+import toolsMenu from './slice-reducers/toolsMenu';
+import toolsMenuAnchorEl from './slice-reducers/toolsMenuAnchorEl';
 import userInfo from './slice-reducers/userInfo';
 import usernameError from './slice-reducers/usernameError';
 import usernameHelper from './slice-reducers/usernameHelper';
@@ -50,6 +52,8 @@ const reducerStore = combineReducers({
   sessID,
   showSignInView,
   showSignUpView,
+  toolsMenu,
+  toolsMenuAnchorEl,
   userInfo,
   usernameError,
   usernameHelper,
