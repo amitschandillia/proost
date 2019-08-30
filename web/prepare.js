@@ -141,3 +141,43 @@ fs.writeFile(
     if (err) throw err;
   },
 );
+
+const reducerPath = './reducers/index.js';
+// Delete existing reducer
+try {
+  fs.statSync(reducerPath);
+  console.log('Reducer already exists...\nDeleting...');
+  fs.unlinkSync(reducerPath);
+} catch (e) {
+  console.log('Reducer does not exist...\nCreating...');
+}
+// Create new reducer
+fs.appendFile(reducerPath, '', (err) => {
+  if (err) throw err;
+  console.log('New reducer created successfully.');
+});
+
+// Prepare reducer
+const reducers = [];
+let reducerStore = 'const reducerStore = combineReducers({\n ';
+let imports = 'import { createStore, combineReducers } from \'redux\';\n';
+const reducersList = './reducers/slice-reducers';
+walkSync(reducersList, (filePath) => {
+  let reducer = filePath.substr(reducersList.length - 1);
+  reducer = reducer.substring(0, reducer.length - 3);
+  reducerStore += ` ${reducer},\n `;
+  imports += `import ${reducer} from './slice-reducers/${reducer}';\n`;
+  reducers.push(reducer);
+});
+imports += '\n';
+reducerStore = `${reducerStore.trim()}\n});`;
+reducerStore += '\n\nconst makeStore = (initialState) => createStore(reducerStore, initialState);';
+reducerStore += '\n\nexport default makeStore;\n';
+
+fs.writeFile(
+  reducerPath,
+  imports + reducerStore,
+  'utf8', (err) => {
+    if (err) throw err;
+  },
+);

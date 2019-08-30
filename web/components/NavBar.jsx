@@ -6,6 +6,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 import LinkTo from './LinkTo';
 import SignInDialog from './SignInDialog';
 import SubmitEmailDialog from './SubmitEmailDialog';
@@ -14,8 +16,6 @@ import SearchField from './SearchField';
 import Cart from './Cart';
 import Store from './Store';
 import BlogButton from './BlogButton';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = (theme) => ({
   root: {
@@ -54,6 +54,7 @@ const styles = (theme) => ({
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'flex',
+      flexGrow: 1,
     },
   },
   sectionDesktopSearch: {
@@ -117,21 +118,25 @@ const NavBar = (props) => {
       <div className={classes.grow} />
       <div className={classes.sectionDesktop}>
         <BlogButton />
+        <div className={classes.grow} />
         <Store />
+        <div className={classes.grow} />
         <Cart />
+        <div className={classes.grow} />
         {
-          loggedIn &&
-          <Button
-            className={classes.loginBtn}
-            variant="outlined"
-            color="inherit"
-            onClick={handleClickOpen}
-          >
-            Sign in
-          </Button>
+        loggedIn
+        && (
+        <Button
+          className={classes.loginBtn}
+          variant="outlined"
+          color="inherit"
+          onClick={handleClickOpen}
+        >
+          Sign in
+        </Button>
+        )
         }
         {!loggedIn && <ProfileMenu pageURL={pageURL} />}
-        <SignInDialog pageURL={pageURL} />
       </div>
     </>
   );
@@ -159,6 +164,7 @@ const NavBar = (props) => {
           {desktopMenu}
         </Toolbar>
       </AppBar>
+      <SignInDialog pageURL={pageURL} />
       <SubmitEmailDialog />
     </>
   );
@@ -172,6 +178,12 @@ NavBar.propTypes = {
   pageURL: PropTypes.string.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
+    grow: PropTypes.string,
+    sectionDesktopSearch: PropTypes.string,
+    sectionDesktop: PropTypes.string,
+    sectionMobile: PropTypes.string,
+    loginBtn: PropTypes.string,
+    menuButton: PropTypes.string,
     transparentAppBar: PropTypes.string,
     overlay: PropTypes.string,
     title: PropTypes.string,
