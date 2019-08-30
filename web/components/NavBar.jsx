@@ -108,15 +108,18 @@ const NavBar = (props) => {
   }, []);
 
   const brand = (
-    <Typography variant="h6" className={classes.title}>
-      <LinkTo href="/">SCHANDILLIA</LinkTo>
-    </Typography>
+    <>
+      <Typography variant="h6" className={classes.title}>
+        <LinkTo href="/">SCHANDILLIA</LinkTo>
+      </Typography>
+      <div className={classes.grow} />
+    </>
   );
   const desktopMenu = (
     <>
-      <SearchField className={classes.sectionDesktopSearch} />
-      <div className={classes.grow} />
       <div className={classes.sectionDesktop}>
+        <SearchField />
+        <div className={classes.grow} />
         <BlogButton />
         <div className={classes.grow} />
         <Store />
@@ -160,8 +163,6 @@ const NavBar = (props) => {
         <Toolbar>
           {mobileMenu}
           {brand}
-          <div className={classes.grow} />
-          <div className={classes.grow} />
           {desktopMenu}
         </Toolbar>
       </AppBar>
