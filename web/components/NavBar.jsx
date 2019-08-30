@@ -161,6 +161,7 @@ const NavBar = (props) => {
           {mobileMenu}
           {brand}
           <div className={classes.grow} />
+          <div className={classes.grow} />
           {desktopMenu}
         </Toolbar>
       </AppBar>
