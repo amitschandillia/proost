@@ -12,6 +12,8 @@ import HelpIcon from '@material-ui/icons/Help';
 import LanguageIcon from '@material-ui/icons/Language';
 import EmailIcon from '@material-ui/icons/Email';
 import MenuitemSignOut from './MenuitemSignOut';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 
 const styles = (theme) => ({
   root: {
@@ -22,8 +24,13 @@ const styles = (theme) => ({
     height: '80%',
     maxHeight: 'unset',
     maxWidth: 'unset',
-    top: `${theme.spacing(6.25)}px !important`,
+    // top: `${theme.spacing(6.25)}px !important`,
     left: '5% !important'
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
 });
 
@@ -41,11 +48,29 @@ const BlogDropDown = (props) => {
       id="customized-menu"
       className={classes.root}
       anchorEl={blogMenuAnchorEl}
+      anchorOrigin={{ vertical: 'bottom' }}
+      transformOrigin={{ vertical: 'top' }}
       getContentAnchorEl={null}
       open={blogMenu}
       onClose={closeBlogDropDown}
       PopoverClasses={{paper: props.classes.popoverPaper}}
     >
+      <Grid container spacing={3}>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}><MenuItem>
+            <ListItemText primary="Latest Posts" />
+          </MenuItem></Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=6</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=6</Paper>
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=6</Paper>
+        </Grid>
+      </Grid>
       <MenuItem>
         <ListItemText primary="Latest Posts" />
       </MenuItem>
