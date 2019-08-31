@@ -1,8 +1,8 @@
-import ReactMarkdown from 'react-markdown';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Typography from '@material-ui/core/Typography';
 import gql from 'graphql-tag';
 import { graphql } from 'react-apollo';
-import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import ReactMarkdown from 'react-markdown';
 
 const renderers = {
   paragraph: (props) => <Typography variant="body2" gutterBottom {...props} />,

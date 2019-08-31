@@ -1,9 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import InputAdornment from '@material-ui/core/InputAdornment';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
+
 import UsernameIcon from './svg-icons/UsernameIcon';
 
 const styles = (theme) => ({

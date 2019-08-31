@@ -1,8 +1,9 @@
 import express from 'express';
-import userInDB from '../utils/user-in-db';
-import { tokenInDB, createAccount } from '../utils/create-account';
-import { validateName, validateUsername, validatePassword } from '../utils/validate-registration-data';
+
+import { createAccount, tokenInDB } from '../utils/create-account';
 import sendConfirmationEmail from '../utils/send-confirmation-email';
+import userInDB from '../utils/user-in-db';
+import { validateName, validatePassword, validateUsername } from '../utils/validate-registration-data';
 
 const router = express.Router();
 

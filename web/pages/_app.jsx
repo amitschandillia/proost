@@ -1,23 +1,25 @@
 /* eslint-disable max-len */
 
-import React from 'react';
+import '../static/styles/fonts.scss';
+import '../static/styles/style.scss';
+import '../static/styles/some.css';
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/styles';
+import jwt from 'jsonwebtoken';
+import withRedux from 'next-redux-wrapper';
 import App, {
   Container,
 } from 'next/app';
 import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React from 'react';
 import { Provider } from 'react-redux';
-import withRedux from 'next-redux-wrapper';
-import jwt from 'jsonwebtoken';
+
 import withData from '../apollo';
-import mainTheme from '../themes/main-theme';
-import '../static/styles/fonts.scss';
-import '../static/styles/style.scss';
-import '../static/styles/some.css';
 import makeStore from '../reducers';
-import getUserTokenFromCookies from '../utils/get-user-token-from-cookies';
+import mainTheme from '../themes/main-theme';
 import getSessIDFromCookies from '../utils/get-sessid-from-cookies';
+import getUserTokenFromCookies from '../utils/get-user-token-from-cookies';
 import removeFbHash from '../utils/remove-fb-hash';
 
 class MyApp extends App {

@@ -1,9 +1,10 @@
 import passport from 'passport';
-import google from './strategies/google';
-import twitter from './strategies/twitter';
-import facebook from './strategies/facebook';
-import local from './strategies/local';
+
 import User from '../models/user';
+import facebook from './strategies/facebook';
+import google from './strategies/google';
+import local from './strategies/local';
+import twitter from './strategies/twitter';
 
 passport.serializeUser((user, done) => {
   done(null, user.id);

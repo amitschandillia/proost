@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import iconsTheme from '../../themes/icons-theme';
 
 // For MaterialUI icons, refer to:

@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { connect } from 'react-redux';
 import BuildIcon from '@material-ui/icons/Build';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import Button from '@material-ui/core/Button';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import ToolsDropDown from './ToolsDropDown';
 
 const styles = (theme) => ({
@@ -41,6 +42,9 @@ const ToolsButton = (props) => {
 };
 
 ToolsButton.propTypes = {
+  pageURL: PropTypes.string.isRequired,
+  toolsMenu: PropTypes.bool.isRequired,
+  openToolsMenu: PropTypes.func.isRequired,
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
     nameToAddress: PropTypes.string,
@@ -50,6 +54,7 @@ ToolsButton.propTypes = {
     transparentAppBar: PropTypes.string,
     overlay: PropTypes.string,
     title: PropTypes.string,
+    toolsButtonStyle: PropTypes.string,
   }).isRequired,
 };
 

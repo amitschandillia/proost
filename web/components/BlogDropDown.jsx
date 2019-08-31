@@ -1,19 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { connect } from 'react-redux';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import SettingsIcon from '@material-ui/icons/Settings';
-import HelpIcon from '@material-ui/icons/Help';
-import LanguageIcon from '@material-ui/icons/Language';
-import EmailIcon from '@material-ui/icons/Email';
-import MenuitemSignOut from './MenuitemSignOut';
 import Grid from '@material-ui/core/Grid';
+import Menu from '@material-ui/core/Menu';
 import Paper from '@material-ui/core/Paper';
+import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
 
 const styles = (theme) => ({
   root: {
@@ -23,9 +15,7 @@ const styles = (theme) => ({
     width: '90%',
     height: '80%',
     maxHeight: 'unset',
-    maxWidth: 'unset',
-    // top: `${theme.spacing(6.25)}px !important`,
-    left: '5% !important'
+    left: '5% !important',
   },
   paper: {
     padding: theme.spacing(2),
@@ -37,7 +27,6 @@ const styles = (theme) => ({
 const BlogDropDown = (props) => {
   const {
     classes,
-    pageURL,
     blogMenu,
     blogMenuAnchorEl,
     closeBlogDropDown,
@@ -53,43 +42,35 @@ const BlogDropDown = (props) => {
       getContentAnchorEl={null}
       open={blogMenu}
       onClose={closeBlogDropDown}
-      PopoverClasses={{paper: props.classes.popoverPaper}}
+      PopoverClasses={{ paper: classes.popoverPaper }}
     >
       <Grid container spacing={3}>
         <Grid item xs={3}>
-          <Paper className={classes.paper}><MenuItem>
-            <ListItemText primary="Latest Posts" />
-          </MenuItem></Paper>
+          <Paper className={classes.paper}>
+            Latest Posts
+          </Paper>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper}>
+            Authors
+          </Paper>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper}>
+            Categories
+          </Paper>
         </Grid>
         <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=6</Paper>
+          <Paper className={classes.paper}>
+            Tags
+          </Paper>
         </Grid>
       </Grid>
-      <MenuItem>
-        <ListItemText primary="Latest Posts" />
-      </MenuItem>
-      <Divider variant="fullWidth" />
-      <MenuItem>
-        <ListItemText primary="Learn French" />
-      </MenuItem>
-      <MenuItem>
-        <ListItemText primary="Learn Latin" />
-      </MenuItem>
-      <MenuItem>
-        <ListItemText primary="Learn Italian" />
-      </MenuItem>
     </Menu>
   );
 };
 
 BlogDropDown.propTypes = {
-  pageURL: PropTypes.string.isRequired,
   blogMenu: PropTypes.bool.isRequired,
   blogMenuAnchorEl: PropTypes.element.isRequired,
   closeBlogDropDown: PropTypes.func.isRequired,
@@ -97,6 +78,8 @@ BlogDropDown.propTypes = {
     root: PropTypes.string,
     dialogTitle: PropTypes.string,
     textField: PropTypes.string,
+    paper: PropTypes.string,
+    popoverPaper: PropTypes.string,
   }).isRequired,
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,

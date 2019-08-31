@@ -1,17 +1,18 @@
 /* eslint react/no-danger: 0 */
 /* eslint max-classes-per-file: 0 */
 
-import React from 'react';
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-} from 'next/document';
 import { ServerStyleSheets } from '@material-ui/styles';
 import { readFileSync } from 'fs';
 import { memoize } from 'lodash';
+import Document, {
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from 'next/document';
 import { join } from 'path';
+import React from 'react';
+
 import mainTheme from '../themes/main-theme';
 
 const doGetContent = (file) => readFileSync(join(process.cwd(), '.build', file), 'utf8');

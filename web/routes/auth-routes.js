@@ -1,11 +1,12 @@
+import connectRedis from 'connect-redis';
 import express from 'express';
 import session from 'express-session';
-import connectRedis from 'connect-redis';
 import uuidv4 from 'uuid/v4';
-import google from './auth-providers/google';
-import twitter from './auth-providers/twitter';
+
 import facebook from './auth-providers/facebook';
+import google from './auth-providers/google';
 import local from './auth-providers/local';
+import twitter from './auth-providers/twitter';
 
 const RedisStore = connectRedis(session);
 const router = express.Router();

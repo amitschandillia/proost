@@ -1,12 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
 import { ThemeProvider } from '@material-ui/styles';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
+
+import { facebookTheme, googleTheme, twitterTheme } from '../themes/socials-theme';
 import SocialIcon from './SocialIcon';
-import { googleTheme, facebookTheme, twitterTheme } from '../themes/socials-theme';
 
 const styles = (theme) => ({
   root: {

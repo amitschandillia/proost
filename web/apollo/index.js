@@ -1,6 +1,6 @@
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { withData } from 'next-apollo';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 
 // Set up cache.
 const cache = new InMemoryCache();

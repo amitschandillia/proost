@@ -1,20 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
+import completeLocalRegistration from '../utils/complete-local-registration';
+import {
+  validateName,
+  validatePassword,
+  validateUsername,
+} from '../utils/validate-registration-data';
+import DbErrorAlert from './DbErrorAlert';
 import EmailField from './EmailField';
 import FirstNameField from './FirstNameField';
 import LastNameField from './LastNameField';
-import UsernameField from './UsernameField';
 import PasswordField from './PasswordField';
-import DbErrorAlert from './DbErrorAlert';
-import {
-  validateName,
-  validateUsername,
-  validatePassword,
-} from '../utils/validate-registration-data';
-import completeLocalRegistration from '../utils/complete-local-registration';
+import UsernameField from './UsernameField';
 
 const styles = (theme) => ({
   root: {

@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { connect } from 'react-redux';
-import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import Button from '@material-ui/core/Button';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import BlogDropDown from './BlogDropDown';
 
 const styles = (theme) => ({
@@ -41,6 +42,9 @@ const BlogButton = (props) => {
 };
 
 BlogButton.propTypes = {
+  pageURL: PropTypes.string.isRequired,
+  blogMenu: PropTypes.bool.isRequired,
+  openBlogMenu: PropTypes.func.isRequired,
   userInfo: PropTypes.shape({
     firstName: PropTypes.string,
     nameToAddress: PropTypes.string,
@@ -50,6 +54,7 @@ BlogButton.propTypes = {
     transparentAppBar: PropTypes.string,
     overlay: PropTypes.string,
     title: PropTypes.string,
+    blogButtonStyle: PropTypes.string,
   }).isRequired,
 };
 

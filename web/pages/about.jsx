@@ -1,12 +1,13 @@
-import React from 'react';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import withStyles from '@material-ui/core/styles/withStyles';
-import NavBar from '../components/NavBar';
+import React from 'react';
+
 import LinkTo from '../components/LinkTo';
+import NavBar from '../components/NavBar';
 
 const styles = (theme) => ({
   root: {

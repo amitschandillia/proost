@@ -22,7 +22,9 @@
   },
   "plugins": [
     "react",
-    "jsx-a11y"
+    "jsx-a11y",
+    "react-hooks",
+    "simple-import-sort",
   ],
   "rules": {
     "jsx-a11y/anchor-is-valid": "off",
@@ -43,5 +45,10 @@
     "react/jsx-props-no-spreading": ["warn", {
       "custom": "ignore",
     }],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "sort-imports": "off",
+    "import/order": "off",
+    "simple-import-sort/sort": "error",
   },
 }

@@ -1,6 +1,6 @@
-import rp from 'request-promise';
 import AWS from 'aws-sdk';
 import dotenv from 'dotenv';
+import rp from 'request-promise';
 
 dotenv.config();
 

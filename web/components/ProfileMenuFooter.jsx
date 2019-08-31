@@ -1,9 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import LinkTo from './LinkTo';
 
 const styles = (theme) => ({

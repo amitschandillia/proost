@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import GoogleStrategy from 'passport-google-oauth20';
+
 import addOrUpdateUser from '../../utils/add-or-update-user';
 
 dotenv.config();

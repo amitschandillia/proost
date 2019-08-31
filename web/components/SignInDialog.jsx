@@ -1,11 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
+
 import SignInView from './SignInView';
 import SignUpView from './SignUpView';
 

@@ -1,21 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { connect } from 'react-redux';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Badge from '@material-ui/core/Badge';
+import Divider from '@material-ui/core/Divider';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import SettingsIcon from '@material-ui/icons/Settings';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import withStyles from '@material-ui/core/styles/withStyles';
+import EmailIcon from '@material-ui/icons/Email';
 import HelpIcon from '@material-ui/icons/Help';
 import LanguageIcon from '@material-ui/icons/Language';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import EmailIcon from '@material-ui/icons/Email';
+import SettingsIcon from '@material-ui/icons/Settings';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
+import MenuitemSignOut from './MenuitemSignOut';
 import ProfileMenuFooter from './ProfileMenuFooter';
 import ProfileMenuHeader from './ProfileMenuHeader';
-import MenuitemSignOut from './MenuitemSignOut';
-import Badge from '@material-ui/core/Badge';
 
 const styles = (theme) => ({
   root: {

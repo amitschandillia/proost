@@ -1,20 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import { connect } from 'react-redux';
-import Button from '@material-ui/core/Button';
 import emailValidator from 'email-validator';
-import SocialButton from './SocialButton';
-import EmailField from './EmailField';
-import PasswordField from './PasswordField';
-import WrongCredentialsError from './WrongCredentialsError';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import loginUser from '../utils/login-user';
 import {
-  validateUsername,
   validatePassword,
+  validateUsername,
 } from '../utils/validate-registration-data';
+import EmailField from './EmailField';
+import PasswordField from './PasswordField';
+import SocialButton from './SocialButton';
+import WrongCredentialsError from './WrongCredentialsError';
 
 const styles = (theme) => ({
   root: {

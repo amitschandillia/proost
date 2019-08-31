@@ -1,5 +1,5 @@
-import { createMuiTheme } from '@material-ui/core/styles';
 import grey from '@material-ui/core/colors/grey';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 // Create a theme instance.
 // Color reference (MUI): https://material-ui.com/customization/color/#color-palette

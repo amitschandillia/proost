@@ -1,5 +1,6 @@
-import validator from 'validator';
 import PasswordValidator from 'password-validator';
+import validator from 'validator';
+
 import passwordBlacklist from '../configs/password-blacklist';
 
 const schema = new PasswordValidator();

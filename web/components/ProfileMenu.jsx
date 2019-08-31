@@ -1,16 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Avatar from '@material-ui/core/Avatar';
-import { connect } from 'react-redux';
+import Badge from '@material-ui/core/Badge';
+import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import avatarTheme from '../themes/avatar-theme';
 import ProfileDropDown from './ProfileDropDown';
-import Grid from '@material-ui/core/Grid';
-import Badge from '@material-ui/core/Badge';
 
-const StyledBadge = withStyles(theme => ({
+const StyledBadge = withStyles((theme) => ({
   badge: {
     top: '25%',
     right: 3,
@@ -19,7 +20,7 @@ const StyledBadge = withStyles(theme => ({
   },
 }))(Badge);
 
-const styles = (theme) => ({
+const styles = () => ({
   root: {
     flexGrow: 1,
   },
@@ -54,7 +55,12 @@ const ProfileMenu = (props) => {
       <>
         <Grid className={classes.profileGrid} container justify="center" alignItems="center">
           <StyledBadge badgeContent={124} color="error" variant="dot">
-            <Avatar onClick={openProfileMenu} alt={fullName} src={imgURL} className={classes.avatar} />
+            <Avatar
+              onClick={openProfileMenu}
+              alt={fullName}
+              src={imgURL}
+              className={classes.avatar}
+            />
           </StyledBadge>
           {!profileMenu && <KeyboardArrowDownIcon />}
           {profileMenu && <KeyboardArrowUpIcon />}

@@ -1,8 +1,8 @@
 /* eslint no-dupe-keys: 0 */
 
-import React from 'react';
-import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 
 const bg = '/_f/images/banner.png';

@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { connect } from 'react-redux';
-import StoreIcon from '@material-ui/icons/Store';
 import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
+import StoreIcon from '@material-ui/icons/Store';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
 
 const styles = (theme) => ({
   storeStyle: {
@@ -36,6 +36,7 @@ StoreButton.propTypes = {
     transparentAppBar: PropTypes.string,
     overlay: PropTypes.string,
     title: PropTypes.string,
+    storeStyle: PropTypes.string,
   }).isRequired,
 };
 

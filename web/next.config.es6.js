@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
 
-import path from 'path';
-import glob from 'glob';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import webpack from 'webpack';
-import dotenv from 'dotenv';
-import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
-import withSass from '@zeit/next-sass';
 import withCSS from '@zeit/next-css';
+import withSass from '@zeit/next-sass';
+import dotenv from 'dotenv';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import glob from 'glob';
 import withPurgeCss from 'next-purgecss';
+import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+import path from 'path';
+import webpack from 'webpack';
 
 // dotenv.config();
 const { parsed: localEnv } = dotenv.config();

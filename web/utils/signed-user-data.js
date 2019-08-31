@@ -1,5 +1,6 @@
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import jwt from 'jsonwebtoken';
+
 import getInitials from './get-initials';
 import getNameToAddress from './get-name-to-address';
 

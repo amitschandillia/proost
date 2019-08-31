@@ -1,18 +1,19 @@
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 import express from 'express';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-import next from 'next';
-import path from 'path';
 import { createReadStream } from 'fs';
-import favicon from 'serve-favicon';
 import csp from 'helmet-csp';
-import passport from 'passport';
 import mongoose from 'mongoose';
-import getDirectives from './get-directives';
+import next from 'next';
+import passport from 'passport';
+import path from 'path';
+import favicon from 'serve-favicon';
+
 import authRoutes from '../routes/auth-routes';
 import mailRoutes from '../routes/mail-routes';
 import registrationRoutes from '../routes/registration-routes';
+import getDirectives from './get-directives';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });

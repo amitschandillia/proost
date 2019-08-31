@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
 
-import express from 'express';
-import passport from 'passport';
-import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import express from 'express';
+import jwt from 'jsonwebtoken';
+import passport from 'passport';
+
 import passportSetup from '../../passport-setup';
 import signedUserData from '../../utils/signed-user-data';
 

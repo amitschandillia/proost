@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
+import React from 'react';
 import { connect } from 'react-redux';
 
 const styles = (theme) => ({

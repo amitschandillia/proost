@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import TwitterStrategy from 'passport-twitter';
+
 import addOrUpdateUser from '../../utils/add-or-update-user';
 
 dotenv.config();

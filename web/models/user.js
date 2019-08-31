@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
 import argon2 from 'argon2';
+import mongoose from 'mongoose';
+
 import argonConfigs from '../configs/argon-configs';
 
 const { Schema } = mongoose;

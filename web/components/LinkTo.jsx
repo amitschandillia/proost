@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import MuiLink from '@material-ui/core/Link';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 const LinkTo = (props) => {
   const { href, color, children } = props;

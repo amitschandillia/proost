@@ -1,13 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import Grid from '@material-ui/core/Grid';
-import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
 import emailValidator from 'email-validator';
-import SocialButton from './SocialButton';
-import EmailField from './EmailField';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
 import signUpEmail from '../utils/sign-up-email';
+import EmailField from './EmailField';
+import SocialButton from './SocialButton';
 
 const styles = (theme) => ({
   root: {

@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import LocalStrategy from 'passport-local';
+
 import User from '../../models/user';
 
 dotenv.config();

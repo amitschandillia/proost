@@ -1,17 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { connect } from 'react-redux';
+import Divider from '@material-ui/core/Divider';
+import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import SettingsIcon from '@material-ui/icons/Settings';
-import HelpIcon from '@material-ui/icons/Help';
-import LanguageIcon from '@material-ui/icons/Language';
-import EmailIcon from '@material-ui/icons/Email';
-import MenuitemSignOut from './MenuitemSignOut';
+import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
 
 const styles = (theme) => ({
   root: {
@@ -22,7 +16,6 @@ const styles = (theme) => ({
 const ToolsDropDown = (props) => {
   const {
     classes,
-    pageURL,
     toolsMenu,
     toolsMenuAnchorEl,
     closeToolsDropDown,
@@ -57,7 +50,6 @@ const ToolsDropDown = (props) => {
 };
 
 ToolsDropDown.propTypes = {
-  pageURL: PropTypes.string.isRequired,
   toolsMenu: PropTypes.bool.isRequired,
   toolsMenuAnchorEl: PropTypes.element.isRequired,
   closeToolsDropDown: PropTypes.func.isRequired,
