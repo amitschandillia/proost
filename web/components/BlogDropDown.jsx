@@ -14,7 +14,8 @@ const styles = (theme) => ({
   popoverPaper: {
     width: '90%',
     height: '80%',
-    maxHeight: 'unset',
+    // maxHeight: 'unset',
+    // maxHeight: '80%',
     left: '5% !important',
   },
   paper: {

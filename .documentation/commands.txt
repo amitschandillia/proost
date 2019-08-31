@@ -12,6 +12,20 @@ WEB
 cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
 
+REMEMBER ME
+during first login:
+1. create hash
+2. store hash as cookie
+3. store hash in db (user document)
+during logout:
+1. check if hash cookie exists
+2. if yes, delete all cookies except hash cookie
+3. if no, delete all cookies
+during subsequent logins
+1. check if hash cookie exists
+2. if yes, match it with hash stored in db (user document)
+3. if matched, create userinfo cookie and proceed
+4. if not matched or if hash cookie doesn't exist, present login dialog
 
 
 CONNECT TO REDIS
