@@ -16,6 +16,7 @@ router.use(session({
   genid: () => uuidv4(),
   cookie: {
     httpOnly: true,
+    sameSite: 'strict',
   },
   secret: process.env.SESSION_SECRET,
   store: new RedisStore({

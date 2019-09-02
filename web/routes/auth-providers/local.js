@@ -22,12 +22,17 @@ router.post('/',
       const rememberCookie = await rememberMeCookie(username);
       // Store hash in a cookie
       if(rememberCookie) {
-        res.cookie(process.env.USER_REMEMBER_COOKIE, rememberCookie);
+        res.cookie(process.env.USER_REMEMBER_COOKIE, rememberCookie, {
+          httpOnly: true,
+          secure: true,
+          sameSite: 'strict',
+        });
       }
     }
     res.cookie(process.env.USER_DATA_COOKIE, signedUserData(req), {
       httpOnly: true,
       secure: true,
+      sameSite: 'strict',
     });
     res.json({ success: true });
   });
@@ -39,10 +44,15 @@ router.post('/remember', async (req, res) => {
     const matchedUser = await getUserinfoFromRemember(remember);
     if(matchedUser) {
       // Cookie matched
-      res.cookie(process.env.USER_REMEMBER_COOKIE, matchedUser.remember);
+      res.cookie(process.env.USER_REMEMBER_COOKIE, matchedUser.remember, {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+      });
       res.cookie(process.env.USER_DATA_COOKIE, signedUserData({user: matchedUser}), {
         httpOnly: true,
         secure: true,
+        sameSite: 'strict',
       });
       res.json({ success: true });
     } else {

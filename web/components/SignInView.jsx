@@ -19,6 +19,7 @@ import EmailField from './EmailField';
 import PasswordField from './PasswordField';
 import SocialButton from './SocialButton';
 import WrongCredentialsError from './WrongCredentialsError';
+import LinkTo from './LinkTo';
 
 const styles = (theme) => ({
   root: {
@@ -140,6 +141,9 @@ const SignInView = (props) => {
             label="Keep me logged in"
           />
         </FormGroup>
+        <Typography>
+          <LinkTo href="/">Forgot password?</LinkTo>
+        </Typography>
         <Button
           size="large"
           color="primary"

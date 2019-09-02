@@ -11,8 +11,13 @@ const fieldExists = (field) => {
   return itExists;
 };
 
-const createNewUser = (user, givenEmail, providerID, hasPicture, pictureVersion, done) => {
+const createNewUser = (user, givenEmail, providerID, hasPicture, generatedPictureVersion, done) => {
   let emails;
+  const pictureVersion = hasPicture ? { pictureVersion: generatedPictureVersion } : null;
+  // let pictureVersion;
+  // if(generatedPictureVersion) {
+  //   pictureVersion = { pictureVersion: generatedPictureVersion }
+  // }
   if (givenEmail) { emails = [givenEmail]; }
   new User({
     firstName: user.firstName,
@@ -20,7 +25,7 @@ const createNewUser = (user, givenEmail, providerID, hasPicture, pictureVersion,
     ...providerID,
     emails,
     hasPicture,
-    pictureVersion,
+    ...pictureVersion,
   }).save().then((newUser) => {
     if (hasPicture) {
       useProfileImg(user.picture, newUser._id, pictureVersion);
