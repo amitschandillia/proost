@@ -1,0 +1,31 @@
+import AWS from 'aws-sdk';
+import dotenv from 'dotenv';
+import rp from 'request-promise';
+
+dotenv.config();
+
+const s3 = new AWS.S3({
+  accessKeyId: process.env.IAM_ACCESS_KEY_ID,
+  secretAccessKey: process.env.IAM_SECRET_ACCESS_KEY,
+});
+
+const useProfileImg = (imageURL, userID, pictureVersion) => {
+  const options = {
+    uri: imageURL,
+    encoding: null,
+    resolveWithFullResponse: true,
+  };
+  async function load() {
+    const response = await rp(options);
+    const uploadResult = await s3.upload({
+      ACL: 'public-read',
+      Bucket: `${process.env.S3_BUCKET_NAME}/w`,
+      Key: `${userID}.${pictureVersion}.jpg`,
+      Body: response.body,
+      ContentType: response.headers['content-type'],
+    }).promise();
+    return uploadResult;
+  }
+  load();
+};
+export default useProfileImg;
