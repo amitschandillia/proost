@@ -36,12 +36,24 @@ router.use('/local', local);
 // Logout
 router.get('/logout', (req, res) => {
   req.logout();
-  req.session.destroy(() => {
-    Object.keys(req.cookies).forEach((cookie) => {
-      res.clearCookie(cookie);
+  const cookieKeys = Object.keys(req.cookies);
+  if(cookieKeys.includes(process.env.USER_REMEMBER_COOKIE)) {
+    console.log('REMEMBER COOKIE EXISTS!');
+    const rememberCookie = process.env.USER_REMEMBER_COOKIE;
+    const sessionCookie = process.env.SESSION_COOKIE;
+    cookieKeys.forEach((cookie) => {
+      if(cookie !== rememberCookie && cookie !== sessionCookie) res.clearCookie(cookie);
     });
     res.redirect(req.query.callback);
-  });
+  } else {
+    console.log('NO REMEMBER');
+    req.session.destroy(() => {
+      cookieKeys.forEach((cookie) => {
+        res.clearCookie(cookie);
+      });
+      res.redirect(req.query.callback);
+    });
+  }
 });
 
 module.exports = router;
