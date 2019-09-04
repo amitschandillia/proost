@@ -28,6 +28,8 @@ class MyApp extends App {
     let sessID;
 
     if (ctx.isServer) {
+      const ip = ctx.req.header('x-forwarded-for') || ctx.req.connection.remoteAddress;
+      console.log('IP ADDRESS', ip);
       userToken = getUserTokenFromCookies(ctx.req);
       sessID = getSessIDFromCookies(ctx.req);
       if (userToken && sessID) { // TBD: validate integrity of sessID
