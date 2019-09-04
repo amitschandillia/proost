@@ -14,10 +14,6 @@ const fieldExists = (field) => {
 const createNewUser = (user, givenEmail, providerID, hasPicture, generatedPictureVersion, done) => {
   let emails;
   const pictureVersion = hasPicture ? { pictureVersion: generatedPictureVersion } : null;
-  // let pictureVersion;
-  // if(generatedPictureVersion) {
-  //   pictureVersion = { pictureVersion: generatedPictureVersion }
-  // }
   if (givenEmail) { emails = [givenEmail]; }
   new User({
     firstName: user.firstName,

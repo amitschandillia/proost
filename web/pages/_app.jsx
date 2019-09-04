@@ -30,13 +30,11 @@ class MyApp extends App {
     if (ctx.isServer) {
       userToken = getUserTokenFromCookies(ctx.req);
       sessID = getSessIDFromCookies(ctx.req);
-      if (userToken) {
+      if (userToken && sessID) { // TBD: validate integrity of sessID
         const userInfo = jwt.verify(userToken, process.env.JWT_SECRET);
         ctx.store.dispatch({ type: 'ADDUSERINFO', payload: userInfo });
       }
-      // look up sessID on redis store...
       ctx.store.dispatch({ type: 'ADDSESSION', payload: sessID }); // component will be able to read from store's state when rendered
-      // ctx.store.dispatch({ type: 'ADDUSERTOKEN', payload: userToken });
     }
     const pageProps = Component.getInitialProps ? await Component.getInitialProps(ctx) : {};
     return { pageProps };

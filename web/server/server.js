@@ -72,6 +72,7 @@ app.prepare().then(() => {
 
   // Default route (not to be edited)
   // ---------------------------------------------------------------------
+  // server.get('*', (req, res) => handle(req, res));
   server.get('*', (req, res) => handle(req, res));
   // ---------------------------------------------------------------------
 

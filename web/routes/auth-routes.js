@@ -39,7 +39,6 @@ router.get('/logout', (req, res) => {
   req.logout();
   const cookieKeys = Object.keys(req.cookies);
   if(cookieKeys.includes(process.env.USER_REMEMBER_COOKIE)) {
-    console.log('REMEMBER COOKIE EXISTS!');
     const rememberCookie = process.env.USER_REMEMBER_COOKIE;
     const sessionCookie = process.env.SESSION_COOKIE;
     cookieKeys.forEach((cookie) => {
@@ -47,7 +46,6 @@ router.get('/logout', (req, res) => {
     });
     res.redirect(req.query.callback);
   } else {
-    console.log('NO REMEMBER');
     req.session.destroy(() => {
       cookieKeys.forEach((cookie) => {
         res.clearCookie(cookie);

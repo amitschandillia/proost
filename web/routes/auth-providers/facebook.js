@@ -25,6 +25,7 @@ router.get(
     res.cookie(process.env.USER_DATA_COOKIE, signedUserData(req), {
       httpOnly: true,
       secure: true,
+      sameSite: 'strict',
     });
     res.redirect(pageURL);
   },
