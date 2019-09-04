@@ -26,7 +26,6 @@ app.prepare().then(() => {
 
   // Custom middleware
   // ---------------------------------------------------------------------
-  server.set('trust proxy', true);
   server.use(favicon(path.join(__dirname, '..', 'static', 'brand', 'favicons', 'favicon.ico')));
   server.use(bodyParser.json());
   server.use(bodyParser.urlencoded({ extended: false }));

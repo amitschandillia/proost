@@ -13,6 +13,8 @@ const getDirectives = () => {
     'data:',
     `i.${process.env.THIS_DOMAIN}.com`,
   ];
+  const media = [
+  ];
   const styles = [
     // `https://fonts.googleapis.com/`,
     // `https://platform.twitter.com/`
@@ -40,7 +42,7 @@ const getDirectives = () => {
     connectSrc: [self, ...connect],
     imgSrc: [self, ...images],
     objectSrc: [self],
-    mediaSrc: [self],
+    mediaSrc: [self, ...media],
   };
 };
 

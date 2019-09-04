@@ -71,6 +71,12 @@ walkSync(imageList, (filePath) => {
   const cachedItem = filePath.substr(imageList.length - 1);
   cachedItems.push(`/_f/images/${cachedItem}`);
 });
+// Cache media
+const mediaList = './static/media';
+walkSync(mediaList, (filePath) => {
+  const cachedItem = filePath.substr(mediaList.length - 1);
+  cachedItems.push(`/_f/media/${cachedItem}`);
+});
 // Cache fonts
 const fontList = './static/fonts';
 walkSync(fontList, (filePath) => {

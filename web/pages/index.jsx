@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
-import Banner from '../components/Banner';
+// import Banner from '../components/Banner';
+import VideoBanner from '../components/VideoBanner';
 import LinkTo from '../components/LinkTo';
 import NavBar from '../components/NavBar';
 
@@ -43,9 +44,9 @@ const Index = (props) => {
         <meta name="description" content={description} key="description" />
       </Head>
       <NavBar pageURL={pageURL} transparent />
-      <Banner>
+      <VideoBanner>
         <Typography variant="h5">This is a text</Typography>
-      </Banner>
+      </VideoBanner>
       <Box my={4} className={classes.root}>
         <div>
           nameToAddress from Redux:

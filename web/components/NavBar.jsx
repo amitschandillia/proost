@@ -20,6 +20,8 @@ import SubmitEmailDialog from './SubmitEmailDialog';
 import ToolsButton from './ToolsButton';
 import shouldBypassLogin from '../utils/should-bypass-login';
 
+import Link from 'next/link';
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -51,6 +53,9 @@ const styles = (theme) => ({
     background: theme.palette.primary.main,
     opacity: 0,
     zIndex: -1,
+  },
+  desktopHeaderLogo: {
+    // marginLeft: -1 * theme.spacing(2),
   },
   sectionDesktop: {
     alignItems: 'center',
@@ -84,18 +89,22 @@ const NavBar = (props) => {
   const scrollFunction = () => {
     const nav = document.getElementById('nav');
     const overlay = document.getElementById('nav-overlay');
+    const desktopHeaderLogo = document.getElementById('desktop-header-logo');
     const travel = typeof window.scrollY === 'undefined' ? window.pageYOffset : window.scrollY;
-    const travelRem = travel / 16;
-    const navHeight = 7 - (travelRem / 6);
+    const navHeight = 7 - ((travel / 16) / 6);
+    desktopHeaderLogo.style.width = 'auto';
     if (navHeight <= 4) {
       nav.style.lineHeight = `${4}rem`;
       overlay.style.opacity = 1;
+      desktopHeaderLogo.style.height = `${4}rem`;
     } else if (navHeight >= 7) {
       nav.style.lineHeight = `${7}rem`;
       overlay.style.opacity = 0;
+      desktopHeaderLogo.style.height = `${7}rem`;
     } else {
       nav.style.lineHeight = `${navHeight}rem`;
       overlay.style.opacity = (7 - navHeight) / 3;
+      desktopHeaderLogo.style.height = `${navHeight}rem`;
     }
   };
 
@@ -122,43 +131,38 @@ const NavBar = (props) => {
   };
 
 
-  const brand = (
-    <>
-      <Typography variant="h6" className={classes.title}>
-        <LinkTo href="/">SCHANDILLIA</LinkTo>
-      </Typography>
-      <div className={classes.grow} />
-    </>
-  );
   const desktopMenu = (
-    <>
-      <div className={classes.sectionDesktop}>
-        <SearchField />
-        <div className={classes.grow} />
-        <ToolsButton />
-        <div className={classes.grow} />
-        <BlogButton />
-        <div className={classes.grow} />
-        <StoreButton />
-        <div className={classes.grow} />
-        <CartButton />
-        <div className={classes.grow} />
-        {
-        loggedIn
-        && (
-        <Button
-          className={classes.loginBtn}
-          variant="outlined"
-          color="inherit"
-          onClick={handleClickOpen}
-        >
-          Sign in
-        </Button>
-        )
-        }
-        {!loggedIn && <ProfileMenu pageURL={pageURL} />}
-      </div>
-    </>
+    <div className={classes.sectionDesktop}>
+      <Link href="/">
+        <a  style={{lineHeight: 0}}><img id="desktop-header-logo" className={classes.desktopHeaderLogo} src="_f/images/desktop-header-logo.png" width="64" height="64" /></a>
+      </Link>
+      <div className={classes.grow} />
+      <div className={classes.grow} />
+      <SearchField />
+      <div className={classes.grow} />
+      <ToolsButton />
+      <div className={classes.grow} />
+      <BlogButton />
+      <div className={classes.grow} />
+      <StoreButton />
+      <div className={classes.grow} />
+      <CartButton />
+      <div className={classes.grow} />
+      {
+      loggedIn
+      && (
+      <Button
+        className={classes.loginBtn}
+        variant="outlined"
+        color="inherit"
+        onClick={handleClickOpen}
+      >
+        Sign in
+      </Button>
+      )
+      }
+      {!loggedIn && <ProfileMenu pageURL={pageURL} />}
+    </div>
   );
   const mobileMenu = (
     <div className={classes.sectionMobile}>
@@ -179,7 +183,6 @@ const NavBar = (props) => {
         {transparent && <span id="nav-overlay" className={classes.overlay} />}
         <Toolbar>
           {mobileMenu}
-          {brand}
           {desktopMenu}
         </Toolbar>
       </AppBar>
