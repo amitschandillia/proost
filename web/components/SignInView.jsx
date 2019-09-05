@@ -101,7 +101,7 @@ const SignInView = (props) => {
   };
 
   const [state, setState] = useState({
-    stayLogged: true,
+    stayLogged: false,
   });
 
   const handleChange = name => event => {

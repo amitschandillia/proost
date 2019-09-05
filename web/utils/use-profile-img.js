@@ -20,7 +20,7 @@ const useProfileImg = (imageURL, userID, pictureVersion) => {
     const uploadResult = await s3.upload({
       ACL: 'public-read',
       Bucket: `${process.env.S3_BUCKET_NAME}/w`,
-      Key: `${userID}.${pictureVersion}.jpg`,
+      Key: `${userID}.${pictureVersion.pictureVersion}.jpg`,
       Body: response.body,
       ContentType: response.headers['content-type'],
     }).promise();

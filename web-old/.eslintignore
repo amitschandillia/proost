@@ -1,8 +1,0 @@
-/**/node_modules/*
-/**/.build/*
-.git/*
-.help_docs/*
-/**/.env*
-/**/package.json
-/**/package-lock.json
-/**/yarn.lock
