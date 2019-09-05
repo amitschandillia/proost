@@ -16,6 +16,10 @@ const preLoadMiddleware = (req, res, next) => {
       next();
     }
     else {
+      const cookieKeys = Object.keys(req.cookies);
+      cookieKeys.forEach((cookie) => {
+        res.clearCookie(cookie);
+      });
       res.locals.authenticated = false;
       next();
     }
