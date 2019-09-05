@@ -30,6 +30,14 @@ class MyApp extends App {
     if (ctx.isServer) {
       userToken = getUserTokenFromCookies(ctx.req);
       sessID = getSessIDFromCookies(ctx.req);
+      if(ctx.res) {
+        if(ctx.res.locals) {
+          if(!ctx.res.locals.authenticated) {
+            userToken = null;
+            sessID = null;
+          }
+        }
+      }
       if (userToken && sessID) { // TBD: validate integrity of sessID
         const userInfo = jwt.verify(userToken, process.env.JWT_SECRET);
         ctx.store.dispatch({ type: 'ADDUSERINFO', payload: userInfo });

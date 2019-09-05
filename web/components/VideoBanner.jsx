@@ -45,17 +45,17 @@ const VideoBanner = (props) => {
     <>
       <div className={classes.root}>
         <video
-          className={classes.video}
-          autoplay
-          muted
           loop
           playsinline
+          autoplay
+          muted
           poster={poster}
+          className={classes.video}
         >
-        <source type="video/mp4" src={video} />
-      </video>
-      <div className={classes.overlay} />
-      <div className={classes.children}>{children}</div>
+          <source type="video/mp4" src={video} />
+        </video>
+        <div className={classes.overlay} />
+        <div className={classes.children}>{children}</div>
       </div>
     </>
   );

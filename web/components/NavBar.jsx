@@ -35,6 +35,9 @@ const styles = (theme) => ({
   grow: {
     flexGrow: 1,
   },
+  growMore: {
+    flexGrow: 10,
+  },
   loginBtn: {
     marginLeft: theme.spacing(2),
   },
@@ -136,8 +139,7 @@ const NavBar = (props) => {
       <Link href="/">
         <a  style={{lineHeight: 0}}><img id="desktop-header-logo" className={classes.desktopHeaderLogo} src="_f/images/desktop-header-logo.png" width="64" height="64" /></a>
       </Link>
-      <div className={classes.grow} />
-      <div className={classes.grow} />
+      <div className={classes.growMore} />
       <SearchField />
       <div className={classes.grow} />
       <ToolsButton />

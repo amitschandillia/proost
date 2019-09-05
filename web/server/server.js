@@ -10,6 +10,8 @@ import passport from 'passport';
 import path from 'path';
 import favicon from 'serve-favicon';
 
+import preLoadMiddleware from '../routes/preload-middleware';
+
 import authRoutes from '../routes/auth-routes';
 import mailRoutes from '../routes/mail-routes';
 import registrationRoutes from '../routes/registration-routes';
@@ -73,6 +75,7 @@ app.prepare().then(() => {
   // Default route (not to be edited)
   // ---------------------------------------------------------------------
   // server.get('*', (req, res) => handle(req, res));
+  server.use('*', preLoadMiddleware);
   server.get('*', (req, res) => handle(req, res));
   // ---------------------------------------------------------------------
 
