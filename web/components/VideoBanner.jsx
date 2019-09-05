@@ -47,7 +47,7 @@ const VideoBanner = (props) => {
         <video
           loop
           playsinline
-          autoplay
+          autoplay="autoplay"
           muted
           poster={poster}
           className={classes.video}
