@@ -3,7 +3,7 @@
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
@@ -13,7 +13,9 @@ import LinkTo from '../components/LinkTo';
 
 const styles = (theme) => ({
   root: {
-    flexGrow: 1,
+    backgroundColor: theme.palette.prefooter.default,
+    color: theme.palette.primary.main,
+    padding: theme.spacing(2),
   },
 });
 
@@ -22,11 +24,20 @@ const Prefooter = (props) => {
     classes
   } = props;
   return (
-    <>
-      <Container>
-        <Typography>Amit Prefooter</Typography>
-      </Container>
-    </>
+    <Grid container justify="space-between" alignItems="center" className={classes.root}>
+      <Grid item xs={12} sm={6} md={3}>
+        <Typography>Some links go here</Typography>
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <Typography>Some links go here</Typography>
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <Typography>Some links go here</Typography>
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <Typography>Some links go here</Typography>
+      </Grid>
+    </Grid>
   );
 };
 

@@ -23,6 +23,9 @@ const mainTheme = createMuiTheme({
     background: {
       default: blueGrey[50],
     },
+    prefooter: {
+      default: blueGrey[100],
+    },
   },
 });
 
