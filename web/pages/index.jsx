@@ -12,7 +12,8 @@ import { connect } from 'react-redux';
 // import Banner from '../components/Banner';
 import VideoBanner from '../components/VideoBanner';
 import LinkTo from '../components/LinkTo';
-import NavBar from '../components/NavBar';
+
+import Layout from '../components/Layout';
 
 const styles = (theme) => ({
   root: {
@@ -39,45 +40,47 @@ const Index = (props) => {
   const description = 'This is the description for the homepage';
   return (
     <>
-      <Head>
-        <title>{ title }</title>
-        <meta name="description" content={description} key="description" />
-      </Head>
-      <NavBar pageURL={pageURL} transparent />
-      <VideoBanner>
-        <Typography variant="h5">This is a text</Typography>
-      </VideoBanner>
-      <Box my={4} className={classes.root}>
-        <div>
-          nameToAddress from Redux:
-          {userInfo.nameToAddress}
-        </div>
-        <div>
-          sessID from Redux:
-          {sessID}
-        </div>
-        <Typography variant="h4" component="h1" gutterBottom>
-            Material-UI
-        </Typography>
-        <Typography gutterBottom>
-          <LinkTo href="/about" color="secondary">
-              Go to the about page
-          </LinkTo>
-        </Typography>
-        <Typography gutterBottom>
-          <LinkTo href="/blog">
-            View posts page
-          </LinkTo>
-        </Typography>
-        <Button size="large" variant="contained" color="primary">
-            Super Secret Password
-        </Button>
-        <Button size="large" variant="contained" color="secondary">
-            Super Secret Password
-        </Button>
-        <p className={classes.paragraph}>All men must die</p>
-        <p className="xt test">test</p>
-      </Box>
+      <Layout
+        title = {title}
+        description = {description}
+        pageURL = {pageURL}
+        transparent = {true}
+      >
+        <VideoBanner>
+          <Typography variant="h5">This is a text</Typography>
+        </VideoBanner>
+        <Box my={4} className={classes.root}>
+          <div>
+            nameToAddress from Redux:
+            {userInfo.nameToAddress}
+          </div>
+          <div>
+            sessID from Redux:
+            {sessID}
+          </div>
+          <Typography variant="h4" component="h1" gutterBottom>
+              Material-UI
+          </Typography>
+          <Typography gutterBottom>
+            <LinkTo href="/about" color="secondary">
+                Go to the about page
+            </LinkTo>
+          </Typography>
+          <Typography gutterBottom>
+            <LinkTo href="/blog">
+              View posts page
+            </LinkTo>
+          </Typography>
+          <Button size="large" variant="contained" color="primary">
+              Super Secret Password
+          </Button>
+          <Button size="large" variant="contained" color="secondary">
+              Super Secret Password
+          </Button>
+          <p className={classes.paragraph}>All men must die</p>
+          <p className="xt test">test</p>
+        </Box>
+      </Layout>
     </>
   );
 };

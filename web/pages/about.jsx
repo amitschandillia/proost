@@ -2,12 +2,11 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import LinkTo from '../components/LinkTo';
-import NavBar from '../components/NavBar';
+import Layout from '../components/Layout';
 
 const styles = (theme) => ({
   root: {
@@ -28,27 +27,28 @@ const About = (props) => {
 
   return (
     <>
-      <Head>
-        <title>{ title }</title>
-        <meta name="description" content={description} key="description" />
-      </Head>
-      <NavBar pageURL={pageURL} />
-      <Box my={4} className={classes.root}>
-        <Typography variant="h4" gutterBottom>
-          Material-UI
-        </Typography>
-        <Typography gutterBottom>
-          <LinkTo href="/">
-            Go home
-          </LinkTo>
-        </Typography>
-        <Button variant="contained" color="primary">
-                Super Secret Password
-        </Button>
-        <Button variant="contained" color="secondary">
-                Super Secret Password
-        </Button>
-      </Box>
+      <Layout
+        title = {title}
+        description = {description}
+        pageURL = {pageURL}
+      >
+        <Box my={4} className={classes.root}>
+          <Typography variant="h4" gutterBottom>
+            Material-UI
+          </Typography>
+          <Typography gutterBottom>
+            <LinkTo href="/">
+              Go home
+            </LinkTo>
+          </Typography>
+          <Button variant="contained" color="primary">
+                  Super Secret Password
+          </Button>
+          <Button variant="contained" color="secondary">
+                  Super Secret Password
+          </Button>
+        </Box>
+      </Layout>
     </>
   );
 };
