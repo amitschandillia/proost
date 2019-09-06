@@ -6,9 +6,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const styles = (theme) => ({
-  storeStyle: {
+  root: {
     verticalAlign: 'middle',
-    marginRight: theme.spacing(1) / 2,
+  },
+  icon: {
+    marginRight: theme.spacing(0.5),
   },
 });
 
@@ -19,8 +21,8 @@ const StoreButton = (props) => {
   const loggedIn = Object.entries(userInfo).length === 0;
 
   return (
-    <Button disableFocusRipple disableRipple color="inherit" className={classes.storeStyle}>
-      <StoreIcon />
+    <Button disableFocusRipple disableRipple color="inherit" className={classes.root}>
+      <StoreIcon className={classes.icon} />
       Store
     </Button>
   );
@@ -36,7 +38,7 @@ StoreButton.propTypes = {
     transparentAppBar: PropTypes.string,
     overlay: PropTypes.string,
     title: PropTypes.string,
-    storeStyle: PropTypes.string,
+    root: PropTypes.string,
   }).isRequired,
 };
 

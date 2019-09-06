@@ -18,6 +18,12 @@ const styles = (theme) => ({
     color: theme.palette.common.white,
     padding: theme.spacing(2),
   },
+  copyright: {
+    display: 'flex',
+  },
+  footerLogo: {
+    marginRight: theme.spacing(2),
+  },
   footerLinks: {
     textAlign: 'right',
   },
@@ -29,18 +35,19 @@ const Footer = (props) => {
   } = props;
   return (
     <Grid container alignItems="center" className={classes.root}>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={6} alignItems="center" className={classes.copyright}>
+        <img className={classes.footerLogo} src="_f/images/desktop-header-logo.png" width="48" height="48" />
         &copy;
         {` 2015-${new Date().getFullYear()}`}
-        {` ${process.env.BRAND_NAME}. All Rights Reserved.`}
+        {` ${process.env.COPYRIGHT_ENTITY}. All Rights Reserved.`}
       </Grid>
       <Grid item xs={12} sm={6}>
         <Grid className={classes.footerLinks} container justify="flex-end" alignItems="center">
-          <LinkTo href="/">Terms</LinkTo>
+          <LinkTo hoverDotted href="/">Terms</LinkTo>
           <VerticalDivider />
-          <LinkTo href="/">Privacy</LinkTo>
+          <LinkTo hoverDotted href="/">Privacy</LinkTo>
           <VerticalDivider />
-          <LinkTo href="/">About</LinkTo>
+          <LinkTo hoverDotted href="/">About</LinkTo>
         </Grid>
       </Grid>
     </Grid>

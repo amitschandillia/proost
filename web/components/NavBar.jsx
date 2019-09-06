@@ -137,7 +137,9 @@ const NavBar = (props) => {
   const desktopMenu = (
     <div className={classes.sectionDesktop}>
       <Link href="/">
-        <a  style={{lineHeight: 0}}><img id="desktop-header-logo" className={classes.desktopHeaderLogo} src="_f/images/desktop-header-logo.png" width="64" height="64" /></a>
+        <a  style={{lineHeight: 0}}>
+          <img id="desktop-header-logo" className={classes.desktopHeaderLogo} src="_f/images/desktop-header-logo.png" width="64" height="64" />
+        </a>
       </Link>
       <div className={classes.growMore} />
       <SearchField />

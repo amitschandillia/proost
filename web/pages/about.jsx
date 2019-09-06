@@ -7,6 +7,7 @@ import React from 'react';
 
 import LinkTo from '../components/LinkTo';
 import Layout from '../components/Layout';
+import PageBody from '../components/PageBody';
 
 const styles = (theme) => ({
   root: {
@@ -26,30 +27,15 @@ const About = (props) => {
   const description = 'This is the description for the about page';
 
   return (
-    <>
-      <Layout
-        title = {title}
-        description = {description}
-        pageURL = {pageURL}
-      >
-        <Box my={4} className={classes.root}>
-          <Typography variant="h4" gutterBottom>
-            Material-UI
-          </Typography>
-          <Typography gutterBottom>
-            <LinkTo href="/">
-              Go home
-            </LinkTo>
-          </Typography>
-          <Button variant="contained" color="primary">
-                  Super Secret Password
-          </Button>
-          <Button variant="contained" color="secondary">
-                  Super Secret Password
-          </Button>
-        </Box>
-      </Layout>
-    </>
+    <Layout
+      title = {title}
+      description = {description}
+      pageURL = {pageURL}
+    >
+      <PageBody>
+        About
+      </PageBody>
+    </Layout>
   );
 };
 

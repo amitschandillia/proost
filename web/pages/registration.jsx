@@ -1,14 +1,14 @@
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import CompleteRegistrationForm from '../components/CompleteRegistrationForm';
 import LinkTo from '../components/LinkTo';
-import NavBar from '../components/NavBar';
 import RegistrationError from '../components/RegistrationError';
+import Layout from '../components/Layout';
+import PageBody from '../components/PageBody';
 
 const styles = (theme) => ({
   root: {
@@ -35,29 +35,30 @@ const Registration = (props) => {
   const description = 'This is the description for the complete registration page';
 
   return (
-    <>
-      <Head>
-        <title>{ title }</title>
-        <meta name="description" content={description} key="description" />
-      </Head>
-      <NavBar pageURL={pageURL} />
-      <Box my={4} className={classes.root}>
-        {error && <RegistrationError />}
-        {!error && (
-        <CompleteRegistrationForm
-          email={email}
-          token={token}
-          expired={expired}
-          retrievedData={retrievedData}
-        />
-        )}
-        <Typography gutterBottom>
-          <LinkTo href="/">
-            <a>Go home</a>
-          </LinkTo>
-        </Typography>
-      </Box>
-    </>
+    <Layout
+      title = {title}
+      description = {description}
+      pageURL = {pageURL}
+    >
+      <PageBody>
+        <Box my={4} className={classes.root}>
+          {error && <RegistrationError />}
+          {!error && (
+          <CompleteRegistrationForm
+            email={email}
+            token={token}
+            expired={expired}
+            retrievedData={retrievedData}
+          />
+          )}
+          <Typography gutterBottom>
+            <LinkTo href="/">
+              <a>Go home</a>
+            </LinkTo>
+          </Typography>
+        </Box>
+      </PageBody>
+    </Layout>
   );
 };
 

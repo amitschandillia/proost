@@ -10,9 +10,11 @@ import { connect } from 'react-redux';
 import ToolsDropDown from './ToolsDropDown';
 
 const styles = (theme) => ({
-  toolsButtonStyle: {
+  root: {
     verticalAlign: 'middle',
-    marginRight: theme.spacing(1) / 2,
+  },
+  icon: {
+    marginRight: theme.spacing(0.5),
   },
 });
 
@@ -29,9 +31,9 @@ const ToolsButton = (props) => {
         disableRipple
         color="inherit"
         onClick={openToolsMenu}
-        className={classes.toolsButtonStyle}
+        className={classes.root}
       >
-        <BuildIcon />
+        <BuildIcon className={classes.icon} />
         Tools
         {!toolsMenu && <KeyboardArrowDownIcon />}
         {toolsMenu && <KeyboardArrowUpIcon />}
@@ -54,7 +56,7 @@ ToolsButton.propTypes = {
     transparentAppBar: PropTypes.string,
     overlay: PropTypes.string,
     title: PropTypes.string,
-    toolsButtonStyle: PropTypes.string,
+    root: PropTypes.string,
   }).isRequired,
 };
 

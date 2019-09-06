@@ -41,6 +41,7 @@ module.exports = withCSS(withSass(withPurgeCss({
   },
   env: {
     BRAND_NAME: process.env.BRAND_NAME,
+    COPYRIGHT_ENTITY: process.env.COPYRIGHT_ENTITY,
     JWT_SECRET: process.env.JWT_SECRET,
     USER_DATA_COOKIE: process.env.USER_DATA_COOKIE,
     USER_REMEMBER_COOKIE: process.env.USER_REMEMBER_COOKIE,

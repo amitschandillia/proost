@@ -7,8 +7,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const styles = (theme) => ({
-  cartStyle: {
-    marginRight: theme.spacing(1) / 2,
+  root: {
+    verticalAlign: 'middle',
+  },
+  icon: {
+    marginRight: theme.spacing(0.5),
   },
 });
 
@@ -22,9 +25,14 @@ const CartButton = (props) => {
   const loggedIn = Object.entries(userInfo).length === 0;
 
   return (
-    <Button disableFocusRipple disableRipple color="inherit" className={classes.cartStyle}>
+    <Button
+      disableFocusRipple
+      disableRipple
+      color="inherit"
+      className={classes.root}
+    >
       <Badge badgeContent={itemsInCart} color="error">
-        <ShoppingCartIcon />
+        <ShoppingCartIcon className={classes.icon} />
         Cart
       </Badge>
     </Button>
@@ -38,7 +46,7 @@ CartButton.propTypes = {
     nameToAddress: PropTypes.string,
   }).isRequired,
   classes: PropTypes.shape({
-    cartStyle: PropTypes.string,
+    root: PropTypes.string,
   }).isRequired,
 };
 

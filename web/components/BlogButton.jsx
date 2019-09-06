@@ -10,9 +10,11 @@ import { connect } from 'react-redux';
 import BlogDropDown from './BlogDropDown';
 
 const styles = (theme) => ({
-  blogButtonStyle: {
+  root: {
     verticalAlign: 'middle',
-    marginRight: theme.spacing(1) / 2,
+  },
+  icon: {
+    marginRight: theme.spacing(0.5),
   },
 });
 
@@ -29,9 +31,9 @@ const BlogButton = (props) => {
         disableRipple
         color="inherit"
         onClick={openBlogMenu}
-        className={classes.blogButtonStyle}
+        className={classes.root}
       >
-        <LibraryBooksIcon />
+        <LibraryBooksIcon className={classes.icon} />
         Blog
         {!blogMenu && <KeyboardArrowDownIcon />}
         {blogMenu && <KeyboardArrowUpIcon />}
@@ -54,7 +56,7 @@ BlogButton.propTypes = {
     transparentAppBar: PropTypes.string,
     overlay: PropTypes.string,
     title: PropTypes.string,
-    blogButtonStyle: PropTypes.string,
+    root: PropTypes.string,
   }).isRequired,
 };
 

@@ -7,6 +7,7 @@ import React from 'react';
 import PostsList from '../components/blog/PostsList';
 import LinkTo from '../components/LinkTo';
 import Layout from '../components/Layout';
+import PageBody from '../components/PageBody';
 
 const styles = (theme) => ({
   root: {
@@ -26,25 +27,15 @@ const Blog = (props) => {
   const description = 'This is the description for the Blog page';
 
   return (
-    <>
-      <Layout
-        title = {title}
-        description = {description}
-        pageURL = {pageURL}
-      >
-        <Box my={4} className={classes.root}>
-          <Typography variant="h4" gutterBottom>
-            Material-UI
-          </Typography>
-          <Typography gutterBottom>
-            <LinkTo href="/">
-              Go home
-            </LinkTo>
-          </Typography>
-          <PostsList />
-        </Box>
-      </Layout>
-    </>
+    <Layout
+      title = {title}
+      description = {description}
+      pageURL = {pageURL}
+    >
+      <PageBody>
+        <PostsList />
+      </PageBody>
+    </Layout>
   );
 };
 

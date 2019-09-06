@@ -10,12 +10,17 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import LinkTo from '../components/LinkTo';
+import Divider from '@material-ui/core/Divider';
 
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.prefooter.default,
     color: theme.palette.primary.main,
     padding: theme.spacing(2),
+  },
+  divider: {
+    maxWidth: '80%',
+    marginBottom: theme.spacing(1),
   },
 });
 
@@ -24,17 +29,33 @@ const Prefooter = (props) => {
     classes
   } = props;
   return (
-    <Grid container justify="space-between" alignItems="center" className={classes.root}>
+    <Grid container justify="space-between" alignItems="flex-start" className={classes.root}>
       <Grid item xs={12} sm={6} md={3}>
+        <Typography variant="button" component="h2">{process.env.BRAND_NAME}</Typography>
+        <Divider className={classes.divider} />
+        <Typography><LinkTo hoverNone href="/about">About Us</LinkTo></Typography>
+        <Typography><LinkTo hoverNone href="/about">Press and Media</LinkTo></Typography>
+        <Typography><LinkTo hoverNone href="/about">About Us</LinkTo></Typography>
+        <Typography><LinkTo hoverNone href="/about">About Us</LinkTo></Typography>
+        <Typography><LinkTo hoverNone href="/about">About Us</LinkTo></Typography>
+        <Typography><LinkTo hoverNone href="/about">About Us</LinkTo></Typography>
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <Typography variant="button" component="h2">Resources</Typography>
+        <Divider className={classes.divider} />
+        <Typography>Some links go here</Typography>
         <Typography>Some links go here</Typography>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
+        <Typography variant="button" component="h2">Support</Typography>
+        <Divider className={classes.divider} />
+        <Typography>Some links go here</Typography>
         <Typography>Some links go here</Typography>
       </Grid>
       <Grid item xs={12} sm={6} md={3}>
+        <Typography variant="button" component="h2">Legalese</Typography>
+        <Divider className={classes.divider} />
         <Typography>Some links go here</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={3}>
         <Typography>Some links go here</Typography>
       </Grid>
     </Grid>
