@@ -1,5 +1,7 @@
 import blueGrey from '@material-ui/core/colors/blueGrey';
+import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
+import blue from '@material-ui/core/colors/blue';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 // Create a theme instance.
@@ -25,6 +27,12 @@ const mainTheme = createMuiTheme({
     },
     prefooter: {
       default: blueGrey[100],
+    },
+    icon: {
+      default: grey[600],
+    },
+    avatar: {
+      default: blue[600],
     },
   },
 });

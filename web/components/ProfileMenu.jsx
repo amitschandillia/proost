@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import avatarTheme from '../themes/avatar-theme';
 import ProfileDropDown from './ProfileDropDown';
 
 const StyledBadge = withStyles((theme) => ({
@@ -20,7 +19,7 @@ const StyledBadge = withStyles((theme) => ({
   },
 }))(Badge);
 
-const styles = () => ({
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
@@ -35,7 +34,7 @@ const styles = () => ({
   anonymousAvatar: {
     margin: 10,
     marginRight: 0,
-    backgroundColor: avatarTheme.palette.primary.main,
+    backgroundColor: theme.palette.avatar.default,
     cursor: 'pointer',
   },
 });
