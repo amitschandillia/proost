@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const CACHE_NAME = 'd49d00c050a3fb0e32c6695d929d61e7';
+const CACHE_NAME = '2c3c0c4627245385d723af8e0f596ba2';
 const URLS_TO_CACHE = [
   '/',
   '/about',
@@ -60,6 +60,9 @@ const URLS_TO_CACHE = [
   '/_f/images/banner.png',
   '/_f/images/banner_vid_img.jpg',
   '/_f/images/desktop-header-logo.png',
+  '/_f/images/home/row1/a.jpg',
+  '/_f/images/home/row1/b.jpg',
+  '/_f/images/home/row1/c.jpg',
   '/_f/media/banner_video.mp4',
   '/_f/fonts/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7l.woff2',
   '/_f/fonts/KFOlCnqEu92Fr1MmEU9fBBc4.woff2',
