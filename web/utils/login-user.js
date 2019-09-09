@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const loginUser = async (
+  ip,
   username,
   password,
   remember,
@@ -11,7 +12,7 @@ const loginUser = async (
     method: 'post',
     url,
     headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-    data: { username, password, remember },
+    data: { ip, username, password, remember },
   });
   if (res.data.success) {
     // Login successful

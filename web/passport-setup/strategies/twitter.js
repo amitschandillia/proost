@@ -11,7 +11,8 @@ const twitter = new TwitterStrategy({
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
   callbackURL: process.env.TWITTER_CALLBACK_URI,
   includeEmail: true,
-}, (token, tokenSecret, profile, done) => {
+  passReqToCallback: true,
+}, (req, token, tokenSecret, profile, done) => {
   // passport callback function
   const name = profile._json.name.split(' ');
   const returnedUser = {
@@ -20,6 +21,7 @@ const twitter = new TwitterStrategy({
     email: profile._json.email,
     twitterID: profile._json.id,
     picture: profile._json.profile_image_url_https.replace('_normal', ''),
+    lastLoginIP: ip,
   };
   addOrUpdateUser(returnedUser, 'twitter', done);
 });

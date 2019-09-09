@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import ThreePicsItem from './ThreePicsItem';
+import LinkTo from './LinkTo';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import PersonIcon from '@material-ui/icons/Person';
@@ -24,6 +25,10 @@ const subtitle1 = 'Sed Ut Perspiciatis Unde Omnis Iste Natus Error Sit Voluptate
 const subtitle2 = 'Sed Ut Perspiciatis Unde Omnis Iste Natus Error Sit Voluptatem Accusantium Doloremque Laudantium, Totam Rem Ap';
 const subtitle3 = 'Sed Ut Perspiciatis Unde Omnis Iste Natus Error Sit Voluptatem Accusantium Doloremque Laudantium, Totam Rem Ap';
 
+const postLink1 = '/';
+const postLink2 = '/';
+const postLink3 = '/';
+
 const author1 = 'Amit Schandillia';
 const author2 = 'Amit Schandillia';
 const author3 = 'Amit Schandillia';
@@ -37,9 +42,18 @@ const minute3 = readTime3 > 1 ? 'minutes' : 'minute';
 
 const styles = (theme) => ({
   root: {},
-  title: {},
+  title: {
+    fontWeight: theme.typography.fontWeightLight,
+    [theme.breakpoints.down('md')]: {
+      fontSize: theme.typography.htmlFontSize * 1.5,
+    },
+  },
   subTitle: {
+    fontWeight: theme.typography.fontWeightLight,
     lineHeight: 'inherit',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
   iconText: {
     marginLeft: theme.spacing(1),
@@ -53,8 +67,8 @@ const TopThree = (props) => {
   return (
     <Grid container direction="row">
       <ThreePicsItem picture={thumbnail1}>
-        <Typography variant="h5" className={classes.title}>{title1}</Typography>
-        <Typography variant="subtitle1" className={classes.subTitle}>{subtitle1}</Typography>
+        <LinkTo href={postLink1} hoverNone><Typography variant="h4" className={classes.title}>{title1}</Typography></LinkTo>
+        <Typography variant="h5" className={classes.subTitle}>{subtitle1}</Typography>
         <Grid container direction="row" justify="space-between" alignItems="center">
           <Grid item>
             <Grid container direction="row" alignItems="center">
@@ -71,8 +85,8 @@ const TopThree = (props) => {
         </Grid>
       </ThreePicsItem>
       <ThreePicsItem picture={thumbnail2}>
-        <Typography variant="h5" className={classes.title}>{title2}</Typography>
-        <Typography variant="subtitle1" className={classes.subTitle}>{subtitle2}</Typography>
+        <LinkTo href={postLink2} hoverNone><Typography variant="h4" className={classes.title}>{title2}</Typography></LinkTo>
+        <Typography variant="h5" className={classes.subTitle}>{subtitle2}</Typography>
         <Grid container direction="row" justify="space-between" alignItems="center">
           <Grid item>
             <Grid container direction="row" alignItems="center">
@@ -89,8 +103,8 @@ const TopThree = (props) => {
         </Grid>
       </ThreePicsItem>
       <ThreePicsItem picture={thumbnail3}>
-        <Typography variant="h5" className={classes.title}>{title3}</Typography>
-        <Typography variant="subtitle1" className={classes.subTitle}>{subtitle3}</Typography>
+        <LinkTo href={postLink3} hoverNone><Typography variant="h4" className={classes.title}>{title3}</Typography></LinkTo>
+        <Typography variant="h5" className={classes.subTitle}>{subtitle3}</Typography>
         <Grid container direction="row" justify="space-between" alignItems="center">
           <Grid item>
             <Grid container direction="row" alignItems="center">

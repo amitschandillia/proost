@@ -19,6 +19,7 @@ const userSchema = new Schema({
   username: String,
   password: String,
   remember: String,
+  lastLoginIP: String,
 });
 
 userSchema.pre('findOneAndUpdate', async function encrypt(next) {

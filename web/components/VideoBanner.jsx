@@ -31,7 +31,7 @@ const styles = (theme) => ({
     position: 'absolute',
     top: '50%',
     left: '10vw',
-    width: '480px',
+    width: '50vw',
     transform: `translateY(-70%)`,
   },
 });

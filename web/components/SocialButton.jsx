@@ -91,4 +91,11 @@ SocialButton.propTypes = {
   }).isRequired,
 };
 
-export default connect((state) => state)(withStyles(styles)(SocialButton));
+const mapStateToProps = (state) => ({
+  // ip: state.ip,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(withStyles(styles)(SocialButton));

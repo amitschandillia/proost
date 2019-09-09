@@ -7,6 +7,7 @@ import emailWarning from './slices/emailWarning';
 import firstNameError from './slices/firstNameError';
 import firstNameHelper from './slices/firstNameHelper';
 import flagEmailError from './slices/flagEmailError';
+import ip from './slices/ip';
 import lastNameError from './slices/lastNameError';
 import lastNameHelper from './slices/lastNameHelper';
 import openSignInDialog from './slices/openSignInDialog';
@@ -37,6 +38,7 @@ const reducerStore = combineReducers({
   firstNameError,
   firstNameHelper,
   flagEmailError,
+  ip,
   lastNameError,
   lastNameHelper,
   openSignInDialog,

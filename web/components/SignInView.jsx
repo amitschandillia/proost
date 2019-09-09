@@ -51,6 +51,7 @@ const styles = (theme) => ({
 const SignInView = (props) => {
   const {
     classes,
+    ip,
     pageURL,
     errorState,
     showSignUp,
@@ -91,7 +92,7 @@ const SignInView = (props) => {
     }
     if (!anyError) {
       // No validation error; proceed to login
-      let isLoggedIn = await loginUser(userid, password, remember, pageURL);
+      let isLoggedIn = await loginUser(ip, userid, password, remember, pageURL);
       isLoggedIn = typeof isLoggedIn === 'undefined' ? true : isLoggedIn;
       if (!isLoggedIn) {
         // Failed to login
@@ -183,6 +184,7 @@ SignInView.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  ip: state.ip,
   errorState: state.emailWarning,
   flagEmailError: state.flagEmailError,
   passwordErrorSignIn: state.passwordErrorSignIn,

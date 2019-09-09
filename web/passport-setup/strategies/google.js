@@ -10,7 +10,9 @@ const google = new GoogleStrategy({
   callbackURL: process.env.GOOGLE_CALLBACK_URI,
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-}, (accessToken, refreshToken, profile, done) => {
+  passReqToCallback: true,
+}, (req, accessToken, refreshToken, profile, done) => {
+  const ip = req.headers['x-real-ip'];
   // passport callback function
   const returnedUser = {
     firstName: profile._json.given_name,
@@ -18,6 +20,7 @@ const google = new GoogleStrategy({
     email: profile._json.email,
     googleID: profile._json.sub,
     picture: profile._json.picture,
+    lastLoginIP: ip,
   };
   addOrUpdateUser(returnedUser, 'google', done);
 });

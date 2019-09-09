@@ -22,7 +22,7 @@ const styles = (theme) => ({
     display: 'flex',
   },
   footerLogo: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(1),
   },
   footerLinks: {
     textAlign: 'right',
@@ -31,7 +31,7 @@ const styles = (theme) => ({
 
 const Footer = (props) => {
   const {
-    classes
+    classes, ip
   } = props;
   return (
     <Grid container alignItems="center" className={classes.root}>
@@ -48,6 +48,8 @@ const Footer = (props) => {
           <LinkTo hoverDotted href="/">Privacy</LinkTo>
           <VerticalDivider />
           <LinkTo hoverDotted href="/">About</LinkTo>
+          <VerticalDivider />
+          <LinkTo hoverDotted href="/">{ip}</LinkTo>
         </Grid>
       </Grid>
     </Grid>
@@ -63,4 +65,11 @@ Footer.propTypes = {
   }).isRequired,
 };
 
-export default connect((state) => state)(withStyles(styles)(Footer));
+const mapStateToProps = (state) => ({
+  ip: state.ip,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(withStyles(styles)(Footer));

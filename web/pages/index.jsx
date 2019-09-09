@@ -8,6 +8,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
+import Container from '@material-ui/core/Container';
 
 // import Banner from '../components/Banner';
 import VideoBanner from '../components/VideoBanner';
@@ -16,6 +17,7 @@ import LinkTo from '../components/LinkTo';
 import Layout from '../components/Layout';
 import PageBody from '../components/PageBody';
 import TopThree from '../components/TopThree';
+import Slogan from '../components/Slogan';
 
 const styles = (theme) => ({
   root: {
@@ -51,6 +53,8 @@ const Index = (props) => {
         <Typography variant="h5">This is a text</Typography>
       </VideoBanner>
       <PageBody nomargin>
+        {/*Whitespace: Slogan*/}
+        <Slogan />
         {/*B/W boxes: Top 3 blog posts*/}
         <TopThree />
         {/*Tools*/}

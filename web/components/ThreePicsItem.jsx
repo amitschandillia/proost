@@ -38,7 +38,7 @@ const styles = (theme) => ({
     filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1)',
     color: theme.palette.common.white,
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: 'center'
   },
 });
 

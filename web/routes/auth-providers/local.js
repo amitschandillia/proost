@@ -10,13 +10,15 @@ import signedUserData from '../../utils/signed-user-data';
 import rememberMeCookie from '../../utils/remember-me-cookie';
 import getRememberFromCookie from '../../utils/get-remember-from-cookie';
 import getUserinfoFromRemember from '../../utils/get-userinfo-from-remember';
+
+import updateLocalIP from '../../utils/update-local-ip';
 dotenv.config();
 
 const router = express.Router();
 router.post('/',
   passport.authenticate('local', { failureRedirect: '/' }),
   async (req, res) => {
-    const {body: {remember, username}} = req;
+    const {body: {ip, remember, username}} = req;
     if(remember) {
       // Generate hash
       const rememberCookie = await rememberMeCookie(username);
@@ -29,6 +31,7 @@ router.post('/',
         });
       }
     }
+    await updateLocalIP(req, ip);
     res.cookie(process.env.USER_DATA_COOKIE, signedUserData(req), {
       httpOnly: true,
       secure: true,

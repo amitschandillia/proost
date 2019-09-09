@@ -28,6 +28,8 @@ class MyApp extends App {
     let sessID;
 
     if (ctx.isServer) {
+      ctx.store.dispatch({ type: 'UPDATEIP', payload: ctx.req.headers['x-real-ip'] });
+
       userToken = getUserTokenFromCookies(ctx.req);
       sessID = getSessIDFromCookies(ctx.req);
       if(ctx.res) {

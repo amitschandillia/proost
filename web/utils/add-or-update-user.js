@@ -22,6 +22,7 @@ const createNewUser = (user, givenEmail, providerID, hasPicture, generatedPictur
     emails,
     hasPicture,
     ...pictureVersion,
+    lastLoginIP: user.lastLoginIP,
   }).save().then((newUser) => {
     if (hasPicture) {
       useProfileImg(user.picture, newUser._id, pictureVersion);
@@ -49,6 +50,7 @@ const getAuthProvider = (provider, user) => {
 };
 
 const addOrUpdateUser = (user, provider, done) => {
+  // console.log('ADD OR UPDATE FUNC', user.lastLoginIP);
   let fn = {};
   let ln = {};
   let pictureVersion;
@@ -89,14 +91,21 @@ const addOrUpdateUser = (user, provider, done) => {
           // Yes, the given email exists in db; does existing user have an image?
           if (existingUser.hasPicture) {
             // Yes, existing user already has a picture
-            done(null, existingUser);
+            // Update lastLoginIP and return user object !IMPORTANT!
+            const existingUserWithIP = User.findOneAndUpdate(
+              { _id: existingUser._id },
+              { lastLoginIP: user.lastLoginIP },
+              { new: true },
+            ).then((existingUserWithIP) => {
+              done(null, existingUserWithIP);
+            });
           } else if (givenImage) {
             // Existing user doesn't have picture but valid picture provided
             pictureVersion = uuidv4();
             User.findOneAndUpdate(
               { _id: existingUser._id },
               {
-                hasPicture: true, pictureVersion, ...fn, ...ln,
+                hasPicture: true, pictureVersion, ...fn, ...ln, lastLoginIP: user.lastLoginIP,
               },
               { new: true },
             ).then((updatedUserWithPic) => {
@@ -110,7 +119,7 @@ const addOrUpdateUser = (user, provider, done) => {
           // But existing user has a picture; just add email and return
           User.findOneAndUpdate(
             { _id: existingUser._id },
-            { $push: { emails: givenEmail }, ...fn, ...ln },
+            { $push: { emails: givenEmail }, ...fn, ...ln, lastLoginIP: user.lastLoginIP },
             { new: true },
           ).then((updatedUserWithEmail) => {
             done(null, updatedUserWithEmail);
@@ -126,6 +135,7 @@ const addOrUpdateUser = (user, provider, done) => {
               pictureVersion,
               ...fn,
               ...ln,
+              lastLoginIP: user.lastLoginIP,
             },
             { new: true },
           ).then((updatedUserWithEmailAndPic) => {
@@ -149,6 +159,7 @@ const addOrUpdateUser = (user, provider, done) => {
             pictureVersion,
             ...fn,
             ...ln,
+            lastLoginIP: user.lastLoginIP,
           },
           { new: true },
         ).then((updatedUserWithPicNoEmail) => {
@@ -176,7 +187,7 @@ const addOrUpdateUser = (user, provider, done) => {
             // userwithmatching email also has picture; just add providerID and return
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
-              { ...providerID, ...fn, ...ln },
+              { ...providerID, ...fn, ...ln, lastLoginIP: user.lastLoginIP },
               { new: true },
             ).then((userWithMatchingEmailUpdatedID) => {
               done(null, userWithMatchingEmailUpdatedID);
@@ -193,6 +204,7 @@ const addOrUpdateUser = (user, provider, done) => {
                 ...ln,
                 hasPicture: true,
                 pictureVersion,
+                lastLoginIP: user.lastLoginIP,
               },
               { new: true },
             ).then((userWithMatchingEmailUpdatedIDandPic) => {
@@ -204,7 +216,7 @@ const addOrUpdateUser = (user, provider, done) => {
             // Just add providerID and return
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
-              { ...providerID, ...fn, ...ln },
+              { ...providerID, ...fn, ...ln, lastLoginIP: user.lastLoginIP },
               { new: true },
             ).then((userWithMatchingEmailUpdatedIDnoPic) => {
               done(null, userWithMatchingEmailUpdatedIDnoPic);
