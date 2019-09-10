@@ -81,4 +81,13 @@ Index.propTypes = {
   }).isRequired,
 };
 
-export default connect((state) => state)(withStyles(styles)(Index));
+// export default connect((state) => state)(withStyles(styles)(Index));
+
+const mapStateToProps = (state) => ({
+  // ip: state.ip,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(withStyles(styles)(Index));

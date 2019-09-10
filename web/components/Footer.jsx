@@ -33,6 +33,7 @@ const Footer = (props) => {
   const {
     classes, ip
   } = props;
+
   return (
     <Grid container alignItems="center" className={classes.root}>
       <Grid item xs={12} sm={6} alignItems="center" className={classes.copyright}>

@@ -2,6 +2,7 @@ import uuidv4 from 'uuid/v4';
 
 import User from '../models/user';
 import useProfileImg from './use-profile-img';
+import axios from 'axios';
 
 const fieldExists = (field) => {
   let itExists = true;
@@ -11,7 +12,7 @@ const fieldExists = (field) => {
   return itExists;
 };
 
-const createNewUser = (user, givenEmail, providerID, hasPicture, generatedPictureVersion, done) => {
+const createNewUser = (user, givenEmail, providerID, hasPicture, generatedPictureVersion, login, done) => {
   let emails;
   const pictureVersion = hasPicture ? { pictureVersion: generatedPictureVersion } : null;
   if (givenEmail) { emails = [givenEmail]; }
@@ -22,7 +23,7 @@ const createNewUser = (user, givenEmail, providerID, hasPicture, generatedPictur
     emails,
     hasPicture,
     ...pictureVersion,
-    lastLoginIP: user.lastLoginIP,
+    $push: { logins: login },
   }).save().then((newUser) => {
     if (hasPicture) {
       useProfileImg(user.picture, newUser._id, pictureVersion);
@@ -49,11 +50,34 @@ const getAuthProvider = (provider, user) => {
   return providerID;
 };
 
-const addOrUpdateUser = (user, provider, done) => {
-  // console.log('ADD OR UPDATE FUNC', user.lastLoginIP);
+const addOrUpdateUser = async (user, provider, done) => {
   let fn = {};
   let ln = {};
   let pictureVersion;
+  const {lastLoginIP} = user;
+  let login = {};
+
+  if(lastLoginIP.length > 7) {
+    const url = `https://www.iplocate.io/api/lookup/${lastLoginIP}`;
+    const {data} = await axios.get(url);
+    if(data && data.country) {
+      if(data.country.length > 3) {
+        login = {
+          ip: data.ip,
+          country: data.country,
+          countryCode: data.country_code,
+          city: data.city,
+          provider,
+        };
+      } else {
+        login = null;
+      }
+    } else {
+      login = null;
+    }
+  } else {
+    login = null;
+  }
   // Define provider
   const providerID = getAuthProvider(provider, user);
   // Retrieve email address if provided
@@ -91,10 +115,10 @@ const addOrUpdateUser = (user, provider, done) => {
           // Yes, the given email exists in db; does existing user have an image?
           if (existingUser.hasPicture) {
             // Yes, existing user already has a picture
-            // Update lastLoginIP and return user object !IMPORTANT!
+            // Update lastLoginIP and return user object
             const existingUserWithIP = User.findOneAndUpdate(
               { _id: existingUser._id },
-              { lastLoginIP: user.lastLoginIP },
+              { $push: { logins: login }},
               { new: true },
             ).then((existingUserWithIP) => {
               done(null, existingUserWithIP);
@@ -105,7 +129,11 @@ const addOrUpdateUser = (user, provider, done) => {
             User.findOneAndUpdate(
               { _id: existingUser._id },
               {
-                hasPicture: true, pictureVersion, ...fn, ...ln, lastLoginIP: user.lastLoginIP,
+                hasPicture: true,
+                pictureVersion,
+                ...fn,
+                ...ln,
+                $push: { logins: login },
               },
               { new: true },
             ).then((updatedUserWithPic) => {
@@ -119,7 +147,12 @@ const addOrUpdateUser = (user, provider, done) => {
           // But existing user has a picture; just add email and return
           User.findOneAndUpdate(
             { _id: existingUser._id },
-            { $push: { emails: givenEmail }, ...fn, ...ln, lastLoginIP: user.lastLoginIP },
+            {
+              $push: { emails: givenEmail },
+              ...fn,
+              ...ln,
+              $push: { logins: login },
+            },
             { new: true },
           ).then((updatedUserWithEmail) => {
             done(null, updatedUserWithEmail);
@@ -135,7 +168,7 @@ const addOrUpdateUser = (user, provider, done) => {
               pictureVersion,
               ...fn,
               ...ln,
-              lastLoginIP: user.lastLoginIP,
+              $push: { logins: login },
             },
             { new: true },
           ).then((updatedUserWithEmailAndPic) => {
@@ -159,7 +192,7 @@ const addOrUpdateUser = (user, provider, done) => {
             pictureVersion,
             ...fn,
             ...ln,
-            lastLoginIP: user.lastLoginIP,
+            $push: { logins: login },
           },
           { new: true },
         ).then((updatedUserWithPicNoEmail) => {
@@ -187,7 +220,12 @@ const addOrUpdateUser = (user, provider, done) => {
             // userwithmatching email also has picture; just add providerID and return
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
-              { ...providerID, ...fn, ...ln, lastLoginIP: user.lastLoginIP },
+              {
+                ...providerID,
+                ...fn,
+                ...ln,
+                $push: { logins: login },
+               },
               { new: true },
             ).then((userWithMatchingEmailUpdatedID) => {
               done(null, userWithMatchingEmailUpdatedID);
@@ -204,7 +242,7 @@ const addOrUpdateUser = (user, provider, done) => {
                 ...ln,
                 hasPicture: true,
                 pictureVersion,
-                lastLoginIP: user.lastLoginIP,
+                $push: { logins: login },
               },
               { new: true },
             ).then((userWithMatchingEmailUpdatedIDandPic) => {
@@ -216,7 +254,12 @@ const addOrUpdateUser = (user, provider, done) => {
             // Just add providerID and return
             User.findOneAndUpdate(
               { _id: userWithMatchingEmail._id },
-              { ...providerID, ...fn, ...ln, lastLoginIP: user.lastLoginIP },
+              {
+                ...providerID,
+                ...fn,
+                ...ln,
+                $push: { logins: login },
+              },
               { new: true },
             ).then((userWithMatchingEmailUpdatedIDnoPic) => {
               done(null, userWithMatchingEmailUpdatedIDnoPic);
@@ -225,13 +268,13 @@ const addOrUpdateUser = (user, provider, done) => {
         } else {
           // Neither providerID, nor email exists in db; create new user
           pictureVersion = uuidv4();
-          createNewUser(user, givenEmail, providerID, hasPicture, pictureVersion, done);
+          createNewUser(user, givenEmail, providerID, hasPicture, pictureVersion, login, done);
         }
       });
     } else {
       // No, provider ID does not exist in db and no email was provided; create new user
       pictureVersion = uuidv4();
-      createNewUser(user, givenEmail, providerID, hasPicture, pictureVersion, done);
+      createNewUser(user, givenEmail, providerID, hasPicture, pictureVersion, login, done);
     }
   });
 };

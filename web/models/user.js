@@ -5,6 +5,18 @@ import argonConfigs from '../configs/argon-configs';
 
 const { Schema } = mongoose;
 
+const login = new Schema({
+  ip: String,
+  country: String,
+  countryCode: String,
+  city: String,
+  provider: String,
+  time: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const userSchema = new Schema({
   firstName: String,
   lastName: String,
@@ -20,6 +32,7 @@ const userSchema = new Schema({
   password: String,
   remember: String,
   lastLoginIP: String,
+  logins: [login],
 });
 
 userSchema.pre('findOneAndUpdate', async function encrypt(next) {

@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const CACHE_NAME = 'c95499830da176d9a96eacf1213e73c8';
+const CACHE_NAME = 'd4dfd71becc1e9702d36ff367d445eb0';
 const URLS_TO_CACHE = [
   '/',
   '/about',
