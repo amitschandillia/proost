@@ -153,17 +153,17 @@ const NavBar = (props) => {
       <CartButton />
       <div className={classes.grow} />
       {
-      loggedIn
-      && (
-      <Button
-        className={classes.loginBtn}
-        variant="outlined"
-        color="inherit"
-        onClick={handleClickOpen}
-      >
-        Sign in
-      </Button>
-      )
+        loggedIn
+        && (
+        <Button
+          className={classes.loginBtn}
+          variant="outlined"
+          color="inherit"
+          onClick={handleClickOpen}
+        >
+          Sign in
+        </Button>
+        )
       }
       {!loggedIn && <ProfileMenu pageURL={pageURL} />}
     </div>

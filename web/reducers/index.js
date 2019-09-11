@@ -8,6 +8,7 @@ import firstNameError from './slices/firstNameError';
 import firstNameHelper from './slices/firstNameHelper';
 import flagEmailError from './slices/flagEmailError';
 import ip from './slices/ip';
+import language from './slices/language';
 import lastNameError from './slices/lastNameError';
 import lastNameHelper from './slices/lastNameHelper';
 import openSignInDialog from './slices/openSignInDialog';
@@ -21,6 +22,7 @@ import profileMenu from './slices/profileMenu';
 import profileMenuAnchorEl from './slices/profileMenuAnchorEl';
 import registered from './slices/registered';
 import sessID from './slices/sessID';
+import showFlagsDialog from './slices/showFlagsDialog';
 import showSignInView from './slices/showSignInView';
 import showSignUpView from './slices/showSignUpView';
 import toolsMenu from './slices/toolsMenu';
@@ -39,6 +41,7 @@ const reducerStore = combineReducers({
   firstNameHelper,
   flagEmailError,
   ip,
+  language,
   lastNameError,
   lastNameHelper,
   openSignInDialog,
@@ -52,6 +55,7 @@ const reducerStore = combineReducers({
   profileMenuAnchorEl,
   registered,
   sessID,
+  showFlagsDialog,
   showSignInView,
   showSignUpView,
   toolsMenu,

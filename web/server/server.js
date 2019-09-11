@@ -15,6 +15,7 @@ import preLoadMiddleware from '../routes/preload-middleware';
 import authRoutes from '../routes/auth-routes';
 import mailRoutes from '../routes/mail-routes';
 import registrationRoutes from '../routes/registration-routes';
+import languageSelectionRoutes from '../routes/language-selection-routes';
 import getDirectives from './get-directives';
 
 const dev = process.env.NODE_ENV !== 'production';
@@ -70,6 +71,11 @@ app.prepare().then(() => {
   // Registration routes
   // ---------------------------------------------------------------------
   server.use('/registration', registrationRoutes);
+  // ---------------------------------------------------------------------
+
+  // Language routes
+  // ---------------------------------------------------------------------
+  server.use('/languageSelection', languageSelectionRoutes);
   // ---------------------------------------------------------------------
 
   // Default route (not to be edited)

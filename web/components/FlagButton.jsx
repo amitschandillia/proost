@@ -5,8 +5,12 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import { useState } from 'react';
+
 import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
+
+import FlagsDialog from './FlagsDialog';
 
 const styles = (theme) => ({
   root: {
@@ -16,46 +20,24 @@ const styles = (theme) => ({
 
 const FlagButton = (props) => {
   const {
-    lang, classes, ip
+    lang, classes, ip, clickOpen, showFlagsDialog, language,
   } = props;
 
-  let Flag, languageName;
+  const Flag = require(`./svg-icons/flags/${language.flag}`).default;
 
-  if(lang === 'english') {
-    Flag = require('./svg-icons/flags/UnitedStates').default;
-  } else if(lang === 'spanish') {
-    Flag = require('./svg-icons/flags/Mexico').default;
-  }
-
-  switch(lang) {
-    case 'english':
-      Flag = require('./svg-icons/flags/UnitedStates').default;
-      languageName = 'English';
-      break;
-    case 'spanish':
-      Flag = require('./svg-icons/flags/Spain').default;
-      languageName = 'Spanish';
-      break;
-    case 'french':
-      Flag = require('./svg-icons/flags/France').default;
-      languageName = 'French';
-      break;
-    case 'german':
-      Flag = require('./svg-icons/flags/Germany').default;
-      languageName = 'German';
-      break;
-    default:
-      Flag = require('./svg-icons/flags/UnitedStates').default;
-      languageName = 'English';
-      break;
-  }
+  const handleClickOpen = () => {
+    clickOpen();
+  };
 
   return (
-    <Tooltip title={languageName} aria-label={languageName}>
-      <IconButton disableFocusRipple disableRipple className={classes.root}>
-        <Flag />
-      </IconButton>
-    </Tooltip>
+    <>
+      <Tooltip title={language.languageName} aria-label={language.languageName}>
+        <IconButton disableFocusRipple disableRipple className={classes.root} onClick={handleClickOpen}>
+          <Flag />
+        </IconButton>
+      </Tooltip>
+      <FlagsDialog />
+    </>
   );
 };
 
@@ -67,9 +49,17 @@ FlagButton.propTypes = {
 
 const mapStateToProps = (state) => ({
   ip: state.ip,
+  showFlagsDialog: state.showFlagsDialog,
+  language: state.language,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  clickOpen: () => {
+    dispatch({ type: 'SHOWFLAGSDIALOG', payload: true });
+  }
 });
 
 export default connect(
   mapStateToProps,
-  null,
+  mapDispatchToProps,
 )(withStyles(styles)(FlagButton));
