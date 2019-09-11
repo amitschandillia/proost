@@ -12,22 +12,38 @@ import { connect } from 'react-redux';
 import LinkTo from './LinkTo';
 import VerticalDivider from './VerticalDivider';
 import IconButton from '@material-ui/core/IconButton';
-import Slovenia from './svg-icons/flags/Slovenia';
+import UnitedStates from './svg-icons/flags/UnitedStates';
 
 const styles = (theme) => ({
   root: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     padding: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      jusrifyContent: 'inherit',
+    },
   },
   copyright: {
     display: 'flex',
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'center',
+    },
   },
   footerLogo: {
     marginRight: theme.spacing(1),
   },
+  footerLinksContainer: {
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'center',
+    },
+  },
   footerLinks: {
-    textAlign: 'right',
+    [theme.breakpoints.down('xs')]: {
+      justifyContent: 'inherit',
+    },
+  },
+  flag: {
+    padding: 0,
   },
 });
 
@@ -37,22 +53,22 @@ const Footer = (props) => {
   } = props;
 
   return (
-    <Grid container alignItems="center" className={classes.root}>
+    <Grid container alignItems="center" justify="space-between" className={classes.root}>
       <Grid item xs={12} sm={6} alignItems="center" className={classes.copyright}>
         <img className={classes.footerLogo} src="_f/images/desktop-header-logo.png" width="48" height="48" />
         &copy;
         {` 2015-${new Date().getFullYear()}`}
         {` ${process.env.COPYRIGHT_ENTITY}. All Rights Reserved.`}
       </Grid>
-      <Grid item xs={12} sm={6}>
+      <Grid item xs={12} sm={6} className={classes.footerLinksContainer}>
         <Grid className={classes.footerLinks} container justify="flex-end" alignItems="center">
-          <LinkTo hoverDotted href="/">Terms</LinkTo>
+          <LinkTo hoverNone href="/">Terms</LinkTo>
           <VerticalDivider />
-          <LinkTo hoverDotted href="/">Privacy</LinkTo>
+          <LinkTo hoverNone href="/">Privacy</LinkTo>
           <VerticalDivider />
-          <LinkTo hoverDotted href="/">About</LinkTo>
+          <LinkTo hoverNone href="/">About</LinkTo>
           <VerticalDivider />
-          <IconButton><Slovenia /></IconButton>
+          <IconButton disableFocusRipple disableRipple className={classes.flag}><UnitedStates /></IconButton>
         </Grid>
       </Grid>
     </Grid>
