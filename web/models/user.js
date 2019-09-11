@@ -10,12 +10,14 @@ const login = new Schema({
   country: String,
   countryCode: String,
   city: String,
+  continent: String,
+  subdivision: String,
   provider: String,
   time: {
     type: Date,
     default: Date.now,
   },
-});
+}, { _id : false });
 
 const userSchema = new Schema({
   firstName: String,

@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 
 import LinkTo from './LinkTo';
 import VerticalDivider from './VerticalDivider';
+import IconButton from '@material-ui/core/IconButton';
+import Slovenia from './svg-icons/flags/Slovenia';
 
 const styles = (theme) => ({
   root: {
@@ -50,7 +52,7 @@ const Footer = (props) => {
           <VerticalDivider />
           <LinkTo hoverDotted href="/">About</LinkTo>
           <VerticalDivider />
-          <LinkTo hoverDotted href="/">{ip}</LinkTo>
+          <IconButton><Slovenia /></IconButton>
         </Grid>
       </Grid>
     </Grid>

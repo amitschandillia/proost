@@ -67,6 +67,8 @@ const addOrUpdateUser = async (user, provider, done) => {
           country: data.country,
           countryCode: data.country_code,
           city: data.city,
+          continent: data.continent,
+          subdivision: data.subdivision,
           provider,
         };
       } else {

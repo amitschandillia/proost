@@ -14,6 +14,8 @@ const updateLocalIP = async (req, ip) => {
           country: data.country,
           countryCode: data.country_code,
           city: data.city,
+          continent: data.continent,
+          subdivision: data.subdivision,
           provider: 'local',
         };
         const updatedUser = await User.findOneAndUpdate(
