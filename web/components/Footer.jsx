@@ -6,13 +6,14 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 import LinkTo from './LinkTo';
 import VerticalDivider from './VerticalDivider';
 import IconButton from '@material-ui/core/IconButton';
 import UnitedStates from './svg-icons/flags/UnitedStates';
+
+import FlagButton from './FlagButton';
 
 const styles = (theme) => ({
   root: {
@@ -68,7 +69,7 @@ const Footer = (props) => {
           <VerticalDivider />
           <LinkTo hoverNone href="/">About</LinkTo>
           <VerticalDivider />
-          <IconButton disableFocusRipple disableRipple className={classes.flag}><UnitedStates /></IconButton>
+          <FlagButton lang="german" />
         </Grid>
       </Grid>
     </Grid>
