@@ -23,7 +23,7 @@ const styles = (theme) => ({
 });
 
 const MenuitemSignOut = (props) => {
-  const { pageURL } = props;
+  const { pageURL, language } = props;
   const logoutRoute = `/auth/logout?callback=${pageURL}`;
   const clickHandler = () => {
     window.location = logoutRoute;
@@ -35,7 +35,7 @@ const MenuitemSignOut = (props) => {
         onClick={(e) => { e.preventDefault(); clickHandler(); }}
       >
         <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-        <ListItemText primary="Sign out" />
+        <ListItemText primary={language.lexicon.signOut} />
       </MenuItem>
     </>
   );
@@ -51,7 +51,11 @@ MenuitemSignOut.propTypes = {
   }).isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  language: state.language,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   null,
 )(withStyles(styles)(MenuitemSignOut));

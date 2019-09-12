@@ -43,7 +43,7 @@ const styles = (theme) => ({
   },
   transparentAppBar: {
     lineHeight: '7rem',
-    boxShadow: 'none',
+    // boxShadow: 'none',
     background: 'transparent',
   },
   overlay: {
@@ -100,14 +100,17 @@ const NavBar = (props) => {
       nav.style.lineHeight = `${4}rem`;
       overlay.style.opacity = 1;
       desktopHeaderLogo.style.height = `${4}rem`;
+      nav.style.boxShadow = '0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12)';
     } else if (navHeight >= 7) {
       nav.style.lineHeight = `${7}rem`;
       overlay.style.opacity = 0;
       desktopHeaderLogo.style.height = `${7}rem`;
+      nav.style.boxShadow = 'none';
     } else {
       nav.style.lineHeight = `${navHeight}rem`;
       overlay.style.opacity = (7 - navHeight) / 3;
       desktopHeaderLogo.style.height = `${navHeight}rem`;
+      nav.style.boxShadow = 'none';
     }
   };
 
@@ -183,7 +186,7 @@ const NavBar = (props) => {
 
   return (
     <>
-      <AppBar id="nav" className={transparentStyle} position="fixed">
+      <AppBar id="nav" className={transparentStyle} position="fixed" style={{boxShadow: 'none'}}>
         {transparent && <span id="nav-overlay" className={classes.overlay} />}
         <Toolbar>
           {mobileMenu}
