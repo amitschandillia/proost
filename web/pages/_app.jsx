@@ -19,6 +19,7 @@ import withData from '../apollo';
 import makeStore from '../reducers';
 import mainTheme from '../themes/main-theme';
 import getSessIDFromCookies from '../utils/get-sessid-from-cookies';
+import getLanguageFromCookies from '../utils/get-language-from-cookies';
 import getUserTokenFromCookies from '../utils/get-user-token-from-cookies';
 import removeFbHash from '../utils/remove-fb-hash';
 
@@ -26,12 +27,16 @@ class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let userToken;
     let sessID;
+    let language;
 
     if (ctx.isServer) {
       ctx.store.dispatch({ type: 'UPDATEIP', payload: ctx.req.headers['x-real-ip'] });
 
       userToken = getUserTokenFromCookies(ctx.req);
       sessID = getSessIDFromCookies(ctx.req);
+      language = getLanguageFromCookies(ctx.req);
+      const dictionary = require(`../dictionaries/${language}`);
+      ctx.store.dispatch({ type: 'SETLANGUAGE', payload: dictionary });
       if(ctx.res) {
         if(ctx.res.locals) {
           if(!ctx.res.locals.authenticated) {

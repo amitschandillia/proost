@@ -32,6 +32,7 @@ router.post('/',
       }
     }
     await updateLocalIP(req, ip);
+    res.cookie(process.env.USER_LANGUAGE_COOKIE, req.user.language || 'en');
     res.cookie(process.env.USER_DATA_COOKIE, signedUserData(req), {
       httpOnly: true,
       secure: true,
@@ -52,6 +53,7 @@ router.post('/remember', async (req, res) => {
         secure: true,
         sameSite: 'strict',
       });
+      res.cookie(process.env.USER_LANGUAGE_COOKIE, matchedUser.language || 'en');
       res.cookie(process.env.USER_DATA_COOKIE, signedUserData({user: matchedUser}), {
         httpOnly: true,
         secure: true,

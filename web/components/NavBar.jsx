@@ -83,7 +83,7 @@ const styles = (theme) => ({
 
 const NavBar = (props) => {
   const {
-    classes, pageURL, userInfo, openSignInDialog, transparent = false,
+    classes, pageURL, userInfo, openSignInDialog, transparent = false, language,
   } = props;
   const loggedIn = Object.entries(userInfo).length === 0;
 
@@ -161,7 +161,7 @@ const NavBar = (props) => {
           color="inherit"
           onClick={handleClickOpen}
         >
-          Sign in
+          {language.lexicon.signIn}
         </Button>
         )
       }
@@ -220,6 +220,7 @@ NavBar.propTypes = {
 
 const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
+  language: state.language,
 });
 
 const mapDispatchToProps = (dispatch) => ({

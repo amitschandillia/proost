@@ -22,6 +22,7 @@ router.get(
   '/redirect',
   passport.authenticate('twitter', { failureRedirect: '/' }),
   (req, res) => {
+    res.cookie(process.env.USER_LANGUAGE_COOKIE, req.user.language || 'en');
     res.cookie(process.env.USER_DATA_COOKIE, signedUserData(req), {
       httpOnly: true,
       secure: true,

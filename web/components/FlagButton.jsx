@@ -20,7 +20,11 @@ const styles = (theme) => ({
 
 const FlagButton = (props) => {
   const {
-    lang, classes, ip, clickOpen, showFlagsDialog, language,
+    classes,
+    ip,
+    clickOpen,
+    showFlagsDialog,
+    language,
   } = props;
 
   const Flag = require(`./svg-icons/flags/${language.flag}`).default;

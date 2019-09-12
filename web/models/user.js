@@ -22,6 +22,7 @@ const login = new Schema({
 const userSchema = new Schema({
   firstName: String,
   lastName: String,
+  language: String,
   googleID: String,
   twitterID: String,
   facebookID: String,

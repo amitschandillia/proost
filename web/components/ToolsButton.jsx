@@ -20,7 +20,7 @@ const styles = (theme) => ({
 
 const ToolsButton = (props) => {
   const {
-    classes, pageURL, userInfo, toolsMenu, openToolsMenu,
+    classes, pageURL, userInfo, toolsMenu, openToolsMenu, language,
   } = props;
   const loggedIn = Object.entries(userInfo).length === 0;
 
@@ -34,7 +34,7 @@ const ToolsButton = (props) => {
         className={classes.root}
       >
         <BuildIcon className={classes.icon} />
-        Tools
+        {language.lexicon.tools}
         {!toolsMenu && <KeyboardArrowDownIcon />}
         {toolsMenu && <KeyboardArrowUpIcon />}
       </Button>
@@ -63,6 +63,7 @@ ToolsButton.propTypes = {
 const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
   toolsMenu: state.toolsMenu,
+  language: state.language,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -53,7 +53,7 @@ const styles = (theme) => ({
 
 const SearchField = (props) => {
   const {
-    classes, className,
+    classes, className, language,
   } = props;
 
   return (
@@ -63,7 +63,7 @@ const SearchField = (props) => {
           <SearchIcon />
         </div>
         <InputBase
-          placeholder="Search…"
+          placeholder={`${language.lexicon.search}...`}
           classes={{
             root: classes.inputRoot,
             input: classes.inputInput,
@@ -89,7 +89,11 @@ SearchField.propTypes = {
   }).isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  language: state.language,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   null,
 )(withStyles(styles)(SearchField));

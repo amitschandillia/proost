@@ -38,17 +38,22 @@ router.use('/local', local);
 router.get('/logout', (req, res) => {
   req.logout();
   const cookieKeys = Object.keys(req.cookies);
+  const languageCookie = process.env.USER_LANGUAGE_COOKIE;
   if(cookieKeys.includes(process.env.USER_REMEMBER_COOKIE)) {
     const rememberCookie = process.env.USER_REMEMBER_COOKIE;
     const sessionCookie = process.env.SESSION_COOKIE;
     cookieKeys.forEach((cookie) => {
-      if(cookie !== rememberCookie && cookie !== sessionCookie) res.clearCookie(cookie);
+      if(
+        cookie !== rememberCookie &&
+        cookie !== sessionCookie &&
+        cookie !== languageCookie
+      ) res.clearCookie(cookie);
     });
     res.redirect(req.query.callback);
   } else {
     req.session.destroy(() => {
       cookieKeys.forEach((cookie) => {
-        res.clearCookie(cookie);
+        if(cookie !== languageCookie) res.clearCookie(cookie);
       });
       res.redirect(req.query.callback);
     });

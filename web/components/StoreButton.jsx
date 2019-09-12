@@ -16,14 +16,14 @@ const styles = (theme) => ({
 
 const StoreButton = (props) => {
   const {
-    classes, userInfo,
+    classes, userInfo, language,
   } = props;
   const loggedIn = Object.entries(userInfo).length === 0;
 
   return (
     <Button disableFocusRipple disableRipple color="inherit" className={classes.root}>
       <StoreIcon className={classes.icon} />
-      Store
+      {language.lexicon.store}
     </Button>
   );
 };
@@ -44,6 +44,7 @@ StoreButton.propTypes = {
 
 const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
+  language: state.language,
 });
 
 export default connect(

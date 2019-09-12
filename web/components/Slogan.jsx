@@ -35,6 +35,7 @@ const Text = 'Expand your world...One word at a time';
 const Slogan = (props) => {
   const {
     classes,
+    language,
   } = props;
 
   const isInViewport = (elem, window, document) => {
@@ -71,7 +72,7 @@ const Slogan = (props) => {
         className={`${classes.sloganText} hidden`}
         id="Text"
       >
-        {Text}
+        {language.lexicon.slogan}
       </Typography>
     </Box>
   );
@@ -88,7 +89,11 @@ Slogan.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  language: state.language,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   null,
 )(withStyles(styles)(Slogan));

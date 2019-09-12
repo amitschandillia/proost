@@ -50,7 +50,9 @@ const styles = (theme) => ({
 
 const Footer = (props) => {
   const {
-    classes, ip
+    classes,
+    ip,
+    language,
   } = props;
 
   return (
@@ -59,17 +61,17 @@ const Footer = (props) => {
         <img className={classes.footerLogo} src="_f/images/desktop-header-logo.png" width="48" height="48" />
         &copy;
         {` 2015-${new Date().getFullYear()}`}
-        {` ${process.env.COPYRIGHT_ENTITY}. All Rights Reserved.`}
+        {` ${process.env.COPYRIGHT_ENTITY}. ${language.lexicon.allRightsReserved}.`}
       </Grid>
       <Grid item xs={12} sm={6} className={classes.footerLinksContainer}>
         <Grid className={classes.footerLinks} container justify="flex-end" alignItems="center">
-          <LinkTo hoverNone href="/">Terms</LinkTo>
+          <LinkTo hoverNone href="/">{language.lexicon.terms}</LinkTo>
           <VerticalDivider />
-          <LinkTo hoverNone href="/">Privacy</LinkTo>
+          <LinkTo hoverNone href="/">{language.lexicon.privacy}</LinkTo>
           <VerticalDivider />
-          <LinkTo hoverNone href="/">About</LinkTo>
+          <LinkTo hoverNone href="/">{language.lexicon.about}</LinkTo>
           <VerticalDivider />
-          <FlagButton lang="german" />
+          <FlagButton />
         </Grid>
       </Grid>
     </Grid>
@@ -87,6 +89,7 @@ Footer.propTypes = {
 
 const mapStateToProps = (state) => ({
   ip: state.ip,
+  language: state.language,
 });
 
 export default connect(

@@ -46,6 +46,7 @@ module.exports = withCSS(withSass(withPurgeCss({
     USER_DATA_COOKIE: process.env.USER_DATA_COOKIE,
     USER_REMEMBER_COOKIE: process.env.USER_REMEMBER_COOKIE,
     SESSION_COOKIE: process.env.SESSION_COOKIE,
+    USER_LANGUAGE_COOKIE: process.env.USER_LANGUAGE_COOKIE,
     THIS_DOMAIN_LONG: process.env.THIS_DOMAIN_LONG,
     REDIS_PORT: process.env.REDIS_PORT,
     REDIS_HOST: process.env.REDIS_HOST,

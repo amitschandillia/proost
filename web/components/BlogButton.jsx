@@ -20,7 +20,7 @@ const styles = (theme) => ({
 
 const BlogButton = (props) => {
   const {
-    classes, pageURL, userInfo, blogMenu, openBlogMenu,
+    classes, pageURL, userInfo, blogMenu, openBlogMenu, language,
   } = props;
   const loggedIn = Object.entries(userInfo).length === 0;
 
@@ -34,7 +34,7 @@ const BlogButton = (props) => {
         className={classes.root}
       >
         <LibraryBooksIcon className={classes.icon} />
-        Blog
+        {language.lexicon.blog}
         {!blogMenu && <KeyboardArrowDownIcon />}
         {blogMenu && <KeyboardArrowUpIcon />}
       </Button>
@@ -63,6 +63,7 @@ BlogButton.propTypes = {
 const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
   blogMenu: state.blogMenu,
+  language: state.language,
 });
 
 const mapDispatchToProps = (dispatch) => ({

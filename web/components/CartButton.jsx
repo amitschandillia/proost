@@ -20,6 +20,7 @@ const CartButton = (props) => {
     classes,
     userInfo,
     itemsInCart = 0,
+    language,
   } = props;
 
   const loggedIn = Object.entries(userInfo).length === 0;
@@ -33,7 +34,7 @@ const CartButton = (props) => {
     >
       <Badge badgeContent={itemsInCart} color="error">
         <ShoppingCartIcon className={classes.icon} />
-        Cart
+        {language.lexicon.cart}
       </Badge>
     </Button>
   );
@@ -52,6 +53,7 @@ CartButton.propTypes = {
 
 const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
+  language: state.language,
 });
 
 export default connect(

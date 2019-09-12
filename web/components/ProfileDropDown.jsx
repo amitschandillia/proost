@@ -32,6 +32,7 @@ const ProfileDropDown = (props) => {
     profileMenu,
     profileMenuAnchorEl,
     closeProfileDropDown,
+    language,
   } = props;
 
   return (
@@ -52,7 +53,7 @@ const ProfileDropDown = (props) => {
             <EmailIcon />
           </Badge>
         </ListItemIcon>
-        <ListItemText primary="Messages" />
+        <ListItemText primary={language.lexicon.messages} />
       </MenuItem>
       <MenuItem>
         <ListItemIcon>
@@ -60,20 +61,20 @@ const ProfileDropDown = (props) => {
             <NotificationsIcon />
           </Badge>
         </ListItemIcon>
-        <ListItemText primary="Notifications" />
+        <ListItemText primary={language.lexicon.notifications} />
       </MenuItem>
       <Divider variant="fullWidth" />
       <MenuItem>
         <ListItemIcon><SettingsIcon /></ListItemIcon>
-        <ListItemText primary="Settings" />
+        <ListItemText primary={language.lexicon.settings} />
       </MenuItem>
       <MenuItem>
         <ListItemIcon><LanguageIcon /></ListItemIcon>
-        <ListItemText primary="Languages" />
+        <ListItemText primary={language.lexicon.languages} />
       </MenuItem>
       <MenuItem>
         <ListItemIcon><HelpIcon /></ListItemIcon>
-        <ListItemText primary="Help" />
+        <ListItemText primary={language.lexicon.help} />
       </MenuItem>
       <MenuitemSignOut pageURL={pageURL} />
       <Divider variant="fullWidth" />
@@ -103,6 +104,7 @@ const mapStateToProps = (state) => ({
   showSignUpView: state.showSignUpView,
   profileMenu: state.profileMenu,
   profileMenuAnchorEl: state.profileMenuAnchorEl,
+  language: state.language,
 });
 
 const mapDispatchToProps = (dispatch) => ({

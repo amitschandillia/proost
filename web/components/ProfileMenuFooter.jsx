@@ -31,36 +31,40 @@ const styles = (theme) => ({
   },
 });
 
-const ProfileMenuFooter = () => (
-  <>
+const ProfileMenuFooter = (props) => {
+  const {
+    classes,
+    language,
+  } = props;
+  return(
     <Container>
       <LinkTo href="/">
-        <Typography component="span" variant="caption">About</Typography>
+        <Typography component="span" variant="caption">{language.lexicon.about}</Typography>
       </LinkTo>
       <Typography component="span" variant="caption"> &#8226; </Typography>
       <LinkTo href="/">
-        <Typography component="span" variant="caption">Careers</Typography>
+        <Typography component="span" variant="caption">{language.lexicon.careers}</Typography>
       </LinkTo>
       <Typography component="span" variant="caption"> &#8226; </Typography>
       <LinkTo href="/">
-        <Typography component="span" variant="caption">Terms</Typography>
+        <Typography component="span" variant="caption">{language.lexicon.terms}</Typography>
       </LinkTo>
       <Typography component="span" variant="caption"> &#8226; </Typography>
       <br />
       <LinkTo href="/">
-        <Typography component="span" variant="caption">Privacy</Typography>
+        <Typography component="span" variant="caption">{language.lexicon.privacy}</Typography>
       </LinkTo>
       <Typography component="span" variant="caption"> &#8226; </Typography>
       <LinkTo href="/">
-        <Typography component="span" variant="caption">Acceptable Use</Typography>
+        <Typography component="span" variant="caption">{language.lexicon.acceptableUse}</Typography>
       </LinkTo>
       <Typography component="span" variant="caption"> &#8226; </Typography>
       <LinkTo href="/">
-        <Typography component="span" variant="caption">Businesses</Typography>
+        <Typography component="span" variant="caption">{language.lexicon.businesses}</Typography>
       </LinkTo>
     </Container>
-  </>
-);
+  );
+};
 
 ProfileMenuFooter.propTypes = {
   classes: PropTypes.shape({
@@ -70,7 +74,11 @@ ProfileMenuFooter.propTypes = {
   }).isRequired,
 };
 
+const mapStateToProps = (state) => ({
+  language: state.language,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   null,
 )(withStyles(styles)(ProfileMenuFooter));
