@@ -25,6 +25,7 @@
     "jsx-a11y",
     "react-hooks",
     "simple-import-sort",
+    "json",
   ],
   "rules": {
     "jsx-a11y/anchor-is-valid": "off",

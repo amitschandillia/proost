@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import ThreePicsItem from './ThreePicsItem';
 import LinkTo from './LinkTo';
+import GradientText from './GradientText';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import PersonIcon from '@material-ui/icons/Person';
@@ -23,14 +24,9 @@ const styles = (theme) => ({
     marginRight: theme.spacing(2),
   },
   sloganText: {
-    background: 'linear-gradient(45deg, #12c2e9, #c471ed, #f64f59)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
     textAlign: 'center',
   },
 });
-
-const Text = 'Expand your world...One word at a time';
 
 const Slogan = (props) => {
   const {
@@ -66,14 +62,16 @@ const Slogan = (props) => {
   }, []);
 
   return (
-    <Box py={20} px={2} className={classes.root}>
-      <Typography
+    <Box py={10} px={2} className={classes.root}>
+      <GradientText
         variant="h2"
         className={`${classes.sloganText} hidden`}
         id="Text"
+        angle="diagonal"
+        gradientName="jShine"
       >
         {language.lexicon.slogan}
-      </Typography>
+      </GradientText>
     </Box>
   );
 };

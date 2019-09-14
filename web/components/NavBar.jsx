@@ -43,7 +43,6 @@ const styles = (theme) => ({
   },
   transparentAppBar: {
     lineHeight: '7rem',
-    // boxShadow: 'none',
     background: 'transparent',
   },
   overlay: {
