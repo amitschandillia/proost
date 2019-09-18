@@ -12,6 +12,12 @@ next-apollo 2.1.3
 WEB
 cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
+
+WEB-NO APOLLO
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-no-apollo/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
+
+
+
 FORGOT PASSWORD
 1. ask for email
 2. check if email exists in db
@@ -70,8 +76,6 @@ yarn add hiredis redis
 
 cookie tampered
 google logged out
-
-
 
 
 
