@@ -1,0 +1,78 @@
+{
+  "connection": "default",
+  "info": {
+    "name": "user",
+    "description": ""
+  },
+  "attributes": {
+    "username": {
+      "type": "string",
+      "minLength": 3,
+      "unique": true,
+      "configurable": false,
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "minLength": 6,
+      "configurable": false,
+      "required": true
+    },
+    "provider": {
+      "type": "string",
+      "configurable": false
+    },
+    "password": {
+      "type": "password",
+      "minLength": 6,
+      "configurable": false,
+      "private": true
+    },
+    "resetPasswordToken": {
+      "type": "string",
+      "configurable": false,
+      "private": true
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false,
+      "configurable": false
+    },
+    "role": {
+      "model": "role",
+      "via": "users",
+      "plugin": "users-permissions",
+      "configurable": false
+    },
+    "posts": {
+      "collection": "post",
+      "via": "author"
+    },
+    "firstName": {
+      "default": "",
+      "type": "string"
+    },
+    "lastName": {
+      "default": "",
+      "type": "string"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "bio": {
+      "default": "",
+      "maxLength": 1200,
+      "minLength": 620,
+      "type": "string"
+    }
+  },
+  "collectionName": "users-permissions_user"
+}

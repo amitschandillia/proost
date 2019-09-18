@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { facebookTheme, googleTheme, twitterTheme } from '../themes/socials-theme';
+import { facebookTheme, googleTheme, twitterTheme } from '../themes/brand-themes';
 import SocialIcon from './SocialIcon';
 
 const styles = (theme) => ({
   root: {
-    flexGrow: 1,
+    color: 'white',
   },
   signInText: {
     marginLeft: theme.spacing(1),
@@ -68,6 +68,7 @@ const SocialButton = (props) => {
           variant="contained"
           size="large"
           color="primary"
+          className={classes.root}
           onClick={(e) => { e.preventDefault(); clickHandler(); }}
         >
           <Grid container>

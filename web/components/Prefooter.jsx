@@ -8,9 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-
 import LinkTo from '../components/LinkTo';
 import Divider from '@material-ui/core/Divider';
+
+import PrefooterAdverts from './PrefooterAdverts';
 
 const styles = (theme) => ({
   root: {
@@ -33,14 +34,6 @@ const styles = (theme) => ({
   gapSmallerScreen: {
     [theme.breakpoints.down('xs')]: {
       marginTop: theme.spacing(4),
-    },
-  },
-  adGrid: {
-    height: theme.spacing(32),
-    alignSelf: 'center',
-    border: '1px solid',
-    [theme.breakpoints.down('md')]: {
-      marginTop: theme.spacing(2),
     },
   },
 });
@@ -102,12 +95,7 @@ const Prefooter = (props) => {
           <Typography><LinkTo hoverNone href="/about">{language.lexicon.guestPostPolicy}</LinkTo></Typography>
         </Grid>
       </Grid>
-      <Grid container lg={3} className={classes.adGrid} alignItems="center" justify="center">
-        {/*Internal advertisement*/}
-        {/*If logged in, advertise product*/}
-        {/*If not logged in, advertise membership*/}
-        Amit
-      </Grid>
+      <PrefooterAdverts />
     </Grid>
   );
 };

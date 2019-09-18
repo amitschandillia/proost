@@ -1,0 +1,81 @@
+{
+  "connection": "default",
+  "collectionName": "post",
+  "info": {
+    "name": "post",
+    "description": "Web app blog posts"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "maxLength": 60,
+      "unique": true,
+      "minLength": 50,
+      "type": "string",
+      "required": true
+    },
+    "secondaryTitle": {
+      "default": "",
+      "maxLength": 120,
+      "unique": true,
+      "minLength": 100,
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "default": "",
+      "unique": true,
+      "type": "string"
+    },
+    "body": {
+      "default": "",
+      "type": "text",
+      "required": true
+    },
+    "author": {
+      "model": "user",
+      "via": "posts",
+      "plugin": "users-permissions"
+    },
+    "excerpt": {
+      "default": "",
+      "maxLength": 140,
+      "minLength": 110,
+      "type": "text",
+      "required": true
+    },
+    "isPublished": {
+      "default": false,
+      "type": "boolean",
+      "required": true
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "banner": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "category": {
+      "model": "category",
+      "via": "post"
+    },
+    "tags": {
+      "collection": "tag",
+      "via": "posts",
+      "dominant": true
+    },
+    "readTime": {
+      "default": "",
+      "type": "integer"
+    }
+  }
+}

@@ -45,7 +45,7 @@ const Slogan = (props) => {
   };
 
   const scrollFunction = () => {
-    const Text = document.getElementById('Text');
+    const Text = document.getElementById('slogan');
     if(isInViewport(Text, window, document)) {
       Text.classList.add('fade-in');
       Text.classList.remove('hidden');
@@ -66,7 +66,7 @@ const Slogan = (props) => {
       <GradientText
         variant="h2"
         className={`${classes.sloganText} hidden`}
-        id="Text"
+        id="slogan"
         angle="diagonal"
         gradientName="jShine"
       >

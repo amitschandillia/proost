@@ -58,7 +58,7 @@ const Footer = (props) => {
   return (
     <Grid container alignItems="center" justify="space-between" className={classes.root}>
       <Grid item xs={12} sm={6} alignItems="center" className={classes.copyright}>
-        <img className={classes.footerLogo} src="_f/images/desktop-header-logo.png" width="48" height="48" />
+        <img className={classes.footerLogo} src="/_f/images/desktop-header-logo.png" width="48" height="48" />
         &copy;
         {` 2015-${new Date().getFullYear()}`}
         {` ${process.env.COPYRIGHT_ENTITY}. ${language.lexicon.allRightsReserved}.`}

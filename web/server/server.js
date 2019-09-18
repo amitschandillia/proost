@@ -18,6 +18,8 @@ import registrationRoutes from '../routes/registration-routes';
 import languageSelectionRoutes from '../routes/language-selection-routes';
 import getDirectives from './get-directives';
 
+import tweetRoutes from '../routes/tweet-routes';
+
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -76,6 +78,11 @@ app.prepare().then(() => {
   // Language routes
   // ---------------------------------------------------------------------
   server.use('/languageSelection', languageSelectionRoutes);
+  // ---------------------------------------------------------------------
+
+  // Tweet routes
+  // ---------------------------------------------------------------------
+  server.use('/tweet', tweetRoutes);
   // ---------------------------------------------------------------------
 
   // Default route (not to be edited)

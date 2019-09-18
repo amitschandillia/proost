@@ -10,7 +10,6 @@ import OptimizeCSSAssetsPlugin from 'optimize-css-assets-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 
-// dotenv.config();
 const { parsed: localEnv } = dotenv.config();
 
 module.exports = withCSS(withSass(withPurgeCss({

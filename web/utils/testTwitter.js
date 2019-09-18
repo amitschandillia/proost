@@ -7,6 +7,8 @@ const dotenv = require('dotenv');
 dotenv.config();
 const { split } = require('sentence-splitter');
 
+let success = true;
+
 const limit = 200;
 
 const client = new Twitter({
@@ -16,7 +18,7 @@ const client = new Twitter({
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET_TEST,
 });
 
-const bigmessage = 'But I must explain. To you how all. This mistaken idea of denouncing pleasure and praising. Pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure? On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment.';
+// const bigmessage = 'Test';
 
 const tweet = async (message, id = '0') => {
   let postRes = {};
@@ -39,8 +41,7 @@ const tweet = async (message, id = '0') => {
       };
     })
     .catch((error) => {
-      console.log('ERR');
-      throw error;
+      success = false;
     });
   return postRes;
 };
@@ -49,18 +50,6 @@ const asyncForEach = async (array, callback) => {
   for (let index = 0; index < array.length; index++) {
     await callback(array[index], index, array);
   }
-};
-
-const postTweet = async (message) => {
-  let extractedID = '';
-  let tweeted = {};
-  asyncForEach(message, async (item) => {
-    tweeted = await tweet(item, extractedID);
-    const { id } = tweeted;
-    extractedID = id;
-    console.log('TWEET', tweeted.tweet);
-    console.log('ID', extractedID);
-  });
 };
 
 const messages = (msg) => {
@@ -85,7 +74,26 @@ const messages = (msg) => {
   });
   para[0] = `#Thread\n${para[0]}`;
   para[para.length - 1] = para[para.length - 1].substr(0, para[para.length - 1].length - 11);
+  if(para.length === 1) para[0] = para[0].substr(14);
   return (para);
 };
 
-postTweet(messages(bigmessage));
+const postTweet = async (msg) => {
+  const message = messages(msg);
+  let extractedID = '';
+  let tweeted = {};
+  asyncForEach(message, async (item) => {
+    tweeted = await tweet(item, extractedID);
+    const { id } = tweeted;
+    extractedID = id;
+    const results = {
+      tweet: tweeted.tweet,
+      id: extractedID,
+      success,
+    };
+  });
+  // console.log('TWEET COUNT', message.length);
+  return success;
+};
+
+module.exports = postTweet;

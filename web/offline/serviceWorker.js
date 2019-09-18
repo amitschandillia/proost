@@ -1,12 +1,13 @@
 /* eslint-disable */
 
-const CACHE_NAME = 'c07f84e59e6dc8595a431637ce834c77';
+const CACHE_NAME = 'b20f13f43455d949cd0fec3e364e9e43';
 const URLS_TO_CACHE = [
   '/',
   '/about',
   '/blog',
   '/index',
   '/registration',
+  '/tweet',
   'android-chrome-144x144.png',
   'android-chrome-192x192.png',
   'android-chrome-256x256.png',
@@ -57,6 +58,8 @@ const URLS_TO_CACHE = [
   'icon-72x72.png',
   'icon-96x96.png',
   'manifest.json',
+  '/_f/images/badges/apple.svg',
+  '/_f/images/badges/google.png',
   '/_f/images/banner.png',
   '/_f/images/banner_vid_img.jpg',
   '/_f/images/desktop-header-logo.png',

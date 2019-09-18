@@ -11,8 +11,6 @@ import Typography from '@material-ui/core/Typography';
 
 import MicIcon from './svg-icons/MicIcon';
 
-import TranslateIcon from '@material-ui/icons/Translate';
-
 const styles = (theme) => ({
   root: {
     textAlign: 'center',

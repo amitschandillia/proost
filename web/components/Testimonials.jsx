@@ -2,34 +2,43 @@
 
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-import React, { useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
-import GradientText from './GradientText';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-
+import TestimonialItem from './TestimonialItem';
 import Box from '@material-ui/core/Box';
 
 const styles = (theme) => ({
   root: {
-    width: '100%',
-    textAlign: 'center',
+    padding: theme.spacing(4),
   },
-  container: {
-    margin: '0 auto',
-    padding: theme.spacing(3, 6, 0, 6),
+  testimonial: {
+    border: '1px solid #bdbdbd',
   },
-  avatar: {
-    margin: '0 auto;',
-    color: '#fff',
-    backgroundColor: 'cadetblue',
-    width: theme.spacing(20),
-    height: theme.spacing(20),
+  first: {
+    [theme.breakpoints.up('sm')]: {
+      borderRight: `1px solid ${theme.palette.grey[400]}`,
+    },
+    [theme.breakpoints.down('md')]: {
+      borderBottom: `1px solid ${theme.palette.grey[400]}`,
+    },
   },
-  name: {
-    marginBottom: theme.spacing(3),
+  second: {
+    [theme.breakpoints.up('lg')]: {
+      borderRight: `1px solid ${theme.palette.grey[400]}`,
+    },
+    [theme.breakpoints.down('md')]: {
+      borderBottom: `1px solid ${theme.palette.grey[400]}`,
+    },
   },
+  third: {
+    [theme.breakpoints.up('sm')]: {
+      borderRight: `1px solid ${theme.palette.grey[400]}`,
+    },
+    [theme.breakpoints.down('xs')]: {
+      borderBottom: `1px solid ${theme.palette.grey[400]}`,
+    },
+  },
+  fourth: {},
 });
 
 const Testimonials = (props) => {
@@ -39,21 +48,32 @@ const Testimonials = (props) => {
   } = props;
 
   return (
-    <Box py={20} px={2} className={classes.root}>
-      <Avatar className={classes.avatar}>H</Avatar>
-      <Grid container justify="center" alignItems="center" xs={11} md={6} lg={4} className={classes.container}>
-        <Grid item className={classes.name}>
-          <GradientText
-            variant="h2"
-            angle="diagonal"
-            gradientName="jShine"
-          >
-            John Doe
-          </GradientText>
-        </Grid>
-        <Grid item><Typography variant="body">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec</Typography></Grid>
+    <Grid container justify="space-around" direction="row">
+      <Grid item xs={12} sm={6} lg={3} className={`${classes.root} ${classes.first}`}>
+        <TestimonialItem
+          name={'John Doe'}
+          blurb={'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec'}
+        />
       </Grid>
-    </Box>
+      <Grid item xs={12} sm={6} lg={3} className={`${classes.root} ${classes.second}`}>
+        <TestimonialItem
+          name={'Arnold Schwarzenegger'}
+          blurb={'Lorem ipsum dolor sit amet.'}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} lg={3} className={`${classes.root} ${classes.third}`}>
+        <TestimonialItem
+          name={'Bob Hope'}
+          blurb={'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.'}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} lg={3} className={`${classes.root} ${classes.fourth}`}>
+        <TestimonialItem
+          name={'Brenda Clum'}
+          blurb={'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus.'}
+        />
+      </Grid>
+    </Grid>
   );
 };
 
