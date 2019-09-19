@@ -4,10 +4,11 @@ import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import PostsList2 from '../components/blog/PostsList2';
 import LinkTo from '../components/LinkTo';
 import Layout from '../components/Layout';
 import PageBody from '../components/PageBody';
+
+import PostList from '../components/blog/PostList';
 
 const styles = (theme) => ({
   root: {
@@ -33,8 +34,7 @@ const Blog = (props) => {
       pageURL = {pageURL}
     >
       <PageBody>
-        Posts
-        <PostsList2 />
+        <PostList />
       </PageBody>
     </Layout>
   );

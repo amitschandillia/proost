@@ -1,0 +1,8 @@
+{
+  posts {
+    _id
+    title
+    secondaryTitle
+    body
+  }
+}

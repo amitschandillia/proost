@@ -22,9 +22,6 @@ import getLanguageFromCookies from '../utils/get-language-from-cookies';
 import getUserTokenFromCookies from '../utils/get-user-token-from-cookies';
 import removeFbHash from '../utils/remove-fb-hash';
 
-import withApolloClient from '../lib/with-apollo-client'
-import { ApolloProvider } from 'react-apollo'
-
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
     let userToken;
@@ -71,7 +68,7 @@ class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps, store, apolloClient } = this.props;
+    const { Component, pageProps, store } = this.props;
 
     return (
       <Container>
@@ -91,15 +88,13 @@ class MyApp extends App {
         <ThemeProvider theme={mainTheme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <ApolloProvider client={apolloClient}>
             <Provider store={store}>
-                <Component {...pageProps} />
+              <Component {...pageProps} />
             </Provider>
-          </ApolloProvider>
         </ThemeProvider>
       </Container>
     );
   }
 }
 
-export default withApolloClient(withRedux(makeStore)(MyApp));
+export default withRedux(makeStore)(MyApp);
