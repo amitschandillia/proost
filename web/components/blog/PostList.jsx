@@ -1,7 +1,8 @@
 import { graphql } from "react-apollo";
 import gql from 'graphql-tag';
-import withData from "../../apollo/withData";
-import getPostsQuery from '../../apollo/test.graphql';
+import withData from "../../apollo/with-data";
+
+import getPostsQuery from '../../apollo/schemas/getPostsQuery.graphql';
 
 import Typography from '@material-ui/core/Typography';
 import ReactMarkdown from 'react-markdown';

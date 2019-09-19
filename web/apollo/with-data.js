@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { ApolloProvider, getDataFromTree } from "react-apollo";
-import initApollo from "./initApollo";
+import initApollo from "./init-apollo";
 
 export default ComposedComponent => {
   return class WithData extends React.Component {
