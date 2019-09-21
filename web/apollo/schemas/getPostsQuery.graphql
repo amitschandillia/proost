@@ -2,7 +2,6 @@
   posts {
     _id
     title
-    body
     secondaryTitle
     thumbnail {
       hash

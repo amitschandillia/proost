@@ -13,7 +13,7 @@ WEB
 cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
 
-cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-with-ssr/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-staging-with-ssr/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
 
 FORGOT PASSWORD
