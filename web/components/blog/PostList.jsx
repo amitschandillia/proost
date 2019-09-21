@@ -7,6 +7,7 @@ import getPostsQuery from '../../apollo/schemas/getPostsQuery.graphql';
 import Typography from '@material-ui/core/Typography';
 import ReactMarkdown from 'react-markdown';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Loading from './Loading';
 
 const renderers = {
   paragraph: (props) => <Typography variant="body2" gutterBottom {...props} />,
@@ -14,12 +15,12 @@ const renderers = {
 
 const GET_POSTS = gql`${getPostsQuery}`;
 
-const PostList = ({data: {error, loading, posts}}) => {
+const PostList = ({classes, data: {error, loading, posts}}) => {
   let payload;
   if(error) {
-    payload = (<div>There was an error!</div>);
+    payload = <div>There was an error!</div>;
   } else if(loading) {
-    payload = (<div><CircularProgress /></div>);
+    payload = <Loading />
   } else {
     payload = (
       <>
@@ -29,6 +30,12 @@ const PostList = ({data: {error, loading, posts}}) => {
             <Typography variant="subtitle1" gutterBottom>{post.secondaryTitle}</Typography>
             <Typography variant="body1" gutterBottom>
               Post #{post._id}
+            </Typography>
+            <Typography variant="body1">
+              {`Banner: https://i.schandillia.com/d/${post.banner.hash}${post.banner.ext}`}
+            </Typography>
+            <Typography variant="body1">
+              {`Thumbnail: https://i.schandillia.com/d/${post.thumbnail.hash}${post.thumbnail.ext}`}
             </Typography>
             <ReactMarkdown source={post.body} renderers={renderers} />
           </div>
