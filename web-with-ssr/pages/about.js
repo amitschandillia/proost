@@ -1,5 +1,5 @@
-import App from '../components/blog/App'
-import Header from '../components/blog/Header'
+import App from '../components/App'
+import Header from '../components/Header'
 
 export default () => (
   <App>
