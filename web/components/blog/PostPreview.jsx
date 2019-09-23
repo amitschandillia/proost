@@ -12,9 +12,9 @@ import ShareIcon from '@material-ui/icons/Share';
 
 const styles = (theme) => ({
   root: {
-    border: '1px solid lightgrey',
-    boxShadow: 'none',
-    backgroundColor: 'initial',
+    // border: '1px solid lightgrey',
+    // boxShadow: 'none',
+    // backgroundColor: 'initial',
   },
   media: {
     height: 0,
@@ -24,6 +24,10 @@ const styles = (theme) => ({
     color: 'dimgrey',
     textDecoration: 'none',
   },
+  title: {
+    fontWeight: 'bold',
+  },
+  author: {},
 });
 
 const PostPreview = (props) => {
@@ -41,10 +45,10 @@ const PostPreview = (props) => {
     <Card className={`post-preview ${classes.root}`}>
       <CardHeader
         title={
-          <a className={classes.link} href={urlPost}>{title}</a>
+          <a className={`${classes.link} ${classes.title}`} href={urlPost}>{title}</a>
         }
         subheader={
-          <a className={classes.link} href={urlAuthor}>{author}</a>
+          <a className={`${classes.link} ${classes.author}`} href={urlAuthor}>{author}</a>
         }
       />
       <CardMedia
