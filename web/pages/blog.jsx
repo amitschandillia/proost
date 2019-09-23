@@ -7,13 +7,17 @@ import PostsList from '../components/blog/PostsList';
 import Layout from '../components/Layout';
 import PageBody from '../components/PageBody';
 
-const styles = () => ({
+const styles = (theme) => ({
   root: {},
 });
 
 const pageURL = `${process.env.BASE_URL}/blog`;
 
-const Blog = () => {
+const Blog = (props) => {
+  const {
+    classes,
+    language,
+  } = props;
   const title = 'Blog | Project Proost';
   const description = 'This is the description for the Blog page';
 

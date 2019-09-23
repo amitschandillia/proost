@@ -2,12 +2,14 @@
   posts {
     _id
     title
-    secondaryTitle
-    thumbnail {
-      hash
-      ext
+    excerpt
+    slug
+    author{
+      firstName
+      lastName
+      username
     }
-    banner {
+    thumbnail {
       hash
       ext
     }
