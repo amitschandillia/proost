@@ -18,32 +18,6 @@ const styles = (theme) => ({
 
 export const GET_POSTS = gql`${getPostsQuery}`;
 
-// export const GET_POSTS = gql`
-//   query posts($limit: Int!, $start: Int!) {
-//     posts(sort: "createdAt:DESC", limit: $limit, start: $start) {
-//       _id
-//       title
-//       excerpt
-//       slug
-//       createdAt
-//       author{
-//         firstName
-//         lastName
-//         username
-//       }
-//       thumbnail {
-//         hash
-//         ext
-//       }
-//     }
-//     postsConnection {
-//       aggregate{
-//         count
-//       }
-//     }
-//   }
-// `;
-
 export const getPostsQueryVars = {
   start: 0,
   limit: 7,
