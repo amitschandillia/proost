@@ -132,7 +132,7 @@ const PostsList = (props) => {
   }, []);
 
   if (error) return <div>There was an error!</div>;
-  if (loading) return <Loading />;
+  if (loading && !loadingMorePosts) return <Loading />;
 
   const { posts, postsConnection } = data;
   const areMorePosts = posts.length < postsConnection.aggregate.count;
