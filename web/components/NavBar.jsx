@@ -185,7 +185,7 @@ const NavBar = (props) => {
 
   return (
     <>
-      <AppBar id="nav" className={transparentStyle} position="fixed" style={{boxShadow: 'none'}}>
+      <AppBar id="nav" className={transparentStyle} position="fixed" style={{boxShadow: transparent && 'none'}}>
         {transparent && <span id="nav-overlay" className={classes.overlay} />}
         <Toolbar>
           {mobileMenu}
