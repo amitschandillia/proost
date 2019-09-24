@@ -29,7 +29,7 @@ const PostsList = (props) => {
     loading,
     error,
     data,
-    // fetchMore,
+    fetchMore,
     networkStatus,
   } = useQuery(
     GET_POSTS,
@@ -43,6 +43,23 @@ const PostsList = (props) => {
   );
 
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
+
+  const loadMorePosts = () => {
+    fetchMore({
+      variables: {
+        skip: posts.length
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return previousResult
+        }
+        return Object.assign({}, previousResult, {
+          // Append the new posts results to the old one
+          posts: [...previousResult.posts, ...fetchMoreResult.posts]
+        })
+      }
+    })
+  };
 
   const resizeFunction = () => {
     const postPreviewContainers = document.getElementsByClassName('post-preview-container');
@@ -90,8 +107,6 @@ const PostsList = (props) => {
   const { posts, postsConnection } = data;
   const areMorePosts = posts.length < postsConnection.aggregate.count;
 
-  console.log('THERE ARE MORE', areMorePosts);
-
   return (
     <Grid item className={classes.root}>
       <Grid container spacing={2} direction="row">
@@ -110,6 +125,11 @@ const PostsList = (props) => {
           );
         })}
       </Grid>
+      {areMorePosts && (
+        <button onClick={() => loadMorePosts()} disabled={loadingMorePosts}>
+          {loadingMorePosts ? 'Loading...' : 'Show More'}
+        </button>
+      )}
     </Grid>
   );
 };
