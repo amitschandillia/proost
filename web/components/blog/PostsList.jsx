@@ -96,12 +96,10 @@ const PostsList = (props) => {
 
   useLayoutEffect(() => {
     window.addEventListener('resize', removeGridGaps);
-    window.addEventListener('scroll', removeGridGaps);
     removeGridGaps();
     // returned function will be called on component unmount
     return () => {
       window.removeEventListener('resize', removeGridGaps);
-      window.removeEventListener('scroll', removeGridGaps);
     };
   }, []);
 
@@ -113,7 +111,7 @@ const PostsList = (props) => {
 
   return (
     <Grid item className={classes.root}>
-      <Grid container spacing={2} direction="row">
+      <Grid container spacing={2} direction="row" id="posts-container">
         {posts.map((post) => {
           return (
             <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className={`post-preview-container`}>
