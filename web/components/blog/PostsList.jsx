@@ -18,6 +18,32 @@ const styles = (theme) => ({
 
 export const GET_POSTS = gql`${getPostsQuery}`;
 
+// export const GET_POSTS = gql`
+//   query posts($limit: Int!, $start: Int!) {
+//     posts(sort: "createdAt:DESC", limit: $limit, start: $start) {
+//       _id
+//       title
+//       excerpt
+//       slug
+//       createdAt
+//       author{
+//         firstName
+//         lastName
+//         username
+//       }
+//       thumbnail {
+//         hash
+//         ext
+//       }
+//     }
+//     postsConnection {
+//       aggregate{
+//         count
+//       }
+//     }
+//   }
+// `;
+
 export const getPostsQueryVars = {
   start: 0,
   limit: 7,
@@ -47,7 +73,7 @@ const PostsList = (props) => {
   const loadMorePosts = () => {
     fetchMore({
       variables: {
-        skip: posts.length
+        start: posts.length
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
@@ -61,43 +87,47 @@ const PostsList = (props) => {
     })
   };
 
-  const resizeFunction = () => {
+  const removeGridGaps = () => {
     const postPreviewContainers = document.getElementsByClassName('post-preview-container');
     const itemCount = postPreviewContainers.length;
-    let itemsPerRow;
-    // The following snippet doesn't account for itemCounts below 6, 4, 3, or 2.
-    if(postPreviewContainers[0].offsetTop === postPreviewContainers[5].offsetTop) { itemsPerRow = 6; }
-    else if(postPreviewContainers[0].offsetTop === postPreviewContainers[3].offsetTop) { itemsPerRow = 4; }
-    else if(postPreviewContainers[0].offsetTop === postPreviewContainers[2].offsetTop) { itemsPerRow = 3; }
-    else if(postPreviewContainers[0].offsetTop === postPreviewContainers[1].offsetTop) { itemsPerRow = 2; }
-    else { itemsPerRow = 1; }
+    if(itemCount && itemCount > 0) {
+      let itemsPerRow;
+      // The following snippet doesn't account for itemCounts below 6, 4, 3, or 2.
+      if(postPreviewContainers[0].offsetTop === postPreviewContainers[5].offsetTop) { itemsPerRow = 6; }
+      else if(postPreviewContainers[0].offsetTop === postPreviewContainers[3].offsetTop) { itemsPerRow = 4; }
+      else if(postPreviewContainers[0].offsetTop === postPreviewContainers[2].offsetTop) { itemsPerRow = 3; }
+      else if(postPreviewContainers[0].offsetTop === postPreviewContainers[1].offsetTop) { itemsPerRow = 2; }
+      else { itemsPerRow = 1; }
 
-    for (let col = 0; col <= itemsPerRow - 1; col++) {
-      var row = itemsPerRow;
-      while((col + row) < itemCount) {
-        // logic to remove gaps
-        // a = element above
-        var elemAbove = postPreviewContainers[col + row - itemsPerRow];
-        // p = elemAbove's height minus padding
-        var elemAboveHeight = elemAbove.getBoundingClientRect().height;
-        // ap = post-preview element inside elemAbove
-        var elemAbovePreview = elemAbove.getElementsByClassName('post-preview')[0];
-        // apb = ap's height
-        var elemAbovePreviewHeight = elemAbovePreview.getBoundingClientRect().height;
-        // gap = apb - ap
-        var gap = -Math.abs( elemAboveHeight - elemAbovePreviewHeight - 16);
-        postPreviewContainers[col + row].style.marginTop = `${gap}px`;
-        row += itemsPerRow;
+      for (let col = 0; col <= itemsPerRow - 1; col++) {
+        var row = itemsPerRow;
+        while((col + row) < itemCount) {
+          // logic to remove gaps
+          // a = element above
+          var elemAbove = postPreviewContainers[col + row - itemsPerRow];
+          // p = elemAbove's height minus padding
+          var elemAboveHeight = elemAbove.getBoundingClientRect().height;
+          // ap = post-preview element inside elemAbove
+          var elemAbovePreview = elemAbove.getElementsByClassName('post-preview')[0];
+          // apb = ap's height
+          var elemAbovePreviewHeight = elemAbovePreview.getBoundingClientRect().height;
+          // gap = apb - ap
+          var gap = -Math.abs( elemAboveHeight - elemAbovePreviewHeight - 16);
+          postPreviewContainers[col + row].style.marginTop = `${gap}px`;
+          row += itemsPerRow;
+        }
       }
     }
   };
 
   useLayoutEffect(() => {
-    window.addEventListener('resize', resizeFunction);
-    resizeFunction();
+    window.addEventListener('resize', removeGridGaps);
+    window.addEventListener('scroll', removeGridGaps);
+    removeGridGaps();
     // returned function will be called on component unmount
     return () => {
-      window.removeEventListener('resize', resizeFunction);
+      window.removeEventListener('resize', removeGridGaps);
+      window.removeEventListener('scroll', removeGridGaps);
     };
   }, []);
 
