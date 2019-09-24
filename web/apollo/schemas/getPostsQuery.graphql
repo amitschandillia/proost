@@ -1,9 +1,10 @@
-{
-  posts {
+query posts($limit: Int!, $start: Int!) {
+  posts(sort: "createdAt:DESC", limit: $limit, start: $start) {
     _id
     title
     excerpt
     slug
+    createdAt
     author{
       firstName
       lastName
@@ -12,6 +13,11 @@
     thumbnail {
       hash
       ext
+    }
+  }
+  postsConnection {
+    aggregate{
+      count
     }
   }
 }

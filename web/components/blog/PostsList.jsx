@@ -18,22 +18,31 @@ const styles = (theme) => ({
 
 export const GET_POSTS = gql`${getPostsQuery}`;
 
+export const getPostsQueryVars = {
+  start: 0,
+  limit: 7,
+};
+
 const PostsList = (props) => {
   const { classes } = props;
   const {
     loading,
     error,
     data,
+    // fetchMore,
     networkStatus,
   } = useQuery(
     GET_POSTS,
     {
+      variables: getPostsQueryVars,
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
       // more data
       notifyOnNetworkStatusChange: true,
     },
   );
+
+  const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
 
   const resizeFunction = () => {
     const postPreviewContainers = document.getElementsByClassName('post-preview-container');
@@ -64,8 +73,6 @@ const PostsList = (props) => {
         row += itemsPerRow;
       }
     }
-
-    console.log('itemsPerRow', itemsPerRow);
   };
 
   useLayoutEffect(() => {
@@ -80,7 +87,10 @@ const PostsList = (props) => {
   if (error) return <div>There was an error!</div>;
   if (loading) return <Loading />;
 
-  const { posts } = data;
+  const { posts, postsConnection } = data;
+  const areMorePosts = posts.length < postsConnection.aggregate.count;
+
+  console.log('THERE ARE MORE', areMorePosts);
 
   return (
     <Grid item className={classes.root}>
