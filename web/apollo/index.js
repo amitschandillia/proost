@@ -133,7 +133,11 @@ function createApolloClient (initialState = {}) {
     link: new HttpLink({
       uri: process.env.CMS, // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
-      fetch
+      headers: {
+        // Get JWT from Strapi Admin -> Plugins -> Documentation -> Retrieve your jwt token
+        authorization: `Bearer ${process.env.STRAPI_TOKEN}`,
+      },
+      fetch,
     }),
     cache: new InMemoryCache().restore(initialState)
   })

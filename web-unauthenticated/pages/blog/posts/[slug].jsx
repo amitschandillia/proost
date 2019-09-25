@@ -1,11 +1,13 @@
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useRouter } from 'next/router';
 
-import { withApollo } from '../apollo';
-import PostsList from '../components/blog/PostsList';
-import Layout from '../components/Layout';
-import PageBody from '../components/PageBody';
+import Layout from '../../../components/Layout';
+import PageBody from '../../../components/PageBody';
+import LinkTo from '../../../components/LinkTo';
+import { withApollo } from '../../../apollo';
+import SinglePost from '../../../components/blog/SinglePost';
 
 const styles = (theme) => ({
   root: {},
@@ -13,13 +15,15 @@ const styles = (theme) => ({
 
 const pageURL = `${process.env.BASE_URL}/blog`;
 
-const Blog = (props) => {
+const Post = (props) => {
   const {
     classes,
     language,
   } = props;
-  const title = 'Blog | Project Proost';
+  const title = 'Blog Post | Project Proost';
   const description = 'This is the description for the Blog page';
+
+  const router = useRouter();
 
   return (
     <Layout
@@ -28,16 +32,17 @@ const Blog = (props) => {
       pageURL={pageURL}
     >
       <PageBody>
-        <PostsList />
+        <h1>{router.query.slug}</h1>
+        <SinglePost slug={router.query.slug} />
       </PageBody>
     </Layout>
   );
 };
 
-Blog.propTypes = {
+Post.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
   }).isRequired,
 };
 
-export default withStyles(styles)(withApollo(Blog));
+export default withStyles(styles)(withApollo(Post));
