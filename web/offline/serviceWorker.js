@@ -1,13 +1,11 @@
 /* eslint-disable */
 
-const CACHE_NAME = '93148b9961f1d80d0e527e5e3445fe2b';
+const CACHE_NAME = '7d5c8787bac19df82bb249e182f3c37d';
 const URLS_TO_CACHE = [
   '/',
   '/about',
-  '/blog/authors/[slug]',
-  '/blog/authors/index',
-  '/blog/index',
-  '/blog/posts/[slug]',
+  '/blog/authors',
+  '/blog',
   '/index',
   '/registration',
   '/tweet',

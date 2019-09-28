@@ -2,23 +2,31 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { withApollo } from '../../../apollo';
+import AuthorsList from '../../../components/blog/AuthorsList';
 import Layout from '../../../components/Layout';
 import PageBody from '../../../components/PageBody';
-import LinkTo from '../../../components/LinkTo';
+import SingleAuthor from '../../../components/blog/SingleAuthor';
 
 const styles = (theme) => ({
   root: {},
 });
 
-const pageURL = `${process.env.BASE_URL}/blog`;
+const pageURL = `${process.env.BASE_URL}/blog/about`;
 
 const Authors = (props) => {
   const {
     classes,
     language,
+    query: { authorSlug },
   } = props;
-  const title = 'Blog Authors | Project Proost';
-  const description = 'This is the description for the Blog page';
+
+  let title, description;
+
+  if(!authorSlug) {
+    title = 'Authors | Project Proost';
+    description = 'This is the description for the Authors page';
+  }
 
   return (
     <Layout
@@ -27,14 +35,15 @@ const Authors = (props) => {
       pageURL={pageURL}
     >
       <PageBody>
-        <h1>Blog Authors Home</h1>
-        <div><LinkTo hoverNone href="/about">About</LinkTo></div>
-        <div><LinkTo hoverNone href="/blog/authors/[slug]" as={`/blog/authors/amit`}>Amit</LinkTo></div>
-        <div><LinkTo hoverNone href="/blog/authors/[slug]" as={`/blog/authors/john`}>John</LinkTo></div>
-        <div><LinkTo hoverNone href="/blog/authors/[slug]" as={`/blog/authors/pintu`}>Pintu</LinkTo></div>
+        {authorSlug && <SingleAuthor authorSlug={authorSlug} />}
+        {!authorSlug && <AuthorsList />}
       </PageBody>
     </Layout>
   );
+};
+
+Authors.getInitialProps = async ({ query }) => {
+  return {query};
 };
 
 Authors.propTypes = {
@@ -43,4 +52,4 @@ Authors.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(Authors);
+export default withStyles(styles)(withApollo(Authors));

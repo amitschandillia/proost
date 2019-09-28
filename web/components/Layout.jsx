@@ -27,8 +27,8 @@ const Layout = (props) => {
   return (
     <>
       <Head>
-        <title>{ title }</title>
-        <meta name="description" content={description} key="description" />
+        {Boolean(title) && <title>{title}</title>}
+        {Boolean(description) && <meta name="description" content={description} key="description" />}
       </Head>
       <NavBar pageURL={pageURL} transparent={transparent} />
       <Grid container alignItems="flex-end" className={classes.root}>

@@ -89,6 +89,12 @@ app.prepare().then(() => {
   // ---------------------------------------------------------------------
   // server.get('*', (req, res) => handle(req, res));
   server.use('*', preLoadMiddleware);
+  server.get('/blog/authors/:authorSlug', (req, res) => {
+    app.render(req, res, '/blog/authors', {authorSlug: req.params.authorSlug});
+  });
+  server.get('/blog/posts/:postSlug', (req, res) => {
+    app.render(req, res, '/blog', {postSlug: req.params.postSlug});
+  });
   server.get('*', (req, res) => handle(req, res));
   // ---------------------------------------------------------------------
 

@@ -52,7 +52,7 @@ const Prefooter = (props) => {
           <Typography><LinkTo hoverNone href="/about">{language.lexicon.aboutUs}</LinkTo></Typography>
           <Typography><LinkTo hoverNone href="/about">{language.lexicon.pressAndMedia}</LinkTo></Typography>
           <Typography><LinkTo hoverNone href="/about">{language.lexicon.sitemap}</LinkTo></Typography>
-          <Typography><LinkTo hoverNone href="/about">{language.lexicon.brandAssets}</LinkTo></Typography>
+          <Typography><LinkTo hoverNone href="/blog/authors">{language.lexicon.brandAssets}</LinkTo></Typography>
           <Typography><LinkTo hoverNone href="/blog">{language.lexicon.blog}</LinkTo></Typography>
           <Typography variant="button" component="h2" className={classes.gapSameColumn}>{language.lexicon.premium}</Typography>
           <Divider className={classes.divider} />

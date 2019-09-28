@@ -6,6 +6,7 @@ import { withApollo } from '../../apollo';
 import PostsList from '../../components/blog/PostsList';
 import Layout from '../../components/Layout';
 import PageBody from '../../components/PageBody';
+import SinglePost from '../../components/blog/SinglePost';
 
 const styles = (theme) => ({
   root: {},
@@ -17,21 +18,31 @@ const Blog = (props) => {
   const {
     classes,
     language,
+    query: { postSlug },
   } = props;
-  const title = 'Blog | Project Proost';
-  const description = 'This is the description for the Blog page';
+  let title, description;
+
+  if(!postSlug) {
+    title = 'Blog | Project Proost';
+    description = 'This is the description for the Blog page';
+  }
 
   return (
     <Layout
-      title={title}
-      description={description}
+      title={title ? title : undefined}
+      description={description ? description : undefined}
       pageURL={pageURL}
     >
       <PageBody>
-        <PostsList />
+        {postSlug && <SinglePost slug={postSlug} />}
+        {!postSlug && <PostsList />}
       </PageBody>
     </Layout>
   );
+};
+
+Blog.getInitialProps = async ({ query }) => {
+  return {query};
 };
 
 Blog.propTypes = {

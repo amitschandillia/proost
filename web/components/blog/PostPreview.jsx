@@ -37,7 +37,7 @@ const PostPreview = (props) => {
     classes,
     title,
     slug,
-    authorId,
+    username,
     excerpt,
     thumbnail,
     author,
@@ -47,10 +47,10 @@ const PostPreview = (props) => {
     <Card className={`post-preview ${classes.root}`}>
       <CardHeader
         title={
-          <LinkTo hoverNone href="/blog/posts/[slug]" as={`/blog/posts/${slug}`}>{title}</LinkTo>
+          <LinkTo hoverNone href={`/blog?postSlug=${slug}`} as={`/blog/posts/${slug}`}>{title}</LinkTo>
         }
         subheader={
-          <LinkTo hoverNone href="/blog/authors/[slug]" as={`/blog/authors/${authorId}`}>{author}</LinkTo>
+          <LinkTo hoverNone href={`/blog/authors?authorSlug=${username}`} as={`/blog/authors/${username}`}>{author}</LinkTo>
         }
       />
       <CardMedia

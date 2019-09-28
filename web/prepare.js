@@ -48,7 +48,10 @@ function walkSync(currentDirPath, callback) {
 walkSync('./pages/', (filePath) => {
   const cachedItem = filePath.substr(5);
   if (cachedItem.indexOf('_') === -1) {
-    cachedItems.push(cachedItem.substr(0, cachedItem.length - 4));
+    let pageName = cachedItem.substr(0, cachedItem.length - 4);
+    if(pageName === '/blog/index') { pageName = '/blog'; }
+    if(pageName === '/blog/authors/index') { pageName = '/blog/authors'; }
+    cachedItems.push(pageName);
   }
 });
 // Cache favicons

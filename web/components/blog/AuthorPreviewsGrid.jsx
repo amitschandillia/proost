@@ -1,7 +1,5 @@
-import { useQuery } from '@apollo/react-hooks';
-import { NetworkStatus } from 'apollo-client';
 import Grid from '@material-ui/core/Grid';
-import PostPreview from './PostPreview';
+import AuthorPreview from './AuthorPreview';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { useLayoutEffect } from 'react';
 
@@ -12,15 +10,15 @@ const styles = (theme) => ({
   },
 });
 
-const PostPreviewsGrid = (props) => {
+const AuthorPreviewsGrid = (props) => {
 
   const removeGridGaps = () => {
-    const postPreviewContainers = document.getElementsByClassName('post-preview-container');
-    const itemCount = postPreviewContainers.length;
+    const authorPreviewContainers = document.getElementsByClassName('author-preview-container');
+    const itemCount = authorPreviewContainers.length;
     if(itemCount && itemCount > 0) {
       let n = 0;
       while(n < itemCount - 1) {
-        if(postPreviewContainers[n].offsetTop === postPreviewContainers[n + 1].offsetTop)  { n++; }
+        if(authorPreviewContainers[n].offsetTop === authorPreviewContainers[n + 1].offsetTop)  { n++; }
         else { break; }
       }
       let itemsPerRow = n + 1;
@@ -30,16 +28,16 @@ const PostPreviewsGrid = (props) => {
         while((col + row) < itemCount) {
           // logic to remove gaps
           // a = element above
-          var elemAbove = postPreviewContainers[col + row - itemsPerRow];
+          var elemAbove = authorPreviewContainers[col + row - itemsPerRow];
           // p = elemAbove's height minus padding
           var elemAboveHeight = elemAbove.getBoundingClientRect().height;
-          // ap = post-preview element inside elemAbove
-          var elemAbovePreview = elemAbove.getElementsByClassName('post-preview')[0];
+          // ap = author-preview element inside elemAbove
+          var elemAbovePreview = elemAbove.getElementsByClassName('author-preview')[0];
           // apb = ap's height
           var elemAbovePreviewHeight = elemAbovePreview.getBoundingClientRect().height;
           // gap = apb - ap
           var gap = -Math.abs( elemAboveHeight - elemAbovePreviewHeight - 16);
-          postPreviewContainers[col + row].style.marginTop = `${gap}px`;
+          authorPreviewContainers[col + row].style.marginTop = `${gap}px`;
           row += itemsPerRow;
         }
       }
@@ -71,29 +69,28 @@ const PostPreviewsGrid = (props) => {
 
   const {
     classes,
-    posts,
+    users,
   } = props;
 
   return (
-    <Grid container spacing={2} direction="row" id="posts-container">
-      {posts.map((post) => {
-        return (
-          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className={`post-preview-container`}>
-            <PostPreview
-              title={post.title}
-              slug={post.slug}
-              urlPost={`https://www.schandillia.com/blog/posts/${post.slug}`}
-              urlAuthor={`https://www.schandillia.com/blog/authors/${post.author.username}`}
-              excerpt={post.excerpt}
-              thumbnail={`https://i.schandillia.com/d/${post.thumbnail.hash}${post.thumbnail.ext}`}
-              author={`${post.author.firstName} ${post.author.lastName}`}
-              username={post.author.username}
-            />
-          </Grid>
-        );
+    <Grid container spacing={2} direction="row" id="authors-container">
+      {users.map((user) => {
+        if(user.posts.length > 0) {
+          return (
+            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className={`author-preview-container`}>
+              <AuthorPreview
+                username={user.username}
+                firstName={user.firstName}
+                lastName={user.lastName}
+                thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${user.thumbnail.hash}${user.thumbnail.ext}`}
+                posts={user.posts}
+              />
+            </Grid>
+          );
+        }
       })}
     </Grid>
   );
 };
 
-export default withStyles(styles)(PostPreviewsGrid);
+export default withStyles(styles)(AuthorPreviewsGrid);

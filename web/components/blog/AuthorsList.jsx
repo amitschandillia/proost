@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/react-hooks';
 import { NetworkStatus } from 'apollo-client';
 import gql from 'graphql-tag';
-import getPostsQuery from '../../apollo/schemas/getPostsQuery.graphql';
+import getUsersQuery from '../../apollo/schemas/getUsersQuery.graphql';
 import Loading from './Loading';
-import PostPreviewsGrid from './PostPreviewsGrid';
+import AuthorPreviewsGrid from './AuthorPreviewsGrid';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
@@ -24,14 +24,14 @@ const styles = (theme) => ({
   },
 });
 
-export const GET_POSTS = gql`${getPostsQuery}`;
+export const GET_USERS = gql`${getUsersQuery}`;
 
-export const getPostsQueryVars = {
+export const getUsersQueryVars = {
   start: 0,
-  limit: 12,
+  limit: 7,
 };
 
-const PostsList = (props) => {
+const AuthorsList = (props) => {
   const { classes } = props;
   const {
     loading,
@@ -40,9 +40,9 @@ const PostsList = (props) => {
     fetchMore,
     networkStatus,
   } = useQuery(
-    GET_POSTS,
+    GET_USERS,
     {
-      variables: getPostsQueryVars,
+      variables: getUsersQueryVars,
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
       // more data
@@ -50,40 +50,40 @@ const PostsList = (props) => {
     },
   );
 
-  const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
+  const loadingMoreUsers = networkStatus === NetworkStatus.fetchMore;
 
-  const loadMorePosts = () => {
+  const loadMoreUsers = () => {
     fetchMore({
       variables: {
-        start: posts.length
+        start: users.length
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
           return previousResult
         }
         return Object.assign({}, previousResult, {
-          // Append the new posts results to the old one
-          posts: [...previousResult.posts, ...fetchMoreResult.posts]
+          // Append the new users results to the old one
+          users: [...previousResult.users, ...fetchMoreResult.users]
         })
       }
     })
   };
 
   if (error) return <div>There was an error!</div>;
-  if (loading && !loadingMorePosts) return <Loading />;
+  if (loading && !loadingMoreUsers) return <Loading />;
 
-  const { posts, postsConnection } = data;
-  const areMorePosts = posts.length < postsConnection.aggregate.count;
+  const { users, usersConnection } = data;
+  const areMoreUsers = users.length < usersConnection.aggregate.count;
 
   return (
     <Grid item className={classes.root}>
-      <PostPreviewsGrid posts={posts} />
-      {areMorePosts && (
+      <AuthorPreviewsGrid users={users} />
+      {areMoreUsers && (
         <div className={classes.more}>
-          {loadingMorePosts ? (
+          {loadingMoreUsers ? (
             <CircularProgress style={{opacity: 0.3}} />
           ) : (
-            <Button color="primary" className={classes.button} onClick={loadMorePosts}>Show more</Button>
+            <Button color="primary" className={classes.button} onClick={loadMoreUsers}>Show more</Button>
           )}
         </div>
       )}
@@ -91,4 +91,4 @@ const PostsList = (props) => {
   );
 };
 
-export default withStyles(styles)(PostsList);
+export default withStyles(styles)(AuthorsList);

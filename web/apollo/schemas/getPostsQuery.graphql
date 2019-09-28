@@ -1,5 +1,5 @@
 query posts($limit: Int!, $start: Int!) {
-  posts(sort: "createdAt:DESC", limit: $limit, start: $start) {
+  posts(sort: "createdAt:DESC", limit: $limit, start: $start, where: { isPublished: true }) {
     _id
     title
     excerpt
@@ -15,7 +15,7 @@ query posts($limit: Int!, $start: Int!) {
       ext
     }
   }
-  postsConnection {
+  postsConnection(where: { isPublished: true }) {
     aggregate{
       count
     }

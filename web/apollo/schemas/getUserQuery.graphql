@@ -1,0 +1,7 @@
+query users($username: String!) {
+  users(limit: 1, where: { username: $username }) {
+    firstName
+    lastName
+    bio
+  }
+}

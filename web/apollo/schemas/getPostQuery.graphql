@@ -3,14 +3,14 @@ query posts($slug: String!) {
     _id
     title
     secondaryTitle
-    readTime
+    excerpt
     body
+    readTime
     banner {
       hash
       ext
     }
     author {
-      _id
       username
       firstName
       lastName
