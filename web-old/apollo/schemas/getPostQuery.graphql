@@ -1,0 +1,19 @@
+query posts($slug: String!) {
+  posts(limit: 1, where: { slug: $slug }) {
+    _id
+    title
+    secondaryTitle
+    excerpt
+    body
+    readTime
+    banner {
+      hash
+      ext
+    }
+    author {
+      username
+      firstName
+      lastName
+    }
+  }
+}

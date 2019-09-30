@@ -1,0 +1,23 @@
+query posts($limit: Int!, $start: Int!) {
+  posts(sort: "createdAt:DESC", limit: $limit, start: $start, where: { isPublished: true }) {
+    _id
+    title
+    excerpt
+    slug
+    createdAt
+    author{
+      firstName
+      lastName
+      username
+    }
+    thumbnail {
+      hash
+      ext
+    }
+  }
+  postsConnection(where: { isPublished: true }) {
+    aggregate{
+      count
+    }
+  }
+}
