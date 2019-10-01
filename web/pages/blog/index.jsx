@@ -12,19 +12,20 @@ const styles = (theme) => ({
   root: {},
 });
 
-const pageURL = `${process.env.BASE_URL}/blog`;
-
 const Blog = (props) => {
   const {
     classes,
     language,
     query: { postSlug },
   } = props;
-  let title, description;
+  let title, description, pageURL;
 
   if(!postSlug) {
     title = 'Blog | Project Proost';
     description = 'This is the description for the Blog page';
+    pageURL = `${process.env.BASE_URL}/blog`;
+  } else {
+    pageURL = `${process.env.BASE_URL}/blog/posts/${postSlug}`;
   }
 
   return (

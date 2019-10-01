@@ -12,8 +12,6 @@ const styles = (theme) => ({
   root: {},
 });
 
-const pageURL = `${process.env.BASE_URL}/blog/about`;
-
 const Authors = (props) => {
   const {
     classes,
@@ -21,11 +19,14 @@ const Authors = (props) => {
     query: { authorSlug },
   } = props;
 
-  let title, description;
+  let title, description, pageURL;
 
   if(!authorSlug) {
     title = 'Authors | Project Proost';
     description = 'This is the description for the Authors page';
+    pageURL = `${process.env.BASE_URL}/blog/authors`;
+  } else {
+    pageURL = `${process.env.BASE_URL}/blog/authors/${authorSlug}`;
   }
 
   return (

@@ -9,11 +9,6 @@ query users($username: String!, $postLimit: Int!, $postStart: Int!) {
       excerpt
       slug
       createdAt
-      author{
-        firstName
-        lastName
-        username
-      }
       thumbnail {
         hash
         ext

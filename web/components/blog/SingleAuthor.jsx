@@ -57,7 +57,6 @@ const SingleAuthor = (props) => {
   } = useQuery(
     GET_USER,
     {
-      // variables: {username: authorSlug},
       variables: {username: authorSlug, ...getUserQueryVars},
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
@@ -104,6 +103,14 @@ const SingleAuthor = (props) => {
 
   const postCount = postsConnection.groupBy.author.find(({key}) => key === _id).connection.aggregate.count;
   const areMorePosts = posts.length < postCount;
+
+  posts.forEach((post, index) => {
+    posts[index].author = {
+      firstName,
+      lastName,
+      username: authorSlug,
+    };
+  });
 
   return (
     <>
