@@ -12,16 +12,34 @@ import Head from 'next/head'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import PostPreviewsGrid from './PostPreviewsGrid';
 
 const styles = (theme) => ({
-  root: {},
+  root: {
+    padding: theme.spacing(6, 2),
+    width: '100%',
+  },
+  name: {
+    fontWeight: 300,
+    paddingBottom: theme.spacing(2),
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  },
+  more: {
+    textAlign: 'center',
+    width: '100%',
+    paddingTop: theme.spacing(6),
+  },
+  button: {
+    fontSize: theme.spacing(2),
+  },
 });
 
 export const GET_USER = gql`${getUserQuery}`;
 
 export const getUserQueryVars = {
   postStart: 0,
-  postLimit: 2,
+  postLimit: 12,
 };
 
 const SingleAuthor = (props) => {
@@ -53,24 +71,19 @@ const SingleAuthor = (props) => {
   const loadMorePosts = () => {
     fetchMore({
       variables: {
-        postStart: posts.length
+        postStart: posts.length,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
           return previousResult
         }
-        // console.log('previousResult', previousResult);
-        // console.log('fetchMoreResult', fetchMoreResult);
-        let oldRes = {...previousResult};
-        let newRes = {...fetchMoreResult};
-        let oldPosts = oldRes.users[0].posts;
-        let newPosts = newRes.users[0].posts;
-        oldRes.users[0].posts = [...oldPosts, ...newPosts];
-        // console.log('Final result', oldRes);
-
+        previousResult.users[0].posts = [
+          ...previousResult.users[0].posts,
+          ...fetchMoreResult.users[0].posts,
+        ];
         return Object.assign({}, previousResult, {
           // Append the new posts results to the old one
-          users: [...oldRes.users],
+          users: [...previousResult.users, ...fetchMoreResult.users]
         })
       }
     })
@@ -92,9 +105,6 @@ const SingleAuthor = (props) => {
   const postCount = postsConnection.groupBy.author.find(({key}) => key === _id).connection.aggregate.count;
   const areMorePosts = posts.length < postCount;
 
-  console.log('postCount', postCount);
-  console.log('areMorePosts', areMorePosts);
-
   return (
     <>
       <Head>
@@ -102,20 +112,15 @@ const SingleAuthor = (props) => {
         <meta name="description" content={`Posts by ${firstName} ${lastName}`} key="postDescription" />
       </Head>
       <Grid item className={classes.root}>
-        <h1>{firstName} {lastName}</h1>
-        <p>{_id}</p>
-        <p>{bio}</p>
-        {posts.map((post) => {
-          return (
-            <h2>{post.title}</h2>
-          );
-        })}
+        <Typography variant="h3" component="h1" gutterBottom className={classes.name}>{firstName} {lastName}</Typography>
+        <Typography variant="body1" paragraph>{bio}</Typography>
+        <PostPreviewsGrid posts={posts} />
         {areMorePosts && (
-          <div className={classes.root}>
+          <div className={classes.more}>
             {loadingMorePosts ? (
               <CircularProgress style={{opacity: 0.3}} />
             ) : (
-              <Button color="primary" className={classes.root} onClick={loadMorePosts}>Show more</Button>
+              <Button color="primary" className={classes.button} onClick={loadMorePosts}>Show more</Button>
             )}
           </div>
         )}

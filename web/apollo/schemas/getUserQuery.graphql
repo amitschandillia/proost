@@ -6,6 +6,18 @@ query users($username: String!, $postLimit: Int!, $postStart: Int!) {
     bio
     posts(sort: "createdAt:DESC", limit: $postLimit, start: $postStart, where: {isPublished: true}) {
       title
+      excerpt
+      slug
+      createdAt
+      author{
+        firstName
+        lastName
+        username
+      }
+      thumbnail {
+        hash
+        ext
+      }
     }
   }
   postsConnection(where: {isPublished: true}){

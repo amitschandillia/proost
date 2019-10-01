@@ -1,8 +1,0 @@
-{
-  "colors": [
-    {"offset": "0%", "color": "#ada996"},
-    {"offset": "33.333333333333336%", "color": "#f2f2f2"},
-    {"offset": "66.66666666666667%", "color": "#dbdbdb"},
-    {"offset": "100%", "color": "#eaeaea"}
-  ]
-}
