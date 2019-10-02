@@ -5,6 +5,7 @@ query posts($limit: Int!, $start: Int!) {
     excerpt
     slug
     createdAt
+    readTime
     author{
       firstName
       lastName
@@ -13,6 +14,14 @@ query posts($limit: Int!, $start: Int!) {
     thumbnail {
       hash
       ext
+    }
+    tags {
+      slug
+      name
+    }
+    category {
+      slug
+      name
     }
   }
   postsConnection(where: { isPublished: true }) {

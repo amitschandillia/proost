@@ -9,8 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-
 import LinkTo from '../LinkTo';
+import Grid from '@material-ui/core/Grid';
+import LabelIcon from '@material-ui/icons/Label';
 
 const styles = (theme) => ({
   root: {
@@ -22,6 +23,9 @@ const styles = (theme) => ({
     height: 0,
     paddingTop: '70%', // 56.25% for 16:9, 100% for 1:1
   },
+  content: {
+    paddingBottom: 0,
+  },
   link: {
     color: 'dimgrey',
     textDecoration: 'none',
@@ -29,7 +33,24 @@ const styles = (theme) => ({
   title: {
     fontWeight: 'bold',
   },
-  author: {},
+  excerpt: {
+    paddingBottom: theme.spacing(2),
+  },
+  divider: {
+    color: theme.palette.grey[400],
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+  },
+  tags: {
+    marginTop: theme.spacing(1),
+  },
+  icon: {
+    verticalAlign: 'top',
+    marginRight: theme.spacing(1),
+  },
+  tagLink: {
+    // whiteSpace: 'nowrap',
+  },
 });
 
 const PostPreview = (props) => {
@@ -41,6 +62,9 @@ const PostPreview = (props) => {
     excerpt,
     thumbnail,
     author,
+    category,
+    tags,
+    readTime,
   } = props;
 
   return (
@@ -58,9 +82,31 @@ const PostPreview = (props) => {
         image={thumbnail}
         title={title}
       />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
+    <CardContent className={classes.content}>
+        <Typography variant="body2" color="textSecondary" component="p" className={classes.excerpt}>
           {excerpt}
+        </Typography>
+        <Typography variant="button">
+          <LinkTo hoverNone href="/about">{category.name}</LinkTo>
+        </Typography>
+        <Typography variant="button" className={classes.divider}>{'|'}</Typography>
+        <Typography variant="button" color="textSecondary" style={{textTransform: 'inherit'}}>
+          {`${readTime} minutes`}
+        </Typography>
+        <Typography variant="subtitle2" color="textSecondary" component="div" className={classes.tags}>
+          <LabelIcon className={classes.icon} />
+          {tags.map((tag, index) => {
+            let delimiter = ', ';
+            if(index === tags.length - 1) delimiter = '';
+            return (
+              <span className={classes.tagLink}>
+                <LinkTo href="/about">
+                  {tag.name}
+                </LinkTo>
+                {delimiter}
+              </span>
+            );
+          })}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

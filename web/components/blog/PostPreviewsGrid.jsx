@@ -88,6 +88,9 @@ const PostPreviewsGrid = (props) => {
               thumbnail={`https://i.schandillia.com/d/${post.thumbnail.hash}${post.thumbnail.ext}`}
               author={`${post.author.firstName} ${post.author.lastName}`}
               username={post.author.username}
+              category={post.category}
+              tags={post.tags}
+              readTime={post.readTime}
             />
           </Grid>
         );

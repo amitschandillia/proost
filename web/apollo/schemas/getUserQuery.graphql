@@ -9,9 +9,18 @@ query users($username: String!, $postLimit: Int!, $postStart: Int!) {
       excerpt
       slug
       createdAt
+      readTime
       thumbnail {
         hash
         ext
+      }
+      tags {
+        slug
+        name
+      }
+      category {
+        slug
+        name
       }
     }
   }
