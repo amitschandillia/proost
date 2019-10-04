@@ -1,6 +1,6 @@
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-export default function() {
+export default function () {
   return (
     <SvgIcon
       xmlns="http://www.w3.org/2000/svg"
@@ -22,4 +22,4 @@ export default function() {
       <path fill="#41479B" d="M0 256.001H512V339.861H0z" />
     </SvgIcon>
   );
-};
+}

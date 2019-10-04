@@ -1,6 +1,6 @@
 import SvgIcon from '@material-ui/core/SvgIcon';
 
-export default function() {
+export default function () {
   return (
     <SvgIcon
       xmlns="http://www.w3.org/2000/svg"
@@ -93,4 +93,4 @@ export default function() {
       <circle cx="92.69" cy="180.97" r="25.01" fill="#FFE15A" />
     </SvgIcon>
   );
-};
+}

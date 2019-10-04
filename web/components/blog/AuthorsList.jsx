@@ -30,7 +30,7 @@ export const GET_USERS = gql`${getUsersQuery}`;
 
 export const getUsersQueryVars = {
   start: 0,
-  limit: 2,
+  limit: 12,
 };
 
 const AuthorsList = (props) => {

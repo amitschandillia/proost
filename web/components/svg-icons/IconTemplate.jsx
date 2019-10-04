@@ -1,3 +1,5 @@
+/* eslint import/no-dynamic-require: 0 */
+/* eslint global-require: 0 */
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
@@ -13,22 +15,25 @@ const styles = (theme) => ({
 });
 
 const WithGradient = (props) => {
-  const { d, angle = 'diagonal', size, gradientName = null } = props;
+  const {
+    d, angle = 'diagonal', size, gradientName = null,
+  } = props;
   const width = size ? size * 8 : 24;
-  const {colors} = require(`../../gradients/${gradientName}`);
+  const { colors } = require(`../../gradients/${gradientName}`);
   const gradientID = uuidv4();
-  const fill =`url(#${gradientID})`;
-  let x2, y2;
-  if(angle === 'vertical') { x2 = '100%'; y2 = '0%'; }
-  if(angle === 'diagonal') { x2 = '100%'; y2 = '100%'; }
-  if(angle === 'horizontal') { x2 = '0%'; y2 = '100%'; }
+  const fill = `url(#${gradientID})`;
+  let x2; let
+    y2;
+  if (angle === 'vertical') { x2 = '100%'; y2 = '0%'; }
+  if (angle === 'diagonal') { x2 = '100%'; y2 = '100%'; }
+  if (angle === 'horizontal') { x2 = '0%'; y2 = '100%'; }
   return (
     <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true" role="presentation" style={{ fill, width }}>
       <path d={d} />
       <linearGradient id={gradientID} x1="0%" y1="0%" x2={x2} y2={y2}>
-        {colors.map((value, index) => {
-          return <stop offset={value.offset} style={{ stopColor: value.color, stopOpacity: 1 }} />;
-        })}
+        {colors.map((value) => (
+          <stop offset={value.offset} style={{ stopColor: value.color, stopOpacity: 1 }} />
+        ))}
       </linearGradient>
     </svg>
   );

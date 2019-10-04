@@ -22,4 +22,4 @@ export default function () {
       <path fill="#F5F5F5" d="M0 200.091H512V311.901H0z" />
     </SvgIcon>
   );
-};
+}
