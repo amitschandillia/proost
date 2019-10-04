@@ -1,13 +1,15 @@
 import { useQuery } from '@apollo/react-hooks';
-import { NetworkStatus } from 'apollo-client';
-import gql from 'graphql-tag';
-import getUsersQuery from '../../apollo/schemas/getUsersQuery.graphql';
-import Loading from './Loading';
-import AuthorPreviewsGrid from './AuthorPreviewsGrid';
-import Grid from '@material-ui/core/Grid';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
+import { NetworkStatus } from 'apollo-client';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
+
+import getUsersQuery from '../../apollo/schemas/getUsersQuery.graphql';
+import AuthorPreviewsGrid from './AuthorPreviewsGrid';
+import Loading from './Loading';
 
 const styles = (theme) => ({
   root: {
@@ -28,7 +30,7 @@ export const GET_USERS = gql`${getUsersQuery}`;
 
 export const getUsersQueryVars = {
   start: 0,
-  limit: 7,
+  limit: 2,
 };
 
 const AuthorsList = (props) => {
@@ -52,28 +54,28 @@ const AuthorsList = (props) => {
 
   const loadingMoreUsers = networkStatus === NetworkStatus.fetchMore;
 
-  const loadMoreUsers = () => {
-    fetchMore({
-      variables: {
-        start: users.length
-      },
-      updateQuery: (previousResult, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
-          return previousResult
-        }
-        return Object.assign({}, previousResult, {
-          // Append the new users results to the old one
-          users: [...previousResult.users, ...fetchMoreResult.users]
-        })
-      }
-    })
-  };
-
   if (error) return <div>There was an error!</div>;
   if (loading && !loadingMoreUsers) return <Loading />;
 
   const { users, usersConnection } = data;
   const areMoreUsers = users.length < usersConnection.aggregate.count;
+
+  const loadMoreUsers = () => {
+    fetchMore({
+      variables: {
+        start: users.length,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return previousResult;
+        }
+        return {
+          ...previousResult, // Append the new users results to the old one
+          users: [...previousResult.users, ...fetchMoreResult.users],
+        };
+      },
+    });
+  };
 
   return (
     <Grid item className={classes.root}>
@@ -81,7 +83,7 @@ const AuthorsList = (props) => {
       {areMoreUsers && (
         <div className={classes.more}>
           {loadingMoreUsers ? (
-            <CircularProgress style={{opacity: 0.3}} />
+            <CircularProgress style={{ opacity: 0.3 }} />
           ) : (
             <Button color="primary" className={classes.button} onClick={loadMoreUsers}>Show more</Button>
           )}
@@ -89,6 +91,14 @@ const AuthorsList = (props) => {
       )}
     </Grid>
   );
+};
+
+AuthorsList.propTypes = {
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    more: PropTypes.string,
+    button: PropTypes.string,
+  }).isRequired,
 };
 
 export default withStyles(styles)(AuthorsList);

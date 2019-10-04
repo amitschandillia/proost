@@ -20,14 +20,20 @@
       "type": "string",
       "required": true
     },
-    "post": {
-      "model": "post",
+    "posts": {
+      "collection": "post",
       "via": "category"
     },
     "slug": {
       "default": "",
       "unique": true,
       "type": "string",
+      "required": true
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
       "required": true
     }
   }

@@ -12,6 +12,7 @@
     "it": 1,
     "expect": 1,
   },
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "impliedStrict": true,
@@ -27,6 +28,8 @@
     "simple-import-sort",
   ],
   "rules": {
+    // Remove no-console rule in production! 
+    "no-console": "off",
     "jsx-a11y/anchor-is-valid": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-indent": ["error", 2, {checkAttributes: true}],

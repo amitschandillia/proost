@@ -10,15 +10,13 @@ import passport from 'passport';
 import path from 'path';
 import favicon from 'serve-favicon';
 
-import preLoadMiddleware from '../routes/preload-middleware';
-
 import authRoutes from '../routes/auth-routes';
-import mailRoutes from '../routes/mail-routes';
-import registrationRoutes from '../routes/registration-routes';
 import languageSelectionRoutes from '../routes/language-selection-routes';
-import getDirectives from './get-directives';
-
+import mailRoutes from '../routes/mail-routes';
+import preLoadMiddleware from '../routes/preload-middleware';
+import registrationRoutes from '../routes/registration-routes';
 import tweetRoutes from '../routes/tweet-routes';
+import getDirectives from './get-directives';
 
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
@@ -87,22 +85,22 @@ app.prepare().then(() => {
 
   // Default route (not to be edited)
   // ---------------------------------------------------------------------
-  // server.get('*', (req, res) => handle(req, res));
   server.use('*', preLoadMiddleware);
+  server.get('/blog/categories/:categorySlug', (req, res) => {
+    app.render(req, res, '/blog/categories', { categorySlug: req.params.categorySlug });
+  });
   server.get('/blog/authors/:authorSlug', (req, res) => {
-    app.render(req, res, '/blog/authors', {authorSlug: req.params.authorSlug});
+    app.render(req, res, '/blog/authors', { authorSlug: req.params.authorSlug });
   });
   server.get('/blog/posts/:postSlug', (req, res) => {
-    app.render(req, res, '/blog', {postSlug: req.params.postSlug});
+    app.render(req, res, '/blog', { postSlug: req.params.postSlug });
   });
   server.get('*', (req, res) => handle(req, res));
   // ---------------------------------------------------------------------
 
   // Express: Listener
   server.listen(process.env.WEB_PORT, () => {
-    /* eslint-disable no-console */
     console.log(`>> Listening on port ${process.env.WEB_PORT}`);
-    /* eslint-enable no-console */
   });
 }).catch((ex) => {
   console.error(ex.stack);

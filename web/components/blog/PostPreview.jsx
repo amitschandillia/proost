@@ -1,17 +1,17 @@
-import React from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import LinkTo from '../LinkTo';
-import Grid from '@material-ui/core/Grid';
 import LabelIcon from '@material-ui/icons/Label';
+import ShareIcon from '@material-ui/icons/Share';
+import PropTypes from 'prop-types';
+
+import LinkTo from '../LinkTo';
 
 const styles = (theme) => ({
   root: {
@@ -82,22 +82,22 @@ const PostPreview = (props) => {
         image={thumbnail}
         title={title}
       />
-    <CardContent className={classes.content}>
+      <CardContent className={classes.content}>
         <Typography variant="body2" color="textSecondary" component="p" className={classes.excerpt}>
           {excerpt}
         </Typography>
         <Typography variant="button">
-          <LinkTo hoverNone href="/about">{category.name}</LinkTo>
+          <LinkTo hoverNone href={`/blog/categories?categorySlug=${category.slug}`} as={`/blog/categories/${category.slug}`}>{category.name}</LinkTo>
         </Typography>
-        <Typography variant="button" className={classes.divider}>{'|'}</Typography>
-        <Typography variant="button" color="textSecondary" style={{textTransform: 'inherit'}}>
+        <Typography variant="button" className={classes.divider}>|</Typography>
+        <Typography variant="button" color="textSecondary" style={{ textTransform: 'inherit' }}>
           {`${readTime} minutes`}
         </Typography>
         <Typography variant="subtitle2" color="textSecondary" component="div" className={classes.tags}>
           <LabelIcon className={classes.icon} />
           {tags.map((tag, index) => {
             let delimiter = ', ';
-            if(index === tags.length - 1) delimiter = '';
+            if (index === tags.length - 1) delimiter = '';
             return (
               <span className={classes.tagLink}>
                 <LinkTo href="/about">
@@ -119,6 +119,36 @@ const PostPreview = (props) => {
       </CardActions>
     </Card>
   );
-}
+};
+
+PostPreview.propTypes = {
+  classes: PropTypes.shape({
+    root: PropTypes.string,
+    media: PropTypes.string,
+    content: PropTypes.string,
+    link: PropTypes.string,
+    title: PropTypes.string,
+    excerpt: PropTypes.string,
+    divider: PropTypes.string,
+    tags: PropTypes.string,
+    icon: PropTypes.string,
+    tagLink: PropTypes.string,
+  }).isRequired,
+  title: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  excerpt: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  readTime: PropTypes.string.isRequired,
+  category: PropTypes.shape({
+    slug: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  tags: PropTypes.arrayOf({
+    slug: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default withStyles(styles)(PostPreview);

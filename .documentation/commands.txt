@@ -12,12 +12,26 @@ next-apollo 2.1.3
 WEB
 cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
+WEB-DEV
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=development pm2 start ./server/index.js --name web; pm2 logs
+
 ONLY DEV
 cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api
+
+ONLY DEV (in dev mode)
+cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=development pm2 start server.js --name api
 
 UPDATE/UPGRADE PACKAGES
 sudo apt update; sudo apt upgrade -y; sudo apt update; sudo apt upgrade -y
 
+
+
+File counts:
+------------
+components: 56
+components/blog: 13
+components/svg-icons: 6
+components/svg-icons/flags: 57
 
 
 

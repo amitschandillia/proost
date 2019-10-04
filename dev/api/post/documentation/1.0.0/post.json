@@ -772,7 +772,8 @@
               "id",
               "name",
               "description",
-              "slug"
+              "slug",
+              "thumbnail"
             ],
             "properties": {
               "id": {
@@ -784,10 +785,16 @@
               "description": {
                 "type": "string"
               },
-              "post": {
-                "type": "string"
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "slug": {
+                "type": "string"
+              },
+              "thumbnail": {
                 "type": "string"
               }
             }

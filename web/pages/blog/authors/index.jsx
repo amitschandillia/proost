@@ -2,7 +2,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { withApollo } from '../../../apollo';
+import withApollo from '../../../apollo';
 import AuthorsList from '../../../components/blog/AuthorsList';
 import Layout from '../../../components/Layout';
 import PageBody from '../../../components/PageBody';

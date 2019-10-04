@@ -22,13 +22,17 @@ const styles = (theme) => ({
     height: 0,
     paddingTop: '70%', // 56.25% for 16:9, 100% for 1:1
   },
+  link: {
+    color: 'dimgrey',
+    textDecoration: 'none',
+  },
   title: {
     fontWeight: 'bold',
   },
   postsHeader: {
     fontWeight: 'bold',
   },
-  authoredPosts: {
+  categorizedPosts: {
     paddingTop: theme.spacing(2),
   },
   index: {
@@ -37,18 +41,17 @@ const styles = (theme) => ({
   },
 });
 
-const AuthorPreview = (props) => {
+const CategoryPreview = (props) => {
   const {
     classes,
-    username,
-    firstName,
-    lastName,
+    slug,
+    name,
     thumbnail,
     posts,
   } = props;
 
-  const authoredPosts = (
-    <div className={classes.authoredPosts}>
+  const categorizedPosts = (
+    <div className={classes.categorizedPosts}>
       {posts.map((post, index) => (
         <Typography variant="body2" color="textSecondary">
           <span className={classes.index}>{`${index + 1}.`}</span>
@@ -64,21 +67,21 @@ const AuthorPreview = (props) => {
   );
 
   return (
-    <Card className={`author-preview ${classes.root}`}>
+    <Card className={`category-preview ${classes.root}`}>
       <CardHeader
         title={
-          <LinkTo hoverNone href={`/blog/authors?authorSlug=${username}`} as={`/blog/authors/${username}`}>{`${firstName} ${lastName}`}</LinkTo>
+          <LinkTo hoverNone href={`/blog/categories?categorySlug=${slug}`} as={`/blog/categories/${slug}`}>{name}</LinkTo>
         }
-        subheader={username}
+        subheader={slug}
       />
       <CardMedia
         className={classes.media}
         image={thumbnail}
-        title={`${firstName} ${lastName}`}
+        title={name}
       />
       <CardContent>
         <Typography variant="button" gutterBottom color="textSecondary" className={classes.postsHeader}>Latest works</Typography>
-        {authoredPosts}
+        {categorizedPosts}
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
@@ -92,23 +95,23 @@ const AuthorPreview = (props) => {
   );
 };
 
-AuthorPreview.propTypes = {
+CategoryPreview.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     media: PropTypes.string,
     title: PropTypes.string,
     postsHeader: PropTypes.string,
-    authoredPosts: PropTypes.string,
+    categorizedPosts: PropTypes.string,
     index: PropTypes.string,
+    link: PropTypes.string,
   }).isRequired,
-  username: PropTypes.string.isRequired,
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   posts: PropTypes.arrayOf({
-    slug: PropTypes.string,
-    title: PropTypes.string,
+    slug: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default withStyles(styles)(AuthorPreview);
+export default withStyles(styles)(CategoryPreview);

@@ -10,7 +10,7 @@ import gql from 'graphql-tag';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
-import getUserQuery from '../../apollo/schemas/getUserQuery.graphql';
+import getCategoryQuery from '../../apollo/schemas/getCategoryQuery.graphql';
 import Loading from './Loading';
 import PostPreviewsGrid from './PostPreviewsGrid';
 
@@ -35,17 +35,17 @@ const styles = (theme) => ({
   },
 });
 
-export const GET_USER = gql`${getUserQuery}`;
+export const GET_CATEGORY = gql`${getCategoryQuery}`;
 
-export const getUserQueryVars = {
+export const getCategoryQueryVars = {
   postStart: 0,
   postLimit: 12,
 };
 
-const SingleAuthor = (props) => {
+const SingleCategory = (props) => {
   const {
     classes,
-    authorSlug,
+    categorySlug,
   } = props;
 
   const {
@@ -55,32 +55,32 @@ const SingleAuthor = (props) => {
     fetchMore,
     networkStatus,
   } = useQuery(
-    GET_USER,
+    GET_CATEGORY,
     {
-      variables: { username: authorSlug, ...getUserQueryVars },
+      variables: { slug: categorySlug, ...getCategoryQueryVars },
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
       // more data
       notifyOnNetworkStatusChange: true,
     },
   );
-
+  //
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
 
   if (error) return <div>There was an error!</div>;
   if (loading && !loadingMorePosts) return <Loading />;
 
-  const { users, postsConnection } = data;
-  const [user] = users;
+  const { categories, postsConnection } = data;
+  if (categories.length === 0) return <div>No data was returned!</div>;
+  const [category] = categories;
   const {
     _id,
-    firstName,
-    lastName,
-    bio,
+    name,
+    description,
     posts,
-  } = user;
-
-  const postAggregation = postsConnection.groupBy.author.find(({ key }) => key === _id);
+  } = category;
+  //
+  const postAggregation = postsConnection.groupBy.category.find(({ key }) => key === _id);
   const postCount = postAggregation.connection.aggregate.count;
   const areMorePosts = posts.length < postCount;
 
@@ -93,39 +93,35 @@ const SingleAuthor = (props) => {
         if (!fetchMoreResult) {
           return previousResult;
         }
-        previousResult.users[0].posts = [
-          ...previousResult.users[0].posts,
-          ...fetchMoreResult.users[0].posts,
+        previousResult.categories[0].posts = [
+          ...previousResult.categories[0].posts,
+          ...fetchMoreResult.categories[0].posts,
         ];
         return {
           ...previousResult, // Append the new posts results to the old one
-          users: [...previousResult.users, ...fetchMoreResult.users],
+          categories: [...previousResult.categories, ...fetchMoreResult.categories],
         };
       },
     });
   };
 
   posts.forEach((post) => {
-    post.author = {
-      firstName,
-      lastName,
-      username: authorSlug,
+    post.category = {
+      name,
+      description,
+      slug: categorySlug,
     };
   });
 
   return (
     <>
       <Head>
-        <title>{`${firstName} ${lastName}`}</title>
-        <meta name="description" content={`Posts by ${firstName} ${lastName}`} key="postDescription" />
+        <title>{categorySlug}</title>
+        <meta name="description" content={`Posts categorized under ${categorySlug}`} key="postDescription" />
       </Head>
       <Grid item className={classes.root}>
-        <Typography variant="h3" component="h1" gutterBottom className={classes.name}>
-          {firstName}
-          {' '}
-          {lastName}
-        </Typography>
-        <Typography variant="body1" paragraph>{bio}</Typography>
+        <Typography variant="h3" component="h1" gutterBottom className={classes.name}>{name}</Typography>
+        <Typography variant="body1" paragraph>{description}</Typography>
         <PostPreviewsGrid posts={posts} />
         {areMorePosts && (
           <div className={classes.more}>
@@ -141,14 +137,14 @@ const SingleAuthor = (props) => {
   );
 };
 
-SingleAuthor.propTypes = {
+SingleCategory.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     name: PropTypes.string,
     more: PropTypes.string,
     button: PropTypes.string,
   }).isRequired,
-  authorSlug: PropTypes.string.isRequired,
+  categorySlug: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(SingleAuthor);
+export default withStyles(styles)(SingleCategory);

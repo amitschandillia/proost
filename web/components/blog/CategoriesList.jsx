@@ -7,9 +7,9 @@ import { NetworkStatus } from 'apollo-client';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
-import getPostsQuery from '../../apollo/schemas/getPostsQuery.graphql';
+import getCategoriesQuery from '../../apollo/schemas/getCategoriesQuery.graphql';
+import CategoryPreviewsGrid from './CategoryPreviewsGrid';
 import Loading from './Loading';
-import PostPreviewsGrid from './PostPreviewsGrid';
 
 const styles = (theme) => ({
   root: {
@@ -26,14 +26,14 @@ const styles = (theme) => ({
   },
 });
 
-export const GET_POSTS = gql`${getPostsQuery}`;
+export const GET_CATEGORIES = gql`${getCategoriesQuery}`;
 
-export const getPostsQueryVars = {
+export const getCategoriesQueryVars = {
   start: 0,
   limit: 12,
 };
 
-const PostsList = (props) => {
+const CategoriesList = (props) => {
   const { classes } = props;
   const {
     loading,
@@ -42,9 +42,9 @@ const PostsList = (props) => {
     fetchMore,
     networkStatus,
   } = useQuery(
-    GET_POSTS,
+    GET_CATEGORIES,
     {
-      variables: getPostsQueryVars,
+      variables: getCategoriesQueryVars,
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
       // more data
@@ -52,26 +52,26 @@ const PostsList = (props) => {
     },
   );
 
-  const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
+  const loadingMoreCategories = networkStatus === NetworkStatus.fetchMore;
 
   if (error) return <div>There was an error!</div>;
-  if (loading && !loadingMorePosts) return <Loading />;
+  if (loading && !loadingMoreCategories) return <Loading />;
 
-  const { posts, postsConnection } = data;
-  const areMorePosts = posts.length < postsConnection.aggregate.count;
+  const { categories, categoriesConnection } = data;
+  const areMoreCategories = categories.length < categoriesConnection.aggregate.count;
 
-  const loadMorePosts = () => {
+  const loadMoreCategories = () => {
     fetchMore({
       variables: {
-        start: posts.length,
+        start: categories.length,
       },
       updateQuery: (previousResult, { fetchMoreResult }) => {
         if (!fetchMoreResult) {
           return previousResult;
         }
         return {
-          ...previousResult, // Append the new posts results to the old one
-          posts: [...previousResult.posts, ...fetchMoreResult.posts],
+          ...previousResult, // Append the new categories results to the old one
+          categories: [...previousResult.categories, ...fetchMoreResult.categories],
         };
       },
     });
@@ -79,13 +79,13 @@ const PostsList = (props) => {
 
   return (
     <Grid item className={classes.root}>
-      <PostPreviewsGrid posts={posts} />
-      {areMorePosts && (
+      <CategoryPreviewsGrid categories={categories} />
+      {areMoreCategories && (
         <div className={classes.more}>
-          {loadingMorePosts ? (
+          {loadingMoreCategories ? (
             <CircularProgress style={{ opacity: 0.3 }} />
           ) : (
-            <Button color="primary" className={classes.button} onClick={loadMorePosts}>Show more</Button>
+            <Button color="primary" className={classes.button} onClick={loadMoreCategories}>Show more</Button>
           )}
         </div>
       )}
@@ -93,7 +93,7 @@ const PostsList = (props) => {
   );
 };
 
-PostsList.propTypes = {
+CategoriesList.propTypes = {
   classes: PropTypes.shape({
     root: PropTypes.string,
     more: PropTypes.string,
@@ -101,4 +101,4 @@ PostsList.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(PostsList);
+export default withStyles(styles)(CategoriesList);

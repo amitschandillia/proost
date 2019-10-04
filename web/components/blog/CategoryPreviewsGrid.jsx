@@ -3,23 +3,23 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import { useLayoutEffect } from 'react';
 
-import AuthorPreview from './AuthorPreview';
+import CategoryPreview from './CategoryPreview';
 
-const styles = () => ({
+const styles = (theme) => ({
   root: {
-    // padding: theme.spacing(6, 2),
-    // width: '100%',
+    padding: theme.spacing(6, 2),
+    width: '100%',
   },
 });
 
-const AuthorPreviewsGrid = (props) => {
+const CategoryPreviewsGrid = (props) => {
   const removeGridGaps = () => {
-    const authorPreviewContainers = document.getElementsByClassName('author-preview-container');
-    const itemCount = authorPreviewContainers.length;
+    const categoryPreviewContainers = document.getElementsByClassName('category-preview-container');
+    const itemCount = categoryPreviewContainers.length;
     if (itemCount && itemCount > 0) {
       let n = 0;
       while (n < itemCount - 1) {
-        if (authorPreviewContainers[n].offsetTop === authorPreviewContainers[n + 1].offsetTop) {
+        if (categoryPreviewContainers[n].offsetTop === categoryPreviewContainers[n + 1].offsetTop) {
           n += 1;
         } else {
           break;
@@ -32,16 +32,16 @@ const AuthorPreviewsGrid = (props) => {
         while ((col + row) < itemCount) {
           // logic to remove gaps
           // a = element above
-          const elemAbove = authorPreviewContainers[col + row - itemsPerRow];
+          const elemAbove = categoryPreviewContainers[col + row - itemsPerRow];
           // p = elemAbove's height minus padding
           const elemAboveHeight = elemAbove.getBoundingClientRect().height;
-          // ap = author-preview element inside elemAbove
-          const elemAbovePreview = elemAbove.getElementsByClassName('author-preview')[0];
+          // ap = category-preview element inside elemAbove
+          const elemAbovePreview = elemAbove.getElementsByClassName('category-preview')[0];
           // apb = ap's height
           const elemAbovePreviewHeight = elemAbovePreview.getBoundingClientRect().height;
           // gap = apb - ap
           const gap = -Math.abs(elemAboveHeight - elemAbovePreviewHeight - 16);
-          authorPreviewContainers[col + row].style.marginTop = `${gap}px`;
+          categoryPreviewContainers[col + row].style.marginTop = `${gap}px`;
           row += itemsPerRow;
         }
       }
@@ -73,21 +73,20 @@ const AuthorPreviewsGrid = (props) => {
   }, []);
 
   const {
-    users,
+    categories,
   } = props;
 
   return (
-    <Grid container spacing={2} direction="row" id="authors-container">
-      {users.map((user) => {
-        if (user.posts.length > 0) {
+    <Grid container spacing={2} direction="row" id="categories-container">
+      {categories.map((category) => {
+        if (category.posts.length > 0) {
           return (
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="author-preview-container">
-              <AuthorPreview
-                username={user.username}
-                firstName={user.firstName}
-                lastName={user.lastName}
-                thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${user.thumbnail.hash}${user.thumbnail.ext}`}
-                posts={user.posts}
+            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="category-preview-container">
+              <CategoryPreview
+                slug={category.slug}
+                name={category.name}
+                thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${category.thumbnail.hash}${category.thumbnail.ext}`}
+                posts={category.posts}
               />
             </Grid>
           );
@@ -98,11 +97,10 @@ const AuthorPreviewsGrid = (props) => {
   );
 };
 
-AuthorPreviewsGrid.propTypes = {
-  users: PropTypes.arrayOf({
-    username: PropTypes.string.isRequired,
-    firstName: PropTypes.string.isRequired,
-    lastName: PropTypes.string.isRequired,
+CategoryPreviewsGrid.propTypes = {
+  categories: PropTypes.arrayOf({
+    slug: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     thumbnail: PropTypes.shape({
       hash: PropTypes.string.isRequired,
       ext: PropTypes.string.isRequired,
@@ -110,4 +108,4 @@ AuthorPreviewsGrid.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(AuthorPreviewsGrid);
+export default withStyles(styles)(CategoryPreviewsGrid);

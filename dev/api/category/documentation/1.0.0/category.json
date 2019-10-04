@@ -583,7 +583,8 @@
           "id",
           "name",
           "description",
-          "slug"
+          "slug",
+          "thumbnail"
         ],
         "properties": {
           "id": {
@@ -597,63 +598,112 @@
             "type": "string",
             "default": ""
           },
-          "post": {
-            "required": [
-              "id",
-              "title",
-              "secondaryTitle",
-              "body",
-              "excerpt",
-              "isPublished"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "title": {
-                "type": "string"
-              },
-              "secondaryTitle": {
-                "type": "string"
-              },
-              "slug": {
-                "type": "string"
-              },
-              "body": {
-                "type": "string"
-              },
-              "author": {
-                "type": "string"
-              },
-              "excerpt": {
-                "type": "string"
-              },
-              "isPublished": {
-                "type": "boolean"
-              },
-              "thumbnail": {
-                "type": "string"
-              },
-              "banner": {
-                "type": "string"
-              },
-              "category": {
-                "type": "string"
-              },
-              "tags": {
-                "type": "array",
-                "items": {
+          "posts": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "title",
+                "secondaryTitle",
+                "body",
+                "excerpt",
+                "isPublished"
+              ],
+              "properties": {
+                "id": {
                   "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "secondaryTitle": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "body": {
+                  "type": "string"
+                },
+                "author": {
+                  "type": "string"
+                },
+                "excerpt": {
+                  "type": "string"
+                },
+                "isPublished": {
+                  "type": "boolean"
+                },
+                "thumbnail": {
+                  "type": "string"
+                },
+                "banner": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "readTime": {
+                  "type": "integer"
                 }
-              },
-              "readTime": {
-                "type": "integer"
               }
             }
           },
           "slug": {
             "type": "string",
             "default": ""
+          },
+          "thumbnail": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "public_id": {
+                "type": "string"
+              },
+              "related": {
+                "type": "string"
+              }
+            }
           }
         }
       },
@@ -672,8 +722,11 @@
             "type": "string",
             "default": ""
           },
-          "post": {
-            "type": "string"
+          "posts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "slug": {
             "type": "string",
