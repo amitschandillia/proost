@@ -1,13 +1,13 @@
 /* eslint no-dupe-keys: 0 */
 
+import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import LinkTo from './LinkTo';
-import Typography from '@material-ui/core/Typography';
 
+import LinkTo from './LinkTo';
 import WhitespaceItem1 from './WhitespaceItem1';
 import WhitespaceItem2 from './WhitespaceItem2';
 import WhitespaceItem3 from './WhitespaceItem3';

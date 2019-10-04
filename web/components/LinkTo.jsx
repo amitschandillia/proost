@@ -28,8 +28,8 @@ const LinkTo = (props) => {
     children,
   } = props;
   let linkStyle;
-  if(hoverDotted) { linkStyle = classes.hoverDotted; }
-  if(hoverNone) { linkStyle = classes.hoverNone; }
+  if (hoverDotted) { linkStyle = classes.hoverDotted; }
+  if (hoverNone) { linkStyle = classes.hoverNone; }
   return (
     <Link href={href} passHref as={as}>
       <MuiLink

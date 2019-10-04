@@ -5,10 +5,12 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React, { useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
 
+import shouldBypassLogin from '../utils/should-bypass-login';
 import BlogButton from './BlogButton';
 import CartButton from './CartButton';
 import LinkTo from './LinkTo';
@@ -18,9 +20,6 @@ import SignInDialog from './SignInDialog';
 import StoreButton from './StoreButton';
 import SubmitEmailDialog from './SubmitEmailDialog';
 import ToolsButton from './ToolsButton';
-import shouldBypassLogin from '../utils/should-bypass-login';
-
-import Link from 'next/link';
 
 const styles = (theme) => ({
   root: {
@@ -135,11 +134,10 @@ const NavBar = (props) => {
     }
   };
 
-
   const desktopMenu = (
     <div className={classes.sectionDesktop}>
       <Link href="/">
-        <a  style={{lineHeight: 0}}>
+        <a style={{ lineHeight: 0 }}>
           <img id="desktop-header-logo" className={classes.desktopHeaderLogo} src="/_f/images/desktop-header-logo.png" width="64" height="64" />
         </a>
       </Link>
@@ -185,7 +183,7 @@ const NavBar = (props) => {
 
   return (
     <>
-      <AppBar id="nav" className={transparentStyle} position="fixed" style={{boxShadow: transparent && 'none'}}>
+      <AppBar id="nav" className={transparentStyle} position="fixed" style={{ boxShadow: transparent && 'none' }}>
         {transparent && <span id="nav-overlay" className={classes.overlay} />}
         <Toolbar>
           {mobileMenu}

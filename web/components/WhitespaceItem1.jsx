@@ -1,14 +1,14 @@
 /* eslint no-dupe-keys: 0 */
 
+import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import LinkTo from './LinkTo';
-import GradientText from './GradientText';
-import Typography from '@material-ui/core/Typography';
 
+import GradientText from './GradientText';
+import LinkTo from './LinkTo';
 import MicIcon from './svg-icons/MicIcon';
 
 const styles = (theme) => ({
@@ -41,7 +41,8 @@ const WhitespaceItem1 = (props) => {
   } = props;
   return (
     <Grid
-      item xs={12}
+      item
+      xs={12}
       sm={6}
       lg={4}
       className={classes.root}

@@ -13,15 +13,15 @@ const GradientText = (props) => {
     angle = 'diagonal',
     ...otherProps
   } = props;
-  let background = `linear-gradient(`;
-  const {colors} = require(`../gradients/${gradientName}`);
-  if(angle === 'vertical') { background += '90deg,'; }
-  if(angle === 'diagonal') { background += '45deg,'; }
-  if(angle === 'horizontal') { background += '180deg,'; }
+  let background = 'linear-gradient(';
+  const { colors } = require(`../gradients/${gradientName}`);
+  if (angle === 'vertical') { background += '90deg,'; }
+  if (angle === 'diagonal') { background += '45deg,'; }
+  if (angle === 'horizontal') { background += '180deg,'; }
   colors.map((value, index) => {
     background += ` ${value.color},`;
   });
-  background = background.slice(0, -1) + ')';
+  background = `${background.slice(0, -1)})`;
   return (
     <Typography
       {...otherProps}

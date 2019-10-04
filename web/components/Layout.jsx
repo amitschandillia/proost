@@ -1,13 +1,14 @@
 /* eslint-disable no-unused-vars */
 
+import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
-import NavBar from './NavBar';
+
 import Footer from '../components/Footer';
 import Prefooter from '../components/Prefooter';
-import Grid from '@material-ui/core/Grid';
-import withStyles from '@material-ui/core/styles/withStyles';
+import NavBar from './NavBar';
 
 const styles = (theme) => ({
   root: {

@@ -1,11 +1,12 @@
 /* eslint no-dupe-keys: 0 */
 
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
+
 import TestimonialItem from './TestimonialItem';
-import Box from '@material-ui/core/Box';
 
 const styles = (theme) => ({
   root: {
@@ -51,26 +52,26 @@ const Testimonials = (props) => {
     <Grid container justify="space-around" direction="row">
       <Grid item xs={12} sm={6} lg={3} className={`${classes.root} ${classes.first}`}>
         <TestimonialItem
-          name={'John Doe'}
-          blurb={'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec'}
+          name="John Doe"
+          blurb="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec"
         />
       </Grid>
       <Grid item xs={12} sm={6} lg={3} className={`${classes.root} ${classes.second}`}>
         <TestimonialItem
-          name={'Arnold Schwarzenegger'}
-          blurb={'Lorem ipsum dolor sit amet.'}
+          name="Arnold Schwarzenegger"
+          blurb="Lorem ipsum dolor sit amet."
         />
       </Grid>
       <Grid item xs={12} sm={6} lg={3} className={`${classes.root} ${classes.third}`}>
         <TestimonialItem
-          name={'Bob Hope'}
-          blurb={'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.'}
+          name="Bob Hope"
+          blurb="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor."
         />
       </Grid>
       <Grid item xs={12} sm={6} lg={3} className={`${classes.root} ${classes.fourth}`}>
         <TestimonialItem
-          name={'Brenda Clum'}
-          blurb={'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus.'}
+          name="Brenda Clum"
+          blurb="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus."
         />
       </Grid>
     </Grid>

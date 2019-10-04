@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import LinkTo from '../LinkTo';
 
@@ -40,6 +41,7 @@ const styles = (theme) => ({
 const AuthorPreview = (props) => {
   const {
     classes,
+    language,
     username,
     firstName,
     lastName,
@@ -77,7 +79,7 @@ const AuthorPreview = (props) => {
         title={`${firstName} ${lastName}`}
       />
       <CardContent>
-        <Typography variant="button" gutterBottom color="textSecondary" className={classes.postsHeader}>Latest works</Typography>
+        <Typography variant="button" gutterBottom color="textSecondary" className={classes.postsHeader}>{language.lexicon.latestWorks}</Typography>
         {authoredPosts}
       </CardContent>
       <CardActions disableSpacing>
@@ -111,4 +113,13 @@ AuthorPreview.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(AuthorPreview);
+const mapStateToProps = (state) => ({
+  language: state.language,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(withStyles(styles)(AuthorPreview));
+
+// export default withStyles(styles)(AuthorPreview);

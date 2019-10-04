@@ -1,14 +1,12 @@
 /* eslint-disable no-unused-vars */
 
 import Button from '@material-ui/core/Button';
-import withStyles from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-
-import { useState } from 'react';
-
-import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
+import withStyles from '@material-ui/core/styles/withStyles';
+import Tooltip from '@material-ui/core/Tooltip';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { connect } from 'react-redux';
 
 import FlagsDialog from './FlagsDialog';
 
@@ -60,7 +58,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   clickOpen: () => {
     dispatch({ type: 'SHOWFLAGSDIALOG', payload: true });
-  }
+  },
 });
 
 export default connect(

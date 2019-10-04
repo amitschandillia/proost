@@ -36,7 +36,7 @@ const ProfileMenuFooter = (props) => {
     classes,
     language,
   } = props;
-  return(
+  return (
     <Container>
       <LinkTo href="/">
         <Typography component="span" variant="caption">{language.lexicon.about}</Typography>

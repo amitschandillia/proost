@@ -20,8 +20,12 @@ const styles = (theme) => ({
     color: 'white',
     marginBottom: theme.spacing(2),
   },
-  socialsIcon: {
+  iconContainer: {
     paddingLeft: theme.spacing(2),
+  },
+  icon: {
+    width: theme.spacing(2),
+    verticalAlign: 'text-bottom',
   },
   textField: {
     marginLeft: theme.spacing(1),
@@ -34,8 +38,8 @@ const SocialIcon = (props) => {
   const { classes, providerIcon } = props;
 
   return (
-    <Grid item xl className={classes.socialsIcon}>
-      <FontAwesomeIcon icon={['fab', providerIcon]} />
+    <Grid item xl className={classes.iconContainer}>
+      <FontAwesomeIcon icon={['fab', providerIcon]} className={classes.icon} />
     </Grid>
   );
 };

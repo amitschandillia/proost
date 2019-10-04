@@ -1,20 +1,20 @@
 /* eslint no-dupe-keys: 0 */
 
-import withStyles from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
-import React, { useLayoutEffect } from 'react';
-import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-import ThreePicsItem from './ThreePicsItem';
-import LinkTo from './LinkTo';
-import GradientText from './GradientText';
+import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import PersonIcon from '@material-ui/icons/Person';
+import PropTypes from 'prop-types';
+import React, { useLayoutEffect } from 'react';
+import { connect } from 'react-redux';
 
-import Box from '@material-ui/core/Box';
+import GradientText from './GradientText';
+import LinkTo from './LinkTo';
+import ThreePicsItem from './ThreePicsItem';
 
 const styles = (theme) => ({
   root: {
@@ -37,16 +37,16 @@ const Slogan = (props) => {
   const isInViewport = (elem, window, document) => {
     const bounding = elem.getBoundingClientRect();
     return (
-      bounding.top >= 0 &&
-      bounding.left >= 0 &&
-      bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+      bounding.top >= 0
+      && bounding.left >= 0
+      && bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+      && bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   };
 
   const scrollFunction = () => {
     const Text = document.getElementById('slogan');
-    if(isInViewport(Text, window, document)) {
+    if (isInViewport(Text, window, document)) {
       Text.classList.add('fade-in');
       Text.classList.remove('hidden');
     }
@@ -59,7 +59,7 @@ const Slogan = (props) => {
     return () => {
       window.removeEventListener('scroll', scrollFunction);
     };
-  }, []);
+  }, [scrollFunction]);
 
   return (
     <Box py={10} px={2} className={classes.root}>

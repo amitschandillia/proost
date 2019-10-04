@@ -56,7 +56,6 @@ BlogButton.propTypes = {
     transparentAppBar: PropTypes.string,
     overlay: PropTypes.string,
     title: PropTypes.string,
-    root: PropTypes.string,
   }).isRequired,
 };
 

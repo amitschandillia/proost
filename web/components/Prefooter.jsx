@@ -2,15 +2,15 @@
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import withStyles from '@material-ui/core/styles/withStyles';
+import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import LinkTo from '../components/LinkTo';
-import Divider from '@material-ui/core/Divider';
 
+import LinkTo from '../components/LinkTo';
 import PrefooterAdverts from './PrefooterAdverts';
 
 const styles = (theme) => ({
@@ -57,7 +57,10 @@ const Prefooter = (props) => {
           <Typography variant="button" component="h2" className={classes.gapSameColumn}>{language.lexicon.premium}</Typography>
           <Divider className={classes.divider} />
           <Typography><LinkTo hoverNone href="/about">{language.lexicon.membershipPlans}</LinkTo></Typography>
-          <Typography><LinkTo hoverNone href="/about">{language.lexicon.theLounge}</LinkTo><sup>®</sup></Typography>
+          <Typography>
+            <LinkTo hoverNone href="/about">{language.lexicon.theLounge}</LinkTo>
+            <sup>®</sup>
+          </Typography>
         </Grid>
         <Grid item xs={12} sm={6} md={3} className={classes.gapSmallerScreen}>
           <Typography variant="button" component="h2">{language.lexicon.resources}</Typography>

@@ -14,10 +14,10 @@ const styles = (theme) => ({
 
 const VerticalDivider = (props) => {
   const {
-    classes
+    classes,
   } = props;
   return (
-    <span className={classes.root}>{`|`}</span>
+    <span className={classes.root}>|</span>
   );
 };
 

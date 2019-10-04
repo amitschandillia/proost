@@ -1,17 +1,18 @@
 /* eslint no-dupe-keys: 0 */
 
-import withStyles from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-import ThreePicsItem from './ThreePicsItem';
-import LinkTo from './LinkTo';
+import Grid from '@material-ui/core/Grid';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import AccessTimeIcon from '@material-ui/icons/AccessTime';
 import PersonIcon from '@material-ui/icons/Person';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+
+import LinkTo from './LinkTo';
+import ThreePicsItem from './ThreePicsItem';
 
 const thumbnail1 = '/_f/images/home/row1/a.jpg';
 const thumbnail2 = '/_f/images/home/row1/b.jpg';
@@ -73,7 +74,13 @@ const TopThree = (props) => {
           <Grid item>
             <Grid container direction="row" alignItems="center">
               <Grid item><AccessTimeIcon /></Grid>
-              <Grid item><Typography gutterBottom variant="body2" className={classes.iconText}>{readTime1} {minute1}</Typography></Grid>
+              <Grid item>
+                <Typography gutterBottom variant="body2" className={classes.iconText}>
+                  {readTime1}
+                  {' '}
+                  {minute1}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item>
@@ -91,7 +98,13 @@ const TopThree = (props) => {
           <Grid item>
             <Grid container direction="row" alignItems="center">
               <Grid item><AccessTimeIcon /></Grid>
-              <Grid item><Typography gutterBottom variant="body2" className={classes.iconText}>{readTime2} {minute2}</Typography></Grid>
+              <Grid item>
+                <Typography gutterBottom variant="body2" className={classes.iconText}>
+                  {readTime2}
+                  {' '}
+                  {minute2}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item>
@@ -109,7 +122,13 @@ const TopThree = (props) => {
           <Grid item>
             <Grid container direction="row" alignItems="center">
               <Grid item><AccessTimeIcon /></Grid>
-              <Grid item><Typography gutterBottom variant="body2" className={classes.iconText}>{readTime3} {minute3}</Typography></Grid>
+              <Grid item>
+                <Typography gutterBottom variant="body2" className={classes.iconText}>
+                  {readTime3}
+                  {' '}
+                  {minute3}
+                </Typography>
+              </Grid>
             </Grid>
           </Grid>
           <Grid item>

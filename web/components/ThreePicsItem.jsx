@@ -1,12 +1,12 @@
 /* eslint no-dupe-keys: 0 */
 
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
 
 const bg1 = '/_f/images/home/row1/a.jpg';
 const bg2 = '/_f/images/home/row1/b.jpg';
@@ -38,17 +38,17 @@ const styles = (theme) => ({
     filter: 'progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#000000",GradientType=1)',
     color: theme.palette.common.white,
     padding: theme.spacing(2),
-    textAlign: 'center'
+    textAlign: 'center',
   },
 });
 
 const ThreePicsItem = (props) => {
   const {
-    classes, picture, filter = 'grayscale',  children,
+    classes, picture, filter = 'grayscale', children,
   } = props;
   let mediaClass;
-  if(filter === 'grayscale') { mediaClass = classes.mediaGray; }
-  if(filter === 'sepia') { mediaClass = classes.mediaSepia; }
+  if (filter === 'grayscale') { mediaClass = classes.mediaGray; }
+  if (filter === 'sepia') { mediaClass = classes.mediaSepia; }
   return (
     <Grid item xs={12} sm={4} className={classes.root}>
       <CardMedia
@@ -56,7 +56,7 @@ const ThreePicsItem = (props) => {
         image={picture}
         title="Paella dish"
       />
-    <Grid container alignItems="center" justify="center" className={classes.filter}>{children}</Grid>
+      <Grid container alignItems="center" justify="center" className={classes.filter}>{children}</Grid>
     </Grid>
   );
 };

@@ -7,22 +7,21 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+import IconButton from '@material-ui/core/IconButton';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
 
 import {
+  androidTheme,
+  appleTheme,
   facebookTheme,
   twitterTheme,
-  appleTheme,
-  androidTheme,
 } from '../themes/brand-themes';
-
-import Hidden from '@material-ui/core/Hidden';
 import LinkTo from './LinkTo';
 
 const styles = (theme) => ({
@@ -59,7 +58,7 @@ const styles = (theme) => ({
   appIcon: {
     height: `${theme.spacing(6)}px !important`,
     width: `${theme.spacing(6)}px !important`,
-    filter: `drop-shadow(1px 1px 1px gray)`,
+    filter: 'drop-shadow(1px 1px 1px gray)',
   },
   apple: {
     color: appleTheme.palette.primary.main,
@@ -87,7 +86,9 @@ const PrefooterAdverts = (props) => {
           <Grid container direction="column" justify="center" alignItems="center">
             <Grid item className={classes.adMessageContainer}>
               <Typography variant="h5" className={classes.adMessage}>
-                Go mobile with {process.env.BRAND_NAME}
+                Go mobile with
+                {' '}
+                {process.env.BRAND_NAME}
               </Typography>
               <Typography variant="h6" className={classes.adMessage}>Download the app today!</Typography>
             </Grid>
@@ -115,7 +116,9 @@ const PrefooterAdverts = (props) => {
         <Grid container direction="column" justify="center" alignItems="center">
           <Grid item className={classes.adMessageContainer}>
             <Typography variant="h5" className={classes.adMessage}>
-              Socialize with {process.env.BRAND_NAME}
+              Socialize with
+              {' '}
+              {process.env.BRAND_NAME}
             </Typography>
             <Typography variant="h6" className={classes.adMessage}>Join the gang!</Typography>
           </Grid>

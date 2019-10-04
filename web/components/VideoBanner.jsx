@@ -25,14 +25,14 @@ const styles = (theme) => ({
     left: 0,
     width: '100%',
     height: '100vh',
-    backgroundImage: `linear-gradient(90deg,#866a4a,rgba(210,180,145,0))`,
+    backgroundImage: 'linear-gradient(90deg,#866a4a,rgba(210,180,145,0))',
   },
   children: {
     position: 'absolute',
     top: '50%',
     left: '10vw',
     width: '50vw',
-    transform: `translateY(-70%)`,
+    transform: 'translateY(-70%)',
   },
 });
 
@@ -47,7 +47,7 @@ const VideoBanner = (props) => {
         <video
           loop
           playsinline
-          autoplay="autoplay"
+          autoPlay="autoplay"
           muted
           poster={poster}
           className={classes.video}

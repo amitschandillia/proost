@@ -1,15 +1,16 @@
 /* eslint no-dupe-keys: 0 */
 
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
+import FormatQuoteIcon from '@material-ui/icons/FormatQuote';
 import PropTypes from 'prop-types';
 import React, { useLayoutEffect } from 'react';
 import { connect } from 'react-redux';
-import Grid from '@material-ui/core/Grid';
+
 import GradientText from './GradientText';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import FormatQuoteIcon from '@material-ui/icons/FormatQuote';
-import Box from '@material-ui/core/Box';
 
 const styles = (theme) => ({
   root: {

@@ -1,10 +1,10 @@
 import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import emailValidator from 'email-validator';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
@@ -16,10 +16,10 @@ import {
   validateUsername,
 } from '../utils/validate-registration-data';
 import EmailField from './EmailField';
+import LinkTo from './LinkTo';
 import PasswordField from './PasswordField';
 import SocialButton from './SocialButton';
 import WrongCredentialsError from './WrongCredentialsError';
-import LinkTo from './LinkTo';
 
 const styles = (theme) => ({
   root: {
@@ -105,7 +105,7 @@ const SignInView = (props) => {
     stayLogged: false,
   });
 
-  const handleChange = name => event => {
+  const handleChange = (name) => (event) => {
     setState({ ...state, [name]: event.target.checked });
   };
 
@@ -129,7 +129,7 @@ const SignInView = (props) => {
         <PasswordField name="password" error={passwordErrorSignIn} />
         <FormGroup row>
           <FormControlLabel
-            control={
+            control={(
               <Checkbox
                 checked={state.stayLogged}
                 onChange={handleChange('stayLogged')}
@@ -138,7 +138,7 @@ const SignInView = (props) => {
                   'aria-label': 'Keep me logged in',
                 }}
               />
-            }
+            )}
             label="Keep me logged in"
           />
         </FormGroup>

@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars */
 
-import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
 
 const styles = (theme) => ({
   root: {

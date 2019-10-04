@@ -2,18 +2,17 @@
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import LinkTo from './LinkTo';
-import VerticalDivider from './VerticalDivider';
-import IconButton from '@material-ui/core/IconButton';
-import UnitedStates from './svg-icons/flags/UnitedStates';
-
 import FlagButton from './FlagButton';
+import LinkTo from './LinkTo';
+import UnitedStates from './svg-icons/flags/UnitedStates';
+import VerticalDivider from './VerticalDivider';
 
 const styles = (theme) => ({
   root: {
