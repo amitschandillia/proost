@@ -1,0 +1,31 @@
+query tags($slug: String!, $postLimit: Int!, $postStart: Int!) {
+  tags(limit: 1, where: { slug: $slug }) {
+    _id
+    name
+    description
+    posts(sort: "createdAt:DESC", limit: $postLimit, start: $postStart, where: {isPublished: true}) {
+      title
+      excerpt
+      slug
+      createdAt
+      readTime
+      thumbnail {
+        hash
+        ext
+      }
+      category {
+        slug
+        name
+      }
+      tags {
+        slug
+        name
+      }
+      author {
+        username
+        firstName
+        lastName
+      }
+    }
+  }
+}

@@ -6,6 +6,7 @@ type Category {
   name: String!
   description: String!
   slug: String!
+  thumbnail: UploadFile
   posts(sort: String, limit: Int, start: Int, where: JSON): [Post]
 }
 
@@ -44,6 +45,11 @@ type CategoryConnectionSlug {
   connection: CategoryConnection
 }
 
+type CategoryConnectionThumbnail {
+  key: ID
+  connection: CategoryConnection
+}
+
 type CategoryConnectionUpdatedAt {
   key: DateTime
   connection: CategoryConnection
@@ -56,6 +62,7 @@ type CategoryGroupBy {
   name: [CategoryConnectionName]
   description: [CategoryConnectionDescription]
   slug: [CategoryConnectionSlug]
+  thumbnail: [CategoryConnectionThumbnail]
 }
 
 input CategoryInput {
@@ -63,6 +70,7 @@ input CategoryInput {
   description: String!
   posts: [ID]
   slug: String!
+  thumbnail: ID
 }
 
 input createCategoryInput {
@@ -155,6 +163,7 @@ input editCategoryInput {
   description: String
   posts: [ID]
   slug: String
+  thumbnail: ID
 }
 
 input editFileInput {
@@ -198,6 +207,7 @@ input editTagInput {
   description: String
   posts: [ID]
   slug: String
+  thumbnail: ID
 }
 
 input editUserInput {
@@ -238,7 +248,7 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 """
 scalar JSON
 
-union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | CategoryConnectionDescription | CategoryConnectionSlug | Post | createPostPayload | updatePostPayload | deletePostPayload | PostConnection | PostAggregator | PostAggregatorSum | PostAggregatorAvg | PostAggregatorMin | PostAggregatorMax | PostGroupBy | PostConnection_id | PostConnectionCreatedAt | PostConnectionUpdatedAt | PostConnectionTitle | PostConnectionSecondaryTitle | PostConnectionSlug | PostConnectionBody | PostConnectionAuthor | PostConnectionExcerpt | PostConnectionIsPublished | PostConnectionThumbnail | PostConnectionBanner | PostConnectionCategory | PostConnectionReadTime | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | TagConnectionDescription | TagConnectionSlug | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionFirstName | UsersPermissionsUserConnectionLastName | UsersPermissionsUserConnectionThumbnail | UsersPermissionsUserConnectionBio
+union Morph = UsersPermissionsMe | UsersPermissionsMeRole | Category | createCategoryPayload | updateCategoryPayload | deleteCategoryPayload | CategoryConnection | CategoryAggregator | CategoryGroupBy | CategoryConnection_id | CategoryConnectionCreatedAt | CategoryConnectionUpdatedAt | CategoryConnectionName | CategoryConnectionDescription | CategoryConnectionSlug | CategoryConnectionThumbnail | Post | createPostPayload | updatePostPayload | deletePostPayload | PostConnection | PostAggregator | PostAggregatorSum | PostAggregatorAvg | PostAggregatorMin | PostAggregatorMax | PostGroupBy | PostConnection_id | PostConnectionCreatedAt | PostConnectionUpdatedAt | PostConnectionTitle | PostConnectionSecondaryTitle | PostConnectionSlug | PostConnectionBody | PostConnectionAuthor | PostConnectionExcerpt | PostConnectionIsPublished | PostConnectionThumbnail | PostConnectionBanner | PostConnectionCategory | PostConnectionReadTime | Tag | createTagPayload | updateTagPayload | deleteTagPayload | TagConnection | TagAggregator | TagGroupBy | TagConnection_id | TagConnectionCreatedAt | TagConnectionUpdatedAt | TagConnectionName | TagConnectionDescription | TagConnectionSlug | TagConnectionThumbnail | UploadFile | UploadFileConnection | UploadFileAggregator | UploadFileGroupBy | UploadFileConnection_id | UploadFileConnectionCreatedAt | UploadFileConnectionUpdatedAt | UploadFileConnectionName | UploadFileConnectionHash | UploadFileConnectionSha256 | UploadFileConnectionExt | UploadFileConnectionMime | UploadFileConnectionSize | UploadFileConnectionUrl | UploadFileConnectionProvider | UploadFileConnectionPublic_id | UsersPermissionsPermission | UsersPermissionsRole | createRolePayload | updateRolePayload | deleteRolePayload | UsersPermissionsRoleConnection | UsersPermissionsRoleAggregator | UsersPermissionsRoleGroupBy | UsersPermissionsRoleConnection_id | UsersPermissionsRoleConnectionName | UsersPermissionsRoleConnectionDescription | UsersPermissionsRoleConnectionType | UsersPermissionsUser | createUserPayload | updateUserPayload | deleteUserPayload | UsersPermissionsUserConnection | UsersPermissionsUserAggregator | UsersPermissionsUserGroupBy | UsersPermissionsUserConnection_id | UsersPermissionsUserConnectionUsername | UsersPermissionsUserConnectionEmail | UsersPermissionsUserConnectionProvider | UsersPermissionsUserConnectionConfirmed | UsersPermissionsUserConnectionBlocked | UsersPermissionsUserConnectionRole | UsersPermissionsUserConnectionFirstName | UsersPermissionsUserConnectionLastName | UsersPermissionsUserConnectionThumbnail | UsersPermissionsUserConnectionBio
 
 type Mutation {
   createCategory(input: createCategoryInput): createCategoryPayload
@@ -463,6 +473,7 @@ type Tag {
   name: String!
   description: String!
   slug: String!
+  thumbnail: UploadFile
   posts(sort: String, limit: Int, start: Int, where: JSON): [Post]
 }
 
@@ -501,6 +512,11 @@ type TagConnectionSlug {
   connection: TagConnection
 }
 
+type TagConnectionThumbnail {
+  key: ID
+  connection: TagConnection
+}
+
 type TagConnectionUpdatedAt {
   key: DateTime
   connection: TagConnection
@@ -513,6 +529,7 @@ type TagGroupBy {
   name: [TagConnectionName]
   description: [TagConnectionDescription]
   slug: [TagConnectionSlug]
+  thumbnail: [TagConnectionThumbnail]
 }
 
 input TagInput {
@@ -520,6 +537,7 @@ input TagInput {
   description: String!
   posts: [ID]
   slug: String!
+  thumbnail: ID
 }
 
 input updateCategoryInput {

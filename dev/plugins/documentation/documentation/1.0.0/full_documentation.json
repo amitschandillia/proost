@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "10/02/2019 9:53:35 AM"
+    "x-generation-date": "10/05/2019 2:37:47 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4279,7 +4279,8 @@
                 "id",
                 "name",
                 "description",
-                "slug"
+                "slug",
+                "thumbnail"
               ],
               "properties": {
                 "id": {
@@ -4298,6 +4299,9 @@
                   }
                 },
                 "slug": {
+                  "type": "string"
+                },
+                "thumbnail": {
                   "type": "string"
                 }
               }
@@ -4371,7 +4375,8 @@
           "id",
           "name",
           "description",
-          "slug"
+          "slug",
+          "thumbnail"
         ],
         "properties": {
           "id": {
@@ -4445,6 +4450,52 @@
           "slug": {
             "type": "string",
             "default": ""
+          },
+          "thumbnail": {
+            "required": [
+              "id",
+              "name",
+              "hash",
+              "mime",
+              "size",
+              "url",
+              "provider"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "hash": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "ext": {
+                "type": "string"
+              },
+              "mime": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "public_id": {
+                "type": "string"
+              },
+              "related": {
+                "type": "string"
+              }
+            }
           }
         }
       },

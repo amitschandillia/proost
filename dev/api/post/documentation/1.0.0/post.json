@@ -806,7 +806,8 @@
                 "id",
                 "name",
                 "description",
-                "slug"
+                "slug",
+                "thumbnail"
               ],
               "properties": {
                 "id": {
@@ -825,6 +826,9 @@
                   }
                 },
                 "slug": {
+                  "type": "string"
+                },
+                "thumbnail": {
                   "type": "string"
                 }
               }

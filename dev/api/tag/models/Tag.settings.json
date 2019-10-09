@@ -30,6 +30,12 @@
       "unique": true,
       "type": "string",
       "required": true
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": true
     }
   }
 }

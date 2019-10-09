@@ -14,7 +14,7 @@ module.exports = {
    * @return {Object|Array}
    */
 
-   find: async (ctx, next, { populate } = {}) => {
+  find: async (ctx, next, { populate } = {}) => {
     if (ctx.query._q) {
       return strapi.services.post.search(ctx.query);
     } else {

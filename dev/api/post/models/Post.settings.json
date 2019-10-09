@@ -70,8 +70,8 @@
     },
     "tags": {
       "collection": "tag",
-      "via": "posts",
-      "dominant": true
+      "dominant": true,
+      "via": "posts"
     },
     "readTime": {
       "default": "",
