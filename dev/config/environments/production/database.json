@@ -4,17 +4,17 @@
     "default": {
       "connector": "strapi-hook-mongoose",
       "settings": {
-        "client": "mongo",
         "host": "${process.env.DATABASE_HOST || 'cluster0-mg1j6.mongodb.net'}",
         "port": "${process.env.DATABASE_PORT || 27017}",
-        "database": "${process.env.DATABASE_NAME || 'dbCMS'}",
-        "username": "${process.env.DATABASE_USERNAME || 'usrCMS'}",
-        "password": "${process.env.DATABASE_PASSWORD || 'mGjSD9SdYKVJccfS'}",
-        "srv": "${process.env.DATABASE_SRV || true}"
+        "srv": "${process.env.DATABASE_SRV || true}",
+        "database": "${process.env.DATABASE_NAME || 'dbCMS2'}",
+        "username": "${process.env.DATABASE_USERNAME || 'usrCMS2'}",
+        "password": "${process.env.DATABASE_PASSWORD || 'T9MQjCVeoFPU5mrr'}",
+        "ssl": "${process.env.DATABASE_SSL || true}"
       },
       "options": {
-        "authenticationDatabase": "${process.env.DATABASE_AUTHENTICATION_DATABASE || 'admin'}",
-        "ssl": "${process.env.DATABASE_SSL || true}"
+        "ssl": "${process.env.DATABASE_SSL || true}",
+        "authenticationDatabase": "${process.env.DATABASE_AUTHENTICATION_DATABASE || 'admin'}"
       }
     }
   }

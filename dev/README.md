@@ -1,3 +1,3 @@
-# dev
+# Strapi application
 
-A quick description of dev.
+A quick description of your strapi application

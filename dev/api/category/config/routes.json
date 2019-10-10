@@ -18,16 +18,8 @@
     },
     {
       "method": "GET",
-      "path": "/categories?id=:_id",
+      "path": "/categories/:id",
       "handler": "Category.findOne",
-      "config": {
-        "policies": []
-      }
-    },
-    {
-      "method": "GET",
-      "path": "/categories/:slug",
-      "handler": "Category.findOneBySlug",
       "config": {
         "policies": []
       }
@@ -42,7 +34,7 @@
     },
     {
       "method": "PUT",
-      "path": "/categories/:_id",
+      "path": "/categories/:id",
       "handler": "Category.update",
       "config": {
         "policies": []
@@ -50,8 +42,8 @@
     },
     {
       "method": "DELETE",
-      "path": "/categories/:_id",
-      "handler": "Category.destroy",
+      "path": "/categories/:id",
+      "handler": "Category.delete",
       "config": {
         "policies": []
       }

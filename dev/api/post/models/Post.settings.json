@@ -6,63 +6,62 @@
     "description": "Web app blog posts"
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "title": {
-      "default": "",
       "maxLength": 60,
+      "required": true,
       "unique": true,
       "minLength": 50,
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "secondaryTitle": {
-      "default": "",
       "maxLength": 120,
+      "required": true,
       "unique": true,
       "minLength": 100,
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "slug": {
-      "default": "",
       "unique": true,
+      "required": true,
       "type": "string"
     },
     "body": {
-      "default": "",
-      "type": "text",
-      "required": true
+      "required": true,
+      "type": "richtext"
+    },
+    "excerpt": {
+      "maxLength": 140,
+      "required": true,
+      "minLength": 110,
+      "type": "text"
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "banner": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "isPublished": {
+      "required": true,
+      "type": "boolean"
+    },
+    "readTime": {
+      "type": "integer"
     },
     "author": {
       "model": "user",
       "via": "posts",
       "plugin": "users-permissions"
-    },
-    "excerpt": {
-      "default": "",
-      "maxLength": 140,
-      "minLength": 110,
-      "type": "text",
-      "required": true
-    },
-    "isPublished": {
-      "default": false,
-      "type": "boolean",
-      "required": true
-    },
-    "thumbnail": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload",
-      "required": false
-    },
-    "banner": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload",
-      "required": false
     },
     "category": {
       "model": "category",
@@ -72,10 +71,6 @@
       "collection": "tag",
       "dominant": true,
       "via": "posts"
-    },
-    "readTime": {
-      "default": "",
-      "type": "integer"
     }
   }
 }

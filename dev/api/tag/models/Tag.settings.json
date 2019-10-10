@@ -6,36 +6,42 @@
     "description": "Tags for blog articles"
   },
   "options": {
-    "timestamps": true
+    "timestamps": [
+      "createdAt",
+      "updatedAt"
+    ]
   },
   "attributes": {
     "name": {
-      "default": "",
       "unique": true,
-      "type": "string",
-      "required": true
+      "required": true,
+      "type": "string"
     },
     "description": {
-      "default": "",
-      "unique": true,
-      "type": "string",
-      "required": true
+      "maxLength": 140,
+      "required": true,
+      "minLength": 110,
+      "type": "text"
     },
-    "posts": {
-      "collection": "post",
-      "via": "tags"
+    "longDescription": {
+      "maxLength": 1200,
+      "required": true,
+      "minLength": 620,
+      "type": "richtext"
     },
     "slug": {
-      "default": "",
       "unique": true,
-      "type": "string",
-      "required": true
+      "required": true,
+      "type": "string"
     },
     "thumbnail": {
       "model": "file",
       "via": "related",
-      "plugin": "upload",
-      "required": true
+      "plugin": "upload"
+    },
+    "posts": {
+      "collection": "post",
+      "via": "tags"
     }
   }
 }

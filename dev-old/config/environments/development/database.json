@@ -1,0 +1,21 @@
+{
+  "defaultConnection": "default",
+  "connections": {
+    "default": {
+      "connector": "strapi-hook-mongoose",
+      "settings": {
+        "client": "mongo",
+        "host": "cluster0-mg1j6.mongodb.net",
+        "port": 27017,
+        "database": "dbCMS",
+        "username": "usrCMS",
+        "password": "mGjSD9SdYKVJccfS",
+        "srv": true
+      },
+      "options": {
+        "authenticationDatabase": "admin",
+        "ssl": true
+      }
+    }
+  }
+}

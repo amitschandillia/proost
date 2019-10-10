@@ -1,0 +1,17 @@
+{
+  "host": "dev.schandillia.com",
+  "port": "${process.env.PORT || 9001}",
+  "production": true,
+  "proxy": {
+    "enabled": false
+  },
+  "autoReload": {
+    "enabled": false
+  },
+  "cron": {
+    "enabled": false
+  },
+  "admin": {
+    "autoOpen": false
+  }
+}
