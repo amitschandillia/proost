@@ -1,0 +1,39 @@
+query users($username: String!, $postLimit: Int!, $postStart: Int!) {
+  users(limit: 1, where: { username: $username }) {
+    _id
+    firstName
+    lastName
+    bio
+    posts(sort: "createdAt:DESC", limit: $postLimit, start: $postStart, where: {isPublished: true}) {
+      title
+      excerpt
+      slug
+      createdAt
+      readTime
+      thumbnail {
+        hash
+        ext
+      }
+      tags {
+        slug
+        name
+      }
+      category {
+        slug
+        name
+      }
+    }
+  }
+  postsConnection(where: {isPublished: true}){
+    groupBy{
+      author{
+        key
+        connection{
+          aggregate{
+            count
+          }
+        }
+      }
+    }
+  }
+}

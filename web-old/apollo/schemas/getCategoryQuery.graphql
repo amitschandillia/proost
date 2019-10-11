@@ -1,0 +1,39 @@
+query categories($slug: String!, $postLimit: Int!, $postStart: Int!) {
+  categories(limit: 1, where: { slug: $slug }) {
+    _id
+    name
+    description
+    posts(sort: "createdAt:DESC", limit: $postLimit, start: $postStart, where: {isPublished: true}) {
+      title
+      excerpt
+      slug
+      createdAt
+      readTime
+      thumbnail {
+        hash
+        ext
+      }
+      tags {
+        slug
+        name
+      }
+      author {
+        username
+        firstName
+        lastName
+      }
+    }
+  }
+  postsConnection(where: {isPublished: true}){
+    groupBy{
+      category{
+        key
+        connection{
+          aggregate{
+            count
+          }
+        }
+      }
+    }
+  }
+}

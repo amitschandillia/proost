@@ -57,8 +57,9 @@ const AuthorsList = (props) => {
   if (error) return <div>There was an error!</div>;
   if (loading && !loadingMoreUsers) return <Loading />;
 
-  const { users, usersConnection } = data;
-  const areMoreUsers = users.length < usersConnection.aggregate.count;
+  const { users, postsConnection } = data;
+  const userCount = postsConnection.groupBy.author.length;
+  const areMoreUsers = users.length < 3;
 
   const loadMoreUsers = () => {
     fetchMore({
