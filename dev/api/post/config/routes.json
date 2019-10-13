@@ -18,8 +18,16 @@
     },
     {
       "method": "GET",
-      "path": "/posts/:id",
+      "path": "/posts?id=:_id",
       "handler": "Post.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/posts/:slug",
+      "handler": "Post.findOneBySlug",
       "config": {
         "policies": []
       }
@@ -34,7 +42,7 @@
     },
     {
       "method": "PUT",
-      "path": "/posts/:id",
+      "path": "/posts/:_id",
       "handler": "Post.update",
       "config": {
         "policies": []
@@ -42,8 +50,8 @@
     },
     {
       "method": "DELETE",
-      "path": "/posts/:id",
-      "handler": "Post.delete",
+      "path": "/posts/:_id",
+      "handler": "Post.destroy",
       "config": {
         "policies": []
       }

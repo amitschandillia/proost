@@ -1,32 +1,56 @@
 {
+  "csrf": {
+    "enabled": false,
+    "key": "_csrf",
+    "secret": "_csrfSecret"
+  },
   "csp": {
-    "enabled": true,
-    "policy": [
-      {
-        "img-src": "'self' http:"
-      },
-      "block-all-mixed-content"
-    ]
+    "enabled": false,
+    "policy": {
+      "default-src": "'self'"
+    }
   },
   "p3p": {
     "enabled": false,
     "value": ""
   },
   "hsts": {
-    "enabled": true,
+    "enabled": false,
     "maxAge": 31536000,
     "includeSubDomains": true
   },
   "xframe": {
-    "enabled": true,
+    "enabled": false,
     "value": "SAMEORIGIN"
   },
   "xss": {
-    "enabled": true,
+    "enabled": false,
     "mode": "block"
   },
   "cors": {
-    "enabled": true
+    "enabled": true,
+    "origin": "*",
+    "expose": [
+      "WWW-Authenticate",
+      "Server-Authorization"
+    ],
+    "maxAge": 31536000,
+    "credentials": true,
+    "methods": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "OPTIONS",
+      "HEAD"
+    ],
+    "headers": [
+      "Content-Type",
+      "Authorization",
+      "X-Frame-Options",
+      "Origin"
+    ]
   },
   "ip": {
     "enabled": false,

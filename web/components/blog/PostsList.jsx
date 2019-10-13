@@ -4,7 +4,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { NetworkStatus } from 'apollo-client';
-import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import getPostsQuery from '../../apollo/schemas/getPostsQuery.graphql';
@@ -26,7 +25,7 @@ const styles = (theme) => ({
   },
 });
 
-export const GET_POSTS = gql`${getPostsQuery}`;
+export const GET_POSTS = getPostsQuery;
 
 export const getPostsQueryVars = {
   start: 0,

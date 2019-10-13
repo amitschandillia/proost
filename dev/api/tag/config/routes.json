@@ -18,8 +18,16 @@
     },
     {
       "method": "GET",
-      "path": "/tags/:id",
+      "path": "/tags?id=:_id",
       "handler": "Tag.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/tags/:slug",
+      "handler": "Tag.findOneBySlug",
       "config": {
         "policies": []
       }
@@ -34,7 +42,7 @@
     },
     {
       "method": "PUT",
-      "path": "/tags/:id",
+      "path": "/tags/:_id",
       "handler": "Tag.update",
       "config": {
         "policies": []
@@ -42,8 +50,8 @@
     },
     {
       "method": "DELETE",
-      "path": "/tags/:id",
-      "handler": "Tag.delete",
+      "path": "/tags/:_id",
+      "handler": "Tag.destroy",
       "config": {
         "policies": []
       }

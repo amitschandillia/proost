@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import { NetworkStatus } from 'apollo-client';
-import gql from 'graphql-tag';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 
@@ -35,7 +34,7 @@ const styles = (theme) => ({
   },
 });
 
-export const GET_TAG = gql`${getTagQuery}`;
+export const GET_TAG = getTagQuery;
 
 export const getTagQueryVars = {
   postStart: 0,

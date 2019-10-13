@@ -12,11 +12,9 @@ query users($limit: Int!, $start: Int!) {
       slug
     }
   }
-  postsConnection {
-    groupBy {
-      author {
-        key
-      }
+  usersConnection {
+    aggregate{
+      count
     }
   }
 }

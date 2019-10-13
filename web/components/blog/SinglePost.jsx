@@ -2,7 +2,6 @@ import { useQuery } from '@apollo/react-hooks';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
-import gql from 'graphql-tag';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
@@ -14,7 +13,7 @@ const styles = () => ({
   root: {},
 });
 
-export const GET_POST = gql`${getPostQuery}`;
+export const GET_POST = getPostQuery;
 
 const renderers = {
   paragraph: (props) => <Typography variant="body2" gutterBottom {...props} />,

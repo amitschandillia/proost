@@ -1,0 +1,19 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/users/:username",
+      "handler": "User.findOneByUsername",
+      "config": {
+        "policies": [],
+        "prefix": "",
+        "description": "Retrieve a single user depending on his username",
+        "tag": {
+          "plugin": "users-permissions",
+          "name": "User",
+          "actionType": "findOneByUsername"
+        }
+      }
+    }
+  ]
+}

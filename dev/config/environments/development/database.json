@@ -4,12 +4,13 @@
     "default": {
       "connector": "strapi-hook-mongoose",
       "settings": {
-        "database": "dbCMS2",
+        "client": "mongo",
         "host": "cluster0-mg1j6.mongodb.net",
-        "srv": "true",
         "port": 27017,
-        "username": "usrCMS2",
-        "password": "T9MQjCVeoFPU5mrr"
+        "database": "dbCMS",
+        "username": "usrCMS",
+        "password": "mGjSD9SdYKVJccfS",
+        "srv": true
       },
       "options": {
         "authenticationDatabase": "admin",

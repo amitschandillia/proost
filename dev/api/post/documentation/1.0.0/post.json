@@ -305,7 +305,7 @@
         "parameters": []
       }
     },
-    "/posts/{id}": {
+    "/posts?id={_id}": {
       "get": {
         "deprecated": false,
         "description": "",
@@ -357,7 +357,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "_id",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -367,7 +367,77 @@
             }
           }
         ]
-      },
+      }
+    },
+    "/posts/{slug}": {
+      "get": {
+        "deprecated": false,
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "foo": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "summary": "",
+        "tags": [
+          "Post"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "description": "",
+            "deprecated": false,
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/posts/{_id}": {
       "put": {
         "deprecated": false,
         "description": "Update a record",
@@ -430,7 +500,7 @@
         },
         "parameters": [
           {
-            "name": "id",
+            "name": "_id",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -493,7 +563,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "_id",
             "in": "path",
             "description": "",
             "deprecated": false,
@@ -513,7 +583,6 @@
           "id",
           "title",
           "secondaryTitle",
-          "slug",
           "body",
           "excerpt",
           "isPublished"
@@ -524,24 +593,87 @@
           },
           "title": {
             "type": "string",
+            "default": "",
             "maxLength": 60,
             "minLength": 50
           },
           "secondaryTitle": {
             "type": "string",
+            "default": "",
             "maxLength": 120,
             "minLength": 100
           },
           "slug": {
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           "body": {
-            "type": "string"
+            "type": "string",
+            "default": ""
+          },
+          "author": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "thumbnail": {
+                "type": "string"
+              },
+              "bio": {
+                "type": "string"
+              }
+            }
           },
           "excerpt": {
             "type": "string",
+            "default": "",
             "maxLength": 140,
             "minLength": 110
+          },
+          "isPublished": {
+            "type": "boolean",
+            "default": false
           },
           "thumbnail": {
             "required": [
@@ -635,81 +767,13 @@
               }
             }
           },
-          "isPublished": {
-            "type": "boolean"
-          },
-          "readTime": {
-            "type": "integer"
-          },
-          "author": {
-            "required": [
-              "id",
-              "username",
-              "email",
-              "firstName",
-              "lastName",
-              "thumbnail",
-              "bio",
-              "longBio"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "firstName": {
-                "type": "string"
-              },
-              "lastName": {
-                "type": "string"
-              },
-              "thumbnail": {
-                "type": "string"
-              },
-              "bio": {
-                "type": "string"
-              },
-              "longBio": {
-                "type": "string"
-              },
-              "posts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "category": {
             "required": [
               "id",
               "name",
               "description",
-              "longDescription",
-              "slug"
+              "slug",
+              "thumbnail"
             ],
             "properties": {
               "id": {
@@ -721,20 +785,17 @@
               "description": {
                 "type": "string"
               },
-              "longDescription": {
-                "type": "string"
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "slug": {
                 "type": "string"
               },
               "thumbnail": {
                 "type": "string"
-              },
-              "posts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
               }
             }
           },
@@ -745,8 +806,8 @@
                 "id",
                 "name",
                 "description",
-                "longDescription",
-                "slug"
+                "slug",
+                "thumbnail"
               ],
               "properties": {
                 "id": {
@@ -758,23 +819,24 @@
                 "description": {
                   "type": "string"
                 },
-                "longDescription": {
-                  "type": "string"
+                "posts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
                 },
                 "slug": {
                   "type": "string"
                 },
                 "thumbnail": {
                   "type": "string"
-                },
-                "posts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
                 }
               }
             }
+          },
+          "readTime": {
+            "type": "integer",
+            "default": ""
           }
         }
       },
@@ -782,7 +844,6 @@
         "required": [
           "title",
           "secondaryTitle",
-          "slug",
           "body",
           "excerpt",
           "isPublished"
@@ -790,33 +851,36 @@
         "properties": {
           "title": {
             "type": "string",
+            "default": "",
             "maxLength": 60,
             "minLength": 50
           },
           "secondaryTitle": {
             "type": "string",
+            "default": "",
             "maxLength": 120,
             "minLength": 100
           },
           "slug": {
-            "type": "string"
+            "type": "string",
+            "default": ""
           },
           "body": {
+            "type": "string",
+            "default": ""
+          },
+          "author": {
             "type": "string"
           },
           "excerpt": {
             "type": "string",
+            "default": "",
             "maxLength": 140,
             "minLength": 110
           },
           "isPublished": {
-            "type": "boolean"
-          },
-          "readTime": {
-            "type": "integer"
-          },
-          "author": {
-            "type": "string"
+            "type": "boolean",
+            "default": false
           },
           "category": {
             "type": "string"
@@ -826,6 +890,10 @@
             "items": {
               "type": "string"
             }
+          },
+          "readTime": {
+            "type": "integer",
+            "default": ""
           }
         }
       }

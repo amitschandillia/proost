@@ -6,42 +6,35 @@
     "description": "Categories for blog posts"
   },
   "options": {
-    "timestamps": [
-      "createdAt",
-      "updatedAt"
-    ]
+    "timestamps": true
   },
   "attributes": {
     "name": {
+      "default": "",
       "unique": true,
-      "required": true,
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "description": {
-      "maxLength": 140,
-      "required": true,
-      "minLength": 110,
-      "type": "text"
-    },
-    "longDescription": {
-      "maxLength": 1200,
-      "required": true,
-      "minLength": 620,
-      "type": "richtext"
-    },
-    "slug": {
-      "unique": true,
-      "required": true,
-      "type": "string"
-    },
-    "thumbnail": {
-      "model": "file",
-      "via": "related",
-      "plugin": "upload"
+      "default": "",
+      "type": "string",
+      "required": true
     },
     "posts": {
       "collection": "post",
       "via": "category"
+    },
+    "slug": {
+      "default": "",
+      "unique": true,
+      "type": "string",
+      "required": true
+    },
+    "thumbnail": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": true
     }
   }
 }

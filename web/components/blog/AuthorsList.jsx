@@ -4,7 +4,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { NetworkStatus } from 'apollo-client';
-import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 
 import getUsersQuery from '../../apollo/schemas/getUsersQuery.graphql';
@@ -26,7 +25,7 @@ const styles = (theme) => ({
   },
 });
 
-export const GET_USERS = gql`${getUsersQuery}`;
+export const GET_USERS = getUsersQuery;
 
 export const getUsersQueryVars = {
   start: 0,
@@ -57,9 +56,8 @@ const AuthorsList = (props) => {
   if (error) return <div>There was an error!</div>;
   if (loading && !loadingMoreUsers) return <Loading />;
 
-  const { users, postsConnection } = data;
-  const userCount = postsConnection.groupBy.author.length;
-  const areMoreUsers = users.length < 3;
+  const { users, usersConnection } = data;
+  const areMoreUsers = users.length < usersConnection.aggregate.count;
 
   const loadMoreUsers = () => {
     fetchMore({
