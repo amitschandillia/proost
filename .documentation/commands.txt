@@ -28,11 +28,12 @@ UPDATE/UPGRADE PACKAGES
 sudo apt update; sudo apt upgrade -y; sudo apt update; sudo apt upgrade -y
 
 
-cd ~/proost/dev-beta-wip/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-beta/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
+cd ~/proost/dev-beta/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-beta/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
 
-cd ~/proost/dev-beta/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/Apollo-NextJS/;yarn next build;yarn next start
+cd ~/proost/dev-beta/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/apollo-nextjs/;yarn next build;yarn next start
 
+cd ~/proost/dev-beta/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/apollo-nextjs/;yarn build;NODE_ENV=production pm2 start ./server.js --name web; pm2 logs
 
 
 
