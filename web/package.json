@@ -52,7 +52,7 @@
     "isomorphic-unfetch": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.14",
-    "mongoose": "5.7.5",
+    "mongoose": "5.7.7",
     "next": "^9.0.6",
     "next-purgecss": "^3.1.1",
     "next-redux-wrapper": "^3.0.0-alpha.3",
