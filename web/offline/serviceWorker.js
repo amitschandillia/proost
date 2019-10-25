@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-const CACHE_NAME = '9c5b51b8731602f930f897ceba3aa7b2';
+const CACHE_NAME = 'd24db66a9c3b7ebe033d88dd41948102';
 const URLS_TO_CACHE = [
   '/',
   '/about',
@@ -65,6 +65,11 @@ const URLS_TO_CACHE = [
   '/_f/images/badges/google.png',
   '/_f/images/banner.png',
   '/_f/images/banner_vid_img.jpg',
+  '/_f/images/defaults/author/thumbnail.jpg',
+  '/_f/images/defaults/category/thumbnail.jpg',
+  '/_f/images/defaults/post/banner.jpg',
+  '/_f/images/defaults/post/thumbnail.jpg',
+  '/_f/images/defaults/tag/thumbnail.jpg',
   '/_f/images/desktop-header-logo.png',
   '/_f/images/home/row1/a.jpg',
   '/_f/images/home/row1/b.jpg',

@@ -625,9 +625,6 @@
                 "readTime": {
                   "type": "integer"
                 },
-                "author": {
-                  "type": "string"
-                },
                 "category": {
                   "type": "string"
                 },
@@ -636,6 +633,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "author": {
+                  "type": "string"
                 }
               }
             }

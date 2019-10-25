@@ -78,23 +78,32 @@ const PostPreviewsGrid = (props) => {
 
   return (
     <Grid container spacing={2} direction="row" id="posts-container">
-      {posts.map((post) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="post-preview-container">
-          <PostPreview
-            title={post.title}
-            slug={post.slug}
-            urlPost={`${process.env.BASE_URL}/blog/posts/${post.slug}`}
-            urlAuthor={`${process.env.BASE_URL}/blog/authors/${post.author.username}`}
-            excerpt={post.excerpt}
-            thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${post.thumbnail.hash}${post.thumbnail.ext}`}
-            author={`${post.author.firstName} ${post.author.lastName}`}
-            username={post.author.username}
-            category={post.category}
-            tags={post.tags}
-            readTime={post.readTime}
-          />
-        </Grid>
-      ))}
+      {posts.map((post) => {
+        let thumbnailImg;
+        if(post.thumbnail) {
+          thumbnailImg = `https://i.${process.env.THIS_DOMAIN_LONG}/d/${post.thumbnail.hash}${post.thumbnail.ext}`;
+        } else {
+          thumbnailImg = `https://www.${process.env.THIS_DOMAIN_LONG}/_f/images/defaults/post/thumbnail.jpg`;
+        }
+
+        return (
+          <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="post-preview-container">
+            <PostPreview
+              title={post.title}
+              slug={post.slug}
+              urlPost={`${process.env.BASE_URL}/blog/posts/${post.slug}`}
+              urlAuthor={`${process.env.BASE_URL}/blog/authors/${post.author.username}`}
+              excerpt={post.excerpt}
+              thumbnail={thumbnailImg}
+              author={`${post.author.firstName} ${post.author.lastName}`}
+              username={post.author.username}
+              category={post.category}
+              tags={post.tags}
+              readTime={post.readTime}
+            />
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };

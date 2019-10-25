@@ -58,11 +58,6 @@
     "readTime": {
       "type": "integer"
     },
-    "author": {
-      "model": "user",
-      "via": "posts",
-      "plugin": "users-permissions"
-    },
     "category": {
       "model": "category",
       "via": "posts"
@@ -71,6 +66,11 @@
       "collection": "tag",
       "dominant": true,
       "via": "posts"
+    },
+    "author": {
+      "model": "user",
+      "via": "posts",
+      "plugin": "users-permissions"
     }
   }
 }

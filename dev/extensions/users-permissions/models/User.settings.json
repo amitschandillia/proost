@@ -67,8 +67,7 @@
     "thumbnail": {
       "model": "file",
       "via": "related",
-      "plugin": "upload",
-      "required": true
+      "plugin": "upload"
     },
     "bio": {
       "maxLength": 140,

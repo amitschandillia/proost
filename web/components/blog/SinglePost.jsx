@@ -49,16 +49,20 @@ const SinglePost = (props) => {
     excerpt,
     body,
     readTime,
-    banner: {
-      hash,
-      ext,
-    },
+    banner,
     author: {
       username,
       firstName,
       lastName,
     },
   }] = posts;
+
+  let bannerImg;
+  if(banner) {
+    bannerImg = `https://i.${process.env.THIS_DOMAIN_LONG}/d/${banner.hash}${banner.ext}`;
+  } else {
+    bannerImg = `https://www.${process.env.THIS_DOMAIN_LONG}/_f/images/defaults/post/banner.jpg`;
+  }
 
   return (
     <>
@@ -74,7 +78,7 @@ const SinglePost = (props) => {
           {' '}
 minutes
         </h3>
-        <h5>{`https://i.${process.env.THIS_DOMAIN_LONG}/d/${hash}${ext}`}</h5>
+        <h5>{bannerImg}</h5>
         <h6>
 By:
           {`${firstName} ${lastName} (${username})`}

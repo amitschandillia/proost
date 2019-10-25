@@ -641,68 +641,6 @@
           "readTime": {
             "type": "integer"
           },
-          "author": {
-            "required": [
-              "id",
-              "username",
-              "email",
-              "firstName",
-              "lastName",
-              "thumbnail",
-              "bio",
-              "longBio"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "firstName": {
-                "type": "string"
-              },
-              "lastName": {
-                "type": "string"
-              },
-              "thumbnail": {
-                "type": "string"
-              },
-              "bio": {
-                "type": "string"
-              },
-              "longBio": {
-                "type": "string"
-              },
-              "posts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          },
           "category": {
             "required": [
               "id",
@@ -775,6 +713,67 @@
                 }
               }
             }
+          },
+          "author": {
+            "required": [
+              "id",
+              "username",
+              "email",
+              "firstName",
+              "lastName",
+              "bio",
+              "longBio"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "thumbnail": {
+                "type": "string"
+              },
+              "bio": {
+                "type": "string"
+              },
+              "longBio": {
+                "type": "string"
+              },
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },
@@ -815,9 +814,6 @@
           "readTime": {
             "type": "integer"
           },
-          "author": {
-            "type": "string"
-          },
           "category": {
             "type": "string"
           },
@@ -826,6 +822,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "author": {
+            "type": "string"
           }
         }
       }
