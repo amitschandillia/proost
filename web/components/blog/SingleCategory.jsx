@@ -56,14 +56,14 @@ const SingleCategory = (props) => {
   } = useQuery(
     GET_CATEGORY,
     {
-      variables: { slug: categorySlug, ...getCategoryQueryVars },
+      variables: { where: { slug: categorySlug }, categoryFilter: {isPublished: true, category: {slug_contains: categorySlug}}, ...getCategoryQueryVars },
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
       // more data
       notifyOnNetworkStatusChange: true,
     },
   );
-  //
+
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
 
   if (error) return <div>There was an error!</div>;
@@ -78,9 +78,8 @@ const SingleCategory = (props) => {
     description,
     posts,
   } = category;
-  //
-  const postAggregation = postsConnection.groupBy.category.find(({ key }) => key === _id);
-  const postCount = postAggregation.connection.aggregate.count;
+
+  const postCount = postsConnection.aggregate.count;
   const areMorePosts = posts.length < postCount;
 
   const loadMorePosts = () => {
@@ -116,7 +115,7 @@ const SingleCategory = (props) => {
     <>
       <Head>
         <title>{categorySlug}</title>
-        <meta name="description" content={`Posts categorized under ${categorySlug}`} key="postDescription" />
+        <meta name="description" content={`Posts categorized under ${categorySlug}`} key="categoryDescription" />
       </Head>
       <Grid item className={classes.root}>
         <Typography variant="h3" component="h1" gutterBottom className={classes.name}>{name}</Typography>

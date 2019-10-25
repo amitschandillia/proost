@@ -12,7 +12,7 @@ query categories($limit: Int!, $start: Int!) {
     }
   }
   categoriesConnection {
-    aggregate{
+    aggregate {
       count
     }
   }

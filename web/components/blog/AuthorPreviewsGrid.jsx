@@ -78,22 +78,17 @@ const AuthorPreviewsGrid = (props) => {
 
   return (
     <Grid container spacing={2} direction="row" id="authors-container">
-      {users.map((user) => {
-        if (user.posts.length > 0) {
-          return (
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="author-preview-container">
-              <AuthorPreview
-                username={user.username}
-                firstName={user.firstName}
-                lastName={user.lastName}
-                thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${user.thumbnail.hash}${user.thumbnail.ext}`}
-                posts={user.posts}
-              />
-            </Grid>
-          );
-        }
-        return null;
-      })}
+      {users.map((user) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="author-preview-container">
+          <AuthorPreview
+            username={user.username}
+            firstName={user.firstName}
+            lastName={user.lastName}
+            thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${user.thumbnail.hash}${user.thumbnail.ext}`}
+            posts={user.posts}
+          />
+        </Grid>
+      ))}
     </Grid>
   );
 };

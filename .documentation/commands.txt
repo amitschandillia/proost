@@ -1,52 +1,7 @@
-cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; pm2 logs
-
-cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; pm2 delete web; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
-
-
-cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
-
-
-next-apollo 2.1.3
-
-
-WEB
 cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
 
-WEB-OLD
-cd ~/proost/dev-old/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-old/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
-
-WEB-DEV
-cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=development pm2 start ./server/index.js --name web; pm2 logs
-
-ONLY DEV
-cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api
-
-ONLY DEV (in dev mode)
-cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=development pm2 start server.js --name api
-
-UPDATE/UPGRADE PACKAGES
-sudo apt update; sudo apt upgrade -y; sudo apt update; sudo apt upgrade -y
 
 
-cd ~/proost/dev-beta/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/web-beta/; rm -rf .build; node prepare.js; pm2 flush; clear; yarn build; NODE_ENV=production pm2 start ./server/index.js --name web; pm2 logs
-
-
-cd ~/proost/dev-beta/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/apollo-nextjs/;yarn next build;yarn next start
-
-cd ~/proost/dev-beta/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2 start server.js --name api; cd ~/proost/apollo-nextjs/;yarn build;NODE_ENV=production pm2 start ./server.js --name web; pm2 logs
-
-
-
-
-
-RUN DEV
-cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=development pm2 start server.js --name api
-
-RUN DEV-BETA
-cd ~/proost/dev-beta/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=development pm2 start server.js --name api
-
-RUN DEV-BETA-DEVELOPMENT
-cd ~/proost/dev/; pm2 kill; npm run develop
 
 
 

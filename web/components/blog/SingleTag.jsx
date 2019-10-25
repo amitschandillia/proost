@@ -56,7 +56,7 @@ const SingleTag = (props) => {
   } = useQuery(
     GET_TAG,
     {
-      variables: { slug: tagSlug, ...getTagQueryVars },
+      variables: { where: { slug: tagSlug }, tagFilter: {isPublished: true, tags: {slug_contains: tagSlug}}, ...getTagQueryVars },
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
       // more data
@@ -64,12 +64,12 @@ const SingleTag = (props) => {
     },
   );
 
-  // const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
+  const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
 
   if (error) return <div>There was an error!</div>;
-  if (loading) return <Loading />;
+  if (loading && !loadingMorePosts) return <Loading />;
 
-  const { tags } = data;
+  const { tags, postsConnection } = data;
   if (tags.length === 0) return <div>No data was returned!</div>;
   const [tag] = tags;
   const {
@@ -79,41 +79,49 @@ const SingleTag = (props) => {
     posts,
   } = tag;
 
-  // const postAggregation = postsConnection.groupBy.tag.find(({ key }) => key === _id);
-  // const postCount = postAggregation.connection.aggregate.count;
-  // const areMorePosts = posts.length < postCount;
-  //
-  // const loadMorePosts = () => {
-  //   fetchMore({
-  //     variables: {
-  //       postStart: posts.length,
-  //     },
-  //     updateQuery: (previousResult, { fetchMoreResult }) => {
-  //       if (!fetchMoreResult) {
-  //         return previousResult;
-  //       }
-  //       previousResult.tags[0].posts = [
-  //         ...previousResult.tags[0].posts,
-  //         ...fetchMoreResult.tags[0].posts,
-  //       ];
-  //       return {
-  //         ...previousResult, // Append the new posts results to the old one
-  //         tags: [...previousResult.tags, ...fetchMoreResult.tags],
-  //       };
-  //     },
-  //   });
-  // };
+  const postCount = postsConnection.aggregate.count;
+  const areMorePosts = posts.length < postCount;
+
+  const loadMorePosts = () => {
+    fetchMore({
+      variables: {
+        postStart: posts.length,
+      },
+      updateQuery: (previousResult, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return previousResult;
+        }
+        previousResult.tags[0].posts = [
+          ...previousResult.tags[0].posts,
+          ...fetchMoreResult.tags[0].posts,
+        ];
+        return {
+          ...previousResult, // Append the new posts results to the old one
+          tags: [...previousResult.tags, ...fetchMoreResult.tags],
+        };
+      },
+    });
+  };
 
   return (
     <>
       <Head>
         <title>{tagSlug}</title>
-        <meta name="description" content={`Posts categorized under ${tagSlug}`} key="postDescription" />
+        <meta name="description" content={`Posts categorized under ${tagSlug}`} key="tagDescription" />
       </Head>
       <Grid item className={classes.root}>
         <Typography variant="h3" component="h1" gutterBottom className={classes.name}>{name}</Typography>
         <Typography variant="body1" paragraph>{description}</Typography>
         <PostPreviewsGrid posts={posts} />
+        {areMorePosts && (
+          <div className={classes.more}>
+            {loadingMorePosts ? (
+              <CircularProgress style={{ opacity: 0.3 }} />
+            ) : (
+              <Button color="primary" className={classes.button} onClick={loadMorePosts}>Show more</Button>
+            )}
+          </div>
+        )}
       </Grid>
     </>
   );

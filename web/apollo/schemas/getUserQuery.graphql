@@ -1,6 +1,7 @@
-query users($username: String!, $postLimit: Int!, $postStart: Int!) {
-  users(limit: 1, where: { username: $username }) {
+query users($where: JSON, $postLimit: Int!, $postStart: Int!, $authorFilter: JSON) {
+  users(limit: 1, where: $where) {
     _id
+    username
     firstName
     lastName
     bio
@@ -24,16 +25,9 @@ query users($username: String!, $postLimit: Int!, $postStart: Int!) {
       }
     }
   }
-  postsConnection(where: {isPublished: true}){
-    groupBy{
-      author{
-        key
-        connection{
-          aggregate{
-            count
-          }
-        }
-      }
+  postsConnection(where: $authorFilter){
+    aggregate{
+      count
     }
   }
 }

@@ -78,21 +78,16 @@ const TagPreviewsGrid = (props) => {
 
   return (
     <Grid container spacing={2} direction="row" id="tags-container">
-      {tags.map((tag) => {
-        if (tag.posts.length > 0) {
-          return (
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="tag-preview-container">
-              <TagPreview
-                slug={tag.slug}
-                name={tag.name}
-                thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${tag.thumbnail.hash}${tag.thumbnail.ext}`}
-                posts={tag.posts}
-              />
-            </Grid>
-          );
-        }
-        return null;
-      })}
+      {tags.map((tag) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="tag-preview-container">
+          <TagPreview
+            slug={tag.slug}
+            name={tag.name}
+            thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${tag.thumbnail.hash}${tag.thumbnail.ext}`}
+            posts={tag.posts}
+          />
+        </Grid>
+      ))}
     </Grid>
   );
 };

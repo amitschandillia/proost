@@ -1,5 +1,5 @@
-query posts($slug: String!) {
-  posts(limit: 1, where: { slug: $slug }) {
+query posts($where: JSON) {
+  posts(limit: 1, where: $where) {
     _id
     title
     secondaryTitle

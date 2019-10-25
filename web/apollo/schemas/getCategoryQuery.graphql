@@ -1,5 +1,5 @@
-query categories($slug: String!, $postLimit: Int!, $postStart: Int!) {
-  categories(limit: 1, where: { slug: $slug }) {
+query tags($where: JSON, $postLimit: Int!, $postStart: Int!, $categoryFilter: JSON) {
+  categories(limit: 1, where: $where) {
     _id
     name
     description
@@ -24,16 +24,9 @@ query categories($slug: String!, $postLimit: Int!, $postStart: Int!) {
       }
     }
   }
-  postsConnection(where: {isPublished: true}){
-    groupBy{
-      category{
-        key
-        connection{
-          aggregate{
-            count
-          }
-        }
-      }
+  postsConnection(where: $categoryFilter){
+    aggregate{
+      count
     }
   }
 }

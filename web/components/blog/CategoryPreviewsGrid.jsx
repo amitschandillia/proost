@@ -78,21 +78,16 @@ const CategoryPreviewsGrid = (props) => {
 
   return (
     <Grid container spacing={2} direction="row" id="categories-container">
-      {categories.map((category) => {
-        if (category.posts.length > 0) {
-          return (
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="category-preview-container">
-              <CategoryPreview
-                slug={category.slug}
-                name={category.name}
-                thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${category.thumbnail.hash}${category.thumbnail.ext}`}
-                posts={category.posts}
-              />
-            </Grid>
-          );
-        }
-        return null;
-      })}
+      {categories.map((category) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="category-preview-container">
+          <CategoryPreview
+            slug={category.slug}
+            name={category.name}
+            thumbnail={`https://i.${process.env.THIS_DOMAIN_LONG}/d/${category.thumbnail.hash}${category.thumbnail.ext}`}
+            posts={category.posts}
+          />
+        </Grid>
+      ))}
     </Grid>
   );
 };

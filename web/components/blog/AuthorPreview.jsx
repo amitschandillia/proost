@@ -49,19 +49,26 @@ const AuthorPreview = (props) => {
     posts,
   } = props;
 
+  let postsElem;
+  if(posts.length > 0) {
+    postsElem = posts.map((post, index) => (
+      <Typography variant="body2" color="textSecondary">
+        <span className={classes.index}>{`${index + 1}.`}</span>
+        <LinkTo
+          href={`/blog?postSlug=${post.slug}`}
+          as={`/blog/posts/${post.slug}`}
+        >
+          {post.title}
+        </LinkTo>
+      </Typography>
+    ));
+  } else {
+    postsElem = <Typography variant="body2" color="textSecondary">No posts published yet...</Typography>;
+  }
+
   const authoredPosts = (
     <div className={classes.authoredPosts}>
-      {posts.map((post, index) => (
-        <Typography variant="body2" color="textSecondary">
-          <span className={classes.index}>{`${index + 1}.`}</span>
-          <LinkTo
-            href={`/blog?postSlug=${post.slug}`}
-            as={`/blog/posts/${post.slug}`}
-          >
-            {post.title}
-          </LinkTo>
-        </Typography>
-      ))}
+      {postsElem}
     </div>
   );
 

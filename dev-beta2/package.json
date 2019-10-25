@@ -1,0 +1,56 @@
+{
+  "name": "dev",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application.",
+  "main": "./server.js",
+  "scripts": {
+    "setup": "cd admin && npm run setup",
+    "start": "node server.js",
+    "strapi": "node_modules/strapi/bin/strapi.js",
+    "lint": "node_modules/.bin/eslint api/**/*.js config/**/*.js plugins/**/*.js",
+    "postinstall": "node node_modules/strapi/lib/utils/post-install.js",
+    "test": "snyk test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-react": "^7.7.0"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "html2plaintext": "^2.1.2",
+    "lodash": "^4.17.14",
+    "markdown": "^0.5.0",
+    "snyk": "^1.143.4",
+    "strapi": "^3.0.0-alpha.26.2",
+    "strapi-hook-mongoose": "3.0.0-alpha.25.2",
+    "strapi-provider-upload-aws-s3": "^3.0.0-alpha.15"
+  },
+  "author": {
+    "name": "ubuntu",
+    "email": "",
+    "url": ""
+  },
+  "maintainers": [
+    {
+      "name": "ubuntu",
+      "email": "",
+      "url": ""
+    }
+  ],
+  "strapi": {
+    "packageManager": "npm",
+    "uuid": "feb5a36a-eb65-471e-8efc-d1cec2fe5ad8"
+  },
+  "engines": {
+    "node": ">= 10.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "license": "MIT",
+  "snyk": true
+}

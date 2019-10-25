@@ -1,5 +1,5 @@
-query tags($slug: String!, $postLimit: Int!, $postStart: Int!) {
-  tags(limit: 1, where: { slug: $slug }) {
+query tags($where: JSON, $postLimit: Int!, $postStart: Int!, $tagFilter: JSON) {
+  tags(limit: 1, where: $where) {
     _id
     name
     description
@@ -26,6 +26,11 @@ query tags($slug: String!, $postLimit: Int!, $postStart: Int!) {
         firstName
         lastName
       }
+    }
+  }
+  postsConnection(where: $tagFilter){
+    aggregate{
+      count
     }
   }
 }

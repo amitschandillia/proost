@@ -31,7 +31,7 @@ const SinglePost = (props) => {
   } = useQuery(
     GET_POST,
     {
-      variables: { slug },
+      variables: { where: { slug } },
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
       // more data

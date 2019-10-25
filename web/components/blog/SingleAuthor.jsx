@@ -56,7 +56,8 @@ const SingleAuthor = (props) => {
   } = useQuery(
     GET_USER,
     {
-      variables: { username: authorSlug, ...getUserQueryVars },
+      variables: { where: { username: authorSlug }, authorFilter: {isPublished: true, author: {username_contains: authorSlug}}, ...getUserQueryVars },
+      // variables: { username: authorSlug, ...getUserQueryVars },
       // Setting this value to true will make the component rerender when
       // the "networkStatus" changes, so we'd know if it is fetching
       // more data
@@ -79,8 +80,7 @@ const SingleAuthor = (props) => {
     posts,
   } = user;
 
-  const postAggregation = postsConnection.groupBy.author.find(({ key }) => key === _id);
-  const postCount = postAggregation.connection.aggregate.count;
+  const postCount = postsConnection.aggregate.count;
   const areMorePosts = posts.length < postCount;
 
   const loadMorePosts = () => {
@@ -116,7 +116,7 @@ const SingleAuthor = (props) => {
     <>
       <Head>
         <title>{`${firstName} ${lastName}`}</title>
-        <meta name="description" content={`Posts by ${firstName} ${lastName}`} key="postDescription" />
+        <meta name="description" content={`Posts by ${firstName} ${lastName}`} key="categoryDescription" />
       </Head>
       <Grid item className={classes.root}>
         <Typography variant="h3" component="h1" gutterBottom className={classes.name}>
