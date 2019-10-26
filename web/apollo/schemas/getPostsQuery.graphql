@@ -2,6 +2,7 @@ query posts($limit: Int!, $start: Int!) {
   posts(sort: "createdAt:DESC", limit: $limit, start: $start, where: { isPublished: true }) {
     _id
     title
+    secondaryTitle
     excerpt
     slug
     createdAt

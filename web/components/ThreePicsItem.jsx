@@ -8,10 +8,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-const bg1 = '/_f/images/home/row1/a.jpg';
-const bg2 = '/_f/images/home/row1/b.jpg';
-const bg3 = '/_f/images/home/row1/c.jpg';
-
 const styles = (theme) => ({
   root: {
     position: 'relative',

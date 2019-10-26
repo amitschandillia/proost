@@ -2,25 +2,25 @@
 
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
-import Container from '@material-ui/core/Container';
 
+import withApollo from '../apollo';
+import ThreeLatest from '../components/blog/ThreeLatest';
+import Layout from '../components/Layout';
+import LinkTo from '../components/LinkTo';
+import PageBody from '../components/PageBody';
+import Slogan from '../components/Slogan';
+import Testimonials from '../components/Testimonials';
 // import Banner from '../components/Banner';
 import VideoBanner from '../components/VideoBanner';
-import LinkTo from '../components/LinkTo';
-
-import Layout from '../components/Layout';
-import PageBody from '../components/PageBody';
-import TopThree from '../components/TopThree';
-import Slogan from '../components/Slogan';
 import WhitespaceGrid from '../components/WhitespaceGrid';
 import WidescreenBanner from '../components/WidescreenBanner';
-import Testimonials from '../components/Testimonials';
 
 const styles = (theme) => ({
   root: {
@@ -47,29 +47,29 @@ const Index = (props) => {
   const description = 'This is the description for the homepage';
   return (
     <Layout
-      title = {title}
-      description = {description}
-      pageURL = {pageURL}
-      transparent = {true}
+      title={title}
+      description={description}
+      pageURL={pageURL}
+      transparent
     >
       <VideoBanner>
         <Typography variant="h5">This is a text</Typography>
       </VideoBanner>
       <PageBody nomargin>
-        {/*Whitespace: Slogan*/}
+        {/* Whitespace: Slogan */}
         <Slogan />
-        {/*B/W boxes: Top 3 blog posts*/}
-        <TopThree />
-        {/*Whitespace grid*/}
+        {/* B/W boxes: Top 3 blog posts */}
+        <ThreeLatest />
+        {/* Whitespace grid */}
         <WhitespaceGrid />
-        {/*Widescreen banner: Advertisement*/}
+        {/* Widescreen banner: Advertisement */}
         <WidescreenBanner>
-          <div style={{textAlign: 'center'}}>
+          <div style={{ textAlign: 'center' }}>
             <Typography variant="h2">This is just random</Typography>
             <Typography variant="h5">And this is even more random...just to fill the banner out!</Typography>
           </div>
         </WidescreenBanner>
-        {/*Whitespace: Testimonials*/}
+        {/* Whitespace: Testimonials */}
         <Testimonials />
       </PageBody>
     </Layout>
@@ -97,7 +97,12 @@ const mapStateToProps = (state) => ({
   // ip: state.ip,
 });
 
+// export default connect(
+//   mapStateToProps,
+//   null,
+// )(withStyles(styles)(Index));
+
 export default connect(
   mapStateToProps,
   null,
-)(withStyles(styles)(Index));
+)(withStyles(styles)(withApollo(Index)));
