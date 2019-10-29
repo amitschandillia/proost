@@ -71,13 +71,12 @@ const ThreeLatest = (props) => {
         } else {
           thumbnailImg = `https://www.${process.env.THIS_DOMAIN_LONG}/_f/images/defaults/post/thumbnail.jpg`;
         }
-        const postLink = `https://www.${process.env.THIS_DOMAIN_LONG}/blog/posts/${post.slug}`;
         const minute = post.readTime > 1 ? 'minutes' : 'minute';
         const author = `${post.author.firstName} ${post.author.lastName}`;
 
         return (
           <ThreePicsItem picture={thumbnailImg}>
-            <LinkTo href={postLink} hoverNone>
+            <LinkTo hoverNone href={`/blog?postSlug=${post.slug}`} as={`/blog/posts/${post.slug}`}>
               <Typography variant="h4" className={classes.title}>{post.title}</Typography>
             </LinkTo>
             <Typography variant="h5" className={classes.subTitle}>{post.secondaryTitle}</Typography>
