@@ -97,7 +97,9 @@ const ThreeLatest = (props) => {
                 <Grid container direction="row" alignItems="center">
                   <Grid item><PersonIcon /></Grid>
                   <Grid item>
-                    <Typography gutterBottom variant="body2" className={classes.iconText}>{author}</Typography>
+                    <LinkTo hoverNone href={`/blog/authors?authorSlug=${post.author.username}`} as={`/blog/authors/${post.author.username}`}>
+                      <Typography gutterBottom variant="body2" className={classes.iconText}>{author}</Typography>
+                    </LinkTo>
                   </Grid>
                 </Grid>
               </Grid>

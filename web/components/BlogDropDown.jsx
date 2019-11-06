@@ -25,6 +25,10 @@ const styles = (theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  container: {
+    width: 'auto',
+    margin: 'auto',
+  },
 });
 
 const BlogDropDown = (props) => {
@@ -47,7 +51,7 @@ const BlogDropDown = (props) => {
       onClose={closeBlogDropDown}
       PopoverClasses={{ paper: classes.popoverPaper }}
     >
-      <Grid container spacing={3}>
+      <Grid container spacing={3} className={classes.container}>
         <Grid item xs={3}>
           <Paper className={classes.paper}>
             Latest Posts
