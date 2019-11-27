@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -5,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { NetworkStatus } from 'apollo-client';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import getUsersQuery from '../../apollo/schemas/getUsersQuery.graphql';
 import AuthorPreviewsGrid from './AuthorPreviewsGrid';
@@ -33,7 +35,11 @@ export const getUsersQueryVars = {
 };
 
 const AuthorsList = (props) => {
-  const { classes } = props;
+  const {
+    classes,
+    closeMenu,
+  } = props;
+
   const {
     loading,
     error,
@@ -50,6 +56,8 @@ const AuthorsList = (props) => {
       notifyOnNetworkStatusChange: true,
     },
   );
+
+  useEffect(() => closeMenu());
 
   const loadingMoreUsers = networkStatus === NetworkStatus.fetchMore;
 
@@ -101,4 +109,19 @@ AuthorsList.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(AuthorsList);
+// export default withStyles(styles)(AuthorsList);
+
+const mapStateToProps = (state) => ({
+  // ip: state.ip,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  closeMenu: () => {
+    dispatch({ type: 'OPENBLOGMENU', payload: false });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(AuthorsList));

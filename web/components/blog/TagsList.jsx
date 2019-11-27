@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -5,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { NetworkStatus } from 'apollo-client';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import getTagsQuery from '../../apollo/schemas/getTagsQuery.graphql';
 import TagPreviewsGrid from './TagPreviewsGrid';
@@ -33,7 +35,11 @@ export const getTagsQueryVars = {
 };
 
 const TagsList = (props) => {
-  const { classes } = props;
+  const {
+    classes,
+    closeMenu,
+  } = props;
+
   const {
     loading,
     error,
@@ -50,6 +56,8 @@ const TagsList = (props) => {
       notifyOnNetworkStatusChange: true,
     },
   );
+
+  useEffect(() => closeMenu());
 
   const loadingMoreTags = networkStatus === NetworkStatus.fetchMore;
 
@@ -100,4 +108,19 @@ TagsList.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(TagsList);
+// export default withStyles(styles)(TagsList);
+
+const mapStateToProps = (state) => ({
+  // ip: state.ip,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  closeMenu: () => {
+    dispatch({ type: 'OPENBLOGMENU', payload: false });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(TagsList));

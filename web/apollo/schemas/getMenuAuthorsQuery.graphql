@@ -1,0 +1,16 @@
+query {
+  users(sort: "createdAt:DESC", limit: 5) {
+    _id
+    username
+    firstName
+    lastName
+    createdAt
+  }
+  usersConnection{
+    groupBy{
+      username{
+        key
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+query {
+  tags(sort: "createdAt:DESC", limit: 5) {
+    _id
+    slug
+    name
+    createdAt
+  }
+  tagsConnection {
+    aggregate{
+      count
+    }
+  }
+}

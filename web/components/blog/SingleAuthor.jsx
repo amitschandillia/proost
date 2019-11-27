@@ -1,4 +1,5 @@
 /* eslint no-param-reassign: 0 */
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -8,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { NetworkStatus } from 'apollo-client';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import getUserQuery from '../../apollo/schemas/getUserQuery.graphql';
 import Loading from './Loading';
@@ -45,6 +47,7 @@ const SingleAuthor = (props) => {
   const {
     classes,
     authorSlug,
+    closeMenu,
   } = props;
 
   const {
@@ -64,6 +67,8 @@ const SingleAuthor = (props) => {
       notifyOnNetworkStatusChange: true,
     },
   );
+
+  useEffect(() => closeMenu());
 
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
 
@@ -150,4 +155,19 @@ SingleAuthor.propTypes = {
   authorSlug: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(SingleAuthor);
+// export default withStyles(styles)(SingleAuthor);
+
+const mapStateToProps = (state) => ({
+  // ip: state.ip,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  closeMenu: () => {
+    dispatch({ type: 'OPENBLOGMENU', payload: false });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(SingleAuthor));

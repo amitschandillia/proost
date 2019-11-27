@@ -97,11 +97,6 @@ const mapStateToProps = (state) => ({
   // ip: state.ip,
 });
 
-// export default connect(
-//   mapStateToProps,
-//   null,
-// )(withStyles(styles)(Index));
-
 export default connect(
   mapStateToProps,
   null,

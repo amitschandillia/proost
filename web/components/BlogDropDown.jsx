@@ -7,6 +7,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
+import MenuPosts from './blog/MenuPosts';
+import MenuAuthors from './blog/MenuAuthors';
+import MenuCategories from './blog/MenuCategories';
+import MenuTags from './blog/MenuTags';
+
 const styles = (theme) => ({
   root: {
     marginTop: theme.spacing(1.5),
@@ -24,6 +29,8 @@ const styles = (theme) => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
+    boxShadow: 'none',
+    border: '1px solid lightgray',
   },
   container: {
     width: 'auto',
@@ -52,24 +59,24 @@ const BlogDropDown = (props) => {
       PopoverClasses={{ paper: classes.popoverPaper }}
     >
       <Grid container spacing={3} className={classes.container}>
-        <Grid item xs={3}>
+        <Grid item xs={6}>
           <Paper className={classes.paper}>
-            Latest Posts
+            <MenuPosts />
           </Paper>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Paper className={classes.paper}>
-            Authors
+            <MenuAuthors />
           </Paper>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Paper className={classes.paper}>
-            Categories
+            <MenuCategories />
           </Paper>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={2}>
           <Paper className={classes.paper}>
-            Tags
+            <MenuTags />
           </Paper>
         </Grid>
       </Grid>
@@ -83,6 +90,7 @@ BlogDropDown.propTypes = {
   closeBlogDropDown: PropTypes.func.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
+    container: PropTypes.string,
     dialogTitle: PropTypes.string,
     textField: PropTypes.string,
     paper: PropTypes.string,

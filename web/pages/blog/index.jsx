@@ -1,6 +1,7 @@
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { connect } from 'react-redux';
 
 import withApollo from '../../apollo';
 import PostsList from '../../components/blog/PostsList';
@@ -52,4 +53,9 @@ Blog.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(withApollo(Blog));
+// export default withStyles(styles)(withApollo(Blog));
+
+export default connect(
+  mapStateToProps,
+  null,
+)(withStyles(styles)(withApollo(Blog)));

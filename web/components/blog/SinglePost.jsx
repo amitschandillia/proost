@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -5,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
+import { connect } from 'react-redux';
 
 import getPostQuery from '../../apollo/schemas/getPostQuery.graphql';
 import Loading from './Loading';
@@ -23,6 +25,7 @@ const SinglePost = (props) => {
   const {
     classes,
     slug,
+    closeMenu,
   } = props;
   const {
     loading,
@@ -38,6 +41,14 @@ const SinglePost = (props) => {
       notifyOnNetworkStatusChange: true,
     },
   );
+
+  // useEffect(() => {
+  //   closeMenu();
+  //   return () => closeMenu();
+  // });
+
+  useEffect(() => closeMenu());
+
 
   if (error) return <div>There was an error!</div>;
   if (loading) return <Loading />;
@@ -99,4 +110,19 @@ SinglePost.propTypes = {
   slug: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(SinglePost);
+// export default withStyles(styles)(SinglePost);
+
+const mapStateToProps = (state) => ({
+  // ip: state.ip,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  closeMenu: () => {
+    dispatch({ type: 'OPENBLOGMENU', payload: false });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(SinglePost));

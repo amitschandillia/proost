@@ -91,8 +91,6 @@ const PostPreviewsGrid = (props) => {
             <PostPreview
               title={post.title}
               slug={post.slug}
-              urlPost={`${process.env.BASE_URL}/blog/posts/${post.slug}`}
-              urlAuthor={`${process.env.BASE_URL}/blog/authors/${post.author.username}`}
               excerpt={post.excerpt}
               thumbnail={thumbnailImg}
               author={`${post.author.firstName} ${post.author.lastName}`}

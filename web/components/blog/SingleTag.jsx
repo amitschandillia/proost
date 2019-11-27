@@ -1,4 +1,5 @@
 /* eslint no-param-reassign: 0 */
+import { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -8,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { NetworkStatus } from 'apollo-client';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import getTagQuery from '../../apollo/schemas/getTagQuery.graphql';
 import Loading from './Loading';
@@ -45,6 +47,7 @@ const SingleTag = (props) => {
   const {
     classes,
     tagSlug,
+    closeMenu,
   } = props;
 
   const {
@@ -63,6 +66,8 @@ const SingleTag = (props) => {
       notifyOnNetworkStatusChange: true,
     },
   );
+
+  useEffect(() => closeMenu());
 
   const loadingMorePosts = networkStatus === NetworkStatus.fetchMore;
 
@@ -137,4 +142,19 @@ SingleTag.propTypes = {
   tagSlug: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(SingleTag);
+// export default withStyles(styles)(SingleTag);
+
+const mapStateToProps = (state) => ({
+  // ip: state.ip,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  closeMenu: () => {
+    dispatch({ type: 'OPENBLOGMENU', payload: false });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(SingleTag));

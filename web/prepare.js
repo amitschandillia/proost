@@ -48,7 +48,7 @@ function walkSync(currentDirPath, callback) {
 walkSync('./pages/', (filePath) => {
   const cachedItem = filePath.substr(5);
   if (cachedItem.indexOf('_') === -1) {
-    let pageName = cachedItem.substr(0, cachedItem.length - 4);
+    let pageName = cachedItem.substr(0, cachedItem.length - 4).replace(/\\/g, '/');
     if(pageName === '/blog/index') { pageName = '/blog'; }
     if(pageName === '/blog/authors/index') { pageName = '/blog/authors'; }
     cachedItems.push(pageName);
@@ -57,7 +57,7 @@ walkSync('./pages/', (filePath) => {
 // Cache favicons
 const faviconList = './static/brand/favicons';
 walkSync(faviconList, (filePath) => {
-  const cachedItem = filePath.substr(faviconList.length - 1);
+  const cachedItem = filePath.substr(faviconList.length - 1).replace(/\\/g, '/');
   if (!(cachedItem === 'html_code.html' || cachedItem === 'README.md')) {
     cachedItems.push(cachedItem);
   }
@@ -65,25 +65,25 @@ walkSync(faviconList, (filePath) => {
 // Cache pwa icons
 const pwaList = './static/brand/pwa';
 walkSync(pwaList, (filePath) => {
-  const cachedItem = filePath.substr(pwaList.length - 1);
+  const cachedItem = filePath.substr(pwaList.length - 1).replace(/\\/g, '/');
   cachedItems.push(cachedItem);
 });
 // Cache images
 const imageList = './static/images';
 walkSync(imageList, (filePath) => {
-  const cachedItem = filePath.substr(imageList.length - 1);
+  const cachedItem = filePath.substr(imageList.length - 1).replace(/\\/g, '/');
   cachedItems.push(`/_f/images/${cachedItem}`);
 });
 // Cache media
 const mediaList = './static/media';
 walkSync(mediaList, (filePath) => {
-  const cachedItem = filePath.substr(mediaList.length - 1);
+  const cachedItem = filePath.substr(mediaList.length - 1).replace(/\\/g, '/');
   cachedItems.push(`/_f/media/${cachedItem}`);
 });
 // Cache fonts
 const fontList = './static/fonts';
 walkSync(fontList, (filePath) => {
-  const cachedItem = filePath.substr(fontList.length - 1);
+  const cachedItem = filePath.substr(fontList.length - 1).replace(/\\/g, '/');
   if (!(cachedItem.substr(cachedItem.length - 4) === 'scss')) {
     cachedItems.push(`/_f/fonts/${cachedItem}`);
   }

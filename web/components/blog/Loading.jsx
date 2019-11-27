@@ -6,15 +6,25 @@ import PropTypes from 'prop-types';
 const styles = (theme) => ({
   root: {
     textAlign: 'center',
+    opacity: 0.3,
+  },
+  sizing: {
     padding: theme.spacing(25, 10),
     width: '100vw',
-    opacity: 0.3,
+  },
+  sizingContained: {
+    padding: theme.spacing(12, 5),
+    width: '100%',
   },
 });
 const Loading = (props) => {
-  const { classes } = props;
+  const {
+    classes,
+    contained = false,
+  } = props;
+  let sizing = contained ? classes.sizingContained : classes.sizing;
   return (
-    <Grid item className={classes.root}>
+    <Grid item className={[classes.root, sizing].join(' ')}>
       <CircularProgress />
     </Grid>
   );
