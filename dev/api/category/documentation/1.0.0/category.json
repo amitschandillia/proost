@@ -513,8 +513,7 @@
           "id",
           "name",
           "description",
-          "longDescription",
-          "slug"
+          "longDescription"
         ],
         "properties": {
           "id": {
@@ -574,8 +573,8 @@
               "provider": {
                 "type": "string"
               },
-              "public_id": {
-                "type": "string"
+              "provider_metadata": {
+                "type": "object"
               },
               "related": {
                 "type": "string"
@@ -589,10 +588,8 @@
                 "id",
                 "title",
                 "secondaryTitle",
-                "slug",
                 "body",
-                "excerpt",
-                "isPublished"
+                "excerpt"
               ],
               "properties": {
                 "id": {
@@ -625,6 +622,9 @@
                 "readTime": {
                   "type": "integer"
                 },
+                "author": {
+                  "type": "string"
+                },
                 "category": {
                   "type": "string"
                 },
@@ -633,9 +633,6 @@
                   "items": {
                     "type": "string"
                   }
-                },
-                "author": {
-                  "type": "string"
                 }
               }
             }
@@ -646,8 +643,7 @@
         "required": [
           "name",
           "description",
-          "longDescription",
-          "slug"
+          "longDescription"
         ],
         "properties": {
           "name": {

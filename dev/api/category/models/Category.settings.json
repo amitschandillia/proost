@@ -31,7 +31,6 @@
     },
     "slug": {
       "unique": true,
-      "required": true,
       "type": "string"
     },
     "thumbnail": {

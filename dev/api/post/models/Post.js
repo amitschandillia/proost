@@ -2,6 +2,7 @@
 
 const markdown = require( "markdown" ).markdown;
 const h2p = require('html2plaintext');
+const slugify = require('slugify');
 
 function readTime(str) {
   let newStr = h2p(markdown.toHTML(str));
@@ -20,11 +21,17 @@ module.exports = {
   // Before saving a value.
   // Fired before an `insert` or `update` query.
   beforeSave: async (model) => {
-    if (model.slug) {
-      model.slug = model.slug.replace(/ /g, '-').toLowerCase();
-    }
+    // Generate read time
     if (model.body) {
       model.readTime = readTime(model.body);
+    }
+    // Generate slug
+    if(model.title) {
+      if(!model.slug) {
+        model.slug = slugify(model.title).toLowerCase().trim();
+      } else if(model.slug.trim().length < 1) {
+        model.slug = slugify(model.title).toLowerCase().trim();
+      }
     }
   },
 
@@ -58,15 +65,23 @@ module.exports = {
   // Before updating a value.
   // Fired before an `update` query.
   beforeUpdate: async (model) => {
-    if (model.getUpdate().slug) {
-      model.update({
-        slug: model.getUpdate().slug.replace(/ /g, '-').toLowerCase()
-      });
-    }
+    // Generate read time
     if (model.getUpdate().body) {
       model.update({
         readTime:  readTime(model.getUpdate().body)
       });
+    }
+    // Generate slug
+    if(model.getUpdate().title) {
+      if(!model.getUpdate().slug) {
+        model.update({
+          slug: slugify(model.getUpdate().title).toLowerCase().trim(),
+        });
+      } else if(model.getUpdate().slug.trim().length < 1) {
+        model.update({
+          slug: slugify(model.getUpdate().title).toLowerCase().trim(),
+        });
+      }
     }
   },
 

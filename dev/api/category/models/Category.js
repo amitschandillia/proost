@@ -1,5 +1,7 @@
 'use strict';
 
+const slugify = require('slugify');
+
 /**
  * Lifecycle callbacks for the `Category` model.
  */
@@ -7,7 +9,15 @@
 module.exports = {
   // Before saving a value.
   // Fired before an `insert` or `update` query.
-  // beforeSave: async (model) => {},
+  beforeSave: async (model) => {
+    if(model.name) {
+      if(!model.slug) {
+        model.slug = slugify(model.name).toLowerCase().trim();
+      } else if(model.slug.trim().length < 1) {
+        model.slug = slugify(model.name).toLowerCase().trim();
+      }
+    }
+  },
 
   // After saving a value.
   // Fired after an `insert` or `update` query.
@@ -38,7 +48,19 @@ module.exports = {
 
   // Before updating a value.
   // Fired before an `update` query.
-  // beforeUpdate: async (model) => {},
+  beforeUpdate: async (model) => {
+    if(model.getUpdate().name) {
+      if(!model.getUpdate().slug) {
+        model.update({
+          slug: slugify(model.getUpdate().name).toLowerCase().trim(),
+        });
+      } else if(model.getUpdate().slug.trim().length < 1) {
+        model.update({
+          slug: slugify(model.getUpdate().name).toLowerCase().trim(),
+        });
+      }
+    }
+  },
 
   // After updating a value.
   // Fired after an `update` query.

@@ -513,10 +513,8 @@
           "id",
           "title",
           "secondaryTitle",
-          "slug",
           "body",
-          "excerpt",
-          "isPublished"
+          "excerpt"
         ],
         "properties": {
           "id": {
@@ -581,8 +579,8 @@
               "provider": {
                 "type": "string"
               },
-              "public_id": {
-                "type": "string"
+              "provider_metadata": {
+                "type": "object"
               },
               "related": {
                 "type": "string"
@@ -627,8 +625,8 @@
               "provider": {
                 "type": "string"
               },
-              "public_id": {
-                "type": "string"
+              "provider_metadata": {
+                "type": "object"
               },
               "related": {
                 "type": "string"
@@ -640,79 +638,6 @@
           },
           "readTime": {
             "type": "integer"
-          },
-          "category": {
-            "required": [
-              "id",
-              "name",
-              "description",
-              "longDescription",
-              "slug"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "longDescription": {
-                "type": "string"
-              },
-              "slug": {
-                "type": "string"
-              },
-              "thumbnail": {
-                "type": "string"
-              },
-              "posts": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id",
-                "name",
-                "description",
-                "longDescription",
-                "slug"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "description": {
-                  "type": "string"
-                },
-                "longDescription": {
-                  "type": "string"
-                },
-                "slug": {
-                  "type": "string"
-                },
-                "thumbnail": {
-                  "type": "string"
-                },
-                "posts": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                }
-              }
-            }
           },
           "author": {
             "required": [
@@ -774,6 +699,77 @@
                 }
               }
             }
+          },
+          "category": {
+            "required": [
+              "id",
+              "name",
+              "description",
+              "longDescription"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "longDescription": {
+                "type": "string"
+              },
+              "slug": {
+                "type": "string"
+              },
+              "thumbnail": {
+                "type": "string"
+              },
+              "posts": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id",
+                "name",
+                "description",
+                "longDescription"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "longDescription": {
+                  "type": "string"
+                },
+                "slug": {
+                  "type": "string"
+                },
+                "thumbnail": {
+                  "type": "string"
+                },
+                "posts": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -781,10 +777,8 @@
         "required": [
           "title",
           "secondaryTitle",
-          "slug",
           "body",
-          "excerpt",
-          "isPublished"
+          "excerpt"
         ],
         "properties": {
           "title": {
@@ -814,6 +808,9 @@
           "readTime": {
             "type": "integer"
           },
+          "author": {
+            "type": "string"
+          },
           "category": {
             "type": "string"
           },
@@ -822,9 +819,6 @@
             "items": {
               "type": "string"
             }
-          },
-          "author": {
-            "type": "string"
           }
         }
       }

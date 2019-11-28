@@ -28,7 +28,6 @@
     },
     "slug": {
       "unique": true,
-      "required": true,
       "type": "string"
     },
     "body": {
@@ -52,11 +51,15 @@
       "plugin": "upload"
     },
     "isPublished": {
-      "required": true,
       "type": "boolean"
     },
     "readTime": {
       "type": "integer"
+    },
+    "author": {
+      "model": "user",
+      "via": "posts",
+      "plugin": "users-permissions"
     },
     "category": {
       "model": "category",
@@ -64,13 +67,8 @@
     },
     "tags": {
       "collection": "tag",
-      "dominant": true,
-      "via": "posts"
-    },
-    "author": {
-      "model": "user",
       "via": "posts",
-      "plugin": "users-permissions"
+      "dominant": true
     }
   }
 }
