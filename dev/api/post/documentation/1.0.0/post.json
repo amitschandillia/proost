@@ -770,6 +770,10 @@
                 }
               }
             }
+          },
+          "views": {
+            "type": "integer",
+            "default": ""
           }
         }
       },
@@ -819,6 +823,10 @@
             "items": {
               "type": "string"
             }
+          },
+          "views": {
+            "type": "integer",
+            "default": ""
           }
         }
       }

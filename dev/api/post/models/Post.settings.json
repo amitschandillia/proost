@@ -69,6 +69,10 @@
       "collection": "tag",
       "via": "posts",
       "dominant": true
+    },
+    "views": {
+      "type": "integer",
+      "default": ""
     }
   }
 }

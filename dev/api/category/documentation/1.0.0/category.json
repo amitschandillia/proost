@@ -633,6 +633,9 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "views": {
+                  "type": "integer"
                 }
               }
             }

@@ -3,6 +3,7 @@
 const markdown = require( "markdown" ).markdown;
 const h2p = require('html2plaintext');
 const slugify = require('slugify');
+const randomInt = require('random-int');
 
 function readTime(str) {
   let newStr = h2p(markdown.toHTML(str));
@@ -33,6 +34,7 @@ module.exports = {
         model.slug = slugify(model.title).toLowerCase().trim();
       }
     }
+    model.views = randomInt(53, 119);
   },
 
   // After saving a value.
@@ -48,7 +50,9 @@ module.exports = {
   // afterFetchAll: async (model, results) => {},
 
   // Fired before a `fetch` operation.
-  // beforeFetch: async (model) => {},
+  beforeFetch: async (model) => {
+    model.views += 1;
+  },
 
   // After fetching a value.
   // Fired after a `fetch` operation.
