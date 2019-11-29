@@ -9,6 +9,7 @@ query tags($where: JSON, $postLimit: Int!, $postStart: Int!, $tagFilter: JSON) {
       slug
       createdAt
       readTime
+      views
       thumbnail {
         hash
         ext

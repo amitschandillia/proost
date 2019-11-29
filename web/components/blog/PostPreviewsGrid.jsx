@@ -98,6 +98,7 @@ const PostPreviewsGrid = (props) => {
               category={post.category}
               tags={post.tags}
               readTime={post.readTime}
+              views={post.views}
             />
           </Grid>
         );

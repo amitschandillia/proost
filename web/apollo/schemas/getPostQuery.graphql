@@ -6,6 +6,7 @@ query posts($where: JSON) {
     excerpt
     body
     readTime
+    views
     banner {
       hash
       ext

@@ -50,9 +50,7 @@ module.exports = {
   // afterFetchAll: async (model, results) => {},
 
   // Fired before a `fetch` operation.
-  beforeFetch: async (model) => {
-    model.views += 1;
-  },
+  // beforeFetch: async (model) => {},
 
   // After fetching a value.
   // Fired after a `fetch` operation.

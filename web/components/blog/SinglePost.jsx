@@ -7,6 +7,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import getPostQuery from '../../apollo/schemas/getPostQuery.graphql';
 import Loading from './Loading';
@@ -60,6 +61,7 @@ const SinglePost = (props) => {
     excerpt,
     body,
     readTime,
+    views,
     banner,
     author: {
       username,
@@ -94,6 +96,7 @@ minutes
 By:
           {`${firstName} ${lastName} (${username})`}
         </h6>
+        <p><VisibilityIcon /> {views}</p>
         <ReactMarkdown source={body} renderers={renderers} />
       </Grid>
     </>

@@ -11,6 +11,7 @@ query users($where: JSON, $postLimit: Int!, $postStart: Int!, $authorFilter: JSO
       slug
       createdAt
       readTime
+      views
       thumbnail {
         hash
         ext

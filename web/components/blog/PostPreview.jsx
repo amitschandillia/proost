@@ -10,6 +10,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LabelIcon from '@material-ui/icons/Label';
 import ShareIcon from '@material-ui/icons/Share';
 import PropTypes from 'prop-types';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import LinkTo from '../LinkTo';
 
@@ -65,6 +66,7 @@ const PostPreview = (props) => {
     category,
     tags,
     readTime,
+    views,
   } = props;
 
   return (
@@ -88,6 +90,11 @@ const PostPreview = (props) => {
         </Typography>
         <Typography variant="button">
           <LinkTo hoverNone href={`/blog/categories?categorySlug=${category.slug}`} as={`/blog/categories/${category.slug}`}>{category.name}</LinkTo>
+        </Typography>
+        <Typography variant="button" className={classes.divider}>|</Typography>
+        <Typography variant="button" color="textSecondary" style={{ textTransform: 'inherit' }}>
+          <VisibilityIcon className={classes.icon} />
+          {views}
         </Typography>
         <Typography variant="button" className={classes.divider}>|</Typography>
         <Typography variant="button" color="textSecondary" style={{ textTransform: 'inherit' }}>
