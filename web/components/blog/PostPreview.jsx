@@ -12,6 +12,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import PropTypes from 'prop-types';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
+import abbreviateCount from '../../utils/abbreviate-count';
 import LinkTo from '../LinkTo';
 
 const styles = (theme) => ({
@@ -94,7 +95,7 @@ const PostPreview = (props) => {
         <Typography variant="button" className={classes.divider}>|</Typography>
         <Typography variant="button" color="textSecondary" style={{ textTransform: 'inherit' }}>
           <VisibilityIcon className={classes.icon} />
-          {views}
+          {abbreviateCount(views, 1)}
         </Typography>
         <Typography variant="button" className={classes.divider}>|</Typography>
         <Typography variant="button" color="textSecondary" style={{ textTransform: 'inherit' }}>

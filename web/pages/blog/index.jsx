@@ -56,6 +56,6 @@ Blog.propTypes = {
 // export default withStyles(styles)(withApollo(Blog));
 
 export default connect(
-  mapStateToProps,
+  null,
   null,
 )(withStyles(styles)(withApollo(Blog)));
