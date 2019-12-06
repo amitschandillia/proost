@@ -38,6 +38,7 @@ const TagsList = (props) => {
   const {
     classes,
     closeMenu,
+    pageURL,
   } = props;
 
   const {
@@ -86,7 +87,7 @@ const TagsList = (props) => {
 
   return (
     <Grid item className={classes.root}>
-      <TagPreviewsGrid tags={tags} />
+      <TagPreviewsGrid tags={tags} pageURL={pageURL} />
       {areMoreTags && (
         <div className={classes.more}>
           {loadingMoreTags ? (

@@ -48,6 +48,7 @@ const SingleAuthor = (props) => {
     classes,
     authorSlug,
     closeMenu,
+    pageURL,
   } = props;
 
   const {

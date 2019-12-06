@@ -28,6 +28,7 @@ const SinglePost = (props) => {
     classes,
     slug,
     closeMenu,
+    pageURL,
   } = props;
   const {
     loading,
@@ -93,6 +94,7 @@ const SinglePost = (props) => {
 minutes
         </h3>
         <h5>{bannerImg}</h5>
+        <p>{pageURL}</p>
         <h6>
 By:
           {`${firstName} ${lastName} (${username})`}

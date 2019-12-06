@@ -48,6 +48,7 @@ const CategoryPreview = (props) => {
     name,
     thumbnail,
     posts,
+    pageURL,
   } = props;
 
   let postsElem;

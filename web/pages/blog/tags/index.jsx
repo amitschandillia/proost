@@ -36,8 +36,8 @@ const Tags = (props) => {
       pageURL={pageURL}
     >
       <PageBody>
-        {tagSlug && <SingleTag tagSlug={tagSlug} />}
-        {!tagSlug && <TagsList />}
+        {tagSlug && <SingleTag tagSlug={tagSlug} pageURL={pageURL} />}
+        {!tagSlug && <TagsList pageURL={pageURL} />}
       </PageBody>
     </Layout>
   );

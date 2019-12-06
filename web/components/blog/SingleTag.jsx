@@ -48,6 +48,7 @@ const SingleTag = (props) => {
     classes,
     tagSlug,
     closeMenu,
+    pageURL,
   } = props;
 
   const {

@@ -11,6 +11,9 @@ import LabelIcon from '@material-ui/icons/Label';
 import ShareIcon from '@material-ui/icons/Share';
 import PropTypes from 'prop-types';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import { connect } from 'react-redux';
+
+import shouldBypassLogin from '../../utils/should-bypass-login';
 
 import abbreviateCount from '../../utils/abbreviate-count';
 import LinkTo from '../LinkTo';
@@ -68,7 +71,21 @@ const PostPreview = (props) => {
     tags,
     readTime,
     views,
+    userInfo,
+    openSignInDialog,
+    pageURL,
   } = props;
+
+  const handleClickOpen = async () => {
+    // If login should be bypassed, proceed to login without auth
+    // otherwise open sign in dialog
+    let isLoggedIn = await shouldBypassLogin(pageURL);
+    isLoggedIn = typeof isLoggedIn === 'undefined' ? true : isLoggedIn;
+    if (!isLoggedIn) {
+      // Failed to auto-login
+      openSignInDialog();
+    }
+  };
 
   return (
     <Card className={`post-preview ${classes.root}`}>
@@ -118,7 +135,7 @@ const PostPreview = (props) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
+        <IconButton aria-label="add to favorites" onClick={handleClickOpen}>
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
@@ -159,4 +176,27 @@ PostPreview.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(PostPreview);
+// export default withStyles(styles)(PostPreview);
+
+const mapStateToProps = (state) => ({
+  userInfo: state.userInfo,
+  language: state.language,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  openSignInDialog: () => {
+    dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });
+    dispatch({ type: 'SHOWSUBMITEMAILVIEW', payload: false });
+    dispatch({ type: 'SHOWSIGNINVIEW', payload: true });
+    dispatch({ type: 'OPENSIGNINDIALOG', payload: true });
+    dispatch({ type: 'FLAGEMAILERROR', payload: false });
+    dispatch({ type: 'FLAGCREDENTIALSERROR', payload: 'none' });
+    dispatch({ type: 'FLAGEPASSWORDERROR', payload: false });
+    dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(PostPreview));

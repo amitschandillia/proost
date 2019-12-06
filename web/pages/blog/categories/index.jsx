@@ -36,8 +36,8 @@ const Categories = (props) => {
       pageURL={pageURL}
     >
       <PageBody>
-        {categorySlug && <SingleCategory categorySlug={categorySlug} />}
-        {!categorySlug && <CategoriesList />}
+        {categorySlug && <SingleCategory categorySlug={categorySlug} pageURL={pageURL} />}
+        {!categorySlug && <CategoriesList pageURL={pageURL} />}
       </PageBody>
     </Layout>
   );

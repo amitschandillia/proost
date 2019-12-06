@@ -74,6 +74,7 @@ const TagPreviewsGrid = (props) => {
 
   const {
     tags,
+    pageURL,
   } = props;
 
   return (
@@ -93,6 +94,7 @@ const TagPreviewsGrid = (props) => {
               name={tag.name}
               thumbnail={thumbnailImg}
               posts={tag.posts}
+              pageURL={pageURL}
             />
           </Grid>
         )

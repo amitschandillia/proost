@@ -74,6 +74,7 @@ const CategoryPreviewsGrid = (props) => {
 
   const {
     categories,
+    pageURL,
   } = props;
 
   return (
@@ -93,6 +94,7 @@ const CategoryPreviewsGrid = (props) => {
               name={category.name}
               thumbnail={thumbnailImg}
               posts={category.posts}
+              pageURL={pageURL}
             />
           </Grid>
         )

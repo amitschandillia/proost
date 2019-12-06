@@ -74,6 +74,7 @@ const PostPreviewsGrid = (props) => {
 
   const {
     posts,
+    pageURL,
   } = props;
 
   return (
@@ -99,6 +100,7 @@ const PostPreviewsGrid = (props) => {
               tags={post.tags}
               readTime={post.readTime}
               views={post.views}
+              pageURL={pageURL}
             />
           </Grid>
         );

@@ -48,6 +48,7 @@ const TagPreview = (props) => {
     name,
     thumbnail,
     posts,
+    pageURL,
   } = props;
 
   let postsElem;

@@ -36,8 +36,8 @@ const Blog = (props) => {
       pageURL={pageURL}
     >
       <PageBody>
-        {postSlug && <SinglePost slug={postSlug} />}
-        {!postSlug && <PostsList />}
+        {postSlug && <SinglePost slug={postSlug} pageURL={pageURL} />}
+        {!postSlug && <PostsList pageURL={pageURL} />}
       </PageBody>
     </Layout>
   );

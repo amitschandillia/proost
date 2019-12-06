@@ -38,6 +38,7 @@ const CategoriesList = (props) => {
   const {
     classes,
     closeMenu,
+    pageURL,
   } = props;
 
   const {
@@ -86,7 +87,7 @@ const CategoriesList = (props) => {
 
   return (
     <Grid item className={classes.root}>
-      <CategoryPreviewsGrid categories={categories} />
+      <CategoryPreviewsGrid categories={categories} pageURL={pageURL} />
       {areMoreCategories && (
         <div className={classes.more}>
           {loadingMoreCategories ? (

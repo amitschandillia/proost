@@ -38,6 +38,7 @@ const AuthorsList = (props) => {
   const {
     classes,
     closeMenu,
+    pageURL,
   } = props;
 
   const {
@@ -87,7 +88,7 @@ const AuthorsList = (props) => {
 
   return (
     <Grid item className={classes.root}>
-      <AuthorPreviewsGrid users={users} />
+      <AuthorPreviewsGrid users={users} pageURL={pageURL} />
       {areMoreUsers && (
         <div className={classes.more}>
           {loadingMoreUsers ? (

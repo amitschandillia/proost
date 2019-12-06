@@ -48,6 +48,7 @@ const SingleCategory = (props) => {
     classes,
     categorySlug,
     closeMenu,
+    pageURL,
   } = props;
 
   const {

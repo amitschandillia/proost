@@ -38,6 +38,7 @@ const PostsList = (props) => {
   const {
     classes,
     closeMenu,
+    pageURL,
   } = props;
 
   const {
@@ -86,7 +87,7 @@ const PostsList = (props) => {
 
   return (
     <Grid item className={classes.root}>
-      <PostPreviewsGrid posts={posts} />
+      <PostPreviewsGrid posts={posts} pageURL={pageURL} />
       {areMorePosts && (
         <div className={classes.more}>
           {loadingMorePosts ? (

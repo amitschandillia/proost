@@ -6,12 +6,62 @@ cd ~/proost/dev/; pm2 flush; pm2 kill; pm2 flush; clear; NODE_ENV=production pm2
 
 
 
-File counts:
-------------
-components: 56
-components/blog: 13
-components/svg-icons: 6
-components/svg-icons/flags: 57
+
+
+
+
+LIKES
+-------
+on click icon:
+  is user logged in?
+    no:
+      show login dialog and proceed
+    is clicked item already "liked"?
+      no:
+        add post_id to likes array in user document
+        add user_id to likes array in posts document
+        toggle icon color
+      yes:
+        remove post_id from likes array in user document
+        remove user_id from likes array in posts document
+        toggle icon color
+
+on load post preview:
+  is user logged in?
+    no:
+      show preview as "unliked"
+    yes:
+      does post_id exist in user's likes array?
+      no:
+        show preview as "unliked"
+      yes:
+        show preview as "liked"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

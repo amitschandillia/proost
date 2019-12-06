@@ -36,8 +36,8 @@ const Authors = (props) => {
       pageURL={pageURL}
     >
       <PageBody>
-        {authorSlug && <SingleAuthor authorSlug={authorSlug} />}
-        {!authorSlug && <AuthorsList />}
+        {authorSlug && <SingleAuthor authorSlug={authorSlug} pageURL={pageURL} />}
+        {!authorSlug && <AuthorsList pageURL={pageURL} />}
       </PageBody>
     </Layout>
   );

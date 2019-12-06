@@ -47,6 +47,7 @@ const AuthorPreview = (props) => {
     lastName,
     thumbnail,
     posts,
+    pageURL,
   } = props;
 
   let postsElem;
