@@ -1,0 +1,13 @@
+query {
+  posts(sort: "createdAt:DESC", limit: 5, where: { isPublished: true }) {
+    _id
+    title
+    slug
+    createdAt
+  }
+  postsConnection(where: { isPublished: true }) {
+    aggregate{
+      count
+    }
+  }
+}

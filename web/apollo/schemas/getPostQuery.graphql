@@ -16,5 +16,6 @@ query posts($where: JSON) {
       firstName
       lastName
     }
+    likedBy
   }
 }

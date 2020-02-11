@@ -636,6 +636,9 @@
                 },
                 "views": {
                   "type": "integer"
+                },
+                "likedBy": {
+                  "type": "object"
                 }
               }
             }

@@ -90,6 +90,7 @@ const PostPreviewsGrid = (props) => {
         return (
           <Grid item xs={12} sm={6} md={4} lg={3} xl={2} className="post-preview-container">
             <PostPreview
+              id={post.id}
               title={post.title}
               slug={post.slug}
               excerpt={post.excerpt}
@@ -100,6 +101,7 @@ const PostPreviewsGrid = (props) => {
               tags={post.tags}
               readTime={post.readTime}
               views={post.views}
+              likedBy={post.likedBy}
               pageURL={pageURL}
             />
           </Grid>

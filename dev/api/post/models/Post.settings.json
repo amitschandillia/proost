@@ -73,6 +73,9 @@
     "views": {
       "type": "integer",
       "default": ""
+    },
+    "likedBy": {
+      "type": "json"
     }
   }
 }

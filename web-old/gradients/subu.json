@@ -1,0 +1,7 @@
+{
+  "colors": [
+    {"offset": "0%", "color": "#0cebeb"},
+    {"offset": "50%", "color": "#20e3b2"},
+    {"offset": "100%", "color": "#29ffc6"}
+  ]
+}
