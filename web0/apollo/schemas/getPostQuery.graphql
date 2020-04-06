@@ -1,0 +1,21 @@
+query posts($where: JSON) {
+  posts(limit: 1, where: $where) {
+    _id
+    title
+    secondaryTitle
+    excerpt
+    body
+    readTime
+    views
+    banner {
+      hash
+      ext
+    }
+    author {
+      username
+      firstName
+      lastName
+    }
+    likedBy
+  }
+}

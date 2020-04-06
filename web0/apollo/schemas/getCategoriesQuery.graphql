@@ -1,0 +1,19 @@
+query categories($limit: Int!, $start: Int!) {
+  categories(sort: "createdAt:DESC", limit: $limit, start: $start) {
+    slug
+    name
+    thumbnail {
+      hash
+      ext
+    }
+    posts(sort: "createdAt:DESC", limit: 3, where: { isPublished: true }) {
+      title
+      slug
+    }
+  }
+  categoriesConnection {
+    aggregate {
+      count
+    }
+  }
+}

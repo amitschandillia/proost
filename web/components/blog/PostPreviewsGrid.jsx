@@ -2,6 +2,7 @@ import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import { useLayoutEffect } from 'react';
+import { connect } from 'react-redux';
 
 import PostPreview from './PostPreview';
 
@@ -75,13 +76,48 @@ const PostPreviewsGrid = (props) => {
   const {
     posts,
     pageURL,
+    userInfo,
+    language,
+    postsLiked,
+    updateLikes,
   } = props;
+
+  let isLoggedIn = false;
+
+  if (userInfo) {
+    if (userInfo.userID) {
+      isLoggedIn = true;
+    }
+  }
+
+  const likedPostsArr = [];
+
+  if (isLoggedIn) {
+    posts.forEach((post) => {
+      // check if userInfo.userID exists in likedBy.readers
+      if (post.likedBy) {
+        if (post.likedBy.readers) {
+          if (post.likedBy.readers.includes(userInfo.userID)) {
+            // if yes, push {post.id, 1} to likedPostsArr array
+            const likedPostId = post.id;
+            likedPostsArr.push({
+              likedPostId,
+              liked: 1,
+            });
+          }
+        }
+      }
+    });
+    // assign likedPostsArr to likedPosts redux state:
+    console.log('[...likedPostsArr]', [...likedPostsArr]);
+    updateLikes([...likedPostsArr]); // this line gives invariant error
+  }
 
   return (
     <Grid container spacing={2} direction="row" id="posts-container">
       {posts.map((post) => {
         let thumbnailImg;
-        if(post.thumbnail) {
+        if (post.thumbnail) {
           thumbnailImg = `https://i.${process.env.THIS_DOMAIN_LONG}/d/${post.thumbnail.hash}${post.thumbnail.ext}`;
         } else {
           thumbnailImg = `https://www.${process.env.THIS_DOMAIN_LONG}/_f/images/defaults/post/thumbnail.jpg`;
@@ -135,4 +171,19 @@ PostPreviewsGrid.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(PostPreviewsGrid);
+const mapStateToProps = (state) => ({
+  userInfo: state.userInfo,
+  language: state.language,
+  postsLiked: state.postsLiked,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  updateLikes: (postsArr) => {
+    dispatch({ type: 'CHANGELIKEDPOSTS', payload: [...postsArr] });
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(PostPreviewsGrid));

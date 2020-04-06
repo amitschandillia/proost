@@ -74,6 +74,7 @@ const PostPreview = (props) => {
     views,
     likedBy,
     userInfo,
+    postsLiked,
     openSignInDialog,
     pageURL,
   } = props;
@@ -89,8 +90,8 @@ const PostPreview = (props) => {
     readers: readersInit,
   });
 
-  console.log('LIKEDBYARR:', likedByArr);
-  console.log('POST ID:', id);
+  // console.log('LIKEDBYARR:', likedByArr);
+  // console.log('POST ID:', id);
 
   let liked = 'inherit';
   let isLoggedIn = false;
@@ -101,11 +102,24 @@ const PostPreview = (props) => {
     }
   }
 
+  // Test
+  if (isLoggedIn) {
+    console.log('POSTS LIKED', postsLiked);
+  }
+
   if (isLoggedIn) {
     if (likedByArr.readers.includes(userInfo.userID)) {
       liked = 'error';
     }
   }
+
+  // // test reducer
+  // if (isLoggedIn) {
+  //   // check if postsliked has an object with userID as key
+  //   if (postsLiked.readers.includes(userInfo.userID)) {
+  //     liked = 'error';
+  //   }
+  // }
 
   const handleClickOpen = async () => {
     // If login should be bypassed, proceed to login without auth
@@ -234,11 +248,10 @@ PostPreview.propTypes = {
   pageURL: PropTypes.string.isRequired,
 };
 
-// export default withStyles(styles)(PostPreview);
-
 const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
   language: state.language,
+  postsLiked: state.postsLiked,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -252,6 +265,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: 'FLAGEPASSWORDERROR', payload: false });
     dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
   },
+  // likePost: (likedPostID) => {
+  //   dispatch({ type: 'CHANGELIKEDPOSTS', payload: {likedPostID: 1} });
+  // },
+  // unlikePost: (unlikedPostID) => {
+  //   dispatch({ type: 'CHANGELIKEDPOSTS', payload: {unlikedPostID: 0} });
+  // },
 });
 
 export default connect(
