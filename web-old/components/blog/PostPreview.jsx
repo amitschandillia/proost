@@ -9,14 +9,16 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LabelIcon from '@material-ui/icons/Label';
 import ShareIcon from '@material-ui/icons/Share';
-import PropTypes from 'prop-types';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { connect } from 'react-redux';
 
-import shouldBypassLogin from '../../utils/should-bypass-login';
-
 import abbreviateCount from '../../utils/abbreviate-count';
+import shouldBypassLogin from '../../utils/should-bypass-login';
 import LinkTo from '../LinkTo';
+
+import axios from 'axios';
 
 const styles = (theme) => ({
   root: {
@@ -61,6 +63,7 @@ const styles = (theme) => ({
 const PostPreview = (props) => {
   const {
     classes,
+    id,
     title,
     slug,
     username,
@@ -71,19 +74,93 @@ const PostPreview = (props) => {
     tags,
     readTime,
     views,
+    likedBy,
     userInfo,
     openSignInDialog,
     pageURL,
   } = props;
 
+  let readersInit = [];
+  if(likedBy) {
+    if(likedBy.readers) {
+      readersInit = likedBy.readers.slice();
+    }
+  }
+
+  const [likedByArr, setLikedByArr] = useState({
+    readers: readersInit,
+  });
+
+  // console.log('LIKEDBYARR:', likedByArr);
+  // console.log('POST ID:', id);
+
+  let liked = 'inherit';
+  let isLoggedIn = false;
+
+  if (userInfo) {
+    if (userInfo.userID) {
+      isLoggedIn = true;
+    }
+  }
+
+  if (isLoggedIn) {
+    if (likedByArr.readers.includes(userInfo.userID)) {
+      liked = 'error';
+    }
+  }
+
   const handleClickOpen = async () => {
     // If login should be bypassed, proceed to login without auth
     // otherwise open sign in dialog
-    let isLoggedIn = await shouldBypassLogin(pageURL);
-    isLoggedIn = typeof isLoggedIn === 'undefined' ? true : isLoggedIn;
-    if (!isLoggedIn) {
+    let isUserLoggedIn = await shouldBypassLogin(pageURL);
+    isUserLoggedIn = typeof isUserLoggedIn === 'undefined' ? true : isUserLoggedIn;
+    if (!isUserLoggedIn) {
       // Failed to auto-login
       openSignInDialog();
+    }
+  };
+
+  const handleLike = async () => {
+    if (isLoggedIn) {
+      // call axios query to update db
+      const auth = {Authorization: `Bearer ${process.env.STRAPI_TOKEN}`}
+      const query = `
+        mutation updatePost ($id: ID!, $title: String!){
+          updatePost(input: {where: {id: $id}, data: {title: $title}}){
+            post{
+              id
+              title
+            }
+          }
+        }
+      `
+      const variables = {
+        "id": "5ddf9ff327ee7b0915f0ac91",
+        "title": "Amit Nemo enim ipsam voluptatem quia voluptas sit aspernatur"
+      }
+      axios.post(
+        process.env.CMS,
+        {query: query},
+        {variables: variables},
+        {headers: auth},
+      ).then((result) => {
+        console.log('RESULT', result.data);
+      }).catch((error) => {
+        console.log('ERROR', error);
+      });
+
+      let readersArr = [];
+      if (likedByArr.readers.includes(userInfo.userID)) {
+        readersArr = likedByArr.readers.filter((user) => user !== userInfo.userID);
+      } else {
+        readersArr = likedByArr.readers.slice();
+        readersArr.push(userInfo.userID);
+      }
+      setLikedByArr({
+        readers: readersArr,
+      });
+    } else {
+      await handleClickOpen();
     }
   };
 
@@ -135,8 +212,8 @@ const PostPreview = (props) => {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={handleClickOpen}>
-          <FavoriteIcon />
+        <IconButton aria-label="add to favorites" onClick={handleLike}>
+          <FavoriteIcon color={liked} />
         </IconButton>
         <IconButton aria-label="share">
           <ShareIcon />
@@ -159,6 +236,9 @@ PostPreview.propTypes = {
     icon: PropTypes.string,
     tagLink: PropTypes.string,
   }).isRequired,
+  userInfo: PropTypes.shape({
+    userID: PropTypes.string.isRequired,
+  }).isRequired,
   title: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
@@ -166,6 +246,10 @@ PostPreview.propTypes = {
   thumbnail: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   readTime: PropTypes.string.isRequired,
+  views: PropTypes.number.isRequired,
+  likedBy: PropTypes.shape({
+    readers: PropTypes.array.isRequired,
+  }).isRequired,
   category: PropTypes.shape({
     slug: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -174,6 +258,8 @@ PostPreview.propTypes = {
     slug: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }).isRequired,
+  openSignInDialog: PropTypes.func.isRequired,
+  pageURL: PropTypes.string.isRequired,
 };
 
 // export default withStyles(styles)(PostPreview);

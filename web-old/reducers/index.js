@@ -18,6 +18,7 @@ import password2Helper from './slices/password2Helper';
 import passwordError from './slices/passwordError';
 import passwordErrorSignIn from './slices/passwordErrorSignIn';
 import passwordHelper from './slices/passwordHelper';
+import postsLiked from './slices/postsLiked';
 import profileMenu from './slices/profileMenu';
 import profileMenuAnchorEl from './slices/profileMenuAnchorEl';
 import registered from './slices/registered';
@@ -51,6 +52,7 @@ const reducerStore = combineReducers({
   passwordError,
   passwordErrorSignIn,
   passwordHelper,
+  postsLiked,
   profileMenu,
   profileMenuAnchorEl,
   registered,
