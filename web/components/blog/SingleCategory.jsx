@@ -34,6 +34,9 @@ const styles = (theme) => ({
   button: {
     fontSize: theme.spacing(2),
   },
+  longDescription: {
+    textAlign: 'justify',
+  },
 });
 
 export const GET_CATEGORY = getCategoryQuery;
@@ -82,6 +85,7 @@ const SingleCategory = (props) => {
     _id,
     name,
     description,
+    longDescription,
     posts,
   } = category;
 
@@ -112,7 +116,7 @@ const SingleCategory = (props) => {
   posts.forEach((post) => {
     post.category = {
       name,
-      description,
+      longDescription,
       slug: categorySlug,
     };
   });
@@ -120,12 +124,12 @@ const SingleCategory = (props) => {
   return (
     <>
       <Head>
-        <title>{categorySlug}</title>
-        <meta name="description" content={`Posts categorized under ${categorySlug}`} key="categoryDescription" />
+        <title>{name}</title>
+        <meta name="description" content={description} key="categoryDescription" />
       </Head>
       <Grid item className={classes.root}>
         <Typography variant="h3" component="h1" gutterBottom className={classes.name}>{name}</Typography>
-        <Typography variant="body1" paragraph>{description}</Typography>
+        <Typography variant="body1" paragraph className={classes.longDescription}>{longDescription}</Typography>
         <PostPreviewsGrid posts={posts} />
         {areMorePosts && (
           <div className={classes.more}>

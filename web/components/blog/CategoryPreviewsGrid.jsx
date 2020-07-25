@@ -93,6 +93,7 @@ const CategoryPreviewsGrid = (props) => {
               slug={category.slug}
               name={category.name}
               thumbnail={thumbnailImg}
+              description={category.description}
               posts={category.posts}
               pageURL={pageURL}
             />

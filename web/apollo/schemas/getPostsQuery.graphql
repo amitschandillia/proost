@@ -25,7 +25,6 @@ query posts($limit: Int!, $start: Int!) {
       slug
       name
     }
-    likedBy
   }
   postsConnection(where: { isPublished: true }) {
     aggregate{

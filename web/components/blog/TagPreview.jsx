@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import LinkTo from '../LinkTo';
 
@@ -39,13 +40,18 @@ const styles = (theme) => ({
     fontWeight: 'bold',
     marginRight: theme.spacing(1),
   },
+  description: {
+    marginBottom: theme.spacing(3),
+  },
 });
 
 const TagPreview = (props) => {
   const {
     classes,
+    language,
     slug,
     name,
+    description,
     thumbnail,
     posts,
     pageURL,
@@ -88,9 +94,11 @@ const TagPreview = (props) => {
         title={name}
       />
       <CardContent>
-        <Typography variant="button" gutterBottom color="textSecondary" className={classes.postsHeader}>Latest works</Typography>
+        <Typography variant="body2" color="textSecondary" className={classes.description}>{description}</Typography>
+        <Typography variant="button" gutterBottom color="textSecondary" className={classes.postsHeader}>{language.lexicon.latestWorks}</Typography>
         {taggedPosts}
       </CardContent>
+      {/*
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -99,6 +107,7 @@ const TagPreview = (props) => {
           <ShareIcon />
         </IconButton>
       </CardActions>
+      */}
     </Card>
   );
 };
@@ -122,4 +131,13 @@ TagPreview.propTypes = {
   }).isRequired,
 };
 
-export default withStyles(styles)(TagPreview);
+const mapStateToProps = (state) => ({
+  language: state.language,
+});
+
+export default connect(
+  mapStateToProps,
+  null,
+)(withStyles(styles)(TagPreview));
+
+// export default withStyles(styles)(TagPreview);

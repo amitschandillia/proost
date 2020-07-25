@@ -2,6 +2,7 @@ query tags($limit: Int!, $start: Int!) {
   tags(sort: "createdAt:DESC", limit: $limit, start: $start) {
     slug
     name
+    description
     thumbnail {
       hash
       ext

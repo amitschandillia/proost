@@ -11,11 +11,22 @@ query posts($where: JSON) {
       hash
       ext
     }
+    category {
+      name
+      slug
+    }
+    tags {
+      name
+      slug
+    }
     author {
       username
       firstName
       lastName
+      thumbnail {
+        hash
+        ext
+      }
     }
-    likedBy
   }
 }

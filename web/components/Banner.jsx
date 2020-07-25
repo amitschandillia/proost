@@ -5,18 +5,21 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 
-const bg = '/_f/images/banner.png';
-
 const styles = (theme) => ({
   root: {
     color: theme.palette.common.white,
-    backgroundImage: `url(${bg})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center center',
     height: '100vh',
     width: '100%',
-    display: 'flex',
+    // display: 'flex',
+    paddingTop: '20%',
+    [theme.breakpoints.down('xs')]: {
+      paddingTop: '50%',
+    },
+    paddingLeft: theme.typography.htmlFontSize,
+    paddingRight: theme.typography.htmlFontSize,
     alignItems: 'center', // vertical alignment
     justifyContent: 'center', // horizontal alignment
     position: 'relative',
@@ -40,13 +43,13 @@ const styles = (theme) => ({
 
 const Banner = (props) => {
   const {
-    classes, children,
+    classes,
+    children,
+    image,
   } = props;
 
   return (
-    <>
-      <div className={classes.root}>{children}</div>
-    </>
+    <div className={classes.root} style={{backgroundImage: `url(${image})`}}>{children}</div>
   );
 };
 

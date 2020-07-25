@@ -34,6 +34,9 @@ const styles = (theme) => ({
   button: {
     fontSize: theme.spacing(2),
   },
+  longBio: {
+    textAlign: 'justify',
+  },
 });
 
 export const GET_USER = getUserQuery;
@@ -82,7 +85,7 @@ const SingleAuthor = (props) => {
     _id,
     firstName,
     lastName,
-    bio,
+    longBio,
     posts,
   } = user;
 
@@ -122,7 +125,7 @@ const SingleAuthor = (props) => {
     <>
       <Head>
         <title>{`${firstName} ${lastName}`}</title>
-        <meta name="description" content={`Posts by ${firstName} ${lastName}`} key="categoryDescription" />
+        <meta name="description" content={`Posts by ${firstName} ${lastName}`} key="authorDescription" />
       </Head>
       <Grid item className={classes.root}>
         <Typography variant="h3" component="h1" gutterBottom className={classes.name}>
@@ -130,7 +133,7 @@ const SingleAuthor = (props) => {
           {' '}
           {lastName}
         </Typography>
-        <Typography variant="body1" paragraph>{bio}</Typography>
+        <Typography variant="body1" paragraph className={classes.longBio}>{longBio}</Typography>
         <PostPreviewsGrid posts={posts} />
         {areMorePosts && (
           <div className={classes.more}>

@@ -3,6 +3,7 @@ query users($limit: Int!, $start: Int!) {
     username
     firstName
     lastName
+    bio
     thumbnail {
       hash
       ext

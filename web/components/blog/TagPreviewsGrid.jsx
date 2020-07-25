@@ -93,6 +93,7 @@ const TagPreviewsGrid = (props) => {
               slug={tag.slug}
               name={tag.name}
               thumbnail={thumbnailImg}
+              description={tag.description}
               posts={tag.posts}
               pageURL={pageURL}
             />

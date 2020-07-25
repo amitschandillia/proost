@@ -2,8 +2,13 @@
   "languageName": "French",
   "flag": "France",
   "lexicon": {
+    "home": "Home",
     "tools": "outils",
     "blog": "Blog",
+    "posts": "Posts",
+    "authors": "Authors",
+    "categories": "Categories",
+    "tags": "Tags",
     "store": "Store",
     "cart": "Cart",
     "about": "About",

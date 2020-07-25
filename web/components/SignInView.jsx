@@ -25,6 +25,10 @@ const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
+  socials: {
+    flexGrow: 1,
+    marginTop: theme.spacing(2),
+  },
   signInText: {
     marginLeft: theme.spacing(1),
     textAlign: 'center',
@@ -46,6 +50,22 @@ const styles = (theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
+  submit: {
+    width: '100%',
+    margin: `${theme.spacing(1)}px 0 ${theme.spacing(2)}px -0.1rem`,
+  },
+  noAccount: {
+    marginLeft: theme.spacing(1),
+  },
+  loggedIn: {
+    marginTop: -theme.spacing(1),
+  },
+  forgotPassword: {
+    marginTop: '-0.3rem',
+    marginLeft: theme.spacing(4),
+    cursor: 'pointer',
+    textDecoration: 'underline',
+  },
 });
 
 const SignInView = (props) => {
@@ -55,6 +75,7 @@ const SignInView = (props) => {
     pageURL,
     errorState,
     showSignUp,
+    showForgotPassword,
     flagEmailError,
     flagUserIDError,
     passwordErrorSignIn,
@@ -127,7 +148,7 @@ const SignInView = (props) => {
           label="Email or username"
         />
         <PasswordField name="password" error={passwordErrorSignIn} />
-        <FormGroup row>
+        <FormGroup row className={classes.loggedIn}>
           <FormControlLabel
             control={(
               <Checkbox
@@ -142,26 +163,28 @@ const SignInView = (props) => {
             label="Keep me logged in"
           />
         </FormGroup>
-        <Typography>
-          <LinkTo href="/">Forgot password?</LinkTo>
+        <Typography className={classes.forgotPassword} onClick={showForgotPassword}>
+          Forgot password?
         </Typography>
         <Button
           size="large"
           color="primary"
           type="submit"
           variant="contained"
-          className={classes.margin}
+          className={classes.submit}
         >
           Submit
         </Button>
       </form>
-      <Grid container className={classes.root} spacing={2}>
+      <Grid container className={classes.socials} spacing={2}>
         <SocialButton pageURL={pageURL} provider="google" />
         <SocialButton pageURL={pageURL} provider="twitter" />
         <SocialButton pageURL={pageURL} provider="facebook" />
+        <div className={classes.noAccount}>
+          <span>Don&apos;t have an account?</span>
+          <Button color="inherit" onClick={showSignUp}>Sign up</Button>
+        </div>
       </Grid>
-      <span>Don&apos;t have an account?</span>
-      <Button color="inherit" onClick={showSignUp}>Sign up</Button>
     </>
   );
 };
@@ -193,6 +216,13 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   showSignUp: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: true });
+    dispatch({ type: 'SHOWSIGNINVIEW', payload: false });
+    dispatch({ type: 'FLAGEMAILERROR', payload: false });
+    dispatch({ type: 'FLAGPASSWORDERROR', payload: false });
+    dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
+  },
+  showForgotPassword: () => {
+    dispatch({ type: 'SHOWFORGOTPASSWORDVIEW', payload: true });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: false });
     dispatch({ type: 'FLAGEMAILERROR', payload: false });
     dispatch({ type: 'FLAGPASSWORDERROR', payload: false });

@@ -2,8 +2,13 @@
   "languageName": "Spanish",
   "flag": "Spain",
   "lexicon": {
+    "home": "Home",
     "tools": "Herramientas",
     "blog": "Blog",
+    "posts": "Posts",
+    "authors": "Authors",
+    "categories": "Categories",
+    "tags": "Tags",
     "store": "Tienda",
     "cart": "Carrito",
     "about": "Sobre",

@@ -17,7 +17,6 @@ import LinkTo from '../components/LinkTo';
 import PageBody from '../components/PageBody';
 import Slogan from '../components/Slogan';
 import Testimonials from '../components/Testimonials';
-// import Banner from '../components/Banner';
 import VideoBanner from '../components/VideoBanner';
 import WhitespaceGrid from '../components/WhitespaceGrid';
 import WidescreenBanner from '../components/WidescreenBanner';

@@ -18,6 +18,8 @@ import abbreviateCount from '../../utils/abbreviate-count';
 import shouldBypassLogin from '../../utils/should-bypass-login';
 import LinkTo from '../LinkTo';
 
+import axios from 'axios';
+
 const styles = (theme) => ({
   root: {
     // border: '1px solid lightgrey',
@@ -72,83 +74,10 @@ const PostPreview = (props) => {
     tags,
     readTime,
     views,
-    likedBy,
     userInfo,
-    postsLiked,
     openSignInDialog,
     pageURL,
   } = props;
-
-  let readersInit = [];
-  if(likedBy) {
-    if(likedBy.readers) {
-      readersInit = likedBy.readers.slice();
-    }
-  }
-
-  const [likedByArr, setLikedByArr] = useState({
-    readers: readersInit,
-  });
-
-  // console.log('LIKEDBYARR:', likedByArr);
-  // console.log('POST ID:', id);
-
-  let liked = 'inherit';
-  let isLoggedIn = false;
-
-  if (userInfo) {
-    if (userInfo.userID) {
-      isLoggedIn = true;
-    }
-  }
-
-  // Test
-  if (isLoggedIn) {
-    console.log('POSTS LIKED', postsLiked);
-  }
-
-  if (isLoggedIn) {
-    if (likedByArr.readers.includes(userInfo.userID)) {
-      liked = 'error';
-    }
-  }
-
-  // // test reducer
-  // if (isLoggedIn) {
-  //   // check if postsliked has an object with userID as key
-  //   if (postsLiked.readers.includes(userInfo.userID)) {
-  //     liked = 'error';
-  //   }
-  // }
-
-  const handleClickOpen = async () => {
-    // If login should be bypassed, proceed to login without auth
-    // otherwise open sign in dialog
-    let isUserLoggedIn = await shouldBypassLogin(pageURL);
-    isUserLoggedIn = typeof isUserLoggedIn === 'undefined' ? true : isUserLoggedIn;
-    if (!isUserLoggedIn) {
-      // Failed to auto-login
-      openSignInDialog();
-    }
-  };
-
-  const handleLike = async () => {
-    if (isLoggedIn) {
-      // call axios query to update db
-      let readersArr = [];
-      if (likedByArr.readers.includes(userInfo.userID)) {
-        readersArr = likedByArr.readers.filter((user) => user !== userInfo.userID);
-      } else {
-        readersArr = likedByArr.readers.slice();
-        readersArr.push(userInfo.userID);
-      }
-      setLikedByArr({
-        readers: readersArr,
-      });
-    } else {
-      await handleClickOpen();
-    }
-  };
 
   return (
     <Card className={`post-preview ${classes.root}`}>
@@ -197,14 +126,6 @@ const PostPreview = (props) => {
           })}
         </Typography>
       </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={handleLike}>
-          <FavoriteIcon color={liked} />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
     </Card>
   );
 };
@@ -233,9 +154,6 @@ PostPreview.propTypes = {
   author: PropTypes.string.isRequired,
   readTime: PropTypes.string.isRequired,
   views: PropTypes.number.isRequired,
-  likedBy: PropTypes.shape({
-    readers: PropTypes.array.isRequired,
-  }).isRequired,
   category: PropTypes.shape({
     slug: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
@@ -248,10 +166,11 @@ PostPreview.propTypes = {
   pageURL: PropTypes.string.isRequired,
 };
 
+// export default withStyles(styles)(PostPreview);
+
 const mapStateToProps = (state) => ({
   userInfo: state.userInfo,
   language: state.language,
-  postsLiked: state.postsLiked,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -265,12 +184,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: 'FLAGEPASSWORDERROR', payload: false });
     dispatch({ type: 'WARNFOREXISTINGEMAIL', payload: 0 });
   },
-  // likePost: (likedPostID) => {
-  //   dispatch({ type: 'CHANGELIKEDPOSTS', payload: {likedPostID: 1} });
-  // },
-  // unlikePost: (unlikedPostID) => {
-  //   dispatch({ type: 'CHANGELIKEDPOSTS', payload: {unlikedPostID: 0} });
-  // },
 });
 
 export default connect(

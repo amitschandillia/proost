@@ -30,11 +30,12 @@ const styles = (theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
     boxShadow: 'none',
-    border: '1px solid lightgray',
+    border: `1px solid ${theme.palette.grey[300]}`,
   },
   container: {
     width: 'auto',
     margin: 'auto',
+    outline: 'none',
   },
 });
 

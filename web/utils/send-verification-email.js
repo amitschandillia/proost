@@ -1,10 +1,12 @@
 import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
+import verificationMessageBody from './verification-message-body';
 
 dotenv.config();
 
 const sendVerificationEmail = (recipient, token) => {
-  const verificationURL = `https://www.schandillia.com/registration?t=${token}&i=${recipient}`;
+  const verificationURL = `${process.env.BASE_URL}/registration?t=${token}&i=${recipient}`;
+  const subject = 'Your registration is almost complete!';
   const transport = nodemailer.createTransport({
     service: 'ses',
     host: process.env.SES_HOST, // Amazon email SMTP hostname
@@ -16,10 +18,10 @@ const sendVerificationEmail = (recipient, token) => {
     },
   });
   const mailOptions = {
-    from: 'no-reply <no-reply@schandillia.com>', // sender address
-    to: `Amit Schandillia <${recipient}>`, // list of receivers
-    subject: 'Brand new email', // Subject line
-    html: `<b>This mail is haunted!</b><p><a href="${verificationURL}">${verificationURL}</a></p>`, // email body
+    from: `no-reply <no-reply@${process.env.THIS_DOMAIN_LONG}>`, // sender address
+    to: `${recipient} <${recipient}>`, // list of receivers
+    subject: subject, // Subject line
+    html: verificationMessageBody(verificationURL), // email body
   };
   return new Promise((resolve, reject) => {
     transport.sendMail(mailOptions, (error, info) => {

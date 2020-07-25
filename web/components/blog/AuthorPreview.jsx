@@ -36,6 +36,9 @@ const styles = (theme) => ({
     fontWeight: 'bold',
     marginRight: theme.spacing(1),
   },
+  bio: {
+    marginBottom: theme.spacing(3),
+  },
 });
 
 const AuthorPreview = (props) => {
@@ -45,6 +48,7 @@ const AuthorPreview = (props) => {
     username,
     firstName,
     lastName,
+    bio,
     thumbnail,
     posts,
     pageURL,
@@ -87,9 +91,11 @@ const AuthorPreview = (props) => {
         title={`${firstName} ${lastName}`}
       />
       <CardContent>
+        <Typography variant="body2" color="textSecondary" className={classes.bio}>{bio}</Typography>
         <Typography variant="button" gutterBottom color="textSecondary" className={classes.postsHeader}>{language.lexicon.latestWorks}</Typography>
         {authoredPosts}
       </CardContent>
+      {/*
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
@@ -98,6 +104,7 @@ const AuthorPreview = (props) => {
           <ShareIcon />
         </IconButton>
       </CardActions>
+      */}
     </Card>
   );
 };

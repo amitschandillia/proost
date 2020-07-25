@@ -2,25 +2,86 @@ import { useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import Grid from '@material-ui/core/Grid';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Typography from '@material-ui/core/Typography';
 import Head from 'next/head';
 import PropTypes from 'prop-types';
 import ReactMarkdown from 'react-markdown';
 import { connect } from 'react-redux';
-import VisibilityIcon from '@material-ui/icons/Visibility';
 
-import abbreviateCount from '../../utils/abbreviate-count';
 import getPostQuery from '../../apollo/schemas/getPostQuery.graphql';
 import Loading from './Loading';
+import RenderedP from '../RenderedP';
+import RenderedLink from '../RenderedLink';
+import RenderedImg from '../RenderedImg';
+import RenderedBlockquote from '../RenderedBlockquote';
+import RenderedH from '../RenderedH';
+import RenderedTCell from '../RenderedTCell';
+import RenderedTRow from '../RenderedTRow';
+import RenderedTBody from '../RenderedTBody';
+import RenderedTHead from '../RenderedTHead';
+import RenderedTable from '../RenderedTable';
 
-const styles = () => ({
-  root: {},
+import Container from '@material-ui/core/Container';
+
+const styles = (theme) => ({
+  root: {
+    width: 'inherit',
+    marginTop: -theme.spacing(4),
+  },
 });
 
 export const GET_POST = getPostQuery;
 
 const renderers = {
-  paragraph: (props) => <Typography variant="body2" gutterBottom {...props} />,
+  paragraph: (props) => (
+    <RenderedP
+      rendererProps={props}
+    />
+  ),
+  link: (props) => (
+    <RenderedLink
+      rendererProps={props}
+    />
+  ),
+  image: (props) => (
+    <RenderedImg
+      rendererProps={props}
+    />
+  ),
+  blockquote: (props) => (
+    <RenderedBlockquote
+      rendererProps={props}
+    />
+  ),
+  heading: (props) => (
+    <RenderedH
+      rendererProps={props}
+    />
+  ),
+  tableCell: (props) => (
+    <RenderedTCell
+      rendererProps={props}
+    />
+  ),
+  tableRow: (props) => (
+    <RenderedTRow
+      rendererProps={props}
+    />
+  ),
+  tableBody: (props) => (
+    <RenderedTBody
+      rendererProps={props}
+    />
+  ),
+  tableHead: (props) => (
+    <RenderedTHead
+      rendererProps={props}
+    />
+  ),
+  table: (props) => (
+    <RenderedTable
+      rendererProps={props}
+    />
+  ),
 };
 
 const SinglePost = (props) => {
@@ -28,6 +89,7 @@ const SinglePost = (props) => {
     classes,
     slug,
     closeMenu,
+    updatePostData,
     pageURL,
   } = props;
   const {
@@ -45,13 +107,7 @@ const SinglePost = (props) => {
     },
   );
 
-  // useEffect(() => {
-  //   closeMenu();
-  //   return () => closeMenu();
-  // });
-
   useEffect(() => closeMenu());
-
 
   if (error) return <div>There was an error!</div>;
   if (loading) return <Loading />;
@@ -65,10 +121,13 @@ const SinglePost = (props) => {
     readTime,
     views,
     banner,
+    category,
+    tags,
     author: {
       username,
       firstName,
       lastName,
+      thumbnail,
     },
   }] = posts;
 
@@ -79,6 +138,28 @@ const SinglePost = (props) => {
     bannerImg = `https://www.${process.env.THIS_DOMAIN_LONG}/_f/images/defaults/post/banner.jpg`;
   }
 
+  let thumbnailUrl;
+  if(thumbnail) {
+    thumbnailUrl = 'https://i.schandillia.com/d/' + thumbnail.hash + thumbnail.ext;
+  } else {
+    thumbnailUrl = '/_f/images/defaults/author/thumbnail.jpg';
+  }
+
+  updatePostData(
+    bannerImg,
+    title,
+    secondaryTitle,
+    readTime,
+    views,
+    firstName,
+    lastName,
+    username,
+    thumbnailUrl,
+    category.name,
+    category.slug,
+    JSON.stringify(tags),
+  );
+
   return (
     <>
       <Head>
@@ -86,21 +167,9 @@ const SinglePost = (props) => {
         <meta name="description" content={excerpt} key="postDescription" />
       </Head>
       <Grid item className={classes.root}>
-        <h1>{title}</h1>
-        <h2>{secondaryTitle}</h2>
-        <h3>
-          {readTime}
-          {' '}
-minutes
-        </h3>
-        <h5>{bannerImg}</h5>
-        <p>{pageURL}</p>
-        <h6>
-By:
-          {`${firstName} ${lastName} (${username})`}
-        </h6>
-        <p><VisibilityIcon /> {abbreviateCount(views, 1)}</p>
-        <ReactMarkdown source={body} renderers={renderers} />
+        <Container>
+          <ReactMarkdown source={body} renderers={renderers} />
+        </Container>
       </Grid>
     </>
   );
@@ -125,6 +194,33 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   closeMenu: () => {
     dispatch({ type: 'OPENBLOGMENU', payload: false });
+  },
+  updatePostData: (
+    postBanner,
+    postTitle,
+    postSecondaryTitle,
+    postReadTime,
+    postViews,
+    firstName,
+    lastName,
+    username,
+    thumbnailUrl,
+    catName,
+    catSlug,
+    postTags,
+  ) => {
+    dispatch({ type: 'UPDATEPOSTBANNER', payload: postBanner });
+    dispatch({ type: 'UPDATEPOSTTITLE', payload: postTitle });
+    dispatch({ type: 'UPDATEPOSTSECONDARYTITLE', payload: postSecondaryTitle });
+    dispatch({ type: 'UPDATEPOSTREADTIME', payload: postReadTime });
+    dispatch({ type: 'UPDATEPOSTVIEWS', payload: postViews });
+    dispatch({ type: 'UPDATEPOSTAUTHORFN', payload: firstName });
+    dispatch({ type: 'UPDATEPOSTAUTHORLN', payload: lastName });
+    dispatch({ type: 'UPDATEPOSTAUTHORUN', payload: username });
+    dispatch({ type: 'UPDATEPOSTAUTHORTHUMBNAIL', payload: thumbnailUrl });
+    dispatch({ type: 'UPDATEPOSTCATNAME', payload: catName });
+    dispatch({ type: 'UPDATEPOSTCATSLUG', payload: catSlug });
+    dispatch({ type: 'UPDATEPOSTTAGS', payload: postTags });
   },
 });
 

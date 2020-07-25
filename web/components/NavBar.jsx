@@ -4,7 +4,6 @@ import IconButton from '@material-ui/core/IconButton';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import MenuIcon from '@material-ui/icons/Menu';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import React, { useLayoutEffect } from 'react';
@@ -20,6 +19,8 @@ import SignInDialog from './SignInDialog';
 import StoreButton from './StoreButton';
 import SubmitEmailDialog from './SubmitEmailDialog';
 import ToolsButton from './ToolsButton';
+
+import MobileMenu from './MobileMenu';
 
 const styles = (theme) => ({
   root: {
@@ -77,12 +78,26 @@ const styles = (theme) => ({
       display: 'none',
     },
   },
+  sectionMobileSearch: {
+    display: 'flex',
+    width: '55%',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
 });
 
 const NavBar = (props) => {
   const {
     classes, pageURL, userInfo, openSignInDialog, transparent = false, language,
   } = props;
+
   const loggedIn = Object.entries(userInfo).length === 0;
 
   const transparentStyle = (transparent ? classes.transparentAppBar : null);
@@ -151,33 +166,6 @@ const NavBar = (props) => {
       <StoreButton />
       <div className={classes.grow} />
       <CartButton />
-      <div className={classes.grow} />
-      {
-        loggedIn
-        && (
-        <Button
-          className={classes.loginBtn}
-          variant="outlined"
-          color="inherit"
-          onClick={handleClickOpen}
-        >
-          {language.lexicon.signIn}
-        </Button>
-        )
-      }
-      {!loggedIn && <ProfileMenu pageURL={pageURL} />}
-    </div>
-  );
-  const mobileMenu = (
-    <div className={classes.sectionMobile}>
-      <IconButton
-        edge="start"
-        className={classes.menuButton}
-        color="inherit"
-        aria-label="open drawer"
-      >
-        <MenuIcon />
-      </IconButton>
     </div>
   );
 
@@ -186,8 +174,24 @@ const NavBar = (props) => {
       <AppBar id="nav" className={transparentStyle} position="fixed" style={{ boxShadow: transparent && 'none' }}>
         {transparent && <span id="nav-overlay" className={classes.overlay} />}
         <Toolbar>
-          {mobileMenu}
+          <MobileMenu />
+          <SearchField className={classes.sectionMobileSearch} />
           {desktopMenu}
+          <div className={classes.grow} />
+          {
+            loggedIn
+            && (
+            <Button
+              className={classes.loginBtn}
+              variant="outlined"
+              color="inherit"
+              onClick={handleClickOpen}
+            >
+              {language.lexicon.signIn}
+            </Button>
+            )
+          }
+          {!loggedIn && <ProfileMenu pageURL={pageURL} />}
         </Toolbar>
       </AppBar>
       <SignInDialog pageURL={pageURL} />

@@ -18,7 +18,7 @@ const styles = (theme) => ({
   },
   li: {
     listStyleType: 'none',
-    borderBottom: '1px solid lightgrey',
+    borderBottom: `1px solid ${theme.palette.grey[300]}`,
     '&:last-child': {
       borderBottom: 'none',
     },

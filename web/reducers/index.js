@@ -18,12 +18,24 @@ import password2Helper from './slices/password2Helper';
 import passwordError from './slices/passwordError';
 import passwordErrorSignIn from './slices/passwordErrorSignIn';
 import passwordHelper from './slices/passwordHelper';
-import postsLiked from './slices/postsLiked';
+import postAuthorFN from './slices/postAuthorFN';
+import postAuthorLN from './slices/postAuthorLN';
+import postAuthorThumbnail from './slices/postAuthorThumbnail';
+import postAuthorUN from './slices/postAuthorUN';
+import postBanner from './slices/postBanner';
+import postCatName from './slices/postCatName';
+import postCatSlug from './slices/postCatSlug';
+import postReadTime from './slices/postReadTime';
+import postSecondaryTitle from './slices/postSecondaryTitle';
+import postTags from './slices/postTags';
+import postTitle from './slices/postTitle';
+import postViews from './slices/postViews';
 import profileMenu from './slices/profileMenu';
 import profileMenuAnchorEl from './slices/profileMenuAnchorEl';
 import registered from './slices/registered';
 import sessID from './slices/sessID';
 import showFlagsDialog from './slices/showFlagsDialog';
+import showForgotPasswordView from './slices/showForgotPasswordView';
 import showSignInView from './slices/showSignInView';
 import showSignUpView from './slices/showSignUpView';
 import toolsMenu from './slices/toolsMenu';
@@ -52,12 +64,24 @@ const reducerStore = combineReducers({
   passwordError,
   passwordErrorSignIn,
   passwordHelper,
-  postsLiked,
+  postAuthorFN,
+  postAuthorLN,
+  postAuthorThumbnail,
+  postAuthorUN,
+  postBanner,
+  postCatName,
+  postCatSlug,
+  postReadTime,
+  postSecondaryTitle,
+  postTags,
+  postTitle,
+  postViews,
   profileMenu,
   profileMenuAnchorEl,
   registered,
   sessID,
   showFlagsDialog,
+  showForgotPasswordView,
   showSignInView,
   showSignUpView,
   toolsMenu,

@@ -2,6 +2,7 @@ query categories($limit: Int!, $start: Int!) {
   categories(sort: "createdAt:DESC", limit: $limit, start: $start) {
     slug
     name
+    description
     thumbnail {
       hash
       ext

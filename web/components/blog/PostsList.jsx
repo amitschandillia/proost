@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import getPostsQuery from '../../apollo/schemas/getPostsQuery.graphql';
 import Loading from './Loading';
 import PostPreviewsGrid from './PostPreviewsGrid';
+import axios from 'axios';
 
 const styles = (theme) => ({
   root: {
@@ -39,6 +40,7 @@ const PostsList = (props) => {
     classes,
     closeMenu,
     pageURL,
+    userInfo,
   } = props;
 
   const {
@@ -57,6 +59,14 @@ const PostsList = (props) => {
       notifyOnNetworkStatusChange: true,
     },
   );
+
+  let isLoggedIn = false;
+
+  if (userInfo) {
+    if (userInfo.userID) {
+      isLoggedIn = true;
+    }
+  }
 
   useEffect(() => closeMenu());
 
@@ -113,6 +123,7 @@ PostsList.propTypes = {
 
 const mapStateToProps = (state) => ({
   // ip: state.ip,
+  userInfo: state.userInfo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -94,6 +94,7 @@ const AuthorPreviewsGrid = (props) => {
               firstName={user.firstName}
               lastName={user.lastName}
               thumbnail={thumbnailImg}
+              bio={user.bio}
               posts={user.posts}
               pageURL={pageURL}
             />

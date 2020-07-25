@@ -2,8 +2,13 @@
   "languageName": "English",
   "flag": "UnitedStates",
   "lexicon": {
+    "home": "Home",
     "tools": "Tools",
     "blog": "Blog",
+    "posts": "Posts",
+    "authors": "Authors",
+    "categories": "Categories",
+    "tags": "Tags",
     "store": "Store",
     "cart": "Cart",
     "about": "About",

@@ -1,5 +1,6 @@
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
@@ -41,6 +42,17 @@ const styles = (theme) => ({
   },
   margin: {
     margin: theme.spacing(1),
+  },
+  button: {
+    margin: `${theme.spacing(1)}px auto`,
+    width: '70%',
+    display: 'block',
+  },
+  form: {
+    paddingLeft: '0.1rem',
+  },
+  registeredUsername: {
+    marginTop: theme.spacing(6),
   },
 });
 
@@ -180,41 +192,33 @@ const CompleteRegistrationForm = (props) => {
 
   let renderedView;
   if (expired) {
-    renderedView = <h3>This link has expired! Please register again</h3>;
+    renderedView = (
+      <Typography
+        variant="h5"
+      >
+        This link has expired! Please register again...
+      </Typography>
+    );
   } else if (registered) {
     renderedView = (
       <>
-        <h2>User was successfully registered. Here are the details:</h2>
-        <h3>
-          _id:
-          {registered._id}
-        </h3>
-        <h3>
-          Token:
-          {registered.token}
-        </h3>
-        <h3>
-          Username:
+        <Typography
+          variant="h5"
+        >
+          You have successfully registered with the following username:
+        </Typography>
+        <Typography
+          variant="h5"
+          className={classes.registeredUsername}
+        >
           {registered.username}
-        </h3>
-        <h3>
-          First Name:
-          {registered.firstName}
-        </h3>
-        <h3>
-          Last Name:
-          {registered.lastName}
-        </h3>
-        <h3>
-          Password:
-          {registered.password}
-        </h3>
+        </Typography>
       </>
     );
   } else {
     renderedView = (
       <>
-        <form onSubmit={(e) => { e.preventDefault(); submitForm(e); }}>
+        <form classeName={classes.form} onSubmit={(e) => { e.preventDefault(); submitForm(e); }}>
           <EmailField
             fullWidth={false}
             disabled
@@ -222,7 +226,14 @@ const CompleteRegistrationForm = (props) => {
             helperText=""
             required={false}
           />
-          {token && <p>{token}</p>}
+          <UsernameField
+            fullWidth={false}
+            error={usernameError}
+            disabled={!!username}
+            value={username}
+            helperText={!username && usernameHelper}
+            required={!username}
+          />
           <FirstNameField
             fullWidth={false}
             error={firstNameError}
@@ -238,14 +249,6 @@ const CompleteRegistrationForm = (props) => {
             value={lastName}
             helperText={!lastName && lastNameHelper}
             required={!lastName}
-          />
-          <UsernameField
-            fullWidth={false}
-            error={usernameError}
-            disabled={!!username}
-            value={username}
-            helperText={!username && usernameHelper}
-            required={!username}
           />
           <PasswordField
             fullWidth={false}
@@ -268,7 +271,7 @@ const CompleteRegistrationForm = (props) => {
             color="primary"
             type="submit"
             variant="contained"
-            className={classes.margin}
+            className={classes.button}
           >
             Submit
           </Button>

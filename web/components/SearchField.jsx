@@ -57,7 +57,7 @@ const SearchField = (props) => {
   } = props;
 
   return (
-    <form className={className}>
+    <form className={className} action="/blog">
       <div className={classes.search}>
         <div className={classes.searchIcon}>
           <SearchIcon />
@@ -68,7 +68,7 @@ const SearchField = (props) => {
             root: classes.inputRoot,
             input: classes.inputInput,
           }}
-          inputProps={{ 'aria-label': 'Search' }}
+          inputProps={{ 'aria-label': 'Search', 'name': 'search' }}
         />
       </div>
     </form>

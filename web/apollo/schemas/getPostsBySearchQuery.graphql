@@ -1,0 +1,39 @@
+query posts($limit: Int!, $start: Int!, $where: JSON!) {
+  posts(
+    sort: "createdAt:DESC",
+    limit: $limit,
+    start: $start,
+    where: $where
+  ) {
+    id
+    title
+    secondaryTitle
+    excerpt
+    slug
+    createdAt
+    readTime
+    views
+    author{
+      firstName
+      lastName
+      username
+    }
+    thumbnail {
+      hash
+      ext
+    }
+    tags {
+      slug
+      name
+    }
+    category {
+      slug
+      name
+    }
+  }
+  postsConnection(where: $where) {
+    aggregate{
+      count
+    }
+  }
+}

@@ -2,6 +2,8 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 import grey from '@material-ui/core/colors/grey';
 import red from '@material-ui/core/colors/red';
 import blue from '@material-ui/core/colors/blue';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+import amber from '@material-ui/core/colors/amber';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 // Create a theme instance.
@@ -33,6 +35,23 @@ const mainTheme = createMuiTheme({
     },
     avatar: {
       default: blue[600],
+    },
+    title: {
+      default: amber[200],
+    },
+    link: {
+      default: lightBlue[700],
+    },
+    blockquoteBorder: {
+      default: grey[400],
+    },
+    blockquoteBackground: {
+      default: grey[300],
+    },
+    email: {
+      text: blueGrey[700],
+      background: grey[100],
+      backgroundBorder: grey[300],
     },
   },
 });

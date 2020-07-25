@@ -1,10 +1,12 @@
 import dotenv from 'dotenv';
 import nodemailer from 'nodemailer';
+import confirmationMessageBody from './confirmation-message-body';
 
 dotenv.config();
 
 const sendConfirmationEmail = (recipient, user) => {
-  const { firstName } = user;
+  const subject = 'Registration successful!';
+  const { firstName, lastName } = user;
   const transport = nodemailer.createTransport({
     service: 'ses',
     host: process.env.SES_HOST, // Amazon email SMTP hostname
@@ -16,10 +18,10 @@ const sendConfirmationEmail = (recipient, user) => {
     },
   });
   const mailOptions = {
-    from: 'no-reply <no-reply@schandillia.com>', // sender address
-    to: `Amit Schandillia <${recipient}>`, // list of receivers
-    subject: 'Brand new email', // Subject line
-    html: `<b>This mail is haunted!</b><h2>Congrats, ${firstName}!!!</h2>`, // email body
+    from: `no-reply <no-reply@${process.env.THIS_DOMAIN_LONG}>`, // sender address
+    to: `${firstName} ${lastName} <${recipient}>`, // list of receivers
+    subject: subject, // Subject line
+    html: confirmationMessageBody(user), // email body
   };
   return new Promise((resolve, reject) => {
     transport.sendMail(mailOptions, (error, info) => {

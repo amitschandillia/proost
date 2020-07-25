@@ -14,6 +14,10 @@ const styles = (theme) => ({
   root: {
     flexGrow: 1,
   },
+  socials: {
+    flexGrow: 1,
+    marginTop: theme.spacing(2),
+  },
   signInText: {
     marginLeft: theme.spacing(1),
     textAlign: 'center',
@@ -31,6 +35,13 @@ const styles = (theme) => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 200,
+  },
+  haveAccount: {
+    marginLeft: theme.spacing(1),
+  },
+  submit: {
+    width: '100%',
+    margin: `${theme.spacing(1)}px 0 ${theme.spacing(2)}px -0.1rem`,
   },
 });
 
@@ -56,15 +67,26 @@ const SignUpView = (props) => {
           name="to"
           error={flagEmailError}
         />
+        <Button
+          size="large"
+          color="primary"
+          type="submit"
+          variant="contained"
+          className={classes.submit}
+        >
+          Submit
+        </Button>
       </form>
 
-      <Grid container className={classes.root} spacing={2}>
+      <Grid container className={classes.socials} spacing={2}>
         <SocialButton pageURL={pageURL} provider="google" />
         <SocialButton pageURL={pageURL} provider="twitter" />
         <SocialButton pageURL={pageURL} provider="facebook" />
+        <div className={classes.haveAccount}>
+          <span>Already have an account?</span>
+          <Button color="inherit" onClick={showSignIn}>Sign in</Button>
+        </div>
       </Grid>
-      <span>Already have an account?</span>
-      <Button color="inherit" onClick={showSignIn}>Sign in</Button>
     </>
   );
 };

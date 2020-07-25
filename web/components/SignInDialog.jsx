@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 
 import SignInView from './SignInView';
 import SignUpView from './SignUpView';
+import ForgotPasswordView from './ForgotPasswordView';
 
 const styles = (theme) => ({
   root: {
@@ -36,10 +37,23 @@ const styles = (theme) => ({
 
 const SignInDialog = (props) => {
   const {
-    classes, pageURL, handleClose, open, showSignInView, showSignUpView,
+    classes,
+    pageURL,
+    handleClose,
+    open,
+    showSignInView,
+    showSignUpView,
+    showForgotPasswordView,
   } = props;
 
-  const dialogTitle = showSignInView ? 'Sign in' : 'Sign up';
+  let dialogTitle;
+  if(showSignInView) {
+    dialogTitle = 'Sign In';
+  } else if(showSignUpView) {
+    dialogTitle = 'Sign Up';
+  } else if(showForgotPasswordView) {
+    dialogTitle = 'Forgot Password';
+  }
 
   return (
     <Dialog
@@ -66,6 +80,13 @@ const SignInDialog = (props) => {
         </DialogContentText>
       </DialogContent>
       )}
+      {showForgotPasswordView && (
+      <DialogContent component="div">
+        <DialogContentText>
+          <ForgotPasswordView pageURL={pageURL} />
+        </DialogContentText>
+      </DialogContent>
+      )}
     </Dialog>
   );
 };
@@ -75,6 +96,7 @@ SignInDialog.propTypes = {
   handleClose: PropTypes.func.isRequired,
   showSignInView: PropTypes.bool.isRequired,
   showSignUpView: PropTypes.bool.isRequired,
+  showForgotPasswordView: PropTypes.bool.isRequired,
   open: PropTypes.bool.isRequired,
   classes: PropTypes.shape({
     root: PropTypes.string,
@@ -87,17 +109,27 @@ const mapStateToProps = (state) => ({
   open: state.openSignInDialog,
   showSignInView: state.showSignInView,
   showSignUpView: state.showSignUpView,
+  showForgotPasswordView: state.showForgotPasswordView,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   showSignUp: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: true });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: false });
+    dispatch({ type: 'SHOWFORGOTPASSWORDVIEW', payload: false });
+    dispatch({ type: 'FLAGEMAILERROR', payload: false });
+    dispatch({ type: 'FLAGEPASSWORDERROR', payload: false });
+  },
+  showForgotPassword: () => {
+    dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });
+    dispatch({ type: 'SHOWSIGNINVIEW', payload: false });
+    dispatch({ type: 'SHOWFORGOTPASSWORDVIEW', payload: true });
     dispatch({ type: 'FLAGEMAILERROR', payload: false });
     dispatch({ type: 'FLAGEPASSWORDERROR', payload: false });
   },
   showSignIn: () => {
     dispatch({ type: 'SHOWSIGNUPVIEW', payload: false });
+    dispatch({ type: 'SHOWFORGOTPASSWORDVIEW', payload: true });
     dispatch({ type: 'SHOWSIGNINVIEW', payload: true });
   },
   handleClose: () => {

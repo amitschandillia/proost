@@ -3,6 +3,7 @@ query tags($where: JSON, $postLimit: Int!, $postStart: Int!, $categoryFilter: JS
     _id
     name
     description
+    longDescription
     posts(sort: "createdAt:DESC", limit: $postLimit, start: $postStart, where: {isPublished: true}) {
       title
       excerpt

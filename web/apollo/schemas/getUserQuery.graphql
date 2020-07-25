@@ -4,7 +4,7 @@ query users($where: JSON, $postLimit: Int!, $postStart: Int!, $authorFilter: JSO
     username
     firstName
     lastName
-    bio
+    longBio
     posts(sort: "createdAt:DESC", limit: $postLimit, start: $postStart, where: {isPublished: true}) {
       title
       excerpt

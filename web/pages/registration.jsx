@@ -3,6 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import PropTypes from 'prop-types';
 import React from 'react';
+import Container from '@material-ui/core/Container';
 
 import CompleteRegistrationForm from '../components/CompleteRegistrationForm';
 import LinkTo from '../components/LinkTo';
@@ -13,7 +14,7 @@ import PageBody from '../components/PageBody';
 const styles = (theme) => ({
   root: {
     textAlign: 'center',
-    paddingTop: theme.spacing(20),
+    // paddingTop: theme.spacing(20),
   },
   paragraph: {
     fontFamily: 'Source Sans Pro',
@@ -41,7 +42,7 @@ const Registration = (props) => {
       pageURL = {pageURL}
     >
       <PageBody>
-        <Box my={4} className={classes.root}>
+        <Box my={4} mx="auto" maxWidth={500} className={classes.root}>
           {error && <RegistrationError />}
           {!error && (
           <CompleteRegistrationForm
@@ -51,11 +52,6 @@ const Registration = (props) => {
             retrievedData={retrievedData}
           />
           )}
-          <Typography gutterBottom>
-            <LinkTo href="/">
-              <a>Go home</a>
-            </LinkTo>
-          </Typography>
         </Box>
       </PageBody>
     </Layout>

@@ -96,6 +96,9 @@ app.prepare().then(() => {
   server.get('/blog/authors/:authorSlug', (req, res) => {
     app.render(req, res, '/blog/authors', { authorSlug: req.params.authorSlug });
   });
+  server.get('/blog/search/:searchTerm', (req, res) => {
+    app.render(req, res, '/blog/search', { searchTerm: req.params.searchTerm });
+  });
   server.get('/blog/posts/:postSlug', (req, res) => {
     app.render(req, res, '/blog', { postSlug: req.params.postSlug });
   });
