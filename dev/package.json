@@ -23,7 +23,7 @@
     "markdown": "^0.5.0",
     "random-int": "^2.0.1",
     "slugify": "^1.3.6",
-    "strapi": "3.0.0-beta.17",
+    "strapi": "3.0.0-beta.17.5",
     "strapi-admin": "3.0.0-beta.17",
     "strapi-hook-mongoose": "3.0.0-beta.17",
     "strapi-plugin-content-manager": "3.0.0-beta.17",
