@@ -26,7 +26,7 @@
     "strapi": "3.0.0-beta.17",
     "strapi-admin": "3.0.0-beta.17",
     "strapi-hook-mongoose": "3.0.0-beta.17",
-    "strapi-plugin-content-manager": "3.0.0-beta.17",
+    "strapi-plugin-content-manager": "3.2.5",
     "strapi-plugin-content-type-builder": "3.0.0-beta.17",
     "strapi-plugin-documentation": "^3.0.0-beta.17",
     "strapi-plugin-email": "3.0.0-beta.17",
